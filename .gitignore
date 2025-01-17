@@ -1,0 +1,8 @@
+shell_files/slurm*
+.ipynb_checkpoints
+
+tools/__pycache__/*
+tools/solvers/__pycache__/*
+
+storage/*
+images/*
