@@ -3,6 +3,7 @@ shell_files/slurm*
 
 tools/__pycache__/*
 tools/solvers/__pycache__/*
+tools/.DS_Store
 
 storage/*
 images/*

@@ -14,9 +14,9 @@ system_params = {'ndim': 3,
                  'Lz': 2 * np.pi,
                  'n': 1}
 
-solver_params = {'Nx': 64,
-                 'Ny': 64,
-                 'Nz': 64,
+solver_params = {'Nx': 32,
+                 'Ny': 32,
+                 'Nz': 32,
                  'dt': 1e-3,
                  'c': 0}
 """
@@ -46,7 +46,7 @@ timestepper = TimeStepper3D(material_params=material_params, system_params=syste
 ic_file, noise_coeff = get_ic_file(material_params, system_params, solver_params, suffix=f'recent-', subdir='arrowhead_3D', 
                                    ic_dict_if_reinit=None)
 
-timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=1e-2)
+timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=noise_coeff)
 
 # set arrowhead as base
 # timestepper.change_base_flow(timestepper.get_flow(combine_processes=True))
