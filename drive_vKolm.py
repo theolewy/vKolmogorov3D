@@ -51,7 +51,7 @@ timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=noise_coeff)
 # set arrowhead as base
 # timestepper.change_base_flow(timestepper.get_flow(combine_processes=True))
 
-timestepper.simulate(T=5000, ifreq=10, 
+timestepper.simulate(T=5000, ifreq=100, 
                      track_TW=False, 
                      enforce_symmetry=True,
                      save_over_long=True, 
