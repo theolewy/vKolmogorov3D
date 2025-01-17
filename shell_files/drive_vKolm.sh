@@ -33,10 +33,10 @@ module load miniforge3
 source activate dedalus
 
 #! Full path to application executable:
-application="python $HOME/projects/vKolmogorov2D/drive_vKolm.py"
+application="python $HOME/projects/vKolmogorov3D/drive_vKolm.py"
 
 #! Work directory (i.e. where the job will run):
-workdir="$HOME/projects/vKolmogorov2D/"  # The value of SLURM_SUBMIT_DIR sets workdir to the directory
+workdir="$HOME/projects/vKolmogorov3D/"  # The value of SLURM_SUBMIT_DIR sets workdir to the directory
                                 # in which sbatch is run.
 export OMP_NUM_THREADS=1
 
