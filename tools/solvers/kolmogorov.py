@@ -497,7 +497,7 @@ class TimeStepper3D(CartesianTimeStepper):
         elif save_freq == 'long':
             sim_dt = 0.1
         elif save_freq == 'recent':
-            sim_dt = 10
+            sim_dt = 1
         else:
             sim_dt = save_freq
         
