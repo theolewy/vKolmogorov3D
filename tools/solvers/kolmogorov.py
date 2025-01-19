@@ -376,9 +376,9 @@ class TimeStepper3D(CartesianTimeStepper):
         # base_flow=None
 
         if on_local_device():
-            fname=f"snaps2D_iter_{self.solver.iteration}"
+            fname=f"snaps3D_iter_{self.solver.iteration}"
         else:
-            fname=f"snaps2D_W_{self.W}_Re_{self.Re}_eps_{self.eps}_beta_{self.beta}_L_{self.L}_Lx_{self.Lx:.4g}_Nx_{self.Nx}_Ny_{self.Ny}_{suffix_end}".replace('.', ',')
+            fname=f"snaps3D_W_{self.W}_Re_{self.Re}_eps_{self.eps}_beta_{self.beta}_L_{self.L}_Lx_{self.Lx:.4g}_Nx_{self.Nx}_Ny_{self.Ny}_{suffix_end}".replace('.', ',')
 
         if self.ndim == 1:
             raise Exception("Made 1D plotting possible")
