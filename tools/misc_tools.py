@@ -29,13 +29,6 @@ def get_roots():
 
     return core_root, data_root
 
-def get_metric_from_params(material_params, system_params, solver_params, suffix, subdir, metric='trace', deviation=True):
-
-    fpath = get_fpath_sim(material_params, system_params, solver_params, suffix=suffix, subdir=subdir)
-    t_all, metric_all = get_metric_from_fpath(fpath, metric=metric, deviation=deviation)
-
-    return t_all, metric_all
-
 def get_ic_file(material_params, system_params, solver_params, restart=False, suffix='', subdir='', ic_dict_if_reinit=None, **kwargs):
 
     if 'suffix_name' in kwargs.keys(): suffix = f"recent-{kwargs['suffix_name']}"
@@ -66,14 +59,6 @@ def get_ic_file(material_params, system_params, solver_params, restart=False, su
     return ic_file, noise_coeff
 
 
-def get_h5_data(material_params, system_params, solver_params, suffix='', subdir='', s=-1):
-
-    fpath = get_fpath_sim(material_params, system_params, solver_params, suffix=suffix, subdir=subdir)
-
-    data_fields, data_metric = get_h5_data_from_fpath(fpath, s)
-
-    return data_fields, data_metric
-
 def get_fpath_sim(material_params, system_params, solver_params, suffix='', subdir='', **kwargs):
 
     params_copy = copy.deepcopy(material_params)
@@ -103,9 +88,34 @@ def get_fpath_sim(material_params, system_params, solver_params, suffix='', subd
 
     return save_folder
 
+####################################################################################################################################
+# EVERYTHING UNDER HERE DOESN'T NEED TO CHANGE WHEN A NEW SYSTEM IS MADE
+####################################################################################################################################
+def get_h5_data(material_params, system_params, solver_params, suffix='', subdir='', s=-1):
+
+    fpath = get_fpath_sim(material_params, system_params, solver_params, suffix=suffix, subdir=subdir)
+
+    data_fields, data_metric = get_h5_data_from_fpath(fpath, s)
+
+    return data_fields, data_metric
+
+def get_metric_from_params(material_params, system_params, solver_params, suffix, subdir, metric='trace', deviation=True):
+
+    fpath = get_fpath_sim(material_params, system_params, solver_params, suffix=suffix, subdir=subdir)
+    t_all, metric_all = get_metric_from_fpath(fpath, metric=metric, deviation=deviation)
+
+    return t_all, metric_all
 
 def get_s_list(material_params, system_params, solver_params, suffix='', subdir=''):
 
     fpath = get_fpath_sim(material_params, system_params, solver_params, suffix=suffix, subdir=subdir)
 
     get_s_list_from_fpath(fpath)
+
+
+def get_metric_from_fpath(fpath, metric='trace', deviation=True):
+
+    s_list = get_s_list_from_fpath(fpath)
+    t, metric = get_metric_from_fpath_and_s_list(fpath, s_list, metric=metric, deviation=deviation)
+
+    return t, metric

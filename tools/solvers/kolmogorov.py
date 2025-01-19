@@ -383,9 +383,9 @@ class TimeStepper3D(CartesianTimeStepper):
         if self.ndim == 1:
             raise Exception("Made 1D plotting possible")
         elif self.ndim == 2:
-            self.plot_snaps_2D(flow, base_flow, subdirectory, suffix_end, plot_dev, fname)
+            self.plot_snaps_2D(flow=flow, base_flow=base_flow, subdirectory=subdirectory, plot_dev=plot_dev, fname=fname)
         elif self.ndim == 3:
-            self.plot_snaps_3D(flow, base_flow, subdirectory, suffix_end, plot_dev, fname)
+            self.plot_snaps_3D(flow=flow, base_flow=base_flow, subdirectory=subdirectory, plot_dev=plot_dev, fname=fname)
 
         self.set_scale(1.5)
 
