@@ -425,24 +425,33 @@ class TimeStepper3D(CartesianTimeStepper):
         # y is Fourier, so freq are [0, 1, 2, ... , -2, -1]. Even means k(1) = k(-1) and odd means k(1) = -k(-1)
         for field_name in odd_fields_y:
             field = getattr(self, field_name)
-            field['c'][:,:,1:] = (field['c'][:,:,1:] - field['c'][:,:,1:][:,:,::-1]) / 2
-            field['c'][:,:,0] = 0
+            if self.ndim == 3:
+                field['c'][:,:,1:] = (field['c'][:,:,1:] - field['c'][:,:,1:][:,:,::-1]) / 2
+                field['c'][:,:,0] = 0
+            elif self.ndim == 2:
+                field['c'][:,1:] = (field['c'][:,1:] - field['c'][:,1:][:,::-1]) / 2
+                field['c'][:,0] = 0
 
         for field_name in even_fields_y:
             field = getattr(self, field_name)
-            field['c'][:,:,1:] = (field['c'][:,:,1:] + field['c'][:,:,1:][:,:,::-1]) / 2
-    
+            if self.ndim == 3:
+                field['c'][:,:,1:] = (field['c'][:,:,1:] + field['c'][:,:,1:][:,:,::-1]) / 2
+            elif self.ndim == 2:
+                field['c'][:,1:] = (field['c'][:,1:] + field['c'][:,1:][:,::-1]) / 2
+
         odd_fields_z = ['w', 'c13', 'c23']
         even_fields_z = ['u', 'v', 'c11', 'c12', 'c22', 'c33', 'p']
 
         # z is Fourier, so freq are [0, 1, 2, ... , -2, -1]. Even means k(1) = k(-1) and odd means k(1) = -k(-1)
         for field_name in odd_fields_z:
             field = getattr(self, field_name)
-            field['c'][:,1:,:] = (field['c'][:,1:,:] - field['c'][:,1:,:][:,::-1,:1]) / 2
+            if self.ndim == 3:
+                field['c'][:,1:,:] = (field['c'][:,1:,:] - field['c'][:,1:,:][:,::-1,:1]) / 2
         
         for field_name in even_fields_z:
             field = getattr(self, field_name)
-            field['c'][:,1:,:] = (field['c'][:,1:,:] + field['c'][:,1:,:][:,::-1,:]) / 2
+            if self.ndim == 3:
+                field['c'][:,1:,:] = (field['c'][:,1:,:] + field['c'][:,1:,:][:,::-1,:]) / 2
 
 
     def simulate(self, T=np.infty, ifreq=200, converge_cadence=None, convergence_limit=1e-4,
