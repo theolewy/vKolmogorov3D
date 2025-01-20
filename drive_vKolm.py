@@ -16,7 +16,7 @@ system_params = {'ndim': 2,
 
 solver_params = {'Nx': 128,
                  'Ny': 64,
-                 'dt': 1e-2,
+                 'dt': 5e-3,
                  'c': 0}
 
 
