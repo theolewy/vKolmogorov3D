@@ -15,7 +15,7 @@ system_params = {'ndim': 2,
                  'n': 1}
 
 solver_params = {'Nx': 128,
-                 'Ny': 64,
+                 'Ny': 128,
                  'dt': 5e-3,
                  'c': 0}
 
@@ -32,7 +32,7 @@ timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=noise_coeff)
 # set arrowhead as base
 # timestepper.change_base_flow(timestepper.get_flow(combine_processes=True))
 
-timestepper.simulate(T=1000, ifreq=100, 
+timestepper.simulate(T=4000, ifreq=100, 
                      track_TW=False, 
                      enforce_symmetry=True,
                      save_over_long=False, 
