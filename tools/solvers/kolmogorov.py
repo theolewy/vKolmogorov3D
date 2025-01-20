@@ -282,6 +282,11 @@ class TimeStepper3D(CartesianTimeStepper):
     def _set_solver(self):
         self.numeric_solver = NumericSolver(system_params=self.system_params, solver_params=self.solver_params, comm=MPI.COMM_SELF)
 
+    def _set_low_dim_timestepper(self, ndim_low):
+        system_params_low_dim = copy.deepcopy(self.system_params)
+        system_params_low_dim['ndim'] = ndim_low
+        self.low_dim_timestepper = TimeStepper3D(material_params=self.material_params, system_params=system_params_low_dim, solver_params=self.solver_params)
+
     def _set_vars_coords_param_names(self):
 
         self.variables = ['u', 'v', 'w', 'p', 'c11', 'c12', 'c22', 'c33', 'c13', 'c23']
@@ -304,6 +309,16 @@ class TimeStepper3D(CartesianTimeStepper):
             self.y_dealias = self.domain.grid(2, scales=3 / 2)
             self.area = 2 * np.pi * self.n * self.Lx * self.Lz
 
+        elif self.ndim == 2:
+
+            self.x_basis = de.Fourier('x', self.Nx, interval=(0, self.Lx), dealias=3 / 2)
+            self.y_basis = de.Fourier('y', self.Ny, interval=(-np.pi*self.n, np.pi*self.n), dealias=3 / 2)
+            self.domain = de.Domain([self.x_basis, self.y_basis], grid_dtype=np.float64)
+            self.x = self.domain.grid(0)
+            self.y = self.domain.grid(1)
+            self.y_dealias = self.domain.grid(1, scales=3 / 2)
+            self.area = 2 * np.pi * self.n * self.Lx
+
         else:
 
             raise Exception("ndim must be 1 or 2")
@@ -322,7 +337,6 @@ class TimeStepper3D(CartesianTimeStepper):
         self.problem.substitutions['c23y'] = "dy(c23)"
 
         self.problem.substitutions['dt_dash(A)'] = "dt(A) - c*dx(A)"
-
 
     def equations(self):
 
@@ -363,9 +377,12 @@ class TimeStepper3D(CartesianTimeStepper):
                                   '+ 2 * c13 * dx(w) + 2 * c23 * dy(w) + 2 * c33 * dz(w)' + \
                                   ' - t33')
 
-
-        self.problem.add_equation('dx(u) + dy(v) + dz(w) = 0', condition=('nx!=0 or ny!=0 or nz!=0'))
-        self.problem.add_equation('p = 0', condition=('nx==0 and ny==0 and nz==0'))
+        if self.ndim == 3:
+            self.problem.add_equation('dx(u) + dy(v) + dz(w) = 0', condition=('nx!=0 or ny!=0 or nz!=0'))
+            self.problem.add_equation('p = 0', condition=('nx==0 and ny==0 and nz==0'))
+        elif self.ndim == 2:
+            self.problem.add_equation('dx(u) + dy(v) + dz(w) = 0', condition=('nx!=0 or ny!=0'))
+            self.problem.add_equation('p = 0', condition=('nx==0 and ny==0'))
 
 
     def plot_snaps(self, subdirectory='', suffix_end='', plot_dev=True):

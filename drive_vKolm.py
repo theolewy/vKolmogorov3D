@@ -9,43 +9,23 @@ material_params = {'W': 30,
                    'L': np.infty,
                    'eps': 1e-3}
 
-system_params = {'ndim': 3,
+system_params = {'ndim': 2,
                  'Lx': 4 * np.pi,
-                 'Lz': 2 * np.pi,
+                 'Lz': np.pi,
                  'n': 1}
 
 solver_params = {'Nx': 128,
-                 'Ny': 128,
-                 'Nz': 128,
-                 'dt': 1e-3,
+                 'Ny': 64,
+                 'dt': 5e-3,
                  'c': 0}
 
-"""
-If 1 param: Lx
-If 2 params: Lx, W 
-"""
-
-if len(sys.argv) == 3:
-    job_idx = int(sys.argv[1])
-    Lx_fact = float(sys.argv[2])
-    system_params['Lx'] = Lx_fact * np.pi
-elif len(sys.argv) == 4:
-    job_idx = int(sys.argv[1])
-    Lx_fact = float(sys.argv[2])
-    W = float(sys.argv[3])
-    system_params['Lx'] = Lx_fact * np.pi
-    material_params['W'] = W
-elif on_local_device():
-    pass
-else:
-    raise Exception('Need more inputs!')
 
 log_all_params(material_params, system_params, solver_params)
 
 timestepper = TimeStepper3D(material_params=material_params, system_params=system_params, solver_params=solver_params)
 
-ic_file, noise_coeff = get_ic_file(material_params, system_params, solver_params, suffix=f'recent-', subdir='arrowhead_3D', 
-                                   ic_dict_if_reinit=None)
+ic_file, noise_coeff = get_ic_file(material_params, system_params, solver_params, suffix=f'recent-', subdir='arrowhead_2D', 
+                                   ic_dict_if_reinit={'ndim': 2, 'Nx': 64, 'Ny': 64})
 
 timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=noise_coeff)
 
@@ -54,8 +34,8 @@ timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=noise_coeff)
 
 timestepper.simulate(T=200, ifreq=100, 
                      track_TW=False, 
-                     enforce_symmetry=True,
-                     save_over_long=True, 
+                     enforce_symmetry=False,
+                     save_over_long=False, 
                      save_full_data=False, full_save_freq=5,
-                     save_subdir='arrowhead_3D', suffix_end='', 
-                     plot=True, plot_dev=True, plot_subdirectory='arrowhead_3D')
+                     save_subdir='arrowhead_2D', suffix_end='', 
+                     plot=True, plot_dev=True, plot_subdirectory='arrowhead_2D')
