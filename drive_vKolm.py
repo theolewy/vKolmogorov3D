@@ -9,7 +9,7 @@ material_params = {'W': 30,
                    'L': np.infty,
                    'eps': 1e-3}
 
-system_params = {'ndim': 2,
+system_params = {'ndim': 3,
                  'Lx': 4 * np.pi,
                  'Lz': np.pi,
                  'n': 1}
