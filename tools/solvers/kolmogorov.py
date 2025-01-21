@@ -468,11 +468,9 @@ class TimeStepper3D(CartesianTimeStepper):
         long_time_folder = self.save_on_long(save_over_long, suffix_end, save_subdir, **kwargs)
         # save all data 
         full_save_folder = self.save_all_data(save_full_data, suffix_end, **kwargs)
+        # save most recent h5
+        self.save_recent_data(suffix_end, save_subdir, **kwargs)
 
-        if not on_local_device(**kwargs):
-            overwriting_handler = self.add_tasks(save_freq='recent', suffix=f"recent-{suffix_end}", subdir=save_subdir, save_all_fields=True, 
-                            mode='overwrite')
-            logger.info(f"Most recent h5 file task is saved at {'/'.join(self.save_folder.split('/')[7:])}")
 
         if 'enforce_symmetry' in kwargs.keys() and kwargs['enforce_symmetry']: logger.info("ENFORCING SYMMETRY")
 
