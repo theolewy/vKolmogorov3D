@@ -297,12 +297,17 @@ class TimeStepper3D(CartesianTimeStepper):
 
     def build_domain(self, **kwargs):
 
+        
         if self.ndim == 3:
 
+            comm = MPI.COMM_WORLD
+            size = comm.Get_size()
+            mesh = (int(size ** 0.5), int(size ** 0.5)) if size ** 0.5 % 1 == 0 else (2, size//2)
+            
             self.x_basis = de.Fourier('x', self.Nx, interval=(0, self.Lx), dealias=3 / 2)
             self.y_basis = de.Fourier('y', self.Ny, interval=(-np.pi*self.n, np.pi*self.n), dealias=3 / 2)
             self.z_basis = de.Fourier('z', self.Nz, interval=(-self.Lz/2, self.Lz/2), dealias=3 / 2)
-            self.domain = de.Domain([self.x_basis, self.z_basis, self.y_basis], grid_dtype=np.float64)
+            self.domain = de.Domain([self.x_basis, self.z_basis, self.y_basis], grid_dtype=np.float64, mesh=mesh)
             self.x = self.domain.grid(0)
             self.z = self.domain.grid(1)
             self.y = self.domain.grid(2)
