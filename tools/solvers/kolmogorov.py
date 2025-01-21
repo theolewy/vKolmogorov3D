@@ -401,7 +401,7 @@ class TimeStepper3D(CartesianTimeStepper):
         if on_local_device():
             fname=f"snaps3D_iter_{self.solver.iteration}"
         else:
-            fname=f"snaps3D_W_{self.W}_Re_{self.Re}_eps_{self.eps}_beta_{self.beta}_L_{self.L}_Lx_{self.Lx:.4g}_Nx_{self.Nx}_Ny_{self.Ny}_{suffix_end}".replace('.', ',')
+            fname=f"snaps3D_W_{self.W}_Re_{self.Re}_eps_{self.eps}_beta_{self.beta}_L_{self.L}_Lx_{self.Lx:.4g}_Lz_{self.Lz:.4g}_Nx_{self.Nx}_Ny_{self.Ny}_{suffix_end}".replace('.', ',')
 
         if self.ndim == 1:
             raise Exception("Made 1D plotting possible")
@@ -414,7 +414,7 @@ class TimeStepper3D(CartesianTimeStepper):
     
     def plot_metrics(self, subdirectory='', suffix_end=''):
 
-        fname = 'norm' if on_local_device() else f"norm_W_{self.W}_Re_{self.Re}_eps_{self.eps}_beta_{self.beta}_L_{self.L}_Lx_{self.Lx:.4g}_Nx_{self.Nx}_Ny_{self.Ny}_{suffix_end}".replace('.', ',')
+        fname = 'norm' if on_local_device() else f"norm_W_{self.W}_Re_{self.Re}_eps_{self.eps}_beta_{self.beta}_L_{self.L}_Lx_{self.Lx:.4g}_Lz_{self.Lz:.4g}_Nx_{self.Nx}_Ny_{self.Ny}_{suffix_end}".replace('.', ',')
         fpath = os.path.join(self.core_root, 'images', 'simulations', subdirectory)
         os.makedirs(fpath, exist_ok=True)
         fpath = os.path.join(fpath, fname)
