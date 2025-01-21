@@ -11,12 +11,12 @@ material_params = {'W': 30,
 
 system_params = {'ndim': 3,
                  'Lx': 4 * np.pi,
-                 'Lz': 1.5*np.pi,
+                 'Lz': np.pi,
                  'n': 1}
 
 solver_params = {'Nx': 128,
                  'Ny': 64,
-                 'Nz': 48,
+                 'Nz': 64,
                  'dt': 1e-3,
                  'c': 0}
 
