@@ -494,7 +494,7 @@ class TimeStepper3D(CartesianTimeStepper):
         while self.solver.ok and not stop:
             
             # so that tasks continually overwrite a single h5 file
-            if not on_local_device(**kwargs): overwriting_handler.set_num, overwriting_handler.file_write_num = 1, 0  
+            self.process_recent_saving(**kwargs)
 
             self.solver.step(dt=self.dt)
 
