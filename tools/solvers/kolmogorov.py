@@ -453,7 +453,8 @@ class TimeStepper3D(CartesianTimeStepper):
             field = getattr(self, field_name)
             if self.ndim == 3:
                 field['c'][:,1:,:] = (field['c'][:,1:,:] - field['c'][:,1:,:][:,::-1,:1]) / 2
-        
+                field['c'][:,0,:] = 0
+
         for field_name in even_fields_z:
             field = getattr(self, field_name)
             if self.ndim == 3:
