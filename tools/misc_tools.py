@@ -80,7 +80,7 @@ def get_fpath_sim(material_params, system_params, solver_params, suffix='', subd
         name = f"sim_W_{params_copy['W']:.6g}_Re_{params_copy['Re']:.6g}_beta_{params_copy['beta']:.6g}_eps_{params_copy['eps']:.6g}_L_{params_copy['L']:.5g}_Lx_{params_copy['Lx']:.5g}_ndim_{ndim}_N_{Nx}-{Ny}_{suffix}/"
     elif ndim == 3:
         Nx, Ny, Nz = params_copy['Nx'], params_copy['Ny'], params_copy['Nz']
-        name = f"sim_W_{params_copy['W']:.6g}_Re_{params_copy['Re']:.6g}_beta_{params_copy['beta']:.6g}_eps_{params_copy['eps']:.6g}_L_{params_copy['L']:.5g}_Lx_{params_copy['Lx']:.5g}_ndim_{ndim}_N_{Nx}-{Ny}-{Nz}_{suffix}/"
+        name = f"sim_W_{params_copy['W']:.6g}_Re_{params_copy['Re']:.6g}_beta_{params_copy['beta']:.6g}_eps_{params_copy['eps']:.6g}_L_{params_copy['L']:.5g}_Lx_{params_copy['Lx']:.5g}_Lz_{params_copy['Lz']:.5g}_ndim_{ndim}_N_{Nx}-{Ny}-{Nz}_{suffix}/"
     else:
         raise Exception
 
