@@ -35,4 +35,4 @@ timestepper.simulate(T=4000, ifreq=100,
                      save_over_long=False, 
                      save_full_data=False, full_save_freq=5,
                      save_subdir='arrowhead_3D', suffix_end='', 
-                     plot=True, plot_dev=True, plot_subdirectory='arrowhead_3D')
+                     plot=True, plot_dev=False, plot_subdirectory='arrowhead_3D')
