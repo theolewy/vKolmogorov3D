@@ -53,6 +53,8 @@ def get_ic_file(material_params, system_params, solver_params, restart=False, su
         noise_coeff = 1e-2
 
     if ic_file is None and ic_dict_if_reinit is not None:
+        if 'suffix' in kwargs.keys(): suffix = kwargs['suffix']
+        if 'subdir' in kwargs.keys(): subdir = kwargs['subdir']
         ic_file, noise_coeff = get_ic_file(material_params, system_params, solver_params, restart=False, closest_made_to_params=False,
                     suffix=suffix, subdir=subdir, ic_dict_if_reinit=None, **ic_dict_if_reinit)
 
@@ -67,9 +69,6 @@ def get_fpath_sim(material_params, system_params, solver_params, suffix='', subd
 
     for param_name, param in kwargs.items():    # overwrite anything in params with kwargs
         params_copy[param_name] = param
-
-    if 'suffix' in kwargs.keys(): suffix = kwargs['suffix']
-    if 'subdir' in kwargs.keys(): subdir = kwargs['subdir']
 
     ndim = params_copy['ndim']
 
