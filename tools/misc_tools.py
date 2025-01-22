@@ -68,6 +68,9 @@ def get_fpath_sim(material_params, system_params, solver_params, suffix='', subd
     for param_name, param in kwargs.items():    # overwrite anything in params with kwargs
         params_copy[param_name] = param
 
+    if 'suffix' in kwargs.keys(): suffix = kwargs['suffix']
+    if 'subdir' in kwargs.keys(): subdir = kwargs['subdir']
+
     ndim = params_copy['ndim']
 
     _, data_root = get_roots()
