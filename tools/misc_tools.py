@@ -53,8 +53,12 @@ def get_ic_file(material_params, system_params, solver_params, restart=False, su
         noise_coeff = 1e-2
 
     if ic_file is None and ic_dict_if_reinit is not None:
-        if 'suffix' in kwargs.keys(): suffix = kwargs['suffix']
-        if 'subdir' in kwargs.keys(): subdir = kwargs['subdir']
+        if 'suffix' in ic_dict_if_reinit.keys(): 
+            suffix = kwargs['suffix']
+            del ic_dict_if_reinit['suffix']
+        if 'subdir' in ic_dict_if_reinit.keys(): 
+            subdir = kwargs['subdir']
+            del ic_dict_if_reinit['subdir']
         ic_file, noise_coeff = get_ic_file(material_params, system_params, solver_params, restart=False, closest_made_to_params=False,
                     suffix=suffix, subdir=subdir, ic_dict_if_reinit=None, **ic_dict_if_reinit)
 
