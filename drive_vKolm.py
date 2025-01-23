@@ -14,7 +14,7 @@ system_params = {'ndim': 3,
                  'Lz': np.pi,
                  'n': 1}
 
-solver_params = {'Nx': 24,
+solver_params = {'Nx': 128,
                  'Ny': 64,
                  'Nz': 32,
                  'dt': 2e-3,
