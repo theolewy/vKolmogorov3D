@@ -21,6 +21,14 @@ solver_params = {'Nx': 128,
                  'c': 0}
 
 
+if len(sys.argv) == 3:
+    job_idx = int(sys.argv[1])
+    multiplier = float(sys.argv[2])
+    solver_params['Nz'] = int(multiplier * 32)
+    system_params['Lz'] = multiplier * np.pi
+else:
+    raise Exception('Need more inputs!')
+
 log_all_params(material_params, system_params, solver_params)
 
 timestepper = TimeStepper3D(material_params=material_params, system_params=system_params, solver_params=solver_params)
