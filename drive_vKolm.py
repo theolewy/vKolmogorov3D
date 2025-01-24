@@ -20,7 +20,6 @@ solver_params = {'Nx': 128,
                  'dt': 2e-3,
                  'c': 0}
 
-
 if len(sys.argv) == 3:
     job_idx = int(sys.argv[1])
     multiplier = float(sys.argv[2])
