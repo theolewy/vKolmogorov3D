@@ -39,7 +39,7 @@ timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=noise_coeff)
 timestepper.simulate(T=4000, ifreq=100, 
                      track_TW=False, 
                      enforce_symmetry=True,
-                     save_over_long=False, 
+                     save_over_long=True, 
                      save_full_data=False, full_save_freq=5,
                      save_subdir='arrowhead_3D', suffix_end='', 
                      plot=True, plot_dev=True, plot_subdirectory='arrowhead_3D')
