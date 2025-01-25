@@ -548,6 +548,36 @@ class TimeStepper3D(CartesianTimeStepper):
 
         return stop
     
+    def standardize_symmetry_for_plotting(self, u, v, p, trace, c22):
+
+        if self.ndim == 3:
+            mean_c22_y = np.mean(c22, axis=(0,1))
+        elif self.ndim == 2:
+            mean_c22_y = np.mean(c22, axis=0)
+
+        Ny = mean_c22_y.shape[0]
+        if mean_c22_y[0] > mean_c22_y[Ny//2]:
+            u = shift_reflect(u, parity='odd')
+            v = shift_reflect(v, parity='even')
+            p = shift_reflect(p, parity='even')
+            trace = shift_reflect(trace, parity='even')
+            c22 = shift_reflect(c22, parity='even')
+
+        if self.ndim == 3:
+            min_p_z = np.min(p, axis=(0,2))
+            Nz = min_p_z.shape[0]
+            if min_p_z[0] < min_p_z[Nz//2]:
+                u = np.roll(u, shift=Nz//2, axis=1)
+                p = np.roll(p, shift=Nz//2, axis=1)
+                v = np.roll(v, shift=Nz//2, axis=1)
+                trace = np.roll(trace, shift=Nz//2, axis=1)
+                c22 = np.roll(c22, shift=Nz//2, axis=1)
+        elif self.ndim == 2:
+            pass
+        
+
+        return u, v, p, trace, c22
+    
     def add_tasks(self, save_freq='slow', suffix='', subdir='', save_all_fields=True, mode='append'):
 
         # Save trajectory
