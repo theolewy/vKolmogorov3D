@@ -32,7 +32,7 @@ log_all_params(material_params, system_params, solver_params)
 
 timestepper = TimeStepper3D(material_params=material_params, system_params=system_params, solver_params=solver_params)
 
-ic_file, noise_coeff = get_ic_file(material_params, system_params, solver_params, suffix=f'recent-symmetry', subdir='arrowhead_3D', 
+ic_file, noise_coeff = get_ic_file(material_params, system_params, solver_params, suffix=f'recent-symmetry-xy', subdir='arrowhead_3D', 
                                    ic_dict_if_reinit={'ndim': 2, 'Nx': 128, 'Ny': 64, 'subdir':'arrowhead_2D'})
 timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=noise_coeff)
 
@@ -41,5 +41,5 @@ timestepper.simulate(T=4000, ifreq=100,
                      enforce_symmetry=True,
                      save_over_long=True, 
                      save_full_data=False, full_save_freq=5,
-                     save_subdir='arrowhead_3D', suffix_end='symmetry', 
+                     save_subdir='arrowhead_3D', suffix_end='symmetry-xy', 
                      plot=True, plot_dev=True, plot_subdirectory='arrowhead_3D')
