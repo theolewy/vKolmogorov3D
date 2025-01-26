@@ -425,42 +425,46 @@ class TimeStepper3D(CartesianTimeStepper):
 
     def _enforce_symmetry(self):
 
-        odd_fields_y = ['v', 'c12', 'c23']
-        even_fields_y = ['u', 'w', 'c11', 'c22', 'c33', 'p', 'c13']
+        if self.enforce_symmetry == 'yz' or self.enforce_symmetry == 'y':
 
-        # y is Fourier, so freq are [0, 1, 2, ... , -2, -1]. Even means k(1) = k(-1) and odd means k(1) = -k(-1)
-        for field_name in odd_fields_y:
-            field = getattr(self, field_name)
-            if self.ndim == 3:
-                field['c'][:,:,1:] = (field['c'][:,:,1:] - field['c'][:,:,1:][:,:,::-1]) / 2
-                field['c'][:,:,0] = 0
-            elif self.ndim == 2:
-                field['c'][:,1:] = (field['c'][:,1:] - field['c'][:,1:][:,::-1]) / 2
-                field['c'][:,0] = 0
+            odd_fields_y = ['v', 'c12', 'c23']
+            even_fields_y = ['u', 'w', 'c11', 'c22', 'c33', 'p', 'c13']
 
-        for field_name in even_fields_y:
-            field = getattr(self, field_name)
-            if self.ndim == 3:
-                field['c'][:,:,1:] = (field['c'][:,:,1:] + field['c'][:,:,1:][:,:,::-1]) / 2
-            elif self.ndim == 2:
-                field['c'][:,1:] = (field['c'][:,1:] + field['c'][:,1:][:,::-1]) / 2
+            # y is Fourier, so freq are [0, 1, 2, ... , -2, -1]. Even means k(1) = k(-1) and odd means k(1) = -k(-1)
+            for field_name in odd_fields_y:
+                field = getattr(self, field_name)
+                if self.ndim == 3:
+                    field['c'][:,:,1:] = (field['c'][:,:,1:] - field['c'][:,:,1:][:,:,::-1]) / 2
+                    field['c'][:,:,0] = 0
+                elif self.ndim == 2:
+                    field['c'][:,1:] = (field['c'][:,1:] - field['c'][:,1:][:,::-1]) / 2
+                    field['c'][:,0] = 0
 
-        odd_fields_z = ['w', 'c13', 'c23']
-        even_fields_z = ['u', 'v', 'c11', 'c12', 'c22', 'c33', 'p']
+            for field_name in even_fields_y:
+                field = getattr(self, field_name)
+                if self.ndim == 3:
+                    field['c'][:,:,1:] = (field['c'][:,:,1:] + field['c'][:,:,1:][:,:,::-1]) / 2
+                elif self.ndim == 2:
+                    field['c'][:,1:] = (field['c'][:,1:] + field['c'][:,1:][:,::-1]) / 2
 
-        # z is Fourier, so freq are [0, 1, 2, ... , -2, -1]. Even means k(1) = k(-1) and odd means k(1) = -k(-1)
-        if field['c'].shape[1] != self.Nz -1: raise Exception("z symmetry enforced wrongly...")
-        
-        for field_name in odd_fields_z:
-            field = getattr(self, field_name)
-            if self.ndim == 3:
-                field['c'][:,1:,:] = (field['c'][:,1:,:] - field['c'][:,1:,:][:,::-1,:]) / 2
-                field['c'][:,0,:] = 0
+        if self.enforce_symmetry == 'yz' or self.enforce_symmetry == 'z':
 
-        for field_name in even_fields_z:
-            field = getattr(self, field_name)
-            if self.ndim == 3:
-                field['c'][:,1:,:] = (field['c'][:,1:,:] + field['c'][:,1:,:][:,::-1,:]) / 2
+            odd_fields_z = ['w', 'c13', 'c23']
+            even_fields_z = ['u', 'v', 'c11', 'c12', 'c22', 'c33', 'p']
+
+            # z is Fourier, so freq are [0, 1, 2, ... , -2, -1]. Even means k(1) = k(-1) and odd means k(1) = -k(-1)
+            if field['c'].shape[1] != self.Nz -1: raise Exception("z symmetry enforced wrongly...")
+            
+            for field_name in odd_fields_z:
+                field = getattr(self, field_name)
+                if self.ndim == 3:
+                    field['c'][:,1:,:] = (field['c'][:,1:,:] - field['c'][:,1:,:][:,::-1,:]) / 2
+                    field['c'][:,0,:] = 0
+
+            for field_name in even_fields_z:
+                field = getattr(self, field_name)
+                if self.ndim == 3:
+                    field['c'][:,1:,:] = (field['c'][:,1:,:] + field['c'][:,1:,:][:,::-1,:]) / 2
 
 
     def simulate(self, T=np.infty, ifreq=200, converge_cadence=None, convergence_limit=1e-4,
@@ -476,7 +480,11 @@ class TimeStepper3D(CartesianTimeStepper):
         self.save_recent_data(suffix_end, save_subdir, **kwargs)
 
 
-        if 'enforce_symmetry' in kwargs.keys() and kwargs['enforce_symmetry']: logger.info("ENFORCING SYMMETRY")
+        if 'enforce_symmetry' in kwargs.keys() and kwargs['enforce_symmetry']: 
+            self.enforce_symmetry = kwargs['enforce_symmetry']
+            logger.info(f"ENFORCING SYMMETRY IN {self.enforce_symmetry.capitalize()}")
+        else:
+            self.enforce_symmetry = False
 
         self.trace_metric_list = []
         self.KE_metric_list = []
@@ -507,7 +515,7 @@ class TimeStepper3D(CartesianTimeStepper):
                     stop = 'converged'
                     break
 
-            if 'enforce_symmetry' in kwargs.keys() and kwargs['enforce_symmetry'] and self.solver.iteration % 10 == 0:
+            if self.enforce_symmetry and self.solver.iteration % 10 == 0:
                 self._enforce_symmetry()
             if 'track_TW' in kwargs.keys() and kwargs['track_TW'] and self.solver.iteration % 500 == 0:
                 self._track_TW()

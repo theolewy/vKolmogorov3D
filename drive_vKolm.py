@@ -62,7 +62,7 @@ timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=noise_coeff)
 
 timestepper.simulate(T=4000, ifreq=100, 
                      track_TW=False, 
-                     enforce_symmetry=True,
+                     enforce_symmetry='yz',
                      save_over_long=True, 
                      save_full_data=False, full_save_freq=5,
                      save_subdir='arrowhead_3D', suffix_end='symmetry-yz', 
