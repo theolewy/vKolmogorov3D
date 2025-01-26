@@ -29,18 +29,30 @@ else:
 if setting_mode == 0:
     solver_params['Nz'] = 16
     system_params['Lz'] = 0.5 * np.pi
+    x
+    symmetry_mode = 'yz'
+    suffix_end = f'symmetry-yz'
 elif setting_mode == 1:
     solver_params['Nz'] = 32
     system_params['Lz'] = np.pi
+
     ic_dict_if_reinit = None
+    symmetry_mode = 'yz'
+    suffix_end = f'symmetry-yz'
 elif setting_mode == 2:
     solver_params['Nz'] = 48
     system_params['Lz'] = 1.5 * np.pi
+
     ic_dict_if_reinit = None
+    symmetry_mode = 'yz'
+    suffix_end = f'symmetry-yz'
 elif setting_mode == 3:
     solver_params['Nz'] = 64
     system_params['Lz'] = 2 * np.pi
+    
     ic_dict_if_reinit = None
+    symmetry_mode = 'yz'
+    suffix_end = f'symmetry-yz'
 elif setting_mode == 4:
     material_params['eps'] = 2e-4
     solver_params['Nx'] = 256
@@ -48,22 +60,32 @@ elif setting_mode == 4:
     solver_params['Nz'] = 32
     solver_params['dt'] = 1e-3
     system_params['Lz'] = 0.5 * np.pi
+
     ic_dict_if_reinit = {'Nx': 128, 'Ny': 64, 'Nz': 16, 'eps': 1e-3}
+    symmetry_mode = 'yz'
+    suffix_end = f'symmetry-yz'
+elif setting_mode == 5:
+    solver_params['Nz'] = 32
+    system_params['Lz'] = np.pi
+
+    ic_dict_if_reinit = {'suffix': 'recent-symmetry-yz', 'noise_coeff':1e-3}
+    symmetry_mode = False
+    suffix_end = f''
 
 
 log_all_params(material_params, system_params, solver_params)
 
 timestepper = TimeStepper3D(material_params=material_params, system_params=system_params, solver_params=solver_params)
 
-ic_file, noise_coeff = get_ic_file(material_params, system_params, solver_params, suffix=f'recent-symmetry-yz', subdir='arrowhead_3D', 
+ic_file, noise_coeff = get_ic_file(material_params, system_params, solver_params, suffix=f'recent-{suffix_end}', subdir='arrowhead_3D', 
                                    ic_dict_if_reinit=ic_dict_if_reinit)
 
 timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=noise_coeff)
 
 timestepper.simulate(T=4000, ifreq=100, 
                      track_TW=False, 
-                     enforce_symmetry='yz',
+                     enforce_symmetry=symmetry_mode,
                      save_over_long=True, 
                      save_full_data=False, full_save_freq=5,
-                     save_subdir='arrowhead_3D', suffix_end='symmetry-yz', 
+                     save_subdir='arrowhead_3D', suffix_end=suffix_end, 
                      plot=True, plot_dev=True, plot_subdirectory='arrowhead_3D')
