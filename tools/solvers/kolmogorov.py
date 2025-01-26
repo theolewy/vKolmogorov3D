@@ -494,7 +494,7 @@ class TimeStepper3D(CartesianTimeStepper):
 
         logger.info('Starting loop')
         self.start_sim_time = self.solver.sim_time
-        self.solver.stop_wall_time = 60 * 60 * 11   # 11 hours
+        self.solver.stop_wall_time = 60 * 60 * 23   # 11 hours
 
         if 'track_TW' in kwargs.keys() and kwargs['track_TW']: 
             self.x_track = self.start_x_track = self._get_arrow_junction()
