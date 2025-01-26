@@ -30,6 +30,7 @@ if setting_mode == 0:
     solver_params['Nz'] = 16
     system_params['Lz'] = 0.5 * np.pi
 
+    ic_dict_if_reinit = None
     symmetry_mode = 'yz'
     suffix_end = f'symmetry-yz'
 elif setting_mode == 1:
