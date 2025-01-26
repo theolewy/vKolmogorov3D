@@ -482,7 +482,7 @@ class TimeStepper3D(CartesianTimeStepper):
 
         if 'enforce_symmetry' in kwargs.keys() and kwargs['enforce_symmetry']: 
             self.enforce_symmetry = kwargs['enforce_symmetry']
-            logger.info(f"ENFORCING SYMMETRY IN {self.enforce_symmetry.capitalize()}")
+            logger.info(f"ENFORCING SYMMETRY IN {self.enforce_symmetry.upper()}")
         else:
             self.enforce_symmetry = False
             logger.info(f"NO SYMMETRY ENfORCED")
