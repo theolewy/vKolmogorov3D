@@ -42,7 +42,7 @@ elif setting_mode == 3:
     system_params['Lz'] = 2 * np.pi
     ic_dict_if_reinit = None
 elif setting_mode == 4:
-    system_params['eps'] = 2e-4
+    material_params['eps'] = 2e-4
     solver_params['Nx'] = 256
     solver_params['Ny'] = 128
     solver_params['Nz'] = 32
