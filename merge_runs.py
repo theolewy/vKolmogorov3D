@@ -3,7 +3,7 @@ import logging
 import os
 
 import numpy as np
-from tools.misc_tools import get_ic_file, get_roots
+from tools.misc_tools import get_roots
 from dedalus import public as de
 from dedalus.tools import post
 

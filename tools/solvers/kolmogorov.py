@@ -557,6 +557,29 @@ class TimeStepper3D(CartesianTimeStepper):
 
         return stop
     
+    def window(self, a, b):
+
+
+        base_flow_variable_names = [field_name.capitalize() for field_name in self.variables]
+        base_flow_variable_names = [base_flow_name if base_flow_name != 'W' else 'WW' for base_flow_name in base_flow_variable_names]
+
+
+        for field_name, base_field_name in self.variables, base_flow_variable_names:
+            # if field_name == 'v': continue
+            field = getattr(self, field_name)
+            base_array = getattr(self, base_field_name)
+            field['g'] = self._window_field(field, base_array, a, b)
+
+        # do something with v
+        # self.v 
+        logger.warning("Should process the v field")
+
+    def _window_field(self, field, base, a, b):
+
+        window = 1/4 * (1 + np.tanh(6 * (a - self.z) / b + 3)) * (1 + np.tanh(6 * (a + self.z) / b + 3))
+
+        field['g'] = window * (field['g'] - base) + base
+    
     def standardize_symmetry_for_plotting(self, u, v, p, trace, c22):
 
         if self.ndim == 3:
