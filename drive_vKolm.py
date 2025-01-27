@@ -85,7 +85,7 @@ elif setting_mode == 6:
     system_params['Lz'] = 4 * np.pi
     system_params['Lx'] = 2 * np.pi
     solver_params['Nx'] = 64
-    ic_dict_if_reinit = {'ndim': 2, 'suffix':'recent-', 'subdir': 'arrowhead_2D', 'Lx': 2*np.pi, 'Nx': 64, 'noise_coeff':1e-3}
+    ic_dict_if_reinit = {'ndim': 2, 'suffix':'recent-', 'subdir': 'arrowhead_3D', 'Lx': 2*np.pi, 'Nx': 64, 'noise_coeff':1e-3}
     symmetry_mode = False
     suffix_end = f''
 
