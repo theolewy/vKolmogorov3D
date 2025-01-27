@@ -103,5 +103,5 @@ timestepper.simulate(T=4000, ifreq=100,
                      enforce_symmetry=symmetry_mode,
                      save_over_long=True, 
                      save_full_data=False, full_save_freq=5,
-                     save_subdir='arrowhead_3D', suffix_end=suffix_end, 
-                     plot=True, plot_dev=True, plot_subdirectory='arrowhead_3D')
+                     save_subdir=f"arrowhead_{system_params['ndim']}D", suffix_end=suffix_end, 
+                     plot=True, plot_dev=True, plot_subdirectory=f"arrowhead_{system_params['ndim']}D")
