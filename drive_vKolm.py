@@ -85,15 +85,15 @@ elif setting_mode == 6:
     system_params['Lz'] = 4 * np.pi
     system_params['Lx'] = 2 * np.pi
     solver_params['Nx'] = 64
-    ic_dict_if_reinit = {'ndim': 2, 'suffix':'recent-', 'subdir': 'arrowhead_2D', 'Lx': 2*np.pi, 'Nx': 64}
-    symmetry_mode = True
-    suffix_end = f'symmetry-yz'
+    ic_dict_if_reinit = {'ndim': 2, 'suffix':'recent-', 'subdir': 'arrowhead_2D', 'Lx': 2*np.pi, 'Nx': 64, 'noise_coeff':1e-3}
+    symmetry_mode = False
+    suffix_end = f''
 
 log_all_params(material_params, system_params, solver_params)
 
 timestepper = TimeStepper3D(material_params=material_params, system_params=system_params, solver_params=solver_params)
 
-ic_file, noise_coeff = get_ic_file(material_params, system_params, solver_params, suffix=f'recent-{suffix_end}', subdir='arrowhead_3D', 
+ic_file, noise_coeff, _ = get_ic_file(material_params, system_params, solver_params, suffix=f'recent-{suffix_end}', subdir='arrowhead_3D', 
                                    ic_dict_if_reinit=ic_dict_if_reinit)
 
 timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=noise_coeff)
