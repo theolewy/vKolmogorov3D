@@ -27,6 +27,7 @@ else:
     raise Exception('Need more inputs!')
 
 if setting_mode == 0:
+    # Form a stable arrowhead
     solver_params['Nz'] = 16
     system_params['Lz'] = 0.5 * np.pi
 
@@ -34,6 +35,7 @@ if setting_mode == 0:
     symmetry_mode = 'yz'
     suffix_end = f'symmetry-yz'
 elif setting_mode == 1:
+    # Form a stable arrowhead
     solver_params['Nz'] = 32
     system_params['Lz'] = np.pi
 
@@ -41,20 +43,15 @@ elif setting_mode == 1:
     symmetry_mode = 'yz'
     suffix_end = f'symmetry-yz'
 elif setting_mode == 2:
+    # Two arrowheads in span direction
     solver_params['Nz'] = 48
     system_params['Lz'] = 1.5 * np.pi
 
-    ic_dict_if_reinit = None
-    symmetry_mode = 'yz'
-    suffix_end = f'symmetry-yz'
+    ic_dict_if_reinit = {'suffix': 'recent-symmetry-yz', 'noise_coeff':1e-3}
+    symmetry_mode = False
+    suffix_end = f''
 elif setting_mode == 3:
-    solver_params['Nz'] = 64
-    system_params['Lz'] = 2 * np.pi
-    
-    ic_dict_if_reinit = None
-    symmetry_mode = 'yz'
-    suffix_end = f'symmetry-yz'
-elif setting_mode == 4:
+    # Effects of small eps
     material_params['eps'] = 2e-4
     solver_params['Nx'] = 256
     solver_params['Ny'] = 128
@@ -65,11 +62,13 @@ elif setting_mode == 4:
     ic_dict_if_reinit = {'Nx': 128, 'Ny': 64, 'Nz': 16, 'eps': 1e-3}
     symmetry_mode = 'yz'
     suffix_end = f'symmetry-yz'
-elif setting_mode == 5:
-    solver_params['Nz'] = 32
-    system_params['Lz'] = np.pi
+elif setting_mode == 4:
+    # Try to destabilise an arrowhead
+    solver_params['Nz'] = 16
+    system_params['Lz'] = 0.5 * np.pi
+    material_params['W'] = 50
 
-    ic_dict_if_reinit = {'suffix': 'recent-symmetry-yz', 'noise_coeff':1e-3}
+    ic_dict_if_reinit = {'W':30, 'suffix': 'recent-symmetry-yz', 'noise_coeff':1e-3}
     symmetry_mode = False
     suffix_end = f''
 
