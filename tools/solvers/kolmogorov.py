@@ -564,11 +564,11 @@ class TimeStepper3D(CartesianTimeStepper):
         base_flow_variable_names = [base_flow_name if base_flow_name != 'W' else 'WW' for base_flow_name in base_flow_variable_names]
 
 
-        for field_name, base_field_name in self.variables, base_flow_variable_names:
+        for field_name, base_field_name in zip(self.variables, base_flow_variable_names):
             # if field_name == 'v': continue
             field = getattr(self, field_name)
             base_array = getattr(self, base_field_name)
-            field['g'] = self._window_field(field, base_array, a, b)
+            self._window_field(field, base_array, a, b)
 
         # do something with v
         # self.v 

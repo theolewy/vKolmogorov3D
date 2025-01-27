@@ -86,8 +86,8 @@ elif setting_mode == 6:
     system_params['Lx'] = 2 * np.pi
     solver_params['Nx'] = 64
     ic_dict_if_reinit = {'ndim': 2, 'suffix':'recent-', 'subdir': 'arrowhead_3D', 'Lx': 2*np.pi, 'Nx': 64, 'noise_coeff':1e-3}
-    symmetry_mode = False
-    suffix_end = f''
+    symmetry_mode = 'yz'
+    suffix_end = f'symmetry-yz'
 
 log_all_params(material_params, system_params, solver_params)
 

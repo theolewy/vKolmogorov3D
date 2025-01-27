@@ -46,11 +46,11 @@ def get_ic_file(material_params, system_params, solver_params, restart=False, su
             noise_coeff = 0
         else:
             ic_file = None
-            noise_coeff = 1e-2
+            noise_coeff = 1e-3
 
     else:
         ic_file = None
-        noise_coeff = 1e-2
+        noise_coeff = 1e-3
 
     reinit = False
 
