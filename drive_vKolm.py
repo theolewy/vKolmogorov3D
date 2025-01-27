@@ -75,7 +75,7 @@ elif setting_mode == 5:
     # Get 2D arrowheads, short domain
     system_params['Lx'] = 2 * np.pi
     solver_params['Nx'] = 64
-    solver_params['ndim'] = 2
+    system_params['ndim'] = 2
     ic_dict_if_reinit = {'ndim': 2, 'suffix':'recent-', 'subdir': 'arrowhead_2D', 'Lx': 4*np.pi, 'Nx': 128}
     symmetry_mode = False
     suffix_end = f''
