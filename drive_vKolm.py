@@ -78,6 +78,7 @@ elif setting_mode == 5:
     system_params['Lz'] = 4 * np.pi
     system_params['Lx'] = 3 * np.pi
     solver_params['Nx'] = 64
+    solver_params['dt'] = 4e-3
     ic_dict_if_reinit = {'ndim': 2, 'suffix':'recent-', 'subdir': 'arrowhead_3D', 'Lx': 3*np.pi, 'Nx': 64, 'noise_coeff':1e-3}
     symmetry_mode = 'yz'
     suffix_end = f'symmetry-yz'
