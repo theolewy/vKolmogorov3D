@@ -79,7 +79,7 @@ elif setting_mode == 5:
     system_params['Lx'] = 8
     solver_params['Nx'] = 64
     solver_params['dt'] = 4e-3
-    ic_dict_if_reinit = {'ndim': 2, 'suffix':'recent-', 'subdir': 'arrowhead_3D', 'Lx': 8, 'Nx': 64, 'noise_coeff':1e-3}
+    ic_dict_if_reinit = {'ndim': 2, 'suffix':'recent-', 'subdir': 'arrowhead_2D', 'Lx': 8, 'Nx': 64, 'noise_coeff':1e-3}
     symmetry_mode = 'yz'
     suffix_end = f'symmetry-yz'
 
