@@ -43,14 +43,6 @@ elif setting_mode == 1:
     symmetry_mode = 'yz'
     suffix_end = f'symmetry-yz'
 elif setting_mode == 2:
-    # Two arrowheads in span direction
-    solver_params['Nz'] = 48
-    system_params['Lz'] = 1.5 * np.pi
-
-    ic_dict_if_reinit = {'suffix': 'recent-symmetry-yz', 'noise_coeff':1e-3}
-    symmetry_mode = False
-    suffix_end = f''
-elif setting_mode == 3:
     # Effects of small eps
     material_params['eps'] = 2e-4
     solver_params['Nx'] = 256
@@ -62,7 +54,7 @@ elif setting_mode == 3:
     ic_dict_if_reinit = {'Nx': 128, 'Ny': 64, 'Nz': 16, 'eps': 1e-3}
     symmetry_mode = 'yz'
     suffix_end = f'symmetry-yz'
-elif setting_mode == 4:
+elif setting_mode == 3:
     # Try to destabilise an arrowhead
     solver_params['Nz'] = 16
     system_params['Lz'] = 0.5 * np.pi
@@ -71,15 +63,16 @@ elif setting_mode == 4:
     ic_dict_if_reinit = {'W':30, 'suffix': 'recent-symmetry-yz', 'noise_coeff':1e-3}
     symmetry_mode = False
     suffix_end = f''
-elif setting_mode == 5:
+elif setting_mode == 4:
     # Get 2D arrowheads, short domain
-    system_params['Lx'] = 2 * np.pi
+    system_params['Lx'] = 3 * np.pi
     solver_params['Nx'] = 64
+    solver_params['dt'] = 5e-3
     system_params['ndim'] = 2
     ic_dict_if_reinit = {'ndim': 2, 'suffix':'recent-', 'subdir': 'arrowhead_2D', 'Lx': 4*np.pi, 'Nx': 128}
     symmetry_mode = False
     suffix_end = f''
-elif setting_mode == 6:
+elif setting_mode == 5:
     # Get very periodic arrowheads, ready for localisation
     solver_params['Nz'] = 64
     system_params['Lz'] = 4 * np.pi
