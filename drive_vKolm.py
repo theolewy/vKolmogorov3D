@@ -79,10 +79,19 @@ elif setting_mode == 5:
     system_params['Lx'] = 3 * np.pi
     solver_params['Nx'] = 64
     solver_params['dt'] = 2e-3
-    ic_dict_if_reinit = {'ndim': 2, 'Nx': 64, 'suffix':'recent-', 'subdir': 'arrowhead_2D', 'Lx': 4*np.pi, 'noise_coeff':1e-3}
+    ic_dict_if_reinit = {'ndim': 2, 'Nx': 64, 'suffix':'recent-', 'subdir': 'arrowhead_2D', 'noise_coeff':1e-3}
     symmetry_mode = 'yz'
     suffix_end = f'symmetry-yz'
-
+elif setting_mode == 6:
+    # Get very periodic arrowheads, ready for localisation
+    solver_params['Nz'] = 64
+    system_params['Lz'] = 4 * np.pi
+    system_params['Lx'] = 8
+    solver_params['Nx'] = 128
+    solver_params['dt'] = 2e-3
+    ic_dict_if_reinit = {'ndim': 2, 'Nx': 64, 'suffix':'recent-', 'subdir': 'arrowhead_2D', 'noise_coeff':1e-3}
+    symmetry_mode = 'yz'
+    suffix_end = f'symmetry-yz'
 
 log_all_params(material_params, system_params, solver_params)
 
