@@ -86,7 +86,7 @@ elif setting_mode == 6:
     # Get very periodic arrowheads, ready for localisation
     solver_params['Nz'] = 64
     system_params['Lz'] = 4 * np.pi
-    system_params['Lx'] = 8
+    system_params['Lx'] = 4 * np.pi
     solver_params['Nx'] = 128
     solver_params['dt'] = 2e-3
     ic_dict_if_reinit = {'ndim': 2, 'Nx': 64, 'suffix':'recent-', 'subdir': 'arrowhead_2D', 'noise_coeff':1e-3}
