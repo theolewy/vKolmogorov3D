@@ -76,17 +76,17 @@ elif setting_mode == 5:
     # Get very periodic arrowheads, ready for localisation
     solver_params['Nz'] = 64
     system_params['Lz'] = 4 * np.pi
-    system_params['Lx'] = 3 * np.pi
+    system_params['Lx'] = 4 * np.pi
     solver_params['Nx'] = 64
     solver_params['dt'] = 4e-3
-    ic_dict_if_reinit = {'ndim': 2, 'suffix':'recent-', 'subdir': 'arrowhead_2D', 'Lx': 3*np.pi, 'Nx': 64, 'noise_coeff':1e-3}
+    ic_dict_if_reinit = {'ndim': 2, 'suffix':'recent-', 'subdir': 'arrowhead_2D', 'Lx': 4*np.pi, 'Nx': 64, 'noise_coeff':1e-3}
     symmetry_mode = 'yz'
     suffix_end = f'symmetry-yz'
 
 
 log_all_params(material_params, system_params, solver_params)
 
-timestepper = TimeStepper3D(material_params=material_params, system_params=system_params, solver_params=solver_params)
+timestepper = TimeStepper3D(material_params=material_params, system_params=system_params, solver_params5=solver_params)
 
 ic_file, noise_coeff, _ = get_ic_file(material_params, system_params, solver_params, suffix=f'recent-{suffix_end}', subdir='arrowhead_3D', 
                                    ic_dict_if_reinit=ic_dict_if_reinit)
