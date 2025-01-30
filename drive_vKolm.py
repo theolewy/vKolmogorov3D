@@ -87,7 +87,7 @@ elif setting_mode == 6:
     solver_params['Nz'] = 64
     system_params['Lz'] = 4 * np.pi
     system_params['Lx'] = 4 * np.pi
-    solver_params['Nx'] = 128
+    solver_params['Nx'] = 64
     solver_params['dt'] = 2e-3
     ic_dict_if_reinit = {'ndim': 2, 'Nx': 128, 'suffix':'recent-', 'subdir': 'arrowhead_2D', 'noise_coeff':1e-3}
     symmetry_mode = 'yz'
