@@ -6,7 +6,7 @@ from tools.misc_tools import get_ic_file, log_all_params, on_local_device
 material_params = {'W': 30,
                    'beta': 0.9,
                    'Re': 0.5,
-                   'L': np.infty,
+                   'L': 200,
                    'eps': 1e-3}
 
 system_params = {'ndim': 3,
@@ -84,10 +84,10 @@ elif setting_mode == 5:
     suffix_end = f'symmetry-yz'
 elif setting_mode == 6:
     # Get very periodic arrowheads, ready for localisation
-    solver_params['Nz'] = 64
+    solver_params['Nz'] = 128
     system_params['Lz'] = 4 * np.pi
     system_params['Lx'] = 4 * np.pi
-    solver_params['Nx'] = 64
+    solver_params['Nx'] = 128
     solver_params['dt'] = 2e-3
     ic_dict_if_reinit = {'ndim': 2, 'Nx': 128, 'suffix':'recent-', 'subdir': 'arrowhead_2D', 'noise_coeff':1e-3}
     symmetry_mode = 'yz'
