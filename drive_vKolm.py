@@ -6,7 +6,7 @@ from tools.misc_tools import get_ic_file, log_all_params, on_local_device
 material_params = {'W': 30,
                    'beta': 0.9,
                    'Re': 0.5,
-                   'L': 200,
+                   'L': np.infty,
                    'eps': 1e-3}
 
 system_params = {'ndim': 3,
