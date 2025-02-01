@@ -89,7 +89,7 @@ elif setting_mode == 6:
     system_params['Lx'] = 3 * np.pi
     solver_params['Nx'] = 64
     solver_params['dt'] = 2e-3
-    ic_dict_if_reinit = {'suffix':'symmetry-yz', 'noise_coeff':1e-3}
+    ic_dict_if_reinit = {'suffix':'recent-symmetry-yz', 'noise_coeff':1e-3}
     symmetry_mode = 'yz'
     suffix_end = f'symmetry-yz-2'
 
