@@ -328,6 +328,16 @@ class TimeStepper3D(CartesianTimeStepper):
         else:
 
             raise Exception("ndim must be 1 or 2")
+        
+    def system_specific_perturbations(self, **kwargs):
+        if 'translate_z' in kwargs.keys() and kwargs['translate_z']:
+            local_slice = self.domain.dist.grid_layout.slices(scales=1)
+
+            for field_name in self.variables:
+                field = getattr(self, field_name)
+                array = self.get_full_array(field['g'])
+                array = np.roll(array, axis=1, shift=self.Nz//2)
+                field['g'] = array[local_slice]
 
     def _set_system_specific_substitutions(self):
 

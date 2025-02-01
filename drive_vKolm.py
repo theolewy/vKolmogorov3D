@@ -73,7 +73,7 @@ elif setting_mode == 4:
     symmetry_mode = False
     suffix_end = f''
 elif setting_mode == 5:
-    # Get very periodic arrowheads, ready for localisation
+    # Get periodic arrowheads, ready for localisation (even about low pressure region)
     solver_params['Nz'] = 64
     system_params['Lz'] = 4 * np.pi
     system_params['Lx'] = 3 * np.pi
@@ -83,15 +83,15 @@ elif setting_mode == 5:
     symmetry_mode = 'yz'
     suffix_end = f'symmetry-yz'
 elif setting_mode == 6:
-    # Get very periodic arrowheads, ready for localisation
-    solver_params['Nz'] = 128
+    # Get periodic arrowheads, ready for localisation (even about high pressure region)
+    solver_params['Nz'] = 64
     system_params['Lz'] = 4 * np.pi
-    system_params['Lx'] = 4 * np.pi
-    solver_params['Nx'] = 128
+    system_params['Lx'] = 3 * np.pi
+    solver_params['Nx'] = 64
     solver_params['dt'] = 2e-3
-    ic_dict_if_reinit = {'ndim': 2, 'Nx': 128, 'suffix':'recent-', 'subdir': 'arrowhead_2D', 'noise_coeff':1e-3}
+    ic_dict_if_reinit = {'suffix':'symmetry-yz', 'noise_coeff':1e-3}
     symmetry_mode = 'yz'
-    suffix_end = f'symmetry-yz'
+    suffix_end = f'symmetry-yz-2'
 
 log_all_params(material_params, system_params, solver_params)
 
@@ -100,7 +100,7 @@ timestepper = TimeStepper3D(material_params=material_params, system_params=syste
 ic_file, noise_coeff, _ = get_ic_file(material_params, system_params, solver_params, suffix=f'recent-{suffix_end}', subdir='arrowhead_3D', 
                                    ic_dict_if_reinit=ic_dict_if_reinit)
 
-timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=noise_coeff)
+timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=noise_coeff, translate_z=True)
 
 timestepper.simulate(T=4000, ifreq=100, 
                      track_TW=False, 
