@@ -332,6 +332,7 @@ class TimeStepper3D(CartesianTimeStepper):
     def system_specific_perturbations(self, **kwargs):
         if 'translate_z' in kwargs.keys() and kwargs['translate_z']:
             local_slice = self.domain.dist.grid_layout.slices(scales=1)
+            logger.info("Translating in z...")
 
             for field_name in self.variables:
                 field = getattr(self, field_name)
@@ -605,15 +606,15 @@ class TimeStepper3D(CartesianTimeStepper):
             trace = shift_reflect(trace, parity='even')
             c22 = shift_reflect(c22, parity='even')
 
-        if self.ndim == 3:
-            min_p_z = np.min(p, axis=(0,2))
-            Nz = min_p_z.shape[0]
-            if min_p_z[0] < min_p_z[Nz//2]:
-                u = np.roll(u, shift=Nz//2, axis=1)
-                p = np.roll(p, shift=Nz//2, axis=1)
-                v = np.roll(v, shift=Nz//2, axis=1)
-                trace = np.roll(trace, shift=Nz//2, axis=1)
-                c22 = np.roll(c22, shift=Nz//2, axis=1)
+        # if self.ndim == 3:
+        #     min_p_z = np.min(p, axis=(0,2))
+        #     Nz = min_p_z.shape[0]
+        #     if min_p_z[0] < min_p_z[Nz//2]:
+        #         u = np.roll(u, shift=Nz//2, axis=1)
+        #         p = np.roll(p, shift=Nz//2, axis=1)
+        #         v = np.roll(v, shift=Nz//2, axis=1)
+        #         trace = np.roll(trace, shift=Nz//2, axis=1)
+        #         c22 = np.roll(c22, shift=Nz//2, axis=1)
         elif self.ndim == 2:
             pass
         
