@@ -429,8 +429,8 @@ class TimeStepper3D(CartesianTimeStepper):
         os.makedirs(fpath, exist_ok=True)
         fpath = os.path.join(fpath, fname)
         
-        plot_metrics(np.abs(self.v_metric_list), np.abs(self.KE_metric_list), np.abs(self.trace_metric_list),
-                        '|v|_dev', 'KE_dev', 'trace_dev', 
+        plot_metrics(np.abs(self.u_metric_list), np.abs(self.KE_metric_list), np.abs(self.trace_metric_list),
+                        '|u|_dev', 'KE_dev', 'trace_dev', 
                         self.time_list, self.material_params, fpath)
 
     def _enforce_symmetry(self):
@@ -499,7 +499,7 @@ class TimeStepper3D(CartesianTimeStepper):
 
         self.trace_metric_list = []
         self.KE_metric_list = []
-        self.v_metric_list = []
+        self.u_metric_list = []
         self.time_list = []
 
         logger.info('Starting loop')
@@ -536,8 +536,8 @@ class TimeStepper3D(CartesianTimeStepper):
                 KE_metric = (KE - self.KE_base) / self.KE_base
                 trace, self.trace_base = self.flow.volume_average('trace'), self.flow.volume_average('trace_base')
                 trace_metric = (trace - self.trace_base) / self.trace_base
-                v, self.v_base = self.flow.volume_average('|v|'), self.flow.volume_average('|V|')
-                v_metric = (v - self.v_base) / self.v_base if not np.isclose(self.v_base, 0) else v
+                u, self.u_base = self.flow.volume_average('|u|'), self.flow.volume_average('|U|')
+                u_metric = (u - self.u_base) / self.u_base if not np.isclose(self.u_base, 0) else u
 
                 logger.info('It: %i, t: %.3e, dt: %.2e trace_norm: %.4e, min(det(C)): %.4e, KE_norm: %.4e' \
                             % (self.solver.iteration, self.solver.sim_time, self.dt,
@@ -546,7 +546,7 @@ class TimeStepper3D(CartesianTimeStepper):
                 
                 self.trace_metric_list.append(trace_metric)
                 self.KE_metric_list.append(KE_metric)
-                self.v_metric_list.append(v_metric)
+                self.u_metric_list.append(u_metric)
                 self.time_list.append(self.solver.sim_time)
 
                 stop = self.stop_simulation_conditions(self.trace_metric_list, self.KE_metric_list, self.time_list, T, convergence_limit,
