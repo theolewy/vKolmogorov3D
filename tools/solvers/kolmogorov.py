@@ -337,7 +337,7 @@ class TimeStepper3D(CartesianTimeStepper):
             for field_name in self.variables:
                 field = getattr(self, field_name)
                 array = self.get_full_array(field['g'])
-                array = np.roll(array, axis=1, shift=self.Nz//2)
+                array = np.roll(array, axis=1, shift=self.Nz//4)
                 field['g'] = array[local_slice]
 
     def _set_system_specific_substitutions(self):

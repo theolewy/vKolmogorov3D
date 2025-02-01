@@ -100,7 +100,7 @@ timestepper = TimeStepper3D(material_params=material_params, system_params=syste
 ic_file, noise_coeff, _ = get_ic_file(material_params, system_params, solver_params, suffix=f'recent-{suffix_end}', subdir='arrowhead_3D', 
                                    ic_dict_if_reinit=ic_dict_if_reinit)
 
-timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=noise_coeff)
+timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=noise_coeff, translate_z=True)
 
 timestepper.simulate(T=4000, ifreq=100, 
                      track_TW=False, 
