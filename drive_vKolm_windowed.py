@@ -41,9 +41,6 @@ elif setting_mode == 2:
 elif setting_mode == 3:
     a, b = 4*np.pi/8, 3*np.pi/4
 
-elif setting_mode == 4:
-    a, b = 4*np.pi/8, np.pi/4
-
 ic_dict_if_reinit = {'suffix': 'recent-symmetry-yz', 'subdir':'arrowhead_3D'}
 suffix_end = f'symm-yz-a-{a:.4g}-b-{b:.4g}'
 symmetry_mode = 'yz'
@@ -55,7 +52,7 @@ timestepper = TimeStepper3D(material_params=material_params, system_params=syste
 ic_file, noise_coeff, reinit = get_ic_file(material_params, system_params, solver_params, suffix=f'recent-{suffix_end}', subdir='windows', 
                                    ic_dict_if_reinit=ic_dict_if_reinit)
 
-timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=noise_coeff)
+timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=0)
 
 if reinit:
     timestepper.window(a, b)
@@ -63,7 +60,7 @@ if reinit:
 timestepper.simulate(T=4000, ifreq=100, 
                      track_TW=False, 
                      enforce_symmetry=symmetry_mode,
-                     save_over_long=True, 
+                     save_over_long=False, 
                      save_full_data=False, full_save_freq=5,
                      save_subdir=f"windows", suffix_end=suffix_end, 
                      plot=True, plot_dev=True, plot_subdirectory=f"windowing_{system_params['ndim']}D")
