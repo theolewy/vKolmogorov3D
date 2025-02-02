@@ -45,7 +45,7 @@ elif setting_mode == 4:
     a, b = 4*np.pi/8, np.pi/4
 
 ic_dict_if_reinit = {'suffix': 'recent-symmetry-yz', 'subdir':'arrowhead_3D'}
-suffix_end = f'symm-yz-a-{a}-b-{b}'
+suffix_end = f'symm-yz-a-{a:.4g}-b-{b:.4g}'
 symmetry_mode = 'yz'
 
 log_all_params(material_params, system_params, solver_params)
