@@ -10,7 +10,7 @@ material_params = {'W': 30,
                    'eps': 1e-3}
 
 system_params = {'ndim': 3,
-                 'Lx': 2 * np.pi,
+                 'Lx': 3 * np.pi,
                  'Lz': 4 * np.pi,
                  'n': 1}
 
