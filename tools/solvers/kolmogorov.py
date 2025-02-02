@@ -579,8 +579,10 @@ class TimeStepper3D(CartesianTimeStepper):
             # if field_name == 'v': continue
             field = getattr(self, field_name)
             base_array = getattr(self, base_field_name)
+            print(self.get_full_array(field['g'])[0,:,0])
             self._window_field(field, base_array, a, b)
-
+            print(self.get_full_array(field['g'])[0,:,0])
+            raise Exception
         # do something with v
         # self.v 
         logger.warning("Should process the v field")
