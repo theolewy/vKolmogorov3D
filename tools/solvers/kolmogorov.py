@@ -647,6 +647,7 @@ class TimeStepper3D(CartesianTimeStepper):
         snapshots = self.solver.evaluator.add_file_handler(self.save_folder, \
                                                            sim_dt=sim_dt, max_writes=max_writes, mode=mode)
         
+        print([handler for handler in self.solver.evaluator.handlers if hasattr(handler, 'base_path')])
         handler = [handler for handler in self.solver.evaluator.handlers if hasattr(handler, 'base_path') and posixpath.abspath(handler.base_path).endswith(suffix)][0]
 
         if save_all_fields:
