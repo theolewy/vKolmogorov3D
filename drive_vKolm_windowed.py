@@ -26,14 +26,27 @@ if len(sys.argv) == 3:
 else:
     raise Exception('Need more inputs!')
 
-if setting_mode == 0:
-    a, b = 0.5,0.5
-if setting_mode == 0:
-    a, b = 0.5,0.5
+# a between pi/4 and pi: 2pi/8, 3pi/8, pi/2, 5pi/8, 6pi/8
+# b between pi/4 and pi: pi/8, pi/4, pi/2, 3pi/4
 
-ic_dict_if_reinit = {'suffix': 'recent-', 'subdir':'arrowhead_3D'}
-symmetry_mode = 'yz'
+if setting_mode == 0:
+    a, b = 4*np.pi/8, np.pi/8
+
+elif setting_mode == 1:
+    a, b = 4*np.pi/8, np.pi/4
+
+elif setting_mode == 2:
+    a, b = 4*np.pi/8, np.pi/2
+
+elif setting_mode == 3:
+    a, b = 4*np.pi/8, 3*np.pi/4
+
+elif setting_mode == 4:
+    a, b = 4*np.pi/8, np.pi/4
+
+ic_dict_if_reinit = {'suffix': 'recent-symmetry-yz', 'subdir':'arrowhead_3D'}
 suffix_end = f'symm-yz-a-{a}-b-{b}'
+symmetry_mode = 'yz'
 
 log_all_params(material_params, system_params, solver_params)
 
