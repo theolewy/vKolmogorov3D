@@ -29,6 +29,12 @@ else:
 # a between pi/4 and pi: 2pi/8, 3pi/8, pi/2, 5pi/8, 6pi/8
 # b between pi/4 and pi: pi/8, pi/4, pi/2, 3pi/4
 
+"""
+Parameters tried:
+a = pi/2 with b=pi/8, pi/4, pi/2, 3pi/4
+a = 3pi/8 with b=pi/8, pi/4, pi/2, 3pi/4
+"""
+
 if setting_mode == 0:
     a, b = 4*np.pi/8, np.pi/8
 
@@ -40,6 +46,18 @@ elif setting_mode == 2:
 
 elif setting_mode == 3:
     a, b = 4*np.pi/8, 3*np.pi/4
+
+elif setting_mode == 4:
+    a, b = 3*np.pi/8, np.pi/8
+
+elif setting_mode == 5:
+    a, b = 3*np.pi/8, np.pi/4
+
+elif setting_mode == 6:
+    a, b = 3*np.pi/8, np.pi/2
+
+elif setting_mode == 7:
+    a, b = 3*np.pi/8, 3*np.pi/4
 
 ic_dict_if_reinit = {'suffix': 'recent-symmetry-yz', 'subdir':'arrowhead_3D'}
 suffix_end = f'symm-yz-a-{a:.4g}-b-{b:.4g}'
