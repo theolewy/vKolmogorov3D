@@ -84,7 +84,7 @@ elif setting_mode == 5:
     suffix_end = f'symmetry-yz'
 elif setting_mode == 6:
     # Get periodic arrowheads in metastable region
-    material_params['W'] = 20
+    material_params['W'] = 25
     solver_params['Nz'] = 64
     system_params['Lz'] = 4 * np.pi
     system_params['Lx'] = 3 * np.pi
