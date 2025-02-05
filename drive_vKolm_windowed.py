@@ -3,7 +3,7 @@ import numpy as np
 from tools.solvers.kolmogorov import BaseFlow, NumericSolver, TimeStepper3D
 from tools.misc_tools import get_ic_file, log_all_params, on_local_device
 
-material_params = {'W': 30,
+material_params = {'W': 20,
                    'beta': 0.9,
                    'Re': 0.5,
                    'L': np.infty,
@@ -32,7 +32,7 @@ else:
 """
 Parameters tried:
 a = pi/2 with b=pi/8, pi/4, pi/2, 3pi/4
-a = 3pi/8 with b=pi/8, pi/4, pi/2, 3pi/4
+a = 3pi/8 with b=pi/8, pi/4, pi/2
 """
 
 if setting_mode == 0:

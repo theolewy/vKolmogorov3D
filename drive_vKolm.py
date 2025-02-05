@@ -74,17 +74,18 @@ elif setting_mode == 4:
     suffix_end = f''
 elif setting_mode == 5:
     # Get periodic arrowheads, ready for localisation (even about low pressure region)
+    material_params['W'] = 20 
     solver_params['Nz'] = 64
     system_params['Lz'] = 4 * np.pi
     system_params['Lx'] = 3 * np.pi
     solver_params['Nx'] = 64
     solver_params['dt'] = 2e-3
-    ic_dict_if_reinit = {'ndim': 2, 'Nx': 64, 'suffix':'recent-', 'subdir': 'arrowhead_2D', 'noise_coeff':1e-3}
+    ic_dict_if_reinit = {'W': 30}
     symmetry_mode = 'yz'
     suffix_end = f'symmetry-yz'
 elif setting_mode == 6:
     # Get periodic arrowheads in metastable region
-    material_params['W'] = 25
+    material_params['W'] = 25 
     solver_params['Nz'] = 64
     system_params['Lz'] = 4 * np.pi
     system_params['Lx'] = 3 * np.pi
