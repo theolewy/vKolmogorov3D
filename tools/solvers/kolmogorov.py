@@ -401,38 +401,27 @@ class TimeStepper3D(CartesianTimeStepper):
             self.problem.add_equation('dx(u) + dy(v) + dz(w) = 0', condition=('nx!=0 or ny!=0'))
             self.problem.add_equation('p = 0', condition=('nx==0 and ny==0'))
 
+    def _plot_arrays_and_metrics(self, plot_dev, subdirectory, suffix_end):
 
-    def plot_snaps(self, subdirectory='', suffix_end='', plot_dev=True):
+        fname = f"plots_iter_{self.solver.iteration}_{suffix_end}" if on_local_device() else f"plots_W_{self.W}_Re_{self.Re}_a_{self.a}_eps_{self.eps}_beta_{self.beta}_L_{self.L}_Lx_{self.Lx:.4g}_Nx_{self.Nx}_Ny_{self.Ny}_{suffix_end}".replace('.', ',')
 
-        flow = self.get_flow(scale=1, combine_processes=True)
-        
-        base_flow = self.base_flow_full
-        # base_flow=None
+        x, y, z, u_array, v_array, p_array, trace_array, c22_array, det_C = self._prepare_arrays_for_plotting(plot_dev)
 
-        if on_local_device():
-            fname=f"iter_{self.solver.iteration}"
-        else:
-            fname=f"W_{self.W}_Re_{self.Re}_eps_{self.eps}_beta_{self.beta}_L_{self.L}_Lx_{self.Lx:.4g}_Lz_{self.Lz:.4g}_Nx_{self.Nx}_Ny_{self.Ny}_{suffix_end}".replace('.', ',')
+        arrays_list = [p_array, trace_array, c22_array]
+        array_name_list = ['p', 'trace', 'c22']
 
-        if self.ndim == 1:
-            raise Exception("Made 1D plotting possible")
-        elif self.ndim == 2:
-            self.plot_snaps_2D(flow=flow, base_flow=base_flow, subdirectory=subdirectory, plot_dev=plot_dev, fname=fname)
+        metric_list = [np.abs(self.u_metric_list), np.abs(self.KE_metric_list), np.abs(self.trace_metric_list)]
+        metric_name_list = ['|u|_dev', 'KE_dev', 'trace_dev']
+
+        if self.ndim == 2:
+            plot_arrays_and_metrics_2D(arrays_list, array_name_list, x, y, det_C, plot_dev, 
+                                        metric_list, metric_name_list, self.time_list, title=self.material_params,
+                                        fname=fname, subdirectory=subdirectory, core_root=self.core_root)
         elif self.ndim == 3:
-            self.plot_snaps_3D(flow=flow, base_flow=base_flow, subdirectory=subdirectory, plot_dev=plot_dev, fname=fname)
-
+            plot_arrays_and_metrics_3D(arrays_list, array_name_list, x, y, z, det_C, plot_dev, 
+                                metric_list, metric_name_list, self.time_list, title=self.material_params,
+                                fname=fname, subdirectory=subdirectory, core_root=self.core_root)    
         self.set_scale(1.5)
-    
-    def plot_metrics(self, subdirectory='', suffix_end=''):
-
-        fname = 'norm' if on_local_device() else f"norm_W_{self.W}_Re_{self.Re}_eps_{self.eps}_beta_{self.beta}_L_{self.L}_Lx_{self.Lx:.4g}_Lz_{self.Lz:.4g}_Nx_{self.Nx}_Ny_{self.Ny}_{suffix_end}".replace('.', ',')
-        fpath = os.path.join(self.core_root, 'images', 'simulations', subdirectory)
-        os.makedirs(fpath, exist_ok=True)
-        fpath = os.path.join(fpath, fname)
-        
-        plot_metrics(np.abs(self.u_metric_list), np.abs(self.KE_metric_list), np.abs(self.trace_metric_list),
-                        '|u|_dev', 'KE_dev', 'trace_dev', 
-                        self.time_list, self.material_params, fpath)
 
     def _enforce_symmetry(self):
 
@@ -478,7 +467,7 @@ class TimeStepper3D(CartesianTimeStepper):
                     field['c'][:,1:,:] = (field['c'][:,1:,:] + field['c'][:,1:,:][:,::-1,:]) / 2
 
 
-    def simulate(self, T=np.infty, ifreq=200, converge_cadence=None, convergence_limit=1e-4,
+    def simulate(self, T=np.infty, ifreq=200, convergence_limit=1e-4,
                  end_converge=False, end_laminar=False, end_laminar_threshold=1e-6, 
                  plot=True, plot_dev=True, plot_subdirectory="",
                  save_over_long=False, save_full_data=False, suffix_end='', save_subdir='',  **kwargs):
@@ -519,13 +508,6 @@ class TimeStepper3D(CartesianTimeStepper):
             self.process_recent_saving(**kwargs)
 
             self.solver.step(dt=self.dt)
-
-            if self.try_converge(converge_cadence):
-                success = self.attempt_to_converge_state()
-                self.plot_snaps(subdirectory=plot_subdirectory)
-                if success:
-                    stop = 'converged'
-                    break
 
             if self.enforce_symmetry and self.solver.iteration % 10 == 0:
                 self._enforce_symmetry()
@@ -583,6 +565,7 @@ class TimeStepper3D(CartesianTimeStepper):
         # do something with v
         # self.v 
         logger.warning("Should process the v field")
+        self._reset_history_cache() # whenever we change the state, must forget history of implicit timestepper
 
     def _window_field(self, field, base, a, b):
 
