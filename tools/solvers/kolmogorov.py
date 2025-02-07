@@ -403,7 +403,7 @@ class TimeStepper3D(CartesianTimeStepper):
 
     def _plot_arrays_and_metrics(self, plot_dev, subdirectory, suffix_end):
 
-        fname = f"plots_iter_{self.solver.iteration}_{suffix_end}" if on_local_device() else f"plots_W_{self.W}_Re_{self.Re}_a_{self.a}_eps_{self.eps}_beta_{self.beta}_L_{self.L}_Lx_{self.Lx:.4g}_Nx_{self.Nx}_Ny_{self.Ny}_{suffix_end}".replace('.', ',')
+        fname = f"plots_iter_{self.solver.iteration}_{suffix_end}" if on_local_device() else f"plots_W_{self.W}_Re_{self.Re}_eps_{self.eps}_beta_{self.beta}_L_{self.L}_Lx_{self.Lx:.4g}_Lz_{self.Lz:.4g}_Nx_{self.Nx}_Ny_{self.Ny}_Nz_{self.Nz}_{suffix_end}".replace('.', ',')
 
         x, y, z, u_array, v_array, p_array, trace_array, c22_array, det_C = self._prepare_arrays_for_plotting(plot_dev)
 
