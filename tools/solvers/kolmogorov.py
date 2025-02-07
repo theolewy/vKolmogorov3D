@@ -409,7 +409,7 @@ class TimeStepper3D(CartesianTimeStepper):
 
         arrays_list = [p_array, trace_array, c22_array]
         array_name_list = ['p', 'trace', 'c22']
-
+        surface_level_multiplier_list = [[0.8, 0.15], 0.4, 0.3]
         metric_list = [np.abs(self.u_metric_list), np.abs(self.KE_metric_list), np.abs(self.trace_metric_list)]
         metric_name_list = ['|u|_dev', 'KE_dev', 'trace_dev']
 
@@ -418,7 +418,7 @@ class TimeStepper3D(CartesianTimeStepper):
                                         metric_list, metric_name_list, self.time_list, title=self.material_params,
                                         fname=fname, subdirectory=subdirectory, core_root=self.core_root)
         elif self.ndim == 3:
-            plot_arrays_and_metrics_3D(arrays_list, array_name_list, x, y, z, det_C, plot_dev, 
+            plot_arrays_and_metrics_3D(arrays_list, array_name_list, x, y, z, plot_dev, surface_level_multiplier_list,
                                 metric_list, metric_name_list, self.time_list, title=self.material_params,
                                 fname=fname, subdirectory=subdirectory, core_root=self.core_root)    
         self.set_scale(1.5)
