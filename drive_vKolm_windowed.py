@@ -56,9 +56,6 @@ elif setting_mode == 5:
 elif setting_mode == 6:
     a, b = 3*np.pi/8, np.pi/2
 
-elif setting_mode == 7:
-    a, b = 3*np.pi/8, 3*np.pi/4
-
 ic_dict_if_reinit = {'suffix': 'recent-symmetry-yz', 'subdir':'arrowhead_3D'}
 suffix_end = f'symm-yz-a-{a:.4g}-b-{b:.4g}'
 symmetry_mode = 'yz'
