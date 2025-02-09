@@ -628,15 +628,10 @@ class TimeStepper3D(CartesianTimeStepper):
 
         snapshots = self.solver.evaluator.add_file_handler(self.save_folder, \
                                                            sim_dt=sim_dt, max_writes=max_writes, mode=mode)
-        
+
+        self.add_tasks_to_handler(snapshots, save_all_fields)
+
         handler = [handler for handler in self.solver.evaluator.handlers if hasattr(handler, 'base_path') and posixpath.abspath(handler.base_path).endswith(suffix.replace('.', ','))][0]
 
-        if save_all_fields:
-            snapshots.add_system(self.solver.state, layout='g')
 
-        snapshots.add_task("integ(c11 + c22 + c33, 'y', 'x') / area", layout='g', name='<trace>')
-        snapshots.add_task("integ( u ** 2 + v ** 2 + w ** 2, 'x', 'y') / area / 2", layout='g', name='<KE>')
-        snapshots.add_task("integ( U ** 2 + V ** 2 + WW ** 2, 'x', 'y') / area / 2", layout='g', name='<KE_lam>')
-        snapshots.add_task("integ(C11 + C22 + C33, 'y', 'x') / area", layout='g', name='<trace_lam>')
-        
         return handler
