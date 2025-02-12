@@ -84,16 +84,32 @@ elif setting_mode == 5:
     symmetry_mode = 'yz'
     suffix_end = f'symmetry-yz'
 elif setting_mode == 6:
-    # Get periodic arrowheads in metastable region
-    material_params['W'] = 25 
+    # Play with localised AH
+    material_params['W'] = 20
     solver_params['Nz'] = 64
     system_params['Lz'] = 4 * np.pi
     system_params['Lx'] = 3 * np.pi
     solver_params['Nx'] = 64
     solver_params['dt'] = 2e-3
-    ic_dict_if_reinit = {'W': 30}
     symmetry_mode = 'yz'
-    suffix_end = f'symmetry-yz'
+
+    a, b = 6 * np.pi / 8, np.pi/2
+    ic_dict_if_reinit = {'suffix': f'recent-symm-yz-a-{a:.4g}-b-{b:.4g}'}
+    suffix_end = 'symm-yz-localised'
+elif setting_mode == 7:
+    # Play with localised AH
+    material_params['W'] = 20
+    solver_params['Nz'] = 64
+    system_params['Lz'] = 4 * np.pi
+    system_params['Lx'] = 3 * np.pi
+    solver_params['Nx'] = 64
+    solver_params['dt'] = 2e-3
+    symmetry_mode = False
+
+    a, b = 6 * np.pi / 8, np.pi/2
+    ic_dict_if_reinit = {'suffix': f'recent-symm-yz-a-{a:.4g}-b-{b:.4g}'}
+    suffix_end = 'localised'
+
 
 log_all_params(material_params, system_params, solver_params)
 

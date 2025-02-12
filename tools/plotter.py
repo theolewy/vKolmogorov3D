@@ -53,7 +53,6 @@ def plot_base_flow(BaseFlow, fname='base_flow', field_names=['u', 'v']):
 
     plt.close()
 
-
 def eigenplots(fname, EVP):
     core_root, _ = get_roots()
     images_dir = os.path.join(core_root, 'images', 'eigenplots')

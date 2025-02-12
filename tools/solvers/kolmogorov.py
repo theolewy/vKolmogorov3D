@@ -30,6 +30,7 @@ class BaseFlow(CartesianBaseFlow):
 
     def __init__(self, solver_params, system_params, **kwargs):
         super().__init__(solver_params, system_params, **kwargs)
+        self.core_root, _  = get_roots()
 
     def _set_vars_coords_param_names(self):
 
@@ -176,13 +177,14 @@ class BaseFlow(CartesianBaseFlow):
         self.c33.differentiate('y', out=self.c33y)
 
     def plot_base_state(self, fname='base_flow', field_names=['u', 'v', 'c11', 'c12', 'c22', 'p']):
-        plot_base_flow(self, fname=fname, field_names=field_names)
+        plot_base_flow(self, fname=fname, field_names=field_names, core_root=self.core_root)
 
 class EVP(CartesianEVP):
     
     def __init__(self, solver_params, system_params, **kwargs):
         super().__init__(solver_params, system_params, **kwargs)
-    
+        self.core_root, _  = get_roots()
+
     def _set_vars_coords_param_names(self):
 
         self.variables = ['u', 'v', 'p', 'c11', 'c12', 'c22', 'c33',
@@ -263,14 +265,15 @@ class NumericSolver(CartesianNumericSolver):
                  save_plots=False, **kwargs):
         super().__init__(system_params, solver_params, 
                  save_plots=False, **kwargs)
-        
+        self.core_root, _ = get_roots()
+
     def _set_solvers(self, **kwargs):
 
         self.base_solver = BaseFlow(self.solver_params, self.system_params, **kwargs)
         self.EVP_solver = EVP(self.solver_params, self.system_params, **kwargs)
 
     def plot_key_images(self, fname):
-        eigenplots(fname, self.EVP_solver)
+        eigenplots(fname, self.EVP_solver, self.core_root)
         self.base_solver.plot_base_state(fname)
 
 class TimeStepper3D(CartesianTimeStepper):
