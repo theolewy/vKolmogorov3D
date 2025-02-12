@@ -207,8 +207,8 @@ def plot_snap_from_params(material_params, system_params, solver_params, suffix,
 def check_localised(W, eps, beta, L, Re, Lx, Lz,  Nx, Ny, Nz, suffix='', subdir=''):
     
     material_params = {'W': W, 'beta': beta, 'Re': Re, 'L':L, 'eps': eps}
-    system_params = {'system_type': 'channel', 'df':'m', 'Lx': Lx, 'ndim': 3, 'n':1}
-    solver_params = {'Nx': Nx, 'Ny': Ny}
+    system_params = {'system_type': 'channel', 'df':'m', 'Lx': Lx,  'Lz': Lz, 'ndim': 3, 'n':1}
+    solver_params = {'Nx': Nx, 'Ny': Ny, 'Nz': Nz}
 
     fpath = get_fpath_sim(material_params, system_params, solver_params, suffix=suffix, subdir=subdir)
     post.merge_process_files(fpath, cleanup=True)
