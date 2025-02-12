@@ -356,43 +356,41 @@ class TimeStepper3D(CartesianTimeStepper):
         self.problem.substitutions['c13y'] = "dy(c13)"
         self.problem.substitutions['c23y'] = "dy(c23)"
 
-        self.problem.substitutions['dt_dash(A)'] = "dt(A) - c*dx(A)"
-
     def equations(self):
 
-        self.problem.add_equation('Re * dt_dash(u) + dx(p) - beta * lap(u, uy) = F - Re * adv(u) + (1 - beta) * (t11x + t12y + t13z)')
-        self.problem.add_equation('Re * dt_dash(v) + dy(p) - beta * lap(v, vy) =   - Re * adv(v) + (1 - beta) * (t12x + t22y + t23z)')
-        self.problem.add_equation('Re * dt_dash(w) + dz(p) - beta * lap(w, wy) =   - Re * adv(w) + (1 - beta) * (t13x + t23y + t33z)')
+        self.problem.add_equation('Re * dt(u) + dx(p) - beta * lap(u, uy) = F - Re * adv(u) + (1 - beta) * (t11x + t12y + t13z)')
+        self.problem.add_equation('Re * dt(v) + dy(p) - beta * lap(v, vy) =   - Re * adv(v) + (1 - beta) * (t12x + t22y + t23z)')
+        self.problem.add_equation('Re * dt(w) + dz(p) - beta * lap(w, wy) =   - Re * adv(w) + (1 - beta) * (t13x + t23y + t33z)')
 
-        self.problem.add_equation('dt_dash(c11) - eps * lap(c11, c11y) = ' + \
+        self.problem.add_equation('dt(c11) - eps * lap(c11, c11y) = ' + \
                                   '- adv(c11)' + \
                                   '+ 2 * c11 * dx(u) + 2 * c12 * dy(u) + 2 * c13 * dz(u)' + \
                                   '- t11')
 
-        self.problem.add_equation('dt_dash(c12) - eps * lap(c12, c12y) = ' + \
+        self.problem.add_equation('dt(c12) - eps * lap(c12, c12y) = ' + \
                                   '- adv(c12)' + \
                                   '+ c11 * dx(v) + c12 * dy(v) + c13 * dz(v)' + \
                                   '+ c12 * dx(u) + c22 * dy(u) + c23 * dz(u)' + \
                                   '- t12')
 
-        self.problem.add_equation('dt_dash(c22) - eps * lap(c22, c22y) = ' + \
+        self.problem.add_equation('dt(c22) - eps * lap(c22, c22y) = ' + \
                                   '- adv(c22)' + \
                                   '+ 2 * c12 * dx(v) + 2 * c22 * dy(v) + 2 * c23 * dz(v)' + \
                                   '- t22')
         
-        self.problem.add_equation('dt_dash(c13) - eps * lap(c13, c13y) = ' + \
+        self.problem.add_equation('dt(c13) - eps * lap(c13, c13y) = ' + \
                                   '- adv(c13)' + \
                                   '+ c11 * dx(w) + c12 * dy(w) + c13 * dz(w)' + \
                                   '+ c13 * dx(u) + c23 * dy(u) + c33 * dz(u)' + \
                                   '- t13')
         
-        self.problem.add_equation('dt_dash(c23) - eps * lap(c23, c23y) = ' + \
+        self.problem.add_equation('dt(c23) - eps * lap(c23, c23y) = ' + \
                                   '- adv(c23)' + \
                                   '+ c12 * dx(w) + c22 * dy(w) + c23 * dz(w)' + \
                                   '+ c13 * dx(v) + c23 * dy(v) + c33 * dz(v)' + \
                                   '- t23')
         
-        self.problem.add_equation('dt_dash(c33) - eps * lap(c33, c33y) = ' + \
+        self.problem.add_equation('dt(c33) - eps * lap(c33, c33y) = ' + \
                                   '- adv(c33)' + \
                                   '+ 2 * c13 * dx(w) + 2 * c23 * dy(w) + 2 * c33 * dz(w)' + \
                                   ' - t33')
