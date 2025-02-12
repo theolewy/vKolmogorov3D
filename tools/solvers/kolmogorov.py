@@ -408,8 +408,8 @@ class TimeStepper3D(CartesianTimeStepper):
 
         x, y, z, u_array, v_array, p_array, trace_array, c22_array, det_C = self._prepare_arrays_for_plotting(plot_dev)
 
-        arrays_list = [p_array, trace_array, c22_array]
-        array_name_list = ['p', 'trace', 'c22']
+        arrays_list = [p_array, trace_array, u_array]
+        array_name_list = ['p', 'trace', 'u']
         surface_level_multiplier_list = [[0.8, 0.15], 0.4, 0.3]
         metric_list = [np.abs(self.u_metric_list), np.abs(self.KE_metric_list), np.abs(self.trace_metric_list)]
         metric_name_list = ['|u|_dev', 'KE_dev', 'trace_dev']
