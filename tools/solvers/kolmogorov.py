@@ -19,7 +19,7 @@ import logging
 from cfd_tools.cartesian_systems.cartesian_system_base import CartesianBaseFlow, CartesianEVP, CartesianNumericSolver, CartesianTimeStepper
 from scipy.sparse.linalg import ArpackNoConvergence
 
-from tools.plotter import *
+from cfd_tools.cartesian_systems.plotter import *
 from tools.misc_tools import *
 
 
