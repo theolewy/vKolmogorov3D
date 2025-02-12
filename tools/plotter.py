@@ -11,7 +11,7 @@ from cfd_tools.cartesian_systems.plotter import *
 import scipy
 from scipy.interpolate import CubicSpline
 
-from tools.solvers.kolmogorov import BaseFlow
+from tools.solvers.kolmogorov import TimeStepper3D as TimeStepper
 
 plt.rcParams['xtick.labelsize'] = 14
 plt.rcParams['ytick.labelsize'] = 14
@@ -214,8 +214,8 @@ def check_localised(W, eps, beta, L, Re, Lx, Lz,  Nx, Ny, Nz, suffix='', subdir=
     post.merge_process_files(fpath, cleanup=True)
 
     logger.info("Now getting base flow...")
-    base_solver = BaseFlow(solver_params=solver_params, system_params=system_params)
-    base_flow = base_solver.ensure_converged_base(material_params=material_params, logger_on=True)
+    timestepper = TimeStepper(material_params=material_params, solver_params=solver_params, system_params=system_params)
+    base_flow = timestepper.base_flow_full
     logger.info("Obtained base flow...")
 
     data_fields, _ = get_h5_data(material_params, system_params, solver_params, suffix=suffix, subdir=subdir, s=-1)
@@ -233,6 +233,7 @@ def check_localised(W, eps, beta, L, Re, Lx, Lz,  Nx, Ny, Nz, suffix='', subdir=
         plt.plot(z, field_int)
 
     print(np.max(np.abs(data_fields['u'][-1,:,:,:] - base_flow['u'][None, :, None]), axis=(0,2)))
+
     plt.legend(fields)
 
     plt.xlabel('z')
