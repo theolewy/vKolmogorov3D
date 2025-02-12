@@ -227,7 +227,7 @@ def check_localised(W, eps, beta, L, Re, Lx, Lz,  Nx, Ny, Nz, suffix='', subdir=
     for field_name in fields:
         base_field = base_flow[field_name]
         field_array = data_fields[field_name][-1,:,:,:] - base_field
-        field_int = np.max(np.abs(field_array), axis=(0,2))
+        field_int = np.linalg.norm(field_array, axis=[0,2])
         field_int /= np.max(field_int)
 
         plt.plot(z, field_int)
