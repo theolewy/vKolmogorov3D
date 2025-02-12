@@ -11,6 +11,8 @@ from cfd_tools.cartesian_systems.plotter import *
 import scipy
 from scipy.interpolate import CubicSpline
 
+from tools.solvers.kolmogorov import BaseFlow
+
 plt.rcParams['xtick.labelsize'] = 14
 plt.rcParams['ytick.labelsize'] = 14
 plt.rcParams['font.size'] = 14
@@ -200,3 +202,42 @@ def plot_snap_from_params(material_params, system_params, solver_params, suffix,
 
     if title:
         plt.title(f"Nz = {z.shape[0]}, Nr = {r.shape[0]}, t = {data_fields['t'][-1]:.4g}")
+
+
+def check_localised(W, eps, beta, L, Re, Lx, Lz,  Nx, Ny, Nz, suffix='', subdir=''):
+    
+    material_params = {'W': W, 'beta': beta, 'Re': Re, 'L':L, 'eps': eps}
+    system_params = {'system_type': 'channel', 'df':'m', 'Lx': Lx, 'ndim': 3, 'n':1}
+    solver_params = {'Nx': Nx, 'Ny': Ny}
+
+    fpath = get_fpath_sim(material_params, system_params, solver_params, suffix=suffix, subdir=subdir)
+    post.merge_process_files(fpath, cleanup=True)
+
+    logger.info("Now getting base flow...")
+    base_solver = BaseFlow(solver_params=solver_params, system_params=system_params)
+    base_flow = base_solver.ensure_converged_base(material_params=material_params, logger_on=True)
+    logger.info("Obtained base flow...")
+
+    data_fields, _ = get_h5_data(material_params, system_params, solver_params, suffix=suffix, subdir=subdir, s=-1)
+
+    x, y, z = data_fields['x'], data_fields['y'], data_fields['z']
+
+    fields = ['p', 'c11', 'c12', 'c22', 'u', 'v']
+
+    for field_name in fields:
+        base_field = base_flow[field_name]
+        field_array = data_fields[field_name][-1,:,:,:] - base_field[None, :, None]
+        field_int = np.max(np.abs(field_array), axis=(0,1))
+        field_int /= np.max(field_int)
+
+        plt.plot(z, field_int)
+    plt.legend(fields)
+
+    plt.xlabel('z')
+    plt.ylabel(r'$max_{x,y}(f)/max_{x,y,z}(f)$')
+
+    core_root, _ = get_roots()
+    fpath = os.path.join(core_root, 'images', f'localisation_W_{W}_eps_{eps}_L_{L}_Re_{Re}_beta_{beta}_Lx_{Lx}_Lz_{Lz}_Nx_{Nx}_Ny_{Ny}_Nz_{Nz}.jpg')
+    plt.savefig(fpath, bbox_inches='tight')
+    plt.close()
+    
