@@ -232,6 +232,7 @@ def check_localised(W, eps, beta, L, Re, Lx, Lz,  Nx, Ny, Nz, suffix='', subdir=
 
         plt.plot(z, field_int)
 
+    print(np.max(np.abs(data_fields['u'][-1,:,:,:] - base_flow['u'][None, :, None]), axis=(0,2)))
     plt.legend(fields)
 
     plt.xlabel('z')
