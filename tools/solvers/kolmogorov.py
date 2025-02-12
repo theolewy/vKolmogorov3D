@@ -598,6 +598,7 @@ class TimeStepper3D(CartesianTimeStepper):
         #         v = np.roll(v, shift=Nz//2, axis=1)
         #         trace = np.roll(trace, shift=Nz//2, axis=1)
         #         c22 = np.roll(c22, shift=Nz//2, axis=1)
+        
         elif self.ndim == 2:
             pass
         
