@@ -86,16 +86,16 @@ elif setting_mode == 5:
 elif setting_mode == 6:
     # Play with localised AH
     material_params['W'] = 20
-    solver_params['Nz'] = 64
-    system_params['Lz'] = 4 * np.pi
+    solver_params['Nz'] = 128
+    system_params['Lz'] = 8 * np.pi
     system_params['Lx'] = 3 * np.pi
     solver_params['Nx'] = 64
     solver_params['dt'] = 2e-3
-    symmetry_mode = 'yz'
+    symmetry_mode = False
 
     a, b = 6 * np.pi / 8, np.pi/2
-    ic_dict_if_reinit = {'subdir': 'windows', 'suffix': f'recent-symm-yz-a-{a:.4g}-b-{b:.4g}'}
-    suffix_end = 'symm-yz-localised'
+    ic_dict_if_reinit = {'Nz':64, 'Lz': 4 * np.pi}
+    suffix_end = 'localised'
 elif setting_mode == 7:
     # Play with localised AH
     material_params['W'] = 20
