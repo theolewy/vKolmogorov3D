@@ -94,7 +94,7 @@ elif setting_mode == 6:
     symmetry_mode = False
 
     a, b = 6 * np.pi / 8, np.pi/2
-    ic_dict_if_reinit = {'Nz':64, 'Lz': 4 * np.pi}
+    ic_dict_if_reinit = {'Nz': 64, 'Lz': 4 * np.pi}
     suffix_end = 'localised'
 elif setting_mode == 7:
     # Play with localised AH
@@ -128,10 +128,10 @@ elif setting_mode == 8:
 
 log_all_params(material_params, system_params, solver_params)
 
-timestepper = TimeStepper3D(material_params=material_params, system_params=system_params, solver_params=solver_params)
-
 ic_file, noise_coeff, _ = get_ic_file(material_params, system_params, solver_params, suffix=f'recent-{suffix_end}', subdir='arrowhead_3D', 
                                    ic_dict_if_reinit=ic_dict_if_reinit)
+
+timestepper = TimeStepper3D(material_params=material_params, system_params=system_params, solver_params=solver_params)
 
 timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=noise_coeff)
 
