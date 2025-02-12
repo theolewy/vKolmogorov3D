@@ -122,7 +122,7 @@ elif setting_mode == 8:
     solver_params['dt'] = 1e-3
     symmetry_mode = False
 
-    ic_dict_if_reinit = {'suffix': 'localised', 'Nx':64, 'Ny':64, 'Nz':64, 'eps': 1e-3}
+    ic_dict_if_reinit = {'suffix':'recent-localised', 'Nx':64, 'Ny':64, 'Nz':64, 'eps': 1e-3}
     suffix_end = 'localised'
 
 
