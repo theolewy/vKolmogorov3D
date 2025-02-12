@@ -124,6 +124,18 @@ elif setting_mode == 8:
 
     ic_dict_if_reinit = {'suffix':'recent-localised', 'Nx':64, 'Ny':64, 'Nz':64, 'eps': 1e-3}
     suffix_end = 'localised'
+elif setting_mode == 9:
+    # Play with localised AH
+    material_params['W'] = 20
+    solver_params['Nz'] = 128
+    system_params['Lz'] = 6 * np.pi
+    system_params['Lx'] = 3 * np.pi
+    solver_params['Nx'] = 64
+    solver_params['dt'] = 2e-3
+    symmetry_mode = False
+
+    ic_dict_if_reinit = {'Nz': 64, 'Lz': 4 * np.pi}
+    suffix_end = 'localised'
 
 
 log_all_params(material_params, system_params, solver_params)
