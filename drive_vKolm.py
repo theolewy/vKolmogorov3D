@@ -109,7 +109,7 @@ elif setting_mode == 7:
     a, b = 6 * np.pi / 8, np.pi/2
     ic_dict_if_reinit = {'subdir': 'windows', 'suffix': f'recent-symm-yz-a-{a:.4g}-b-{b:.4g}', 'noise_coeff': 1e-3}
     suffix_end = 'localised'
-elif setting_mode == 7:
+elif setting_mode == 8:
     # Play with localised AH
     material_params['W'] = 20
     solver_params['Nz'] = 64
