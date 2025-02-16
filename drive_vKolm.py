@@ -94,7 +94,7 @@ elif setting_mode == 6:
     symmetry_mode = False
 
     a, b = 6 * np.pi / 8, np.pi/2
-    ic_dict_if_reinit = {'Nz': 64, 'Lz': 4 * np.pi}
+    ic_dict_if_reinit = {'Lz': 6 * np.pi}
     suffix_end = 'localised'
 elif setting_mode == 7:
     # Play with localised AH
