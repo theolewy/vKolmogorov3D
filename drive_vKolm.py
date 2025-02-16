@@ -93,7 +93,6 @@ elif setting_mode == 6:
     solver_params['dt'] = 2e-3
     symmetry_mode = False
 
-    a, b = 6 * np.pi / 8, np.pi/2
     ic_dict_if_reinit = {'Lz': 6 * np.pi}
     suffix_end = 'localised'
 elif setting_mode == 7:
