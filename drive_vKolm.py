@@ -27,7 +27,7 @@ else:
     raise Exception('Need more inputs!')
 
 if setting_mode == 0:
-    # Play with localised AH
+    # Localised AH
     Lz = 8 * np.pi
 
     solver_params['Nz'] = int(16 * Lz  / np.pi)
@@ -43,7 +43,7 @@ if setting_mode == 0:
     ic_dict_if_reinit = {'W': 20}
     suffix_end = 'localised'
 elif setting_mode == 1:
-    # Play with localised AH
+    # Localised AH
     Lz = 8 * np.pi
 
     solver_params['Nz'] = int(16 * Lz  / np.pi)
@@ -59,7 +59,7 @@ elif setting_mode == 1:
     ic_dict_if_reinit = {'W': 20}
     suffix_end = 'localised'
 elif setting_mode == 2:
-    # Play with localised AH
+    # Localised AH
     Lz = 8 * np.pi
 
     solver_params['Nz'] = int(16 * Lz  / np.pi)
@@ -74,7 +74,22 @@ elif setting_mode == 2:
 
     ic_dict_if_reinit = {'W': 20}
     suffix_end = 'localised'
+elif setting_mode == 3:
+    # Periodic AH
+    Lz = 8 * np.pi
 
+    solver_params['Nz'] = int(16 * Lz  / np.pi)
+    solver_params['Ny'] = 64
+    solver_params['Nx'] = 64
+
+    solver_params['dt'] = 2e-3
+
+    system_params['Lz'] = Lz
+
+    material_params['W'] = 14
+
+    ic_dict_if_reinit = {'W': 20}
+    suffix_end = 'localised'
 elif setting_mode == 5:
     # Get periodic arrowheads, ready for localisation (even about low pressure region)
     material_params['W'] = 20 
