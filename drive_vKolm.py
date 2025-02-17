@@ -28,7 +28,7 @@ else:
 
 if setting_mode == 0:
     # Play with localised AH
-    Lz = 4 * np.pi
+    Lz = 8 * np.pi
 
     solver_params['Nz'] = 16 * Lz  / np.pi 
     solver_params['Ny'] = 64
@@ -38,8 +38,42 @@ if setting_mode == 0:
 
     system_params['Lz'] = Lz
 
-    ic_dict_if_reinit = {'suffix':'recent-', 'Nx':64, 'Ny':64, 'Nz':64, 'eps': 1e-3}
-    suffix_end = 'periodic'
+    material_params['W'] = 18
+
+    ic_dict_if_reinit = {'W': 20}
+    suffix_end = 'localised'
+elif setting_mode == 1:
+    # Play with localised AH
+    Lz = 8 * np.pi
+
+    solver_params['Nz'] = 16 * Lz  / np.pi 
+    solver_params['Ny'] = 64
+    solver_params['Nx'] = 64
+
+    solver_params['dt'] = 2e-3
+
+    system_params['Lz'] = Lz
+
+    material_params['W'] = 16
+
+    ic_dict_if_reinit = {'W': 20}
+    suffix_end = 'localised'
+elif setting_mode == 2:
+    # Play with localised AH
+    Lz = 8 * np.pi
+
+    solver_params['Nz'] = 16 * Lz  / np.pi 
+    solver_params['Ny'] = 64
+    solver_params['Nx'] = 64
+
+    solver_params['dt'] = 2e-3
+
+    system_params['Lz'] = Lz
+
+    material_params['W'] = 14
+
+    ic_dict_if_reinit = {'W': 20}
+    suffix_end = 'localised'
 
 elif setting_mode == 5:
     # Get periodic arrowheads, ready for localisation (even about low pressure region)
