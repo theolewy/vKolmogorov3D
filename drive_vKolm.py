@@ -30,7 +30,7 @@ if setting_mode == 0:
     # Play with localised AH
     Lz = 8 * np.pi
 
-    solver_params['Nz'] = 16 * Lz  / np.pi 
+    solver_params['Nz'] = int(16 * Lz  / np.pi)
     solver_params['Ny'] = 64
     solver_params['Nx'] = 64
 
@@ -46,7 +46,7 @@ elif setting_mode == 1:
     # Play with localised AH
     Lz = 8 * np.pi
 
-    solver_params['Nz'] = 16 * Lz  / np.pi 
+    solver_params['Nz'] = int(16 * Lz  / np.pi)
     solver_params['Ny'] = 64
     solver_params['Nx'] = 64
 
@@ -62,7 +62,7 @@ elif setting_mode == 2:
     # Play with localised AH
     Lz = 8 * np.pi
 
-    solver_params['Nz'] = 16 * Lz  / np.pi 
+    solver_params['Nz'] = int(16 * Lz  / np.pi)
     solver_params['Ny'] = 64
     solver_params['Nx'] = 64
 
