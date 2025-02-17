@@ -36,7 +36,7 @@ if setting_mode == 0:
 
 log_all_params(material_params, system_params, solver_params)
 
-ic_file, noise_coeff, _ = get_ic_file(material_params, system_params, solver_params, suffix=f'recent-{suffix_end}', subdir='arrowhead_3D', 
+ic_file, noise_coeff, _ = get_ic_file(material_params, system_params, solver_params, suffix=f'recent-{suffix_end}', subdir='arrowhead_2D', 
                                    ic_dict_if_reinit=ic_dict_if_reinit)
 
 timestepper = TimeStepper3D(material_params=material_params, system_params=system_params, solver_params=solver_params)
