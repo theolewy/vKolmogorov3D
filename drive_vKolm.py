@@ -93,69 +93,39 @@ elif setting_mode == 3:
     ic_dict_if_reinit = {'ndim': 2, 'noise_coeff':1e-3, 'subdir':'arrowhead_2D', 'suffix': 'recent-', 'Nx': 128, 'Ny':256 }
     suffix_end = 'periodic'
 
+elif setting_mode == 4:
+    # Localised AH
+    Lz = 8 * np.pi
+
+    solver_params['Nz'] = int(16 * Lz  / np.pi)
+    solver_params['Ny'] = 64
+    solver_params['Nx'] = 64
+
+    solver_params['dt'] = 2e-3
+
+    system_params['Lz'] = Lz
+
+    material_params['W'] = 16
+
+    ic_dict_if_reinit = {'W': 16}
+    suffix_end = 'localised'
 elif setting_mode == 5:
-    # Get periodic arrowheads, ready for localisation (even about low pressure region)
-    material_params['W'] = 20 
-    solver_params['Nz'] = 64
-    system_params['Lz'] = 4 * np.pi
-    system_params['Lx'] = 3 * np.pi
+    # Localised AH
+    Lz = 8 * np.pi
+
+    solver_params['Nz'] = int(16 * Lz  / np.pi)
+    solver_params['Ny'] = 64
     solver_params['Nx'] = 64
+
     solver_params['dt'] = 2e-3
-    ic_dict_if_reinit = {'W': 30}
-    symmetry_mode = 'yz'
-    suffix_end = f'symmetry-yz'
-elif setting_mode == 6:
-    # Play with localised AH
-    material_params['W'] = 20
-    solver_params['Nz'] = 128
-    system_params['Lz'] = 8 * np.pi
-    system_params['Lx'] = 3 * np.pi
-    solver_params['Nx'] = 64
-    solver_params['dt'] = 2e-3
-    symmetry_mode = False
 
-    ic_dict_if_reinit = {'Lz': 6 * np.pi}
+    system_params['Lz'] = Lz
+
+    material_params['W'] = 18
+
+    ic_dict_if_reinit = {'W': 16}
     suffix_end = 'localised'
-elif setting_mode == 7:
-    # Play with localised AH
-    material_params['W'] = 20
-    solver_params['Nz'] = 64
-    system_params['Lz'] = 4 * np.pi
-    system_params['Lx'] = 3 * np.pi
-    solver_params['Nx'] = 64
-    solver_params['dt'] = 2e-3
-    symmetry_mode = False
-
-    ic_dict_if_reinit = None
-    suffix_end = 'localised'
-elif setting_mode == 8:
-    # Play with localised AH
-    material_params['W'] = 20
-    solver_params['Nz'] = 128
-    solver_params['Ny'] = 128
-    solver_params['Nx'] = 128
-
-    system_params['Lz'] = 4 * np.pi
-    system_params['Lx'] = 3 * np.pi
-    material_params['eps'] = 2e-4
-    solver_params['dt'] = 1e-3
-    symmetry_mode = False
-
-    ic_dict_if_reinit = {'suffix':'recent-localised', 'Nx':64, 'Ny':64, 'Nz':64, 'eps': 1e-3}
-    suffix_end = 'localised'
-elif setting_mode == 9:
-    # Play with localised AH
-    material_params['W'] = 20
-    solver_params['Nz'] = 128
-    system_params['Lz'] = 6 * np.pi
-    system_params['Lx'] = 3 * np.pi
-    solver_params['Nx'] = 64
-    solver_params['dt'] = 2e-3
-    symmetry_mode = False
-
-    ic_dict_if_reinit = {'Nz': 64, 'Lz': 4 * np.pi}
-    suffix_end = 'localised'
-
+    
 
 log_all_params(material_params, system_params, solver_params)
 
