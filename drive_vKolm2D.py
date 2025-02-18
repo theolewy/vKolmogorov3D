@@ -26,7 +26,7 @@ else:
 
 if setting_mode == 0:
     # Get 2D bifurcation curve
-    W_list = [7, 6, 5, 4]
+    W_list = [7.8, 7.6, 7.5, 7.4, 7.2]
     W = W_list[job_idx]
 
     material_params['W'] = W
