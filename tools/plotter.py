@@ -214,8 +214,11 @@ def check_localised(W, eps, beta, L, Re, Lx, Lz,  Nx, Ny, Nz, suffix='', subdir=
     post.merge_process_files(fpath, cleanup=True)
 
     logger.info("Now getting base flow...")
-    timestepper = TimeStepper(material_params=material_params, solver_params=solver_params, system_params=system_params)
+    system_params_temp = copy.deepcopy(system_params)
+    system_params_temp['ndim'] = 2
+    timestepper = TimeStepper(material_params=material_params, solver_params=solver_params, system_params=system_params_temp)
     base_flow = timestepper.base_flow_full
+
     logger.info("Obtained base flow...")
 
     data_fields, _ = get_h5_data(material_params, system_params, solver_params, suffix=suffix, subdir=subdir, s=-1)

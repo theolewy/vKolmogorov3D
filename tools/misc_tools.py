@@ -100,6 +100,57 @@ def get_fpath_sim(material_params, system_params, solver_params, suffix='', subd
 
     return save_folder
 
+
+def sim_fname_to_params(fname):
+
+    fname_split = fname.replace(',', '.').split('_')
+    ndim = len(fname_split[-2].split('-'))  # weird way to find ndim, but this is because I set the fpath sim names slightly annoyingly
+
+    W, Re, beta, eps, = float(fname_split[2]), float(fname_split[4]), float(fname_split[6]), float(fname_split[8])
+    Lx = float(fname_split[12])
+    L = np.infty if fname_split[10] == 'inf' else float(fname_split[10])
+    suffix = fname_split[-1]
+    if ndim == 2: 
+        Nx, Ny = [int(N) for N in fname_split[16].split('-')]
+        solver_params = {'Nx': Nx, 'Ny': Ny}
+        system_params = { 'Lx': Lx, 'n': 1, 'ndim': ndim}
+
+    elif ndim == 3:
+        Lz = float(fname_split[14])
+        Nx, Ny, Nz = [int(N) for N in fname_split[18].split('-')]
+        solver_params = {'Nx': Nx, 'Ny': Ny, 'Nz': Nz,}
+        system_params = { 'Lx': Lx, 'Lz': Lz, 'n': 1, 'ndim': ndim}
+
+    material_params = {'W': W, 'beta': beta, 'L': L, 'Re': Re, 'eps': eps}
+
+    return material_params, system_params, solver_params, suffix
+
+def get_AH_W_list(eps, beta, Re, L, Lx, Nx, Ny, ndim, Nz=None, Lz=None, subdir='', suffix=''):
+
+    W_list = []
+
+    _, data_root = get_roots()
+    AH_dir = os.path.join(data_root, 'simulations', subdir)
+
+    for fname in os.listdir(AH_dir):
+
+        material_params, system_params, solver_params, suffix_fname = sim_fname_to_params(fname)
+        if system_params['ndim'] == ndim and eps == material_params['eps'] and L == material_params['L'] and beta == material_params['beta'] and Re == material_params['Re'] \
+            and Nx == solver_params['Nx'] and Ny == solver_params['Ny'] and round(system_params['Lx'], ndigits=4) == round(Lx, ndigits=4) \
+            and suffix == suffix_fname:
+            if ndim == 3:
+                if Nz == solver_params['Nz'] and round(system_params['Lz'], ndigits=4) == round(Lz, ndigits=4):
+                    W_list.append(material_params['W'])
+            elif ndim == 2:
+                W_list.append(material_params['W'])
+
+    W_list = np.array(sorted(W_list))
+
+    return W_list
+
+
+
+
 ####################################################################################################################################
 # EVERYTHING UNDER HERE DOESN'T NEED TO CHANGE WHEN A NEW SYSTEM IS MADE
 ####################################################################################################################################
