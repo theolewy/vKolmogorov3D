@@ -38,9 +38,9 @@ if setting_mode == 0:
 
     system_params['Lz'] = Lz
 
-    material_params['W'] = 18
+    material_params['W'] = 17
 
-    ic_dict_if_reinit = {'W': 20}
+    ic_dict_if_reinit = {'W': 18}
     suffix_end = 'localised'
 
 elif setting_mode == 1:
@@ -55,9 +55,9 @@ elif setting_mode == 1:
 
     system_params['Lz'] = Lz
 
-    material_params['W'] = 16
+    material_params['W'] = 19
 
-    ic_dict_if_reinit = {'W': 20}
+    ic_dict_if_reinit = {'W': 18}
     suffix_end = 'localised'
 elif setting_mode == 2:
     # Localised AH
@@ -71,9 +71,9 @@ elif setting_mode == 2:
 
     system_params['Lz'] = Lz
 
-    material_params['W'] = 14
+    material_params['W'] = 15
 
-    ic_dict_if_reinit = {'W': 20}
+    ic_dict_if_reinit = {'W': 16}
     suffix_end = 'localised'
     
 elif setting_mode == 3:
