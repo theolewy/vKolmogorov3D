@@ -88,7 +88,7 @@ elif setting_mode == 3:
 
     material_params['W'] = 20
 
-    ic_dict_if_reinit = {'ndim': 2, 'noise_coeff':1e-3, 'suffix': 'recent-', 'Nx': 128, 'Ny':256 }
+    ic_dict_if_reinit = {'ndim': 2, 'noise_coeff':1e-3, 'subdir':'arrowhead_2D', 'suffix': 'recent-', 'Nx': 128, 'Ny':256 }
     suffix_end = 'periodic'
 
 elif setting_mode == 5:
