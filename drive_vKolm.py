@@ -125,6 +125,22 @@ elif setting_mode == 5:
 
     ic_dict_if_reinit = {'W': 16}
     suffix_end = 'localised'
+elif setting_mode == 6:
+    # Localised AH
+    Lz = 8 * np.pi
+
+    solver_params['Nz'] = int(16 * Lz  / np.pi)
+    solver_params['Ny'] = 64
+    solver_params['Nx'] = 64
+
+    solver_params['dt'] = 2e-3
+
+    system_params['Lz'] = Lz
+
+    material_params['W'] = 20
+
+    ic_dict_if_reinit = None
+    suffix_end = 'localised'
     
 
 log_all_params(material_params, system_params, solver_params)
