@@ -649,3 +649,19 @@ class TimeStepper3D(CartesianTimeStepper):
 
 
         return handler
+
+    def add_tasks_to_handler(self, handler, save_all_fields=False):
+        
+        if save_all_fields:
+            handler.add_system(self.solver.state, layout='g')
+
+        if self.ndim == 3:
+            handler.add_task("integ(c11 + c22 + c33, 'y', 'x', 'z') / area", layout='g', name='<trace>')
+            handler.add_task("integ( u ** 2 + v ** 2 + w ** 2, 'x', 'y', 'z') / area / 2", layout='g', name='<KE>')
+            handler.add_task("integ( U ** 2 + V ** 2 + WW ** 2, 'x', 'y', 'z') / area / 2", layout='g', name='<KE_lam>')
+            handler.add_task("integ(C11 + C22 + C33, 'y', 'x', 'z') / area", layout='g', name='<trace_lam>')
+        elif self.ndim == 2:
+            handler.add_task("integ(c11 + c22 + c33, 'y', 'x') / area", layout='g', name='<trace>')
+            handler.add_task("integ( u ** 2 + v ** 2 + w ** 2, 'x', 'y') / area / 2", layout='g', name='<KE>')
+            handler.add_task("integ( U ** 2 + V ** 2 + WW ** 2, 'x', 'y') / area / 2", layout='g', name='<KE_lam>')
+            handler.add_task("integ(C11 + C22 + C33, 'y', 'x') / area", layout='g', name='<trace_lam>')
