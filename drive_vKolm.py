@@ -75,8 +75,8 @@ elif setting_mode == 2:
     ic_dict_if_reinit = {'W': 20}
     suffix_end = 'localised'
 elif setting_mode == 3:
-    # Periodic AH
-    Lz = 8 * np.pi
+    # Get Periodic AH from 2D AH
+    Lz = 2 * np.pi
 
     solver_params['Nz'] = int(16 * Lz  / np.pi)
     solver_params['Ny'] = 64
@@ -86,10 +86,11 @@ elif setting_mode == 3:
 
     system_params['Lz'] = Lz
 
-    material_params['W'] = 14
+    material_params['W'] = 20
 
-    ic_dict_if_reinit = {'W': 20}
-    suffix_end = 'localised'
+    ic_dict_if_reinit = {'ndim': 2, 'noise_coeff':1e-3, 'suffix': 'recent-', 'Nx': 128, 'Ny':256 }
+    suffix_end = 'periodic'
+
 elif setting_mode == 5:
     # Get periodic arrowheads, ready for localisation (even about low pressure region)
     material_params['W'] = 20 
