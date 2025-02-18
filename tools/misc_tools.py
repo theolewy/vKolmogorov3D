@@ -139,7 +139,7 @@ def get_AH_W_list(eps, beta, Re, L, Lx, Nx, Ny, ndim, Nz=None, Lz=None, subdir='
             and Nx == solver_params['Nx'] and Ny == solver_params['Ny'] and round(system_params['Lx'], ndigits=4) == round(Lx, ndigits=4) \
             and suffix == suffix_fname:
             if ndim == 3:
-                if Nz == solver_params['Nz'] and round(system_params['Lz'], ndigits=4) == round(Lz, ndigits=4):
+                if Nz == solver_params['Nz'] and round(system_params['Lz'], ndigits=3) == round(Lz, ndigits=3):
                     W_list.append(material_params['W'])
             elif ndim == 2:
                 W_list.append(material_params['W'])
