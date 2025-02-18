@@ -106,7 +106,6 @@ def get_fpath_sim(material_params, system_params, solver_params, suffix='', subd
 def get_h5_data(material_params, system_params, solver_params, suffix='', subdir='', s=-1):
 
     fpath = get_fpath_sim(material_params, system_params, solver_params, suffix=suffix, subdir=subdir)
-
     data_fields, data_metric = get_h5_data_from_fpath(fpath, s)
 
     return data_fields, data_metric
