@@ -26,12 +26,12 @@ else:
 
 if setting_mode == 0:
     # Get 2D bifurcation curve
-    W_list = [30, 28, 26, 24, 22, 20, 18, 16, 14, 12, 10, 8, 6]
+    W_list = [7, 6, 5, 4]
     W = W_list[job_idx]
 
     material_params['W'] = W
 
-    ic_dict_if_reinit = {'W': 16}
+    ic_dict_if_reinit = {'W': 8}
     suffix_end = ''
 
 log_all_params(material_params, system_params, solver_params)
