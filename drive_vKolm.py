@@ -11,7 +11,7 @@ material_params = {'W': 20,
 
 system_params = {'ndim': 3,
                  'Lx': 3 * np.pi,
-                 'Lz': 4* np.pi,
+                 'Lz': 4 * np.pi,
                  'n': 1}
 
 solver_params = {'Nx': 128,
@@ -42,6 +42,7 @@ if setting_mode == 0:
 
     ic_dict_if_reinit = {'W': 20}
     suffix_end = 'localised'
+
 elif setting_mode == 1:
     # Localised AH
     Lz = 8 * np.pi
@@ -74,6 +75,7 @@ elif setting_mode == 2:
 
     ic_dict_if_reinit = {'W': 20}
     suffix_end = 'localised'
+    
 elif setting_mode == 3:
     # Get Periodic AH from 2D AH. PRODUCTION METHOD OF OBTAINING PERIODIC AH FROM 2D AH
     Lz = 2 * np.pi

@@ -285,10 +285,16 @@ class TimeStepper3D(CartesianTimeStepper):
     def _set_solver(self):
         self.numeric_solver = NumericSolver(system_params=self.system_params, solver_params=self.solver_params, comm=MPI.COMM_SELF)
 
-    def _set_low_dim_timestepper(self, ndim_low):
-        system_params_low_dim = copy.deepcopy(self.system_params)
-        system_params_low_dim['ndim'] = ndim_low
-        self.low_dim_timestepper = TimeStepper3D(material_params=self.material_params, system_params=system_params_low_dim, solver_params=self.solver_params)
+    def _set_temp_ic_timestepper(self, ndim_low=None, Lz=None):
+        system_params_temp = copy.deepcopy(self.system_params)
+
+        if not ndim_low is None:
+            system_params_temp['ndim'] = ndim_low
+        
+        if not Lz is None:
+            system_params_temp['Lz'] = Lz
+
+        self.temp_ic_timestepper = TimeStepper3D(material_params=self.material_params, system_params=system_params_temp, solver_params=self.solver_params)
 
     def _set_vars_coords_param_names(self):
 
