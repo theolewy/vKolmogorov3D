@@ -75,7 +75,7 @@ elif setting_mode == 2:
     ic_dict_if_reinit = {'W': 20}
     suffix_end = 'localised'
 elif setting_mode == 3:
-    # Get Periodic AH from 2D AH
+    # Get Periodic AH from 2D AH. PRODUCTION METHOD OF OBTAINING PERIODIC AH FROM 2D AH
     Lz = 2 * np.pi
 
     solver_params['Nz'] = int(16 * Lz  / np.pi)
