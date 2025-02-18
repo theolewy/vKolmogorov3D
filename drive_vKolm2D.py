@@ -31,7 +31,7 @@ if setting_mode == 0:
 
     material_params['W'] = W
 
-    ic_dict_if_reinit = {'W': 30, 'Nx': 64, 'Ny': 64}
+    ic_dict_if_reinit = {'W': 14}
     suffix_end = ''
 
 log_all_params(material_params, system_params, solver_params)
