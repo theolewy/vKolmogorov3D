@@ -33,6 +33,11 @@ if setting_mode == 0:
 
     ic_dict_if_reinit = {'W': 8}
     suffix_end = ''
+elif setting_mode == 1:
+     # Get 2D bifurcation curve
+
+    ic_dict_if_reinit = {'ndim': 3, 'suffix':'recent-periodic', 'subdir':'arrowhead_3D', 'Nx': 64, 'Ny': 64, 'Nz': 64, 'Lz': 2*np.pi}
+    suffix_end = 'new-AH'
 
 log_all_params(material_params, system_params, solver_params)
 
