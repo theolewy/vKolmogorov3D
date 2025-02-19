@@ -26,6 +26,7 @@ if len(sys.argv) == 3:
 else:
     raise Exception('Need more inputs!')
 
+symmetry_mode = False
 if setting_mode == 0:
     # Localised AH
     Lz = 8 * np.pi
@@ -156,8 +157,8 @@ elif setting_mode == 7:
     material_params['W'] = 20
 
     ic_dict_if_reinit = {'ndim': 2, 'noise_coeff':1e-3, 'subdir':'arrowhead_2D', 'suffix': 'recent-', 'Nx': 128, 'Ny':256 }
-    suffix_end = 'periodic2'
-    
+    suffix_end = 'periodic-symm'
+    symmetry_mode = 'yz'
 
 log_all_params(material_params, system_params, solver_params)
 
@@ -170,7 +171,7 @@ timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=noise_coeff)
 
 timestepper.simulate(T=4000, ifreq=100, 
                      track_TW=False, 
-                     enforce_symmetry=False,
+                     enforce_symmetry=symmetry_mode,
                      save_over_long=True, 
                      save_full_data=False, full_save_freq=5,
                      save_subdir=f"arrowhead_{system_params['ndim']}D", suffix_end=suffix_end, 
