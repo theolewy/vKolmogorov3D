@@ -148,9 +148,9 @@ elif setting_mode == 6:
     suffix_end = 'localised'
 elif setting_mode == 7:
         # Get Periodic AH from 2D AH. PRODUCTION METHOD OF OBTAINING PERIODIC AH FROM 2D AH
-    Lz = 2 * np.pi
+    Lz = 3/2 * np.pi
 
-    solver_params['Nz'] = 64
+    solver_params['Nz'] = 32
     solver_params['Ny'] = 64
     solver_params['Nx'] = 64
 
@@ -161,8 +161,8 @@ elif setting_mode == 7:
     material_params['W'] = 20
 
     ic_dict_if_reinit = {'ndim': 2, 'noise_coeff':1e-3, 'subdir':'arrowhead_2D', 'suffix': 'recent-', 'Nx': 128, 'Ny':256 }
-    suffix_end = 'periodic-symm'
-    symmetry_mode = 'yz'
+    suffix_end = 'periodic'
+    symmetry_mode = False
 elif setting_mode == 8:
         # Get Periodic AH from 2D AH. PRODUCTION METHOD OF OBTAINING PERIODIC AH FROM 2D AH
     Lz = np.pi / 2
