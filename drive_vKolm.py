@@ -259,9 +259,9 @@ elif setting_mode == 12:
     symmetry_mode = False
 elif setting_mode == 13:
 
-    Lz = 1.5 * np.pi
+    Lz = 2 * np.pi
 
-    solver_params['Nz'] = 32
+    solver_params['Nz'] = 64
     solver_params['Ny'] = 64
     solver_params['Nx'] = 64
 
