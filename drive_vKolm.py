@@ -194,10 +194,11 @@ elif setting_mode == 9:
     suffix_end = 'periodic'
     symmetry_mode = False
 elif setting_mode == 10:
-        # Get Periodic AH from 2D AH. PRODUCTION METHOD OF OBTAINING PERIODIC AH FROM 2D AH
+    # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
+
     Lz = 7.5*np.pi
 
-    solver_params['Nz'] = int(16 * Lz  / np.pi)
+    solver_params['Nz'] = 128
     solver_params['Ny'] = 64
     solver_params['Nx'] = 64
 
@@ -209,7 +210,27 @@ elif setting_mode == 10:
 
     Lz_ic = 8*np.pi
 
-    ic_dict_if_reinit = {'Nz': int(16 * Lz_ic  / np.pi), 'Lz': Lz_ic }
+    ic_dict_if_reinit = {'Nz': 128, 'Lz': Lz_ic }
+    suffix_end = 'localised'
+    symmetry_mode = False
+elif setting_mode == 11:
+    # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
+    
+    Lz = 7*np.pi
+
+    solver_params['Nz'] = 112
+    solver_params['Ny'] = 64
+    solver_params['Nx'] = 64
+
+    solver_params['dt'] = 2e-3
+
+    system_params['Lz'] = Lz
+
+    material_params['W'] = 20
+
+    Lz_ic = 8*np.pi
+
+    ic_dict_if_reinit = {'Nz': 128, 'Lz': Lz_ic }
     suffix_end = 'localised'
     symmetry_mode = False
 
