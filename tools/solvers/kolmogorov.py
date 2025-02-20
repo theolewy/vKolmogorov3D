@@ -520,7 +520,7 @@ class TimeStepper3D(CartesianTimeStepper):
         stop = False
 
         while self.solver.ok and not stop:
-            
+            logger.info("Step")
             # so that tasks continually overwrite a single h5 file
             self.process_recent_saving(**kwargs)
 
