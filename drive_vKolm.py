@@ -291,6 +291,23 @@ elif setting_mode == 14:
     ic_dict_if_reinit = {'ndim': 2, 'noise_coeff':1e-3, 'subdir':'arrowhead_2D', 'suffix': 'recent-', 'Nx': 128, 'Ny':256 }
     suffix_end = 'periodic'
     symmetry_mode = False
+elif setting_mode == 15:
+
+    Lz = 1/8 * np.pi
+
+    solver_params['Nz'] = 16
+    solver_params['Ny'] = 64
+    solver_params['Nx'] = 64
+
+    solver_params['dt'] = 4e-3
+
+    system_params['Lz'] = Lz
+
+    material_params['W'] = 20
+
+    ic_dict_if_reinit = {'ndim': 2, 'noise_coeff':1e-3, 'subdir':'arrowhead_2D', 'suffix': 'recent-', 'Nx': 128, 'Ny':256 }
+    suffix_end = 'periodic'
+    symmetry_mode = False
 
 log_all_params(material_params, system_params, solver_params)
 
