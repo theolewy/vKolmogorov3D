@@ -27,6 +27,7 @@ else:
     raise Exception('Need more inputs!')
 
 symmetry_mode = False
+kwargs = {}
 if setting_mode == 0:
     # Localised AH
     Lz = 8 * np.pi
@@ -195,7 +196,7 @@ elif setting_mode == 9:
     symmetry_mode = False
 elif setting_mode == 10:
     # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
-
+    kwargs = {'truncate': True}
     Lz = 7.5*np.pi
 
     solver_params['Nz'] = 128
@@ -215,7 +216,7 @@ elif setting_mode == 10:
     symmetry_mode = False
 elif setting_mode == 11:
     # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
-    
+    kwargs = {'truncate': True}
     Lz = 7*np.pi
 
     solver_params['Nz'] = 112
@@ -235,7 +236,7 @@ elif setting_mode == 11:
     symmetry_mode = False
 elif setting_mode == 12:
     # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
-    
+    kwargs = {'truncate': True}
     Lz = 6.5*np.pi
 
     solver_params['Nz'] = 112
@@ -261,7 +262,7 @@ ic_file, noise_coeff, _ = get_ic_file(material_params, system_params, solver_par
 
 timestepper = TimeStepper3D(material_params=material_params, system_params=system_params, solver_params=solver_params)
 
-timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=noise_coeff)
+timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=noise_coeff, **kwargs)
 
 timestepper.simulate(T=4000, ifreq=100, 
                      track_TW=False, 
