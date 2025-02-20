@@ -257,6 +257,23 @@ elif setting_mode == 12:
     ic_dict_if_reinit = {'Nz': 128, 'Lz': Lz_ic }
     suffix_end = 'localised'
     symmetry_mode = False
+elif setting_mode == 13:
+
+    Lz = 1.5 * np.pi
+
+    solver_params['Nz'] = 32
+    solver_params['Ny'] = 64
+    solver_params['Nx'] = 64
+
+    solver_params['dt'] = 4e-3
+
+    system_params['Lz'] = Lz
+
+    material_params['W'] = 20
+
+    ic_dict_if_reinit = {'Lz': np.pi}
+    suffix_end = 'periodic'
+    symmetry_mode = False
 
 log_all_params(material_params, system_params, solver_params)
 
