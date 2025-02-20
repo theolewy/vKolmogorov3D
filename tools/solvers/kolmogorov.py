@@ -586,7 +586,7 @@ class TimeStepper3D(CartesianTimeStepper):
 
     def translate_in_z(self):
 
-        flow = self.get_flow()
+        flow = self.get_flow(combine_processes=True)
         flow_translated = {}
 
         p_z = np.min(flow['p'], axis=(0,2))
