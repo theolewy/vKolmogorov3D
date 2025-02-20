@@ -58,7 +58,7 @@ elif setting_mode == 2:
 elif setting_mode == 3:
     a, b = 1,1
 
-    ic_dict_if_reinit = {'suffix': 'recent-periodic', 'subdir':'arrowhead_3D', 'Lz': 1.5*np.pi, 'Nz': 32}
+    ic_dict_if_reinit = {'suffix': 'recent-periodic', 'subdir':'arrowhead_3D', 'Lz': np.pi, 'Nz': 32}
     suffix_end = f'a-{a:.4g}-b-{b:.4g}-Lz-orig-4,71'
 log_all_params(material_params, system_params, solver_params)
 
