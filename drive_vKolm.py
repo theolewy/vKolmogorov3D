@@ -2,6 +2,9 @@ import sys
 import numpy as np
 from tools.solvers.kolmogorov import BaseFlow, NumericSolver, TimeStepper3D
 from tools.misc_tools import get_ic_file, log_all_params, on_local_device
+import logging
+
+logger = logging.getLogger(__name__)
 
 material_params = {'W': 20,
                    'beta': 0.9,
@@ -263,8 +266,7 @@ ic_file, noise_coeff, _ = get_ic_file(material_params, system_params, solver_par
 timestepper = TimeStepper3D(material_params=material_params, system_params=system_params, solver_params=solver_params)
 
 timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=noise_coeff, **kwargs)
-print(0)
-
+logger.info('0')
 timestepper.simulate(T=4000, ifreq=100, 
                      track_TW=False, 
                      enforce_symmetry=symmetry_mode,
