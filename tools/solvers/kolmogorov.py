@@ -518,7 +518,6 @@ class TimeStepper3D(CartesianTimeStepper):
             if on_local_device(): plot=False
 
         stop = False
-        logger.info("5")
 
         while self.solver.ok and not stop:
             # so that tasks continually overwrite a single h5 file
@@ -583,6 +582,20 @@ class TimeStepper3D(CartesianTimeStepper):
         # do something with v
         # self.v 
         logger.warning("Should process the v field")
+        self._reset_history_cache() # whenever we change the state, must forget history of implicit timestepper
+
+    def translate_in_z(self):
+
+        flow = self.get_flow()
+        flow_translated = {}
+
+        p_z = np.min(flow['p'], axis=(0,2))
+        idx = np.argmin(p_z)
+        
+        for field_name in self.variables:
+            flow_translated[field_name] = np.roll(flow[field_name], shift=self.Nz//2-idx, axis=1)
+
+        self.load_flow(flow_translated)
         self._reset_history_cache() # whenever we change the state, must forget history of implicit timestepper
 
     def _window_field(self, field, base, a, b):
