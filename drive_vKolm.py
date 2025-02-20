@@ -263,6 +263,7 @@ ic_file, noise_coeff, _ = get_ic_file(material_params, system_params, solver_par
 timestepper = TimeStepper3D(material_params=material_params, system_params=system_params, solver_params=solver_params)
 
 timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=noise_coeff, **kwargs)
+print(0)
 
 timestepper.simulate(T=4000, ifreq=100, 
                      track_TW=False, 
