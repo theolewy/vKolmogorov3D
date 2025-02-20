@@ -51,17 +51,15 @@ elif setting_mode == 3:
     ic_dict_if_reinit = {'suffix': 'recent-periodic', 'subdir':'arrowhead_3D', 'Lz': np.pi, 'Nz': 32}
     suffix_end = f'a-{a:.4g}-b-{b:.4g}-Lz-orig-3,14'
 
-elif setting_mode == 3:
-    a, b = np.pi, np.pi/2
-
-    ic_dict_if_reinit = {'suffix': 'recent-periodic', 'subdir':'arrowhead_3D', 'Lz': 1.5*np.pi, 'Nz': 32}
-    suffix_end = f'a-{a:.4g}-b-{b:.4g}-Lz-orig-4,71'
-# elif setting_mode == 3:
-#     a, b = np.pi, np.pi/2
-
-#     ic_dict_if_reinit = {'suffix': 'recent-periodic', 'subdir':'arrowhead_3D', 'Lz': 1.5*np.pi, 'Nz': 32}
-#     suffix_end = f'a-{a:.4g}-b-{b:.4g}-Lz-orig-4,71'
-
+elif setting_mode == 4:
+    a, b = np.pi/3, np.pi/4
+    ic_dict_if_reinit = {'suffix': 'recent-periodic', 'subdir':'arrowhead_3D', 'Lz': 1/2*np.pi, 'Nz': 16}
+    suffix_end = f'a-{a:.4g}-b-{b:.4g}-Lz-orig-1,57'
+elif setting_mode == 5:
+    a, b = 2*np.pi/3, np.pi/4
+    ic_dict_if_reinit = {'suffix': 'recent-periodic', 'subdir':'arrowhead_3D', 'Lz': 1/2*np.pi, 'Nz': 16}
+    suffix_end = f'a-{a:.4g}-b-{b:.4g}-Lz-orig-1,57'
+    
 log_all_params(material_params, system_params, solver_params)
 
 timestepper = TimeStepper3D(material_params=material_params, system_params=system_params, solver_params=solver_params)
