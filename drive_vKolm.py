@@ -265,7 +265,7 @@ elif setting_mode == 13:
     solver_params['Ny'] = 64
     solver_params['Nx'] = 64
 
-    solver_params['dt'] = 4e-3
+    solver_params['dt'] = 2e-3
 
     system_params['Lz'] = Lz
 
