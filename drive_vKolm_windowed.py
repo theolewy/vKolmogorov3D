@@ -45,7 +45,13 @@ elif setting_mode == 1:
 
     ic_dict_if_reinit = {'suffix': 'recent-periodic', 'subdir':'arrowhead_3D', 'Lz': np.pi, 'Nz': 32}
     suffix_end = f'a-{a:.4g}-b-{b:.4g}-Lz-orig-3,14'
-elif setting_mode == 2:
+elif setting_mode == 3:
+    a, b = 3/2 * np.pi, np.pi/2
+
+    ic_dict_if_reinit = {'suffix': 'recent-periodic', 'subdir':'arrowhead_3D', 'Lz': np.pi, 'Nz': 32}
+    suffix_end = f'a-{a:.4g}-b-{b:.4g}-Lz-orig-3,14'
+
+elif setting_mode == 3:
     a, b = np.pi, np.pi/2
 
     ic_dict_if_reinit = {'suffix': 'recent-periodic', 'subdir':'arrowhead_3D', 'Lz': 1.5*np.pi, 'Nz': 32}
