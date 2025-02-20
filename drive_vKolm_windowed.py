@@ -36,10 +36,25 @@ a = 3pi/8 with b=pi/8, pi/4, pi/2
 """
 
 if setting_mode == 0:
+    a, b = np.pi/2, np.pi/4
+
+    ic_dict_if_reinit = {'suffix': 'recent-periodic', 'subdir':'arrowhead_3D', 'Lz': np.pi, 'Nz': 32}
+    suffix_end = f'a-{a:.4g}-b-{b:.4g}-Lz-orig-3,14'
+elif setting_mode == 1:
     a, b = np.pi, np.pi/2
 
-ic_dict_if_reinit = {'suffix': 'recent-periodic', 'subdir':'arrowhead_3D', 'Lz': 2*np.pi, 'Nz': 32}
-suffix_end = f'a-{a:.4g}-b-{b:.4g}'
+    ic_dict_if_reinit = {'suffix': 'recent-periodic', 'subdir':'arrowhead_3D', 'Lz': np.pi, 'Nz': 32}
+    suffix_end = f'a-{a:.4g}-b-{b:.4g}-Lz-orig-3,14'
+elif setting_mode == 2:
+    a, b = np.pi, np.pi/2
+
+    ic_dict_if_reinit = {'suffix': 'recent-periodic', 'subdir':'arrowhead_3D', 'Lz': 1.5*np.pi, 'Nz': 32}
+    suffix_end = f'a-{a:.4g}-b-{b:.4g}-Lz-orig-4,71'
+# elif setting_mode == 3:
+#     a, b = np.pi, np.pi/2
+
+#     ic_dict_if_reinit = {'suffix': 'recent-periodic', 'subdir':'arrowhead_3D', 'Lz': 1.5*np.pi, 'Nz': 32}
+#     suffix_end = f'a-{a:.4g}-b-{b:.4g}-Lz-orig-4,71'
 
 log_all_params(material_params, system_params, solver_params)
 
@@ -49,8 +64,8 @@ ic_file, noise_coeff, reinit = get_ic_file(material_params, system_params, solve
                                    ic_dict_if_reinit=ic_dict_if_reinit)
 
 timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=0, tile=True)
-
 if reinit:
+    timestepper.translate_in_z()
     timestepper.window(a, b)
 
 timestepper.simulate(T=4000, ifreq=100, 
