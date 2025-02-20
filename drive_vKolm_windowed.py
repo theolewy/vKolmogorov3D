@@ -55,11 +55,7 @@ elif setting_mode == 2:
 
 #     ic_dict_if_reinit = {'suffix': 'recent-periodic', 'subdir':'arrowhead_3D', 'Lz': 1.5*np.pi, 'Nz': 32}
 #     suffix_end = f'a-{a:.4g}-b-{b:.4g}-Lz-orig-4,71'
-elif setting_mode == 3:
-    a, b = 1,1
 
-    ic_dict_if_reinit = {'suffix': 'recent-periodic', 'subdir':'arrowhead_3D', 'Lz': np.pi, 'Nz': 32}
-    suffix_end = f'a-{a:.4g}-b-{b:.4g}-Lz-orig-4,71'
 log_all_params(material_params, system_params, solver_params)
 
 timestepper = TimeStepper3D(material_params=material_params, system_params=system_params, solver_params=solver_params)
@@ -71,7 +67,7 @@ timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=0, tile=True)
 
 if reinit:
     timestepper.translate_in_z()    # move so arrowhead is in the middle of the domain
-    # timestepper.window(a, b)
+    timestepper.window(a, b)
 
 timestepper.simulate(T=4000, ifreq=100, 
                      track_TW=False, 
