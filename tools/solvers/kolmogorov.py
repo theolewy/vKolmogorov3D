@@ -489,19 +489,12 @@ class TimeStepper3D(CartesianTimeStepper):
                  plot=True, plot_dev=True, plot_subdirectory="",
                  save_over_long=False, save_full_data=False, suffix_end='', save_subdir='',  **kwargs):
 
-        logger.info("1")
-
         # save infrequent data for a long period of time
         long_time_folder = self.save_on_long(save_over_long, suffix_end, save_subdir, **kwargs)
         # save all data 
         full_save_folder = self.save_all_data(save_full_data, suffix_end, **kwargs)
-
-
-        logger.info("2")
         # save most recent h5
         self.save_recent_data(suffix_end, save_subdir, **kwargs)
-        
-        logger.info("3")
 
 
         if 'enforce_symmetry' in kwargs.keys() and kwargs['enforce_symmetry']: 
@@ -510,8 +503,6 @@ class TimeStepper3D(CartesianTimeStepper):
         else:
             self.enforce_symmetry = False
             logger.info(f"NO SYMMETRY ENfORCED")
-
-        logger.info("4")
 
         self.trace_metric_list = []
         self.KE_metric_list = []
@@ -531,13 +522,10 @@ class TimeStepper3D(CartesianTimeStepper):
 
         while self.solver.ok and not stop:
             # so that tasks continually overwrite a single h5 file
-            logger.info("6")
 
             self.process_recent_saving(**kwargs)
-            logger.info("7")
     
             self.solver.step(dt=self.dt)
-            logger.info("8")
 
             if self.enforce_symmetry and self.solver.iteration % 10 == 0:
                 self._enforce_symmetry()
