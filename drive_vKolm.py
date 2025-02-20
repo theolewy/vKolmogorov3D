@@ -160,7 +160,7 @@ elif setting_mode == 7:
 
     material_params['W'] = 20
 
-    ic_dict_if_reinit = {'ndim': 2, 'noise_coeff':1e-3, 'subdir':'arrowhead_2D', 'suffix': 'recent-', 'Nx': 128, 'Ny':256 }
+    ic_dict_if_reinit = {'Lz':np.pi, 'Nz': 32 }
     suffix_end = 'periodic'
     symmetry_mode = False
 elif setting_mode == 8:
