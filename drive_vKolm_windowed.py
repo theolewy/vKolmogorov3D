@@ -71,8 +71,6 @@ elif setting_mode == 10:
     solver_params['Ny'] = 64
     solver_params['Nx'] = 256
 
-    Lz_ic = 8*np.pi
-
     ic_dict_if_reinit = {'Nx': 64, 'Lx': 3*np.pi}
     suffix_end = 'localised-xy'
     window_x = True
