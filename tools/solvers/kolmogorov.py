@@ -613,7 +613,14 @@ class TimeStepper3D(CartesianTimeStepper):
         if mode == 'z':
             window = 1/4 * (1 + np.tanh(6 * (a - self.z) / b + 3)) * (1 + np.tanh(6 * (a + self.z) / b + 3))
         elif mode == 'x':
-            x0 = np.max(self.x)/2 - a/2
+
+            # if AH is at y=-pi and pi rather than 0.
+            mean_c22_y = np.mean(self.c22['g'], axis=(0,1))
+            if mean_c22_y[0] > mean_c22_y[self.Ny//2]:
+                x0 = np.max(self.x)/2 + a/2
+            else:
+                x0 = np.max(self.x)/2 - a/2
+
             window = 1/4 * (1 + np.tanh(6 * (a - self.x + x0) / b + 3)) * (1 + np.tanh(6 * (a + self.x - x0) / b + 3))
 
         field['g'] = window * (field['g'] - base) + base
