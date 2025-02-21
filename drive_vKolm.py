@@ -54,7 +54,7 @@ if setting_mode == 0:
 
     
 elif setting_mode == 1:
-    # Get Periodic AH from 2D AH. PRODUCTION METHOD OF OBTAINING PERIODIC AH FROM 2D AH
+    # Get Periodic AH from 2D AH. m=1 mode branch
     Lz = 2 * np.pi
 
     solver_params['Nz'] = 64
@@ -67,11 +67,11 @@ elif setting_mode == 1:
 
     material_params['W'] = 20
 
-    ic_dict_if_reinit = {'ndim': 2, 'noise_coeff':1e-3, 'subdir':'arrowhead_2D', 'suffix': 'recent-', 'Nx': 128, 'Ny':256 }
+    ic_dict_if_reinit = {'Lz':3/2*np.pi, 'Nz': 32 }
     suffix_end = 'periodic'
 
 elif setting_mode == 2:
-        # Get Periodic AH from 2D AH. PRODUCTION METHOD OF OBTAINING PERIODIC AH FROM 2D AH
+        # Get Periodic AH from 2D AH. m=1 mode branch
     Lz = 3/2 * np.pi
 
     solver_params['Nz'] = 32
