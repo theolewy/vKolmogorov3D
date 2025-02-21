@@ -76,6 +76,23 @@ elif setting_mode == 10:
     ic_dict_if_reinit = {'Nx': 64, 'Lx': 3*np.pi, 'subdir':'arrowhead_3D', 'suffix': 'recent-localised'}
     suffix_end = f'localised-xy-a-{a:.4g}-b-{b:.4g}'
     window_x = True
+elif setting_mode == 11:
+    # Localising in a spanwise localised soln in x direction...
+    a, b = 5*np.pi, np.pi
+
+    material_params['W'] = 20
+    solver_params['dt'] = 2e-3
+
+    system_params['Lz'] = 4*np.pi
+    system_params['Lx'] = 30*np.pi
+
+    solver_params['Nz'] = 64
+    solver_params['Ny'] = 64
+    solver_params['Nx'] = 640
+
+    ic_dict_if_reinit = {'Nx': 256, 'Lx': 10*np.pi}
+    suffix_end = f'localised-xy-a-{a:.4g}-b-{b:.4g}'
+    window_x = True
 
 log_all_params(material_params, system_params, solver_params)
 
