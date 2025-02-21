@@ -503,7 +503,7 @@ class TimeStepper3D(CartesianTimeStepper):
             logger.info(f"ENFORCING SYMMETRY IN {self.enforce_symmetry.upper()}")
         else:
             self.enforce_symmetry = False
-            logger.info(f"NO SYMMETRY ENfORCED")
+            logger.info(f"NO SYMMETRY ENFORCED")
 
         self.trace_metric_list = []
         self.KE_metric_list = []
