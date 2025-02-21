@@ -181,6 +181,8 @@ elif setting_mode == 7:
     ic_dict_if_reinit = {'Nz': 128, 'Lz': Lz_ic }
     suffix_end = 'localised'
     symmetry_mode = False
+    translate = True
+
 elif setting_mode == 8:
     # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
     kwargs = {'truncate': True}
@@ -201,6 +203,8 @@ elif setting_mode == 8:
     ic_dict_if_reinit = {'Nz': 128, 'Lz': Lz_ic }
     suffix_end = 'localised'
     symmetry_mode = False
+    translate = True
+
 elif setting_mode == 9:
     # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
     kwargs = {'truncate': True}
@@ -221,6 +225,8 @@ elif setting_mode == 9:
     ic_dict_if_reinit = {'Nz': 128, 'Lz': Lz_ic }
     suffix_end = 'localised'
     symmetry_mode = False
+    translate = True
+
 elif setting_mode == 10:
     # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
     kwargs = {'truncate': True}
@@ -241,6 +247,8 @@ elif setting_mode == 10:
     ic_dict_if_reinit = {'Nz': 128, 'Lz': Lz_ic }
     suffix_end = 'localised'
     symmetry_mode = False
+    translate = True
+
 elif setting_mode == 11:
     # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
     kwargs = {'truncate': True}
@@ -261,6 +269,8 @@ elif setting_mode == 11:
     ic_dict_if_reinit = {'Nz': 128, 'Lz': Lz_ic }
     suffix_end = 'localised'
     symmetry_mode = False
+    translate = True
+
 elif setting_mode == 12:
     # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
     kwargs = {'truncate': True}
@@ -281,6 +291,7 @@ elif setting_mode == 12:
     ic_dict_if_reinit = {'Nz': 128, 'Lz': Lz_ic }
     suffix_end = 'localised'
     symmetry_mode = False
+    translate = True
 
 log_all_params(material_params, system_params, solver_params)
 
@@ -290,6 +301,9 @@ ic_file, noise_coeff, _ = get_ic_file(material_params, system_params, solver_par
 timestepper = TimeStepper3D(material_params=material_params, system_params=system_params, solver_params=solver_params)
 
 timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=noise_coeff, **kwargs)
+
+if translate:
+    timestepper.translate_AH_to_centre(mode='z')
 
 timestepper.simulate(T=4000, ifreq=100, 
                      track_TW=False, 
