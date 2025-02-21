@@ -73,7 +73,7 @@ elif setting_mode == 10:
     solver_params['Ny'] = 64
     solver_params['Nx'] = 256
 
-    ic_dict_if_reinit = {'Nx': 64, 'Lx': 3*np.pi}
+    ic_dict_if_reinit = {'Nx': 64, 'Lx': 3*np.pi, 'subdir':'arrowhead_3D'}
     suffix_end = f'localised-xy-a-{a:.4g}-b-{b:.4g}'
     window_x = True
 
