@@ -585,16 +585,23 @@ class TimeStepper3D(CartesianTimeStepper):
         logger.warning("Should process the v field")
         self._reset_history_cache() # whenever we change the state, must forget history of implicit timestepper
 
-    def translate_in_z(self):
+    def translate_AH_to_centre(self, mode='z'):
 
         flow = self.get_flow(combine_processes=True)
         flow_translated = {}
 
-        p_z = np.min(flow['p'], axis=(0,2))
-        idx = np.argmin(p_z)
-        
-        for field_name in self.variables:
-            flow_translated[field_name] = np.roll(flow[field_name], shift=self.Nz//2-idx, axis=1)
+        if mode == 'z':
+            p_z = np.min(flow['p'], axis=(0,2))
+            idx = np.argmin(p_z)
+            
+            for field_name in self.variables:
+                flow_translated[field_name] = np.roll(flow[field_name], shift=self.Nz//2-idx, axis=1)
+        elif mode == 'x':
+            p_x = np.min(flow['p'], axis=(1,2))
+            idx = np.argmin(p_x)
+            
+            for field_name in self.variables:
+                flow_translated[field_name] = np.roll(flow[field_name], shift=self.Nx//2-idx, axis=0)
 
         self.load_flow(flow_translated)
         self._reset_history_cache() # whenever we change the state, must forget history of implicit timestepper
@@ -604,7 +611,8 @@ class TimeStepper3D(CartesianTimeStepper):
         if mode == 'z':
             window = 1/4 * (1 + np.tanh(6 * (a - self.z) / b + 3)) * (1 + np.tanh(6 * (a + self.z) / b + 3))
         elif mode == 'x':
-            pass
+            window = 1/4 * (1 + np.tanh(6 * (a - self.x) / b + 3)) * (1 + np.tanh(6 * (a + self.x) / b + 3))
+
         field['g'] = window * (field['g'] - base) + base
     
     def standardize_symmetry_for_plotting(self, u, v, p, trace, c22):

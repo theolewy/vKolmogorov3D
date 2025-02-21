@@ -34,7 +34,7 @@ Parameters tried:
 a = pi/2 with b=pi/8, pi/4, pi/2, 3pi/4
 a = 3pi/8 with b=pi/8, pi/4, pi/2
 """
-
+window_x = False
 if setting_mode == 0:
     a, b = np.pi/2, np.pi/4
 
@@ -75,6 +75,7 @@ elif setting_mode == 10:
 
     ic_dict_if_reinit = {'Nx': 64, 'Lx': 3*np.pi}
     suffix_end = 'localised-xy'
+    window_x = True
 
 log_all_params(material_params, system_params, solver_params)
 
@@ -86,8 +87,12 @@ ic_file, noise_coeff, reinit = get_ic_file(material_params, system_params, solve
 timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=0, tile=True)
 
 if reinit:
-    timestepper.translate_in_z()    # move so arrowhead is in the middle of the domain
-    timestepper.window(a, b)
+    if window_x:
+        timestepper.translate_AH_to_centre(mode='x')    # move so arrowhead is in the middle of the domain
+        timestepper.window(a, b, mode='x')
+    else:
+        timestepper.translate_AH_to_centre(mode='z')    # move so arrowhead is in the middle of the domain
+        timestepper.window(a, b)
 
 timestepper.simulate(T=4000, ifreq=100, 
                      track_TW=False, 
