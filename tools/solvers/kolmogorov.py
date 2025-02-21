@@ -285,7 +285,7 @@ class TimeStepper3D(CartesianTimeStepper):
     def _set_solver(self):
         self.numeric_solver = NumericSolver(system_params=self.system_params, solver_params=self.solver_params, comm=MPI.COMM_SELF)
 
-    def _set_temp_ic_timestepper(self, ndim_ic=None, Lz=None):
+    def _set_temp_ic_timestepper(self, ndim_ic=None, Lz=None, Lx=None):
         system_params_temp = copy.deepcopy(self.system_params)
         solver_params_temp = copy.deepcopy(self.solver_params)
 
@@ -297,7 +297,8 @@ class TimeStepper3D(CartesianTimeStepper):
 
         if not Lz is None:
             system_params_temp['Lz'] = Lz
-
+        if not Lx is None:
+            system_params_temp['Lx'] = Lx
         self.temp_ic_timestepper = TimeStepper3D(material_params=self.material_params, system_params=system_params_temp, solver_params=solver_params_temp)
 
     def _set_vars_coords_param_names(self):
@@ -567,7 +568,7 @@ class TimeStepper3D(CartesianTimeStepper):
 
         return stop
     
-    def window(self, a, b):
+    def window(self, a, b, mode='z'):
 
 
         base_flow_variable_names = [field_name.capitalize() for field_name in self.variables]
@@ -578,7 +579,7 @@ class TimeStepper3D(CartesianTimeStepper):
             # if field_name == 'v': continue
             field = getattr(self, field_name)
             base_array = getattr(self, base_field_name)
-            self._window_field(field, base_array, a, b)
+            self._window_field(field, base_array, a, b, mode)
         # do something with v
         # self.v 
         logger.warning("Should process the v field")
@@ -598,10 +599,12 @@ class TimeStepper3D(CartesianTimeStepper):
         self.load_flow(flow_translated)
         self._reset_history_cache() # whenever we change the state, must forget history of implicit timestepper
 
-    def _window_field(self, field, base, a, b):
+    def _window_field(self, field, base, a, b, mode='z'):
 
-        window = 1/4 * (1 + np.tanh(6 * (a - self.z) / b + 3)) * (1 + np.tanh(6 * (a + self.z) / b + 3))
-
+        if mode == 'z':
+            window = 1/4 * (1 + np.tanh(6 * (a - self.z) / b + 3)) * (1 + np.tanh(6 * (a + self.z) / b + 3))
+        elif mode == 'x':
+            pass
         field['g'] = window * (field['g'] - base) + base
     
     def standardize_symmetry_for_plotting(self, u, v, p, trace, c22):

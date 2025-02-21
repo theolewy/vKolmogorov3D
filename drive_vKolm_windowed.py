@@ -59,6 +59,22 @@ elif setting_mode == 5:
     a, b = np.pi/6, np.pi/12
     ic_dict_if_reinit = {'suffix': 'recent-periodic', 'subdir':'arrowhead_3D', 'Lz': 1/4*np.pi, 'Nz': 16}
     suffix_end = f'a-{a:.4g}-b-{b:.4g}-Lz-orig-0,785'
+elif setting_mode == 10:
+    # MEGA LOCALISATION
+    material_params['W'] = 20
+    solver_params['dt'] = 2e-3
+
+    system_params['Lz'] = 4*np.pi
+    system_params['Lx'] = 10*np.pi
+
+    solver_params['Nz'] = 64
+    solver_params['Ny'] = 64
+    solver_params['Nx'] = 256
+
+    Lz_ic = 8*np.pi
+
+    ic_dict_if_reinit = {'Nx': 64, 'Lx': 3*np.pi}
+    suffix_end = 'localised-xy'
 
 log_all_params(material_params, system_params, solver_params)
 
