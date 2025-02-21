@@ -166,7 +166,7 @@ elif setting_mode == 7:
     kwargs = {'truncate': True}
     Lz = 7.5*np.pi
 
-    solver_params['Nz'] = 128
+    solver_params['Nz'] = 120
     solver_params['Ny'] = 64
     solver_params['Nx'] = 64
 
@@ -206,7 +206,7 @@ elif setting_mode == 9:
     kwargs = {'truncate': True}
     Lz = 6.5*np.pi
 
-    solver_params['Nz'] = 112
+    solver_params['Nz'] = 104
     solver_params['Ny'] = 64
     solver_params['Nx'] = 64
 
@@ -221,7 +221,66 @@ elif setting_mode == 9:
     ic_dict_if_reinit = {'Nz': 128, 'Lz': Lz_ic }
     suffix_end = 'localised'
     symmetry_mode = False
+elif setting_mode == 10:
+    # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
+    kwargs = {'truncate': True}
+    Lz = 6*np.pi
 
+    solver_params['Nz'] = 96
+    solver_params['Ny'] = 64
+    solver_params['Nx'] = 64
+
+    solver_params['dt'] = 2e-3
+
+    system_params['Lz'] = Lz
+
+    material_params['W'] = 20
+
+    Lz_ic = 8*np.pi
+
+    ic_dict_if_reinit = {'Nz': 128, 'Lz': Lz_ic }
+    suffix_end = 'localised'
+    symmetry_mode = False
+elif setting_mode == 11:
+    # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
+    kwargs = {'truncate': True}
+    Lz = 5.5*np.pi
+
+    solver_params['Nz'] = 88
+    solver_params['Ny'] = 64
+    solver_params['Nx'] = 64
+
+    solver_params['dt'] = 2e-3
+
+    system_params['Lz'] = Lz
+
+    material_params['W'] = 20
+
+    Lz_ic = 8*np.pi
+
+    ic_dict_if_reinit = {'Nz': 128, 'Lz': Lz_ic }
+    suffix_end = 'localised'
+    symmetry_mode = False
+elif setting_mode == 12:
+    # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
+    kwargs = {'truncate': True}
+    Lz = 5*np.pi
+
+    solver_params['Nz'] = 80
+    solver_params['Ny'] = 64
+    solver_params['Nx'] = 64
+
+    solver_params['dt'] = 2e-3
+
+    system_params['Lz'] = Lz
+
+    material_params['W'] = 20
+
+    Lz_ic = 8*np.pi
+
+    ic_dict_if_reinit = {'Nz': 128, 'Lz': Lz_ic }
+    suffix_end = 'localised'
+    symmetry_mode = False
 
 log_all_params(material_params, system_params, solver_params)
 
