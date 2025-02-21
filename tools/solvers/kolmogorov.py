@@ -298,10 +298,7 @@ class TimeStepper3D(CartesianTimeStepper):
         if not Lz is None:
             system_params_temp['Lz'] = Lz
 
-        print(1, system_params_temp)
         self.temp_ic_timestepper = TimeStepper3D(material_params=self.material_params, system_params=system_params_temp, solver_params=solver_params_temp)
-        print(2,system_params_temp)
-        print(3,self.temp_ic_timestepper.Lz)
 
     def _set_vars_coords_param_names(self):
 
