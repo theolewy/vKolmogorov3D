@@ -26,13 +26,17 @@ solver_params = {'Nx': 128,
 if len(sys.argv) == 3:
     job_idx = int(sys.argv[1])
     setting_mode = int(sys.argv[2])
+elif len(sys.argv) == 4:
+    job_idx = int(sys.argv[1])
+    setting_mode = int(sys.argv[2])
+    input_val = float(sys.argv[3])
 else:
-    raise Exception('Need more inputs!')
+    raise Exception('Need more inputs!')    
 
 symmetry_mode = False
 kwargs = {}
 if setting_mode == 0:
-    # Localised AH
+    # Localised AH as W decreases
     Lz = 8 * np.pi
 
     solver_params['Nz'] = int(16 * Lz  / np.pi)
@@ -43,45 +47,13 @@ if setting_mode == 0:
 
     system_params['Lz'] = Lz
 
-    material_params['W'] = 17
+    material_params['W'] = input_val
 
     ic_dict_if_reinit = {'W': 18}
     suffix_end = 'localised'
 
-elif setting_mode == 1:
-    # Localised AH
-    Lz = 8 * np.pi
-
-    solver_params['Nz'] = int(16 * Lz  / np.pi)
-    solver_params['Ny'] = 64
-    solver_params['Nx'] = 64
-
-    solver_params['dt'] = 2e-3
-
-    system_params['Lz'] = Lz
-
-    material_params['W'] = 19
-
-    ic_dict_if_reinit = {'W': 18}
-    suffix_end = 'localised'
-elif setting_mode == 2:
-    # Localised AH
-    Lz = 8 * np.pi
-
-    solver_params['Nz'] = int(16 * Lz  / np.pi)
-    solver_params['Ny'] = 64
-    solver_params['Nx'] = 64
-
-    solver_params['dt'] = 2e-3
-
-    system_params['Lz'] = Lz
-
-    material_params['W'] = 15
-
-    ic_dict_if_reinit = {'W': 16}
-    suffix_end = 'localised'
     
-elif setting_mode == 3:
+elif setting_mode == 1:
     # Get Periodic AH from 2D AH. PRODUCTION METHOD OF OBTAINING PERIODIC AH FROM 2D AH
     Lz = 2 * np.pi
 
@@ -98,55 +70,7 @@ elif setting_mode == 3:
     ic_dict_if_reinit = {'ndim': 2, 'noise_coeff':1e-3, 'subdir':'arrowhead_2D', 'suffix': 'recent-', 'Nx': 128, 'Ny':256 }
     suffix_end = 'periodic'
 
-elif setting_mode == 4:
-    # Localised AH
-    Lz = 8 * np.pi
-
-    solver_params['Nz'] = int(16 * Lz  / np.pi)
-    solver_params['Ny'] = 64
-    solver_params['Nx'] = 64
-
-    solver_params['dt'] = 2e-3
-
-    system_params['Lz'] = Lz
-
-    material_params['W'] = 16
-
-    ic_dict_if_reinit = {'W': 16}
-    suffix_end = 'localised'
-elif setting_mode == 5:
-    # Localised AH
-    Lz = 8 * np.pi
-
-    solver_params['Nz'] = int(16 * Lz  / np.pi)
-    solver_params['Ny'] = 64
-    solver_params['Nx'] = 64
-
-    solver_params['dt'] = 2e-3
-
-    system_params['Lz'] = Lz
-
-    material_params['W'] = 18
-
-    ic_dict_if_reinit = {'W': 16}
-    suffix_end = 'localised'
-elif setting_mode == 6:
-    # Localised AH
-    Lz = 8 * np.pi
-
-    solver_params['Nz'] = int(16 * Lz  / np.pi)
-    solver_params['Ny'] = 64
-    solver_params['Nx'] = 64
-
-    solver_params['dt'] = 2e-3
-
-    system_params['Lz'] = Lz
-
-    material_params['W'] = 20
-
-    ic_dict_if_reinit = None
-    suffix_end = 'localised'
-elif setting_mode == 7:
+elif setting_mode == 2:
         # Get Periodic AH from 2D AH. PRODUCTION METHOD OF OBTAINING PERIODIC AH FROM 2D AH
     Lz = 3/2 * np.pi
 
@@ -163,24 +87,8 @@ elif setting_mode == 7:
     ic_dict_if_reinit = {'Lz':np.pi, 'Nz': 32 }
     suffix_end = 'periodic'
     symmetry_mode = False
-elif setting_mode == 8:
-        # Get Periodic AH from 2D AH. PRODUCTION METHOD OF OBTAINING PERIODIC AH FROM 2D AH
-    Lz = np.pi / 2
 
-    solver_params['Nz'] = 16
-    solver_params['Ny'] = 64
-    solver_params['Nx'] = 64
-
-    solver_params['dt'] = 5e-3
-
-    system_params['Lz'] = Lz
-
-    material_params['W'] = 20
-
-    ic_dict_if_reinit = {'ndim': 2, 'noise_coeff':1e-3, 'subdir':'arrowhead_2D', 'suffix': 'recent-', 'Nx': 128, 'Ny':256 }
-    suffix_end = 'periodic'
-    symmetry_mode = False
-elif setting_mode == 9:
+elif setting_mode == 3:
         # Get Periodic AH from 2D AH. PRODUCTION METHOD OF OBTAINING PERIODIC AH FROM 2D AH
     Lz = np.pi
 
@@ -197,7 +105,63 @@ elif setting_mode == 9:
     ic_dict_if_reinit = {'ndim': 2, 'noise_coeff':1e-3, 'subdir':'arrowhead_2D', 'suffix': 'recent-', 'Nx': 128, 'Ny':256 }
     suffix_end = 'periodic'
     symmetry_mode = False
-elif setting_mode == 10:
+
+elif setting_mode == 4:
+        # Get Periodic AH from 2D AH. PRODUCTION METHOD OF OBTAINING PERIODIC AH FROM 2D AH
+    Lz = np.pi / 2
+
+    solver_params['Nz'] = 16
+    solver_params['Ny'] = 64
+    solver_params['Nx'] = 64
+
+    solver_params['dt'] = 5e-3
+
+    system_params['Lz'] = Lz
+
+    material_params['W'] = 20
+
+    ic_dict_if_reinit = {'ndim': 2, 'noise_coeff':1e-3, 'subdir':'arrowhead_2D', 'suffix': 'recent-', 'Nx': 128, 'Ny':256 }
+    suffix_end = 'periodic'
+    symmetry_mode = False
+
+elif setting_mode == 5:
+
+    Lz = 1/4 * np.pi
+
+    solver_params['Nz'] = 16
+    solver_params['Ny'] = 64
+    solver_params['Nx'] = 64
+
+    solver_params['dt'] = 4e-3
+
+    system_params['Lz'] = Lz
+
+    material_params['W'] = 20
+
+    ic_dict_if_reinit = {'ndim': 2, 'noise_coeff':1e-3, 'subdir':'arrowhead_2D', 'suffix': 'recent-', 'Nx': 128, 'Ny':256 }
+    suffix_end = 'periodic'
+    symmetry_mode = False
+
+
+elif setting_mode == 6:
+
+    Lz = 1/8 * np.pi
+
+    solver_params['Nz'] = 16
+    solver_params['Ny'] = 64
+    solver_params['Nx'] = 64
+
+    solver_params['dt'] = 4e-3
+
+    system_params['Lz'] = Lz
+
+    material_params['W'] = 20
+
+    ic_dict_if_reinit = {'ndim': 2, 'noise_coeff':1e-3, 'subdir':'arrowhead_2D', 'suffix': 'recent-', 'Nx': 128, 'Ny':256 }
+    suffix_end = 'periodic'
+    symmetry_mode = False
+    
+elif setting_mode == 7:
     # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
     kwargs = {'truncate': True}
     Lz = 7.5*np.pi
@@ -217,7 +181,7 @@ elif setting_mode == 10:
     ic_dict_if_reinit = {'Nz': 128, 'Lz': Lz_ic }
     suffix_end = 'localised'
     symmetry_mode = False
-elif setting_mode == 11:
+elif setting_mode == 8:
     # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
     kwargs = {'truncate': True}
     Lz = 7*np.pi
@@ -237,7 +201,7 @@ elif setting_mode == 11:
     ic_dict_if_reinit = {'Nz': 128, 'Lz': Lz_ic }
     suffix_end = 'localised'
     symmetry_mode = False
-elif setting_mode == 12:
+elif setting_mode == 9:
     # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
     kwargs = {'truncate': True}
     Lz = 6.5*np.pi
@@ -257,57 +221,7 @@ elif setting_mode == 12:
     ic_dict_if_reinit = {'Nz': 128, 'Lz': Lz_ic }
     suffix_end = 'localised'
     symmetry_mode = False
-elif setting_mode == 13:
 
-    Lz = 2 * np.pi
-
-    solver_params['Nz'] = 64
-    solver_params['Ny'] = 64
-    solver_params['Nx'] = 64
-
-    solver_params['dt'] = 2e-3
-
-    system_params['Lz'] = Lz
-
-    material_params['W'] = 20
-
-    ic_dict_if_reinit = {'Lz': np.pi}
-    suffix_end = 'periodic'
-    symmetry_mode = False
-elif setting_mode == 14:
-
-    Lz = 1/4 * np.pi
-
-    solver_params['Nz'] = 16
-    solver_params['Ny'] = 64
-    solver_params['Nx'] = 64
-
-    solver_params['dt'] = 4e-3
-
-    system_params['Lz'] = Lz
-
-    material_params['W'] = 20
-
-    ic_dict_if_reinit = {'ndim': 2, 'noise_coeff':1e-3, 'subdir':'arrowhead_2D', 'suffix': 'recent-', 'Nx': 128, 'Ny':256 }
-    suffix_end = 'periodic'
-    symmetry_mode = False
-elif setting_mode == 15:
-
-    Lz = 1/8 * np.pi
-
-    solver_params['Nz'] = 16
-    solver_params['Ny'] = 64
-    solver_params['Nx'] = 64
-
-    solver_params['dt'] = 4e-3
-
-    system_params['Lz'] = Lz
-
-    material_params['W'] = 20
-
-    ic_dict_if_reinit = {'ndim': 2, 'noise_coeff':1e-3, 'subdir':'arrowhead_2D', 'suffix': 'recent-', 'Nx': 128, 'Ny':256 }
-    suffix_end = 'periodic'
-    symmetry_mode = False
 
 log_all_params(material_params, system_params, solver_params)
 
