@@ -52,11 +52,11 @@ elif setting_mode == 3:
     suffix_end = f'a-{a:.4g}-b-{b:.4g}-Lz-orig-3,14'
 
 elif setting_mode == 4:
-    a, b = np.pi/2, np.pi/4
+    a, b = np.pi/3, np.pi/6
     ic_dict_if_reinit = {'suffix': 'recent-periodic', 'subdir':'arrowhead_3D', 'Lz': 1/2*np.pi, 'Nz': 16}
     suffix_end = f'a-{a:.4g}-b-{b:.4g}-Lz-orig-1,57'
 elif setting_mode == 5:
-    a, b = np.pi/4, np.pi/8
+    a, b = np.pi/6, np.pi/12
     ic_dict_if_reinit = {'suffix': 'recent-periodic', 'subdir':'arrowhead_3D', 'Lz': 1/4*np.pi, 'Nz': 16}
     suffix_end = f'a-{a:.4g}-b-{b:.4g}-Lz-orig-0,785'
 
