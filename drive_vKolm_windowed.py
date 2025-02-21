@@ -60,7 +60,9 @@ elif setting_mode == 5:
     ic_dict_if_reinit = {'suffix': 'recent-periodic', 'subdir':'arrowhead_3D', 'Lz': 1/4*np.pi, 'Nz': 16}
     suffix_end = f'a-{a:.4g}-b-{b:.4g}-Lz-orig-0,785'
 elif setting_mode == 10:
-    # MEGA LOCALISATION
+    # Localising in a spanwise localised soln in x direction...
+    a, b = np.pi, np.pi
+
     material_params['W'] = 20
     solver_params['dt'] = 2e-3
 
@@ -72,7 +74,7 @@ elif setting_mode == 10:
     solver_params['Nx'] = 256
 
     ic_dict_if_reinit = {'Nx': 64, 'Lx': 3*np.pi}
-    suffix_end = 'localised-xy'
+    suffix_end = f'localised-xy-a-{a:.4g}-b-{b:.4g}'
     window_x = True
 
 log_all_params(material_params, system_params, solver_params)
