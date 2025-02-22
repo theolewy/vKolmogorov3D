@@ -294,6 +294,7 @@ elif setting_mode == 12:
     translate = True
 
 elif setting_mode == 13:
+    # Attempt to localise in x direction via stretching
 
     material_params['W'] = 20
     solver_params['dt'] = 2e-3
@@ -308,6 +309,94 @@ elif setting_mode == 13:
     ic_dict_if_reinit = {'Nx': 64, 'Lx': 3*np.pi, 'subdir':'arrowhead_3D', 'suffix': 'recent-localised'}
     suffix_end = f'localised-xy'
     translate = False
+
+
+elif setting_mode == 14:
+    # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
+    kwargs = {'truncate': True}
+    Lz = 4.5*np.pi
+
+    solver_params['Nz'] = 72
+    solver_params['Ny'] = 64
+    solver_params['Nx'] = 64
+
+    solver_params['dt'] = 2e-3
+
+    system_params['Lz'] = Lz
+
+    material_params['W'] = 20
+
+    Lz_ic = 5*np.pi
+
+    ic_dict_if_reinit = {'Nz': 80, 'Lz': Lz_ic }
+    suffix_end = 'localised'
+    symmetry_mode = False
+    translate = True
+
+elif setting_mode == 15:
+    # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
+    kwargs = {'truncate': True}
+    Lz = 4*np.pi
+
+    solver_params['Nz'] = 64
+    solver_params['Ny'] = 64
+    solver_params['Nx'] = 64
+
+    solver_params['dt'] = 2e-3
+
+    system_params['Lz'] = Lz
+
+    material_params['W'] = 20
+
+    Lz_ic = 5*np.pi
+    ic_dict_if_reinit = {'Nz': 80, 'Lz': Lz_ic }
+    suffix_end = 'localised'
+    symmetry_mode = False
+    translate = True
+
+elif setting_mode == 16:
+    # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
+    kwargs = {'truncate': True}
+    Lz = 3.5*np.pi
+
+    solver_params['Nz'] = 56
+    solver_params['Ny'] = 64
+    solver_params['Nx'] = 64
+
+    solver_params['dt'] = 2e-3
+
+    system_params['Lz'] = Lz
+
+    material_params['W'] = 20
+
+    Lz_ic = 5*np.pi
+
+    ic_dict_if_reinit = {'Nz': 80, 'Lz': Lz_ic }
+    suffix_end = 'localised'
+    symmetry_mode = False
+    translate = True
+
+elif setting_mode == 17:
+    # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
+    kwargs = {'truncate': True}
+    Lz = 3*np.pi
+
+    solver_params['Nz'] = 48
+    solver_params['Ny'] = 64
+    solver_params['Nx'] = 64
+
+    solver_params['dt'] = 2e-3
+
+    system_params['Lz'] = Lz
+
+    material_params['W'] = 20
+
+    Lz_ic = 5*np.pi
+
+    ic_dict_if_reinit = {'Nz': 80, 'Lz': Lz_ic }
+    suffix_end = 'localised'
+    symmetry_mode = False
+    translate = True
 
 log_all_params(material_params, system_params, solver_params)
 
