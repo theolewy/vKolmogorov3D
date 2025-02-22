@@ -292,6 +292,7 @@ elif setting_mode == 12:
     suffix_end = 'localised'
     symmetry_mode = False
     translate = True
+
 elif setting_mode == 13:
 
     material_params['W'] = 20
@@ -306,6 +307,7 @@ elif setting_mode == 13:
 
     ic_dict_if_reinit = {'Nx': 64, 'Lx': 3*np.pi, 'subdir':'arrowhead_3D', 'suffix': 'recent-localised'}
     suffix_end = f'localised-xy'
+    translate = False
 
 log_all_params(material_params, system_params, solver_params)
 
