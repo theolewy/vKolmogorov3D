@@ -52,6 +52,7 @@ if setting_mode == 0:
     ic_dict_if_reinit = {'W': 18}
     suffix_end = 'localised'
 
+    translate = False
     
 elif setting_mode == 1:
     # Get Periodic AH from 2D AH. m=1 mode branch
