@@ -241,7 +241,7 @@ def check_localised(W, eps, beta, L, Re, Lx, Lz,  Nx, Ny, Nz, suffix='', subdir=
     plt.ylabel(r'$|f|_{\infty, x, y}/|f|_{\infty, x, y, z}$')
 
     core_root, _ = get_roots()
-    fpath = os.path.join(core_root, 'images', f'localisation_W_{W}_eps_{eps}_L_{L}_Re_{Re}_beta_{beta}_Lx_{Lx}_Lz_{Lz}_Nx_{Nx}_Ny_{Ny}_Nz_{Nz}.jpg')
+    fpath = os.path.join(core_root, 'images', f'localisation_W_{W}_eps_{eps}_L_{L}_Re_{Re}_beta_{beta}_Lx_{Lx}_Lz_{Lz}_Nx_{Nx}_Ny_{Ny}_Nz_{Nz}_{suffix}.jpg')
     plt.savefig(fpath, bbox_inches='tight')
     plt.close()
     
