@@ -338,7 +338,6 @@ elif setting_mode == 14:
 
 elif setting_mode == 15:
     # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
-    kwargs = {'truncate': True}
     Lz = 3.75*np.pi
 
     solver_params['Nz'] = 64
@@ -359,7 +358,7 @@ elif setting_mode == 15:
 
 elif setting_mode == 16:
     # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
-    kwargs = {'truncate': True}
+    kwargs = {}
     Lz = 3.5*np.pi
 
     solver_params['Nz'] = 56
