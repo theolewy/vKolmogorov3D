@@ -85,9 +85,9 @@ elif setting_mode == 2:
 
     material_params['W'] = 20
 
-    ic_dict_if_reinit = {'Lz':np.pi, 'Nz': 32 }
-    suffix_end = 'periodic'
-    symmetry_mode = False
+    ic_dict_if_reinit = {'Lz':np.pi, 'Nz': 32, 'suffix': 'recent-periodic' }
+    suffix_end = 'periodic-yz'
+    symmetry_mode = 'yz'
 
 elif setting_mode == 3:
         # Get Periodic AH from 2D AH. PRODUCTION METHOD OF OBTAINING PERIODIC AH FROM 2D AH
