@@ -341,7 +341,7 @@ elif setting_mode == 15:
     kwargs = {'truncate': True}
     Lz = 3.75*np.pi
 
-    solver_params['Nz'] = 60
+    solver_params['Nz'] = 64
     solver_params['Ny'] = 64
     solver_params['Nx'] = 64
 
