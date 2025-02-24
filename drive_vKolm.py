@@ -70,6 +70,7 @@ elif setting_mode == 1:
 
     ic_dict_if_reinit = {'Lz':3/2*np.pi, 'Nz': 32 }
     suffix_end = 'periodic'
+    translate = False
 
 elif setting_mode == 2:
         # Get Periodic AH from 2D AH. m=1 mode branch
@@ -88,6 +89,7 @@ elif setting_mode == 2:
     ic_dict_if_reinit = {'Lz':np.pi, 'Nz': 32, 'suffix': 'recent-periodic' }
     suffix_end = 'periodic-yz'
     symmetry_mode = 'yz'
+    translate = False
 
 elif setting_mode == 3:
         # Get Periodic AH from 2D AH. PRODUCTION METHOD OF OBTAINING PERIODIC AH FROM 2D AH
