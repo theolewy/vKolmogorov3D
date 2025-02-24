@@ -339,7 +339,7 @@ elif setting_mode == 14:
 elif setting_mode == 15:
     # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
     kwargs = {'truncate': True}
-    Lz = 4*np.pi
+    Lz = 3.75*np.pi
 
     solver_params['Nz'] = 64
     solver_params['Ny'] = 64
@@ -351,8 +351,8 @@ elif setting_mode == 15:
 
     material_params['W'] = 20
 
-    Lz_ic = 5*np.pi
-    ic_dict_if_reinit = {'Nz': 80, 'Lz': Lz_ic }
+    Lz_ic = 4*np.pi
+    ic_dict_if_reinit = {'Nz': 64, 'Lz': Lz_ic }
     suffix_end = 'localised'
     symmetry_mode = False
     translate = True
