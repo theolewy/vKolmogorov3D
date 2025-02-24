@@ -56,9 +56,9 @@ if setting_mode == 0:
     
 elif setting_mode == 1:
     # Get Periodic AH from 2D AH. m=1 mode branch
-    Lz = 1.75 * np.pi
+    Lz = 1.25 * np.pi
 
-    solver_params['Nz'] = 64
+    solver_params['Nz'] = 32
     solver_params['Ny'] = 64
     solver_params['Nx'] = 64
 
@@ -68,7 +68,7 @@ elif setting_mode == 1:
 
     material_params['W'] = 20
 
-    ic_dict_if_reinit = {'Lz':3/2*np.pi, 'Nz': 32 }
+    ic_dict_if_reinit = {'Lz': np.pi, 'Nz': 32}
     suffix_end = 'periodic'
     translate = False
 
