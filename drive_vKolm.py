@@ -56,7 +56,7 @@ if setting_mode == 0:
     
 elif setting_mode == 1:
     # Get Periodic AH from 2D AH. m=1 mode branch
-    Lz = 2 * np.pi
+    Lz = 1.75 * np.pi
 
     solver_params['Nz'] = 64
     solver_params['Ny'] = 64
