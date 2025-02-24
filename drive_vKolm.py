@@ -372,12 +372,12 @@ elif setting_mode == 16:
 
     material_params['W'] = 20
 
-    Lz_ic = 5*np.pi
+    Lz_ic = 4*np.pi
 
-    ic_dict_if_reinit = {'Nz': 80, 'Lz': Lz_ic, 'suffix': 'recent-localised'}
+    ic_dict_if_reinit = {'Nz': 64, 'Lz': Lz_ic, 'suffix': 'recent-localised'}
     suffix_end = 'localised-yz'
     symmetry_mode = 'yz'
-    translate = True
+    translate = False
 
 elif setting_mode == 17:
     # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
@@ -394,12 +394,12 @@ elif setting_mode == 17:
 
     material_params['W'] = 20
 
-    Lz_ic = 5*np.pi
+    Lz_ic = 4*np.pi
 
-    ic_dict_if_reinit = {'Nz': 80, 'Lz': Lz_ic, 'suffix': 'recent-localised'}
+    ic_dict_if_reinit = {'Nz': 64, 'Lz': Lz_ic, 'suffix': 'recent-localised'}
     suffix_end = 'localised-yz'
     symmetry_mode = 'yz'
-    translate = True
+    translate = False
 
 log_all_params(material_params, system_params, solver_params)
 
