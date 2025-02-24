@@ -374,9 +374,9 @@ elif setting_mode == 16:
 
     Lz_ic = 5*np.pi
 
-    ic_dict_if_reinit = {'Nz': 80, 'Lz': Lz_ic }
-    suffix_end = 'localised'
-    symmetry_mode = False
+    ic_dict_if_reinit = {'Nz': 80, 'Lz': Lz_ic, 'suffix': 'recent-localised'}
+    suffix_end = 'localised-yz'
+    symmetry_mode = 'yz'
     translate = True
 
 elif setting_mode == 17:
@@ -396,9 +396,9 @@ elif setting_mode == 17:
 
     Lz_ic = 5*np.pi
 
-    ic_dict_if_reinit = {'Nz': 80, 'Lz': Lz_ic }
-    suffix_end = 'localised'
-    symmetry_mode = False
+    ic_dict_if_reinit = {'Nz': 80, 'Lz': Lz_ic, 'suffix': 'recent-localised'}
+    suffix_end = 'localised-yz'
+    symmetry_mode = 'yz'
     translate = True
 
 log_all_params(material_params, system_params, solver_params)
