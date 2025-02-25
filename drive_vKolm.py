@@ -45,9 +45,26 @@ if setting_mode == 0:
     ic_dict_if_reinit = {'W': 18}
     suffix_end = 'localised'
 
-elif setting_mode == 7:
-    pass
+elif setting_mode == 1:
+    # Localised AH in 4pi at saddle
 
+    material_params['W'] = 16
+
+    system_params['Lz'] = 4*np.pi
+    solver_params['Nz'] = 64
+
+    ic_dict_if_reinit = {'W': 20}
+    suffix_end = 'localised'
+elif setting_mode == 2:
+    # Localised AH in 4pi at saddle
+
+    material_params['W'] = 17
+
+    system_params['Lz'] = 4*np.pi
+    solver_params['Nz'] = 64
+
+    ic_dict_if_reinit = {'W': 20}
+    suffix_end = 'localised'
 
 log_all_params(material_params, system_params, solver_params)
 
