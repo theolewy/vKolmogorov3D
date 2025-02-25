@@ -88,13 +88,13 @@ elif setting_mode == 11:
     solver_params['dt'] = 2e-3
 
     system_params['Lz'] = 4*np.pi
-    system_params['Lx'] = 30*np.pi
+    system_params['Lx'] = 24*np.pi
 
     solver_params['Nz'] = 64
     solver_params['Ny'] = 64
-    solver_params['Nx'] = 640
+    solver_params['Nx'] = 512
 
-    ic_dict_if_reinit = {'Nx': 256, 'Lx': 10*np.pi}
+    ic_dict_if_reinit = {'Nx': 256, 'Lx': 12*np.pi}
     suffix_end = f'localised-xy-a-{a:.4g}-b-{b:.4g}'
     window_x = True
 
