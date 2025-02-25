@@ -68,8 +68,9 @@ elif setting_mode == 1:
 
     material_params['W'] = 20
 
-    ic_dict_if_reinit = {'Lz': np.pi, 'Nz': 32}
-    suffix_end = 'periodic'
+    ic_dict_if_reinit = {'Lz': 1.25*np.pi, 'Nz': 32, 'suffix': 'recent-periodic'}
+    suffix_end = 'periodic-yz'
+    symmetry_mode = 'yz'
     translate = False
 
 elif setting_mode == 2:
