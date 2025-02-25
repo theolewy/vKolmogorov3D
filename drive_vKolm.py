@@ -75,7 +75,7 @@ elif setting_mode == 3:
 
     ic_dict_if_reinit = {'W': 20}
     suffix_end = 'periodic'
-elif setting_mode == 3:
+elif setting_mode == 4:
     # Periodic AH in 4pi at saddle
 
     material_params['W'] = 17
