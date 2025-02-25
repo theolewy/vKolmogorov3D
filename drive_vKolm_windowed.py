@@ -41,10 +41,13 @@ if setting_mode == 0:
     ic_dict_if_reinit = {'suffix': 'recent-periodic', 'subdir':'arrowhead_3D', 'Lz': np.pi, 'Nz': 32}
     suffix_end = f'a-{a:.4g}-b-{b:.4g}-Lz-orig-3,14'
 elif setting_mode == 1:
-    a, b = np.pi, np.pi/2
+    a, b = 1.5*np.pi, np.pi/2
     
-    system_params['Lz'] = 4*np.pi
-    solver_params['Nz'] = 64
+    material_params['W'] = 17
+
+    system_params['Lz'] = 8*np.pi
+
+    solver_params['Nz'] = 128
 
     ic_dict_if_reinit = {'suffix': 'recent-periodic', 'subdir':'arrowhead_3D', 'Lz': np.pi, 'Nz': 32}
     suffix_end = f'a-{a:.4g}-b-{b:.4g}-Lz-orig-3,14'
