@@ -46,7 +46,7 @@ if setting_mode == 0:
     suffix_end = 'localised'
 
 elif setting_mode == 1:
-    # Localised AH in 4pi at saddle
+    # Localised AH in 4pi at saddle v1
 
     material_params['W'] = 16
 
@@ -56,7 +56,7 @@ elif setting_mode == 1:
     ic_dict_if_reinit = {'W': 20}
     suffix_end = 'localised'
 elif setting_mode == 2:
-    # Localised AH in 4pi at saddle
+    # Localised AH in 4pi at saddle v2
 
     material_params['W'] = 17
 
@@ -65,6 +65,26 @@ elif setting_mode == 2:
 
     ic_dict_if_reinit = {'W': 20}
     suffix_end = 'localised'
+elif setting_mode == 3:
+    # Periodic AH in 4pi at saddle
+
+    material_params['W'] = 17
+
+    system_params['Lz'] = np.pi
+    solver_params['Nz'] = 32
+
+    ic_dict_if_reinit = {'W': 20}
+    suffix_end = 'periodic'
+elif setting_mode == 3:
+    # Periodic AH in 4pi at saddle
+
+    material_params['W'] = 17
+
+    system_params['Lz'] = 1.5*np.pi
+    solver_params['Nz'] = 48
+
+    ic_dict_if_reinit = {'W': 20, 'Lz':np.pi, 'Nz':32}
+    suffix_end = 'periodic'
 
 log_all_params(material_params, system_params, solver_params)
 
