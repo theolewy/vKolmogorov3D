@@ -599,8 +599,8 @@ class TimeStepper3D(CartesianTimeStepper):
             for field_name in self.variables:
                 flow_translated[field_name] = np.roll(flow[field_name], shift=self.Nz//2-idx, axis=1)
         elif mode == 'x':
-            p_x = np.min(flow['p'], axis=(1,2))
-            idx = np.argmin(p_x)
+            c22_x = np.max(flow['c22'], axis=(1,2))
+            idx = np.argmin(c22_x)
             
             for field_name in self.variables:
                 flow_translated[field_name] = np.roll(flow[field_name], shift=self.Nx//2-idx, axis=0)
