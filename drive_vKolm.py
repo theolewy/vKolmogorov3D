@@ -85,6 +85,16 @@ elif setting_mode == 4:
 
     ic_dict_if_reinit = {'W': 20, 'Lz':np.pi, 'Nz':32}
     suffix_end = 'periodic'
+elif setting_mode == 5:
+    # 2 Localised AH in 8pi at saddle (Hopefully merge a little???)
+    kwargs={'tile': True}
+    material_params['W'] = 17
+
+    system_params['Lz'] = 8*np.pi
+    solver_params['Nz'] = 128
+
+    ic_dict_if_reinit = {'Lz':4*np.pi, 'Nz':64, 'suffix': 'recent-localised'}
+    suffix_end = 'localised-2'
 
 log_all_params(material_params, system_params, solver_params)
 
