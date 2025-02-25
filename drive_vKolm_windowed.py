@@ -94,7 +94,7 @@ elif setting_mode == 11:
     solver_params['Ny'] = 64
     solver_params['Nx'] = 512
 
-    ic_dict_if_reinit = {'Nx': 256, 'Lx': 12*np.pi}
+    ic_dict_if_reinit = {'Nx': 256, 'Lx': 12*np.pi, 'suffix': f'recent-localised-xy-a-{np.pi:.4g}-b-{np.pi:.4g}'}
     suffix_end = f'localised-xy-a-{a:.4g}-b-{b:.4g}'
     window_x = True
 
