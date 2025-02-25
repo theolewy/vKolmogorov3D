@@ -94,7 +94,8 @@ elif setting_mode == 5:
     solver_params['Nz'] = 128
 
     ic_dict_if_reinit = {'Lz':4*np.pi, 'Nz':64, 'suffix': 'recent-localised', 'noise_coeff': 1e-3}
-    suffix_end = 'localised-2'
+    suffix_end = 'localised-2-yz'
+    symmetry_mode = 'yz'
 
 log_all_params(material_params, system_params, solver_params)
 
