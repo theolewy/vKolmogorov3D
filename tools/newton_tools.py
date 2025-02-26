@@ -103,7 +103,7 @@ def write_driveFile(dt, Nstep, material_params, system_params, solver_params, la
     f.write('end_time = time.time()\n')
     f.close()
 
-def converge_TW(material_params, system_params, solver_params, ic_file, output_fpath, gmres_params, label=''):
+def converge_TW(material_params, system_params, solver_params, ic_file, output_fpath, gmres_params, T_guess=None, label=''):
 
     logger.info('Setting up configuration')
     fc_io = TimeStepper(material_params, system_params, solver_params)
@@ -119,7 +119,8 @@ def converge_TW(material_params, system_params, solver_params, ic_file, output_f
     # how is each variable scaled in the algorithm - NB c11 is normally orders of magnitude larger than p,u,v
 
     processed_file = process_ic(material_params, system_params, solver_params, ic_file_in=ic_file, label=label)
-    T_guess = predict_period(material_params, system_params, solver_params, label=label)
+    if T_guess is None:
+        T_guess = predict_period(material_params, system_params, solver_params, label=label)
 
     reader = DIO.dnsReader(fc_io, data_vars)
     reader.read_field('u_r0', file_name=processed_file)
