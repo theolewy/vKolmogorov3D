@@ -51,7 +51,7 @@ if setting_mode == 0:
     label = 'W=17'
     material_params['W'] = 17
 elif setting_mode == 1:
-    label = 'W=18'
+    label = 'W=18_guessed'
     material_params['W'] = 18
 
 ic_file_in = get_fpath_s_file(material_params, system_params, solver_params, suffix='recent-localised', subdir='arrowhead_3D')
