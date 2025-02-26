@@ -182,7 +182,16 @@ def converge_TW_branch(material_params, system_params, solver_params, continuati
     os.makedirs(save_folder, exist_ok=True)
     eq_solve.iterate_branch(40, output_dir=save_folder)
 
+def _get_arrow_junction(channel):
 
+    channel.set_scale(1)
+    c11 = channel.c11['g']
+    c11_mean = np.mean(c11, axis=(1,2))
+    rough_x = channel.x[np.argmax(c11_mean),0,0] % channel.Lx
+    interp_grid = np.linspace(max(rough_x - 0.5, 0), min(rough_x + 0.5, channel.Lx), 500)   
+    interp_c11 = np.interp(interp_grid, channel.x[:,0,0], c11_mean)
+    x = interp_grid[np.argmax(interp_c11)]
+    return x
 
 ####################################################################################################################################
 # EVERYTHING UNDER HERE DOESN'T NEED TO CHANGE WHEN A NEW SYSTEM IS MADE
@@ -231,25 +240,14 @@ def predict_period(material_params, system_params, solver_params, label=''):
     channel.ic(fpath)
     # channel.update_dy()
 
-    def _get_arrow_junction():
-
-        channel.set_scale(1)
-        c11 = channel.c11['g']
-        c11_mean = np.mean(c11, axis=-1)
-        rough_x = channel.x[np.argmax(c11_mean)] % channel.Lx
-        interp_grid = np.linspace(max(rough_x - 0.5, 0), min(rough_x + 0.5, channel.Lx), 500)   
-        interp_c11 = np.interp(interp_grid, channel.x[:,0], c11_mean)
-        x = interp_grid[np.argmax(interp_c11)]
-        return x
-
-    start_x_track = _get_arrow_junction()
+    start_x_track = _get_arrow_junction(channel)
     start_sim_time = channel.solver.sim_time
 
     def track_TW(x_track_old):
         x_track_old_mod = x_track_old % channel.Lx
         x_track_old_num = x_track_old // channel.Lx
 
-        x_track_new_mod = _get_arrow_junction()
+        x_track_new_mod = _get_arrow_junction(channel)
 
         if (x_track_new_mod - x_track_old_mod) > channel.Lx - 0.1:  # going leftwards
             x_track_new_num = x_track_old_num - 1
