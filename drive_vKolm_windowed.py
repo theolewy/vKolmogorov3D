@@ -41,6 +41,7 @@ if setting_mode == 0:
 
     ic_dict_if_reinit = {'suffix': 'recent-periodic', 'subdir':'arrowhead_3D', 'Lz': np.pi, 'Nz': 32}
     suffix_end = f'a-{a:.4g}-b-{b:.4g}-Lz-orig-3,14'
+
 elif setting_mode == 1:
     a, b = 1.5*np.pi, np.pi/2
     
@@ -70,6 +71,11 @@ elif setting_mode == 5:
     a, b = np.pi/6, np.pi/12
     ic_dict_if_reinit = {'suffix': 'recent-periodic', 'subdir':'arrowhead_3D', 'Lz': 1/4*np.pi, 'Nz': 16}
     suffix_end = f'a-{a:.4g}-b-{b:.4g}-Lz-orig-0,785'
+elif setting_mode == 6:
+    a, b = np.pi/2, np.pi/4
+    ic_dict_if_reinit = {'suffix': 'recent-periodic', 'subdir':'arrowhead_3D', 'Lz': np.pi, 'Nz': 32}
+    suffix_end = f'a-{a:.4g}-b-{b:.4g}-Lz-orig-3,14'
+
 elif setting_mode == 10:
     # Localising in a spanwise localised soln in x direction...
     a, b = np.pi, np.pi

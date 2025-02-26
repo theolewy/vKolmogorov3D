@@ -597,7 +597,7 @@ class TimeStepper3D(CartesianTimeStepper):
             idx = np.argmin(p_z)
             
             for field_name in self.variables:
-                flow_translated[field_name] = np.roll(flow[field_name], shift=self.Nz//2-idx, axis=1)
+                flow_translated[field_name] = np.roll(flow[field_name], shift=self.Nz//2-idx+20, axis=1)
         elif mode == 'x':
             # if AH is at y=-pi and pi rather than 0.
             mean_c22_y = np.mean(self.c22['g'], axis=(0,1))
@@ -624,6 +624,7 @@ class TimeStepper3D(CartesianTimeStepper):
             window1 = 1/4 * (1 + np.tanh(6 * (a - self.z + z0) / b + 3)) * (1 + np.tanh(6 * (a + self.z - z0) / b + 3))
             window2 = 1/4 * (1 + np.tanh(6 * (a - self.z - z0) / b + 3)) * (1 + np.tanh(6 * (a + self.z + z0) / b + 3))
             window = window1 + window2
+
         elif mode == 'x':
 
             # if AH is at y=-pi and pi rather than 0.
