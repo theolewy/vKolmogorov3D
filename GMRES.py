@@ -62,4 +62,4 @@ if on_local_device(): gmres_params['dns_nproc'] = 1
 
 log_all_params(material_params=material_params, solver_params=solver_params, system_params=system_params)
 
-converge_TW(material_params, system_params, solver_params, ic_file_in, fpath_out, gmres_params, label=label)
+converge_TW(material_params, system_params, solver_params, ic_file_in, fpath_out, gmres_params, T_guess=10.4, label=label)
