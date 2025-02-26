@@ -16,7 +16,7 @@ from tools.newton_tools import *
 
 material_params = {'W': 18,
                 'beta': 0.9,
-                'Re': 0,
+                'Re': 0.5,
                 'L': np.infty,
                 'eps': 1e-3}
 
