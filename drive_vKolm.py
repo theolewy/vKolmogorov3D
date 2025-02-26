@@ -115,6 +115,15 @@ elif setting_mode == 7:
     ic_dict_if_reinit = {'Lz':8*np.pi, 'Nz':128, 'suffix': 'recent-localised'}
     suffix_end = 'localised-contracted'
 
+elif setting_mode == 8:
+    # Laminar
+
+    system_params['Lz'] = 8*np.pi
+    solver_params['Nz'] = 128
+
+    ic_dict_if_reinit = None
+    suffix_end = 'laminar'
+
 log_all_params(material_params, system_params, solver_params)
 
 ic_file, noise_coeff, _ = get_ic_file(material_params, system_params, solver_params, suffix=f'recent-{suffix_end}', subdir='arrowhead_3D', 
