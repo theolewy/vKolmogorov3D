@@ -11,7 +11,7 @@ from cfd_tools.cartesian_systems.plotter import *
 import scipy
 from scipy.interpolate import CubicSpline
 
-from tools.solvers.kolmogorov import TimeStepper3D as TimeStepper
+from tools.kolmogorov import TimeStepper3D as TimeStepper
 
 plt.rcParams['xtick.labelsize'] = 14
 plt.rcParams['ytick.labelsize'] = 14

@@ -104,7 +104,6 @@ def get_fpath_sim(material_params, system_params, solver_params, suffix='', subd
 
     return save_folder
 
-
 def sim_fname_to_params(fname):
 
     fname_split = fname.replace(',', '.').split('_')
@@ -185,3 +184,9 @@ def get_metric_from_fpath(fpath, metric='trace', deviation=True):
     t, metric = get_metric_from_fpath_and_s_list(fpath, s_list, metric=metric, deviation=deviation)
 
     return t, metric
+
+def get_fpath_s_file(material_params, system_params, solver_params, suffix='', subdir='', dir='simulations', **kwargs):
+    save_folder = get_fpath_sim(material_params, system_params, solver_params, suffix, subdir, dir, **kwargs)
+
+    s_file = os.path.join(save_folder, save_folder.split('/')[-2]+'_s1.h5')
+    return s_file

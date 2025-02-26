@@ -1,6 +1,6 @@
 import sys 
 import numpy as np
-from tools.solvers.kolmogorov import BaseFlow, NumericSolver, TimeStepper3D
+from tools.kolmogorov import BaseFlow, NumericSolver, TimeStepper3D
 from tools.misc_tools import get_ic_file, log_all_params, on_local_device
 import logging
 
