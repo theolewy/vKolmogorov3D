@@ -98,7 +98,7 @@ elif setting_mode == 5:
     suffix_end = 'localised-2-yz'
     symmetry_mode = 'yz'
 elif setting_mode == 6:
-    # 2 Localised AH in 8pi at saddle (Hopefully merge a little to make 2-localised AH???)
+    # Stretch AH
 
     system_params['Lz'] = 12*np.pi
     solver_params['Nz'] = 192
@@ -107,7 +107,7 @@ elif setting_mode == 6:
     suffix_end = 'localised-stretch'
 
 elif setting_mode == 7:
-    # 2 Localised AH in 8pi at saddle (Hopefully merge a little to make 2-localised AH???)
+    # Contract AH
 
     system_params['Lz'] = 4*np.pi
     solver_params['Nz'] = 64

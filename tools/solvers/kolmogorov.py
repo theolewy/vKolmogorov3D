@@ -618,6 +618,12 @@ class TimeStepper3D(CartesianTimeStepper):
 
         if mode == 'z':
             window = 1/4 * (1 + np.tanh(6 * (a - self.z) / b + 3)) * (1 + np.tanh(6 * (a + self.z) / b + 3))
+
+        elif mode == 'z-2':
+            z0 = np.pi * 5/2
+            window1 = 1/4 * (1 + np.tanh(6 * (a - self.z + z0) / b + 3)) * (1 + np.tanh(6 * (a + self.z - z0) / b + 3))
+            window2 = 1/4 * (1 + np.tanh(6 * (a - self.z - z0) / b + 3)) * (1 + np.tanh(6 * (a + self.z + z0) / b + 3))
+            window = window1 + window2
         elif mode == 'x':
 
             # if AH is at y=-pi and pi rather than 0.
