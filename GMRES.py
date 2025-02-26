@@ -54,9 +54,9 @@ elif setting_mode == 1:
     label = 'W=18'
     material_params['W'] = 18
 
-ic_file_in = get_fpath_s_file(material_params, system_params, solver_params, suffix='recent-', subdir='arrowhead_3D')
+ic_file_in = get_fpath_s_file(material_params, system_params, solver_params, suffix='recent-localised', subdir='arrowhead_3D')
 
-fpath_out = get_fpath_sim(material_params, system_params, solver_params, suffix='', subdir='arrowhead_3D', dir='newtonWrapper')
+fpath_out = get_fpath_sim(material_params, system_params, solver_params, suffix='recent-localised', subdir='arrowhead_3D', dir='newtonWrapper')
 
 if on_local_device(): gmres_params['dns_nproc'] = 1
 
