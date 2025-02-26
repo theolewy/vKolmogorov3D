@@ -55,10 +55,11 @@ elif setting_mode == 1:
 elif setting_mode == 3:
     a, b = np.pi/2, np.pi/4
 
+    material_params['W'] = 17
+
     ic_dict_if_reinit = {'suffix': 'recent-periodic', 'subdir':'arrowhead_3D', 'Lz': np.pi, 'Nz': 32}
     suffix_end = f'a-{a:.4g}-b-{b:.4g}-Lz-orig-3,14-twice'
     
-
 elif setting_mode == 4:
     a, b = np.pi/3, np.pi/6
     ic_dict_if_reinit = {'suffix': 'recent-periodic', 'subdir':'arrowhead_3D', 'Lz': 1/2*np.pi, 'Nz': 16}
