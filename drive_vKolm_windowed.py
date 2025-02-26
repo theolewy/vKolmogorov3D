@@ -34,6 +34,7 @@ Parameters tried:
 a = pi/2 with b=pi/8, pi/4, pi/2, 3pi/4
 a = 3pi/8 with b=pi/8, pi/4, pi/2
 """
+symmetry_mode = False
 window_x = False
 if setting_mode == 0:
     a, b = np.pi/2, np.pi/4
@@ -57,9 +58,10 @@ elif setting_mode == 3:
 
     material_params['W'] = 17
 
-    ic_dict_if_reinit = {'suffix': 'recent-periodic', 'subdir':'arrowhead_3D', 'Lz': np.pi, 'Nz': 32}
-    suffix_end = f'a-{a:.4g}-b-{b:.4g}-Lz-orig-3,14-twice'
-    
+    ic_dict_if_reinit = {'suffix': f'recent-a-{a:.4g}-b-{b:.4g}-Lz-orig-3,14-twice'}
+    suffix_end = f'a-{a:.4g}-b-{b:.4g}-Lz-orig-3,14-yz-twice'
+    symmetry_mode = 'yz'
+
 elif setting_mode == 4:
     a, b = np.pi/3, np.pi/6
     ic_dict_if_reinit = {'suffix': 'recent-periodic', 'subdir':'arrowhead_3D', 'Lz': 1/2*np.pi, 'Nz': 16}
@@ -122,7 +124,7 @@ if reinit:
 
 timestepper.simulate(T=4000, ifreq=100, 
                      track_TW=False, 
-                     enforce_symmetry=False,
+                     enforce_symmetry=symmetry_mode,
                      save_over_long=False, 
                      save_full_data=False, full_save_freq=5,
                      save_subdir=f"windows", suffix_end=suffix_end, 
