@@ -74,7 +74,7 @@ elif setting_mode == 5:
 elif setting_mode == 6:
     a, b = np.pi/2, np.pi/4
     ic_dict_if_reinit = {'suffix': 'recent-periodic', 'subdir':'arrowhead_3D', 'Lz': np.pi, 'Nz': 32}
-    suffix_end = f'a-{a:.4g}-b-{b:.4g}-Lz-orig-3,14'
+    suffix_end = f'a-{a:.4g}-b-{b:.4g}-Lz-orig-3,14-phase'
 
 elif setting_mode == 10:
     # Localising in a spanwise localised soln in x direction...
@@ -126,7 +126,7 @@ if reinit:
         timestepper.window(a, b, mode='x')
     else:
         timestepper.translate_AH_to_centre(mode='z')    # move so arrowhead is in the middle of the domain
-        timestepper.window(a, b, mode='z-2')
+        timestepper.window(a, b, mode='z')
 
 timestepper.simulate(T=4000, ifreq=100, 
                      track_TW=False, 
