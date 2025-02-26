@@ -21,9 +21,9 @@ material_params = {'W': 18,
                 'eps': 1e-3}
 
 system_params = {'ndim': 3,
-                'bc': 'no_diffusion',
                 'Lx': 3*np.pi,
-                'Lz': 8*np.pi}
+                'Lz': 8*np.pi,
+                'n': 1}
 
 solver_params = {'Nx': 64,
                 'Ny': 64,
@@ -54,9 +54,9 @@ elif setting_mode == 1:
     label = 'W=18'
     material_params['W'] = 18
 
-ic_file_in = get_fpath_s_file(material_params, system_params, solver_params, suffix='recent-', subdir='arrowhead_2D')
+ic_file_in = get_fpath_s_file(material_params, system_params, solver_params, suffix='recent-', subdir='arrowhead_3D')
 
-fpath_out = get_fpath_sim(material_params, system_params, solver_params, suffix='', subdir='arrowhead_2D', dir='newtonWrapper')
+fpath_out = get_fpath_sim(material_params, system_params, solver_params, suffix='', subdir='arrowhead_3D', dir='newtonWrapper')
 
 if on_local_device(): gmres_params['dns_nproc'] = 1
 

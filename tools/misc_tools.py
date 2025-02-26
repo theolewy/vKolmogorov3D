@@ -75,7 +75,7 @@ def get_ic_file(material_params, system_params, solver_params, restart=False, su
     return ic_file, noise_coeff, reinit
 
 
-def get_fpath_sim(material_params, system_params, solver_params, suffix='', subdir='', **kwargs):
+def get_fpath_sim(material_params, system_params, solver_params, suffix='', subdir='', dir='simulations', **kwargs):
 
     params_copy = copy.deepcopy(material_params)
     params_copy.update(system_params)
@@ -100,7 +100,7 @@ def get_fpath_sim(material_params, system_params, solver_params, suffix='', subd
     else:
         raise Exception
 
-    save_folder = os.path.join(data_root, 'simulations', subdir, name.replace('.', ','))
+    save_folder = os.path.join(data_root, dir, subdir, name.replace('.', ','))
 
     return save_folder
 
