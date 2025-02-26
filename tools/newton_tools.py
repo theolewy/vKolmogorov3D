@@ -265,7 +265,7 @@ def predict_period(material_params, system_params, solver_params, label=''):
     def estimate_T(x_track):
 
         c = (x_track - start_x_track) / (channel.solver.sim_time - start_sim_time)
-        T = channel.Lx / c
+        T = channel.Lx / np.abs(c)
 
         logger.info(
             f'Current estimate of T is {T}, distance travelled is {x_track - start_x_track} and time is {channel.solver.sim_time - start_sim_time}')
