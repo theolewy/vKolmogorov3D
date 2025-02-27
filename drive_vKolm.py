@@ -125,6 +125,14 @@ elif setting_mode == 9:
 
     ic_dict_if_reinit = None
     suffix_end = 'localised-yz'
+elif setting_mode == 10:
+    # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
+
+    solver_params['Nz'] = 64
+    system_params['Lz'] = 4*np.pi
+
+    ic_dict_if_reinit = {'noise_coeff': 0}
+    suffix_end = 'laminar'
 
 
 log_all_params(material_params, system_params, solver_params)
