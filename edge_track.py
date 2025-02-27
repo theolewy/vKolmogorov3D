@@ -24,13 +24,13 @@ solver_params = {'Nx': 64,
                  'Nz': 64,
                  'dt': 2e-3}
 
-a1     = 0.05
-a2     = 0.09
-lamb   = 0.6
+a1     = 0.02
+a2     = 0.08
+lamb   = 0.5
 lamb1  = 0.0
 lamb2  = 1.0
 accmin = 1e-12
-Tmin   = 50
+Tmin   = 5
 
 _, data_root = get_roots()
 data_root = data_root + 'edge_track/'
