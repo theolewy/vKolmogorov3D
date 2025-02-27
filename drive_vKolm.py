@@ -152,6 +152,16 @@ elif setting_mode == 12:
     kwargs = {'truncate': True}
     ic_dict_if_reinit = {'Lz': 3.75*np.pi}
     suffix_end = 'localised-yz'
+elif setting_mode == 13:
+    # Truncate to Saddle
+    # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
+
+    solver_params['Nz'] = 64
+    system_params['Lz'] =  3.6*np.pi
+
+    kwargs = {'truncate': True}
+    ic_dict_if_reinit = {'Lz': 3.75*np.pi}
+    suffix_end = 'localised-yz'
 
 log_all_params(material_params, system_params, solver_params)
 
