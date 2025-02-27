@@ -28,7 +28,7 @@ system_params = {'ndim': 3,
 solver_params = {'Nx': 64,
                 'Ny': 64,
                 'Nz': 128,
-                'dt': 2e-3}
+                'dt': 5e-3}
 
 gmres_params = {
     'dns_nproc': 16,         # parallelise over this many cores
