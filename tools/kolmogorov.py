@@ -488,7 +488,6 @@ class TimeStepper3D(CartesianTimeStepper):
                 if self.ndim == 3:
                     field['c'][:,1:,:] = (field['c'][:,1:,:] + field['c'][:,1:,:][:,::-1,:]) / 2
 
-
     def simulate(self, T=np.infty, ifreq=200, convergence_limit=1e-4,
                  end_converge=False, end_laminar=False, end_laminar_threshold=1e-6, 
                  plot=True, plot_dev=True, plot_subdirectory="",
