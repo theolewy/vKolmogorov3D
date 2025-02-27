@@ -369,6 +369,8 @@ class TimeStepper3D(CartesianTimeStepper):
         self.problem.substitutions['c13y'] = "dy(c13)"
         self.problem.substitutions['c23y'] = "dy(c23)"
 
+
+
     def equations(self):
 
         self.problem.add_equation('Re * dt(u) + dx(p) - beta * lap(u, uy) = F - Re * adv(u) + (1 - beta) * (t11x + t12y + t13z)')

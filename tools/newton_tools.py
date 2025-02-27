@@ -77,7 +77,7 @@ def write_driveFile(dt, Nstep, material_params, system_params, solver_params, la
 
     f.write("timestepper = TimeStepper(material_params, system_params, solver_params, no_base=True)\n")
     f.write(f"timestepper.ic(ic_file='{data_root}newtonWrapper/ic_{label}.h5')\n")
-    # f.write(f"timestepper.update_dy()\n")   # required as ic_file only contains u,v,p etc, not uy, vy...
+    f.write(f"timestepper.update_dy()\n")   # required as ic_file only contains u,v,p etc, not uy, vy...
     f.write('timestepper.solver.sim_time = 0.0\n')
     f.write('timestepper.solver.iteration = 0\n')
     f.write('timestepper.solver.start_time = timestepper.solver.sim_time\n')
@@ -219,7 +219,7 @@ def process_ic(material_params, system_params, solver_params, ic_file_in='newton
     
     channel = TimeStepper(material_params, system_params, solver_params, logger_on=True, no_base=True)
     channel.ic(ic_file_in)
-    # channel.update_dy()
+    channel.update_dy()
 
     snapshots = channel.solver.evaluator.add_file_handler(save_folder, \
                                                           iter=1, max_writes=100, mode='overwrite')
@@ -246,7 +246,7 @@ def predict_period(material_params, system_params, solver_params, label=''):
 
     channel = TimeStepper(material_params, system_params, solver_params, logger_on=True, no_base=True)
     channel.ic(fpath)
-    # channel.update_dy()
+    channel.update_dy()
 
     start_x_track = _get_arrow_junction(channel)
     start_sim_time = channel.solver.sim_time
@@ -301,7 +301,7 @@ def predict_period(material_params, system_params, solver_params, label=''):
 def process_fields_to_tasks(material_params, system_params, solver_params, h5_file, label=''):
     channel = TimeStepper(material_params, system_params, solver_params, logger_on=True)
     channel.ic(h5_file)
-    # channel.update_dy()
+    channel.update_dy()
     
     _, data_root = get_roots()
     save_folder = os.path.join(data_root, 'newtonWrapper')
