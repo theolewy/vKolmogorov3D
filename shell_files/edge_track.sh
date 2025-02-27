@@ -14,7 +14,7 @@
 #SBATCH --nodes=1
 #SBATCH -J edge_track
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=8
+#SBATCH --cpus-per-task=33
 #SBATCH --time=24:00:00
 #SBATCH --array=0-0%1
 
