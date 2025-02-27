@@ -43,6 +43,7 @@ if os.path.exists(lambda_root):
                 csv_reader = csv.reader(file, delimiter=' ')
                 for row in csv_reader:
                         lamb, lamb1, lambs2, = row[0], row[1], row[2]
+# if last run unfinished... initialise from it?
 
 edge_tracker = edgeTrack(material_params, system_params, solver_params,
                         a1, a2, lamb, lamb1, lamb2, accmin, Tmin, 
