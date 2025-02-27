@@ -47,6 +47,6 @@ while edge_tracker.acc >= accmin:
         
         edge_tracker.build_ic()
 
-        edge_tracker.run_traj(nproc=1)
+        edge_tracker.run_traj(nproc=16)
 
         edge_tracker.up_lamb()
