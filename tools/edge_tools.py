@@ -56,8 +56,6 @@ def write_driveFile(material_params, system_params, solver_params, a1, a2, Tmin)
     f.write('logger = logging.getLogger(__name__)\n')
     f.write('from tools.kolmogorov import TimeStepper3D as TimeStepper\n')
 
-    f.write('from tools.plotter import plot_from_array\n')
-
     f.write(f"material_params = {{'W': {W},\n")
     f.write(f"'beta': {beta},\n")
     f.write(f"'Re': {Re},\n")
@@ -76,7 +74,7 @@ def write_driveFile(material_params, system_params, solver_params, a1, a2, Tmin)
     f.write(f"'dt': {dt} }}\n")
 
     f.write("timestepper = TimeStepper(material_params, system_params, solver_params, no_base=True)\n")
-    f.write(f"timestepper.ic(ic_file='{data_root}/edge_track/ic.h5')\n")
+    f.write(f"timestepper.ic(ic_file='{data_root}/edge_track/ic_half.h5')\n")
     f.write(f"timestepper.update_dy()\n")   # required as ic_file only contains u,v,p etc, not uy, vy...
     f.write('timestepper.solver.sim_time = 0.0\n')
     f.write('timestepper.solver.iteration = 0\n')
