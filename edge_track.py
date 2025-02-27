@@ -1,9 +1,10 @@
+import os
 import sys 
 import numpy as np
 from cfd_tools.edge_track.edge_track import edgeTrack
 from tools.edge_tools import write_driveFile
 import logging
-
+import csv
 from tools.misc_tools import get_roots
 
 logger = logging.getLogger(__name__)
@@ -34,6 +35,15 @@ Tmin   = 5
 
 _, data_root = get_roots()
 data_root = data_root + 'edge_track/'
+lambda_root = data_root + '/lambda.out'
+
+# obtain lambda from lambda file if it exists
+if os.path.exists(lambda_root):
+        with open(lambda_root) as file:
+                csv_reader = csv.reader(file, delimiter=' ')
+                for row in csv_reader:
+                        lamb, lamb1, lambs2, = row[0], row[1], row[2]
+
 edge_tracker = edgeTrack(material_params, system_params, solver_params,
                         a1, a2, lamb, lamb1, lamb2, accmin, Tmin, 
                         variables=['u', 'v', 'w', 'p', 'c11', 'c12', 'c22', 'c33', 'c13', 'c23'],
@@ -43,7 +53,6 @@ edge_tracker = edgeTrack(material_params, system_params, solver_params,
 logger.info('Here Field 1 is laminar, and Field 2 is the localised 3D AH')
 
 logger.info('Starting edge tracking loop')
-
 
 while edge_tracker.acc >= accmin:
         
