@@ -107,6 +107,7 @@ def converge_TW(material_params, system_params, solver_params, ic_file, output_f
 
     logger.info('Setting up configuration')
     fc_io = TimeStepper(material_params, system_params, solver_params)
+    print(fc_io.x.shape, fc_io.z.shape, fc_io.y.shape)
 
     """
     The IO setup is used to keep the structure
