@@ -73,7 +73,7 @@ def write_driveFile(material_params, system_params, solver_params, a1, a2, Tmin)
     f.write(f"'Nz': {Nz},\n")
     f.write(f"'dt': {dt} }}\n")
 
-    f.write("timestepper = TimeStepper(material_params, system_params, solver_params, no_base=True)\n")
+    f.write("timestepper = TimeStepper(material_params, system_params, solver_params)\n")
     f.write(f"timestepper.ic(ic_file='{data_root}/edge_track/ic_half.h5')\n")
     f.write(f"timestepper.update_dy()\n")   # required as ic_file only contains u,v,p etc, not uy, vy...
     f.write('timestepper.solver.sim_time = 0.0\n')
