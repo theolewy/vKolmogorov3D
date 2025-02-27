@@ -135,7 +135,7 @@ def write_driveFile(material_params, system_params, solver_params, a1, a2, Tmin,
     f.write("        timestepper.trace_metric_list.append(trace_metric)   \n")
     f.write("        timestepper.KE_metric_list.append(KE_metric)   \n")
     f.write("        timestepper.u_metric_list.append(u_metric)   \n")
-    f.write("        timestepper.time_list.append(self.solver.sim_time)   \n")
+    f.write("        timestepper.time_list.append(timestepper.solver.sim_time)   \n")
     f.write(f"        timestepper._plot_arrays_and_metrics(subdirectory='edge_track', suffix_end='lambda={lam:.10g}', plot_dev=True)   \n")
 
     f.write('end_time = time.time()\n')
