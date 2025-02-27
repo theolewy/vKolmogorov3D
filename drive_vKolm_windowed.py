@@ -112,7 +112,7 @@ elif setting_mode == 11:
     window_x = True
 elif setting_mode == 12:
     # Localising in a spanwise localised soln in x direction...
-    a, b = np.pi, np.pi/2
+    a, b = 2*np.pi/3, np.pi/2
 
     material_params['W'] = 20
     solver_params['dt'] = 2e-3
