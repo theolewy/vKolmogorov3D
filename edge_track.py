@@ -22,7 +22,7 @@ system_params = {'ndim': 3,
 solver_params = {'Nx': 64,
                  'Ny': 64,
                  'Nz': 64,
-                 'dt': 2e-3}
+                 'dt': 5e-3}
 
 a1     = 0.02
 a2     = 0.08
