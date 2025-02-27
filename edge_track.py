@@ -39,10 +39,13 @@ lambda_root = data_root + '/lambda.out'
 
 # obtain lambda from lambda file if it exists
 if os.path.exists(lambda_root):
+        logger.info('Loading lambda bounds from file...')
         with open(lambda_root) as file:
                 csv_reader = csv.reader(file, delimiter=' ')
                 for row in csv_reader:
-                        lamb, lamb1, lambs2, = row[0], row[1], row[2]
+                        lamb, lamb1, lamb2, = row[0], row[1], row[2]
+        logger.info(f'lambda={lamb}, lambda1={lamb1}, lambda2={lamb2}..')
+
 # if last run unfinished... initialise from it?
 
 edge_tracker = edgeTrack(material_params, system_params, solver_params,
