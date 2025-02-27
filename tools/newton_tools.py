@@ -107,7 +107,6 @@ def converge_TW(material_params, system_params, solver_params, ic_file, output_f
 
     logger.info('Setting up configuration')
     fc_io = TimeStepper(material_params, system_params, solver_params)
-    print(0, fc_io.y.shape)
 
     """
     The IO setup is used to keep the structure
@@ -120,8 +119,6 @@ def converge_TW(material_params, system_params, solver_params, ic_file, output_f
     # how is each variable scaled in the algorithm - NB c11 is normally orders of magnitude larger than p,u,v
 
     processed_file = process_ic(material_params, system_params, solver_params, ic_file_in=ic_file, label=label)
-    print(1, fc_io.y.shape)
-
 
     if T_guess is None:
         T_guess = predict_period(material_params, system_params, solver_params, label=label)
@@ -132,7 +129,6 @@ def converge_TW(material_params, system_params, solver_params, ic_file, output_f
 
     _, data_root = get_roots()
     fname = os.path.join(output_fpath, output_fpath.split('/')[-2]+'_s1.h5')
-    print(2, fc_io.y.shape)
 
     eq_solve = EQ.ecsSearch(u0, fc_io, T_init=T_guess, output_name=fname, data_vars=data_vars,
                             data_root=data_root, label=label,
