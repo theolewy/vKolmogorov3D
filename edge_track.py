@@ -24,11 +24,11 @@ solver_params = {'Nx': 64,
                  'Nz': 64,
                  'dt': 5e-3}
 
-a1     = 0.02
-a2     = 0.08
-lamb   = 0.5
-lamb1  = 0.0
-lamb2  = 1.0
+a1     = 0.02   # when to declare ultimate state as field 1
+a2     = 0.15   # when to declare ultimate state as field 2
+lamb   = 0.5    # current lambda
+lamb1  = 0.0    # lower bound
+lamb2  = 1.0    # upper bound
 accmin = 1e-12
 Tmin   = 5
 

@@ -56,6 +56,9 @@ def write_driveFile(material_params, system_params, solver_params, a1, a2, Tmin,
     f.write('logger = logging.getLogger(__name__)\n')
     f.write('from tools.kolmogorov import TimeStepper3D as TimeStepper\n')
 
+    f.write('comm = MPI.COMM_WORLD\n')
+    f.write('rank = comm.Get_rank()\n')
+
     f.write(f"material_params = {{'W': {W},\n")
     f.write(f"'beta': {beta},\n")
     f.write(f"'Re': {Re},\n")
