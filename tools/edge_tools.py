@@ -29,7 +29,7 @@ from tools.misc_tools import get_fpath_sim
 
 logger = logging.getLogger(__name__)
 
-def write_driveFile(material_params, system_params, solver_params, a1, a2, Tmin):
+def write_driveFile(material_params, system_params, solver_params, a1, a2, Tmin, lam=''):
 
     Re, W, beta, L, eps, = material_params['Re'], material_params['W'], material_params['beta'], \
                            material_params['L'], material_params['eps']
@@ -137,7 +137,7 @@ def write_driveFile(material_params, system_params, solver_params, a1, a2, Tmin)
     f.write("        timestepper.KE_metric_list.append(KE_metric)   \n")
     f.write("        timestepper.u_metric_list.append(u_metric)   \n")
     f.write("        timestepper.time_list.append(self.solver.sim_time)   \n")
-    f.write("        timestepper._plot_arrays_and_metrics(subdirectory='edge_track', suffix_end='', plot_dev=True)   \n")
+    f.write(f"        timestepper._plot_arrays_and_metrics(subdirectory='edge_track', suffix_end='lambda={lam:.10g}', plot_dev=True)   \n")
 
     f.write('end_time = time.time()\n')
     f.close()
