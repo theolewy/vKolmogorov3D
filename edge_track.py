@@ -65,3 +65,4 @@ while edge_tracker.acc >= accmin:
         edge_tracker.run_traj(nproc=32)
 
         edge_tracker.up_lamb()
+        logger.info(f'Run finished... updating to lambda={edge_tracker.lamb}')
