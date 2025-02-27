@@ -54,7 +54,7 @@ def write_driveFile(dt, Nstep, material_params, system_params, solver_params, la
     f.write('from dedalus.extras import flow_tools\n')
     f.write('import logging\n')
     f.write('logger = logging.getLogger(__name__)\n')
-    f.write('from tools.channel import TimeStepper\n')
+    f.write('from tools.kolmogorov import TimeStepper3D as TimeStepper\n')
 
     f.write('from tools.plotter import plot_from_array\n')
 
