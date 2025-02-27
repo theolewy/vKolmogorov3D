@@ -14,12 +14,12 @@ material_params = {'W': 20,
 
 system_params = {'ndim': 3,
                  'Lx': 3 * np.pi,
-                 'Lz': 8 * np.pi,
+                 'Lz': 4 * np.pi,
                  'n': 1}
 
 solver_params = {'Nx': 64,
                  'Ny': 64,
-                 'Nz': 128,
+                 'Nz': 32,
                  'dt': 2e-3,
                  'c': 0}
 
@@ -33,96 +33,99 @@ elif len(sys.argv) == 4:
 else:
     raise Exception('Need more inputs!')    
 
-symmetry_mode = False
+symmetry_mode = 'yz'
 kwargs = {}
 translate = False
 
 if setting_mode == 0:
-    # Localised AH as W decreases
+    # Get Periodic AH from 2D AH. m=1 mode branch
 
-    material_params['W'] = input_val
+    solver_params['Nz'] = 16
+    system_params['Lz'] = np.pi / 8
 
-    ic_dict_if_reinit = {'W': 18}
-    suffix_end = 'localised'
+    ic_dict_if_reinit = {'suffix': 'recent-periodic'}
+    suffix_end = 'periodic-yz'
 
 elif setting_mode == 1:
-    # Localised AH in 4pi at saddle v1
+    # Get Periodic AH from 2D AH. m=1 mode branch
 
-    material_params['W'] = 16
+    solver_params['Nz'] = 16
+    system_params['Lz'] = np.pi / 6
 
-    system_params['Lz'] = 4*np.pi
-    solver_params['Nz'] = 64
+    ic_dict_if_reinit = {'Lz': np.pi/4, 'suffix': 'recent-periodic'}
+    suffix_end = 'periodic-yz'
 
-    ic_dict_if_reinit = {'W': 20}
-    suffix_end = 'localised'
 elif setting_mode == 2:
-    # Localised AH in 4pi at saddle v2
+    # Get Periodic AH from 2D AH. m=1 mode branch
 
-    material_params['W'] = 17
+    solver_params['Nz'] = 16
+    system_params['Lz'] = np.pi / 4
 
-    system_params['Lz'] = 4*np.pi
-    solver_params['Nz'] = 64
+    ic_dict_if_reinit = {'suffix': 'recent-periodic'}
+    suffix_end = 'periodic-yz'
 
-    ic_dict_if_reinit = {'W': 20}
-    suffix_end = 'localised'
 elif setting_mode == 3:
-    # Periodic AH in 4pi at saddle
+    # Get Periodic AH from 2D AH. m=1 mode branch
 
-    material_params['W'] = 17
+    solver_params['Nz'] = 16
+    system_params['Lz'] = np.pi / 2
 
-    system_params['Lz'] = np.pi
-    solver_params['Nz'] = 32
+    ic_dict_if_reinit = {'suffix': 'recent-periodic'}
+    suffix_end = 'periodic-yz'
 
-    ic_dict_if_reinit = {'W': 20}
-    suffix_end = 'periodic'
 elif setting_mode == 4:
-    # Periodic AH in 4pi at saddle
+    # Get Periodic AH from 2D AH. m=1 mode branch
 
-    material_params['W'] = 17
+    solver_params['Nz'] = 32
+    system_params['Lz'] = np.pi
 
-    system_params['Lz'] = 1.5*np.pi
-    solver_params['Nz'] = 48
-
-    ic_dict_if_reinit = {'W': 20, 'Lz':np.pi, 'Nz':32}
-    suffix_end = 'periodic'
+    ic_dict_if_reinit = {'suffix': 'recent-periodic'}
+    suffix_end = 'periodic-yz'
 
 elif setting_mode == 5:
-    # 2 Localised AH in 8pi at saddle (Hopefully merge a little to make 2-localised AH???)
-    kwargs={'tile': True}
-    material_params['W'] = 17
+    # Get Periodic AH from 2D AH. m=1 mode branch
 
-    system_params['Lz'] = 8*np.pi
-    solver_params['Nz'] = 128
+    solver_params['Nz'] = 32
+    system_params['Lz'] = 1.25 * np.pi
 
-    ic_dict_if_reinit = {'Lz':4*np.pi, 'Nz':64, 'suffix': 'recent-localised', 'noise_coeff': 1e-2}
-    suffix_end = 'localised-2-yz'
-    symmetry_mode = 'yz'
-elif setting_mode == 6:
-    # Stretch AH
+    ic_dict_if_reinit = {'Lz': 1.25*np.pi, 'Nz': 32, 'suffix': 'recent-periodic'}
+    suffix_end = 'periodic-yz'
 
-    system_params['Lz'] = 12*np.pi
-    solver_params['Nz'] = 192
+elif setting_mode == 5:
+    # Get Periodic AH from 2D AH. m=1 mode branch
 
-    ic_dict_if_reinit = {'Lz':8*np.pi, 'Nz':128, 'suffix': 'recent-localised'}
-    suffix_end = 'localised-stretch'
+    solver_params['Nz'] = 32
+    system_params['Lz'] = 1.5 * np.pi
+
+    ic_dict_if_reinit = {'suffix': 'recent-periodic'}
+    suffix_end = 'periodic-yz'
+
+# elif setting_mode == 6:
+#     # Get Periodic AH from 2D AH. m=1 mode branch
+
+#     solver_params['Nz'] = 32
+#     system_params['Lz'] = 2 * np.pi
+
+#     ic_dict_if_reinit = {'suffix': 'recent-periodic'}
+#     suffix_end = 'periodic-yz'
 
 elif setting_mode == 7:
-    # Contract AH
+    # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
 
-    system_params['Lz'] = 4*np.pi
     solver_params['Nz'] = 64
+    system_params['Lz'] =  3.75*np.pi
 
-    ic_dict_if_reinit = {'Lz':8*np.pi, 'Nz':128, 'suffix': 'recent-localised'}
-    suffix_end = 'localised-contracted'
-
+    ic_dict_if_reinit = {'suffix': 'recent-localised'}
+    suffix_end = 'localised-yz'
 elif setting_mode == 8:
-    # Laminar
+    # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
 
-    system_params['Lz'] = 8*np.pi
-    solver_params['Nz'] = 128
+    solver_params['Nz'] = 56
+    system_params['Lz'] = 3.5*np.pi
 
     ic_dict_if_reinit = None
-    suffix_end = 'laminar'
+    suffix_end = 'localised-yz'
+
 
 log_all_params(material_params, system_params, solver_params)
 
@@ -142,4 +145,4 @@ timestepper.simulate(T=4000, ifreq=100,
                      save_over_long=True, 
                      save_full_data=False, full_save_freq=5,
                      save_subdir=f"arrowhead_{system_params['ndim']}D", suffix_end=suffix_end, 
-                     plot=True, plot_dev=True, plot_subdirectory=f"arrowhead_3D_W")
+                     plot=True, plot_dev=True, plot_subdirectory=f"arrowhead_3D_Lz")
