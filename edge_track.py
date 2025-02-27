@@ -40,10 +40,10 @@ edge_tracker = edgeTrack(material_params, system_params, solver_params,
                         write_driveFile=write_driveFile, data_root=data_root)
 
 #------------ MAIN LOOP --------------------
+logger.info('Here Field 1 is laminar, and Field 2 is the localised 3D AH')
 
 logger.info('Starting edge tracking loop')
 
-logger.info('Here Field 1 is laminar, and Field 2 is the localised 3D AH')
 
 while edge_tracker.acc >= accmin:
         
