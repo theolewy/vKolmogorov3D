@@ -91,7 +91,7 @@ elif setting_mode == 5:
     ic_dict_if_reinit = {'Lz': 1.25*np.pi, 'Nz': 32, 'suffix': 'recent-periodic'}
     suffix_end = 'periodic-yz'
 
-elif setting_mode == 5:
+elif setting_mode == 6:
     # Get Periodic AH from 2D AH. m=1 mode branch
 
     solver_params['Nz'] = 32
@@ -100,16 +100,16 @@ elif setting_mode == 5:
     ic_dict_if_reinit = {'suffix': 'recent-periodic'}
     suffix_end = 'periodic-yz'
 
-# elif setting_mode == 6:
-#     # Get Periodic AH from 2D AH. m=1 mode branch
-
-#     solver_params['Nz'] = 32
-#     system_params['Lz'] = 2 * np.pi
-
-#     ic_dict_if_reinit = {'suffix': 'recent-periodic'}
-#     suffix_end = 'periodic-yz'
-
 elif setting_mode == 7:
+    # Get Periodic AH from 2D AH. m=1 mode branch
+
+    solver_params['Nz'] = 64
+    system_params['Lz'] = 2 * np.pi
+
+    ic_dict_if_reinit = {'Lz': 1.5*np.pi, 'Nz': 32, 'suffix': 'recent-periodic'}
+    suffix_end = 'periodic-yz'
+
+elif setting_mode == 8:
     # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
 
     solver_params['Nz'] = 64
@@ -117,7 +117,7 @@ elif setting_mode == 7:
 
     ic_dict_if_reinit = {'suffix': 'recent-localised'}
     suffix_end = 'localised-yz'
-elif setting_mode == 8:
+elif setting_mode == 9:
     # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
 
     solver_params['Nz'] = 56
