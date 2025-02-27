@@ -88,7 +88,7 @@ elif setting_mode == 5:
     solver_params['Nz'] = 32
     system_params['Lz'] = 1.25 * np.pi
 
-    ic_dict_if_reinit = {'Lz': 1.25*np.pi, 'Nz': 32, 'suffix': 'recent-periodic'}
+    ic_dict_if_reinit = {'suffix': 'recent-periodic'}
     suffix_end = 'periodic-yz'
 
 elif setting_mode == 6:
@@ -106,7 +106,7 @@ elif setting_mode == 7:
     solver_params['Nz'] = 64
     system_params['Lz'] = 2 * np.pi
 
-    ic_dict_if_reinit = {'Lz': 1.5*np.pi, 'Nz': 32, 'suffix': 'recent-periodic'}
+    ic_dict_if_reinit = {'Lz': 1.5*np.pi, 'Nz': 32}
     suffix_end = 'periodic-yz'
 
 elif setting_mode == 8:
