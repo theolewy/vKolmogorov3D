@@ -25,14 +25,13 @@ solver_params = {'Nx': 64,
                  'Nz': 64,
                  'dt': 5e-3}
 
-a1     = 10.02   # when to declare ultimate state as field 1
-a2     = 10.15   # when to declare ultimate state as field 2
+a1     = 0.02   # when to declare ultimate state as field 1
+a2     = 0.15   # when to declare ultimate state as field 2
 lamb   = 0.5    # current lambda
 lamb1  = 0.0    # lower bound
 lamb2  = 1.0    # upper bound
 accmin = 1e-12
-# Tmin   = 5
-Tmin   = 0.01
+Tmin   = 80
 
 _, data_root = get_roots()
 data_root = data_root + 'edge_track/'
