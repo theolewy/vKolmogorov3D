@@ -102,7 +102,7 @@ def write_driveFile(material_params, system_params, solver_params, a1, a2, Tmin,
     f.write("    timestepper.solver.step(solver_params['dt'])\n")
 
     f.write("    vol_tr = timestepper.flow.volume_average('trace')\n")
-    f.write("    vol_Tr = timestepper.flow.volume_average('Trace')\n")
+    f.write("    vol_Tr = timestepper.flow.volume_average('trace_base')\n")
     f.write("    trace_metric = (vol_tr - vol_Tr) / vol_Tr \n")
     f.write("    vol_KE = timestepper.flow.volume_average('KE')\n")
     f.write("    vol_KE_l = timestepper.flow.volume_average('KE_base')\n")
