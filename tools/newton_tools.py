@@ -107,7 +107,6 @@ def converge_TW(material_params, system_params, solver_params, ic_file, output_f
 
     logger.info('Setting up configuration')
     fc_io = TimeStepper(material_params, system_params, solver_params)
-    print(fc_io.x.shape, fc_io.z.shape, fc_io.y.shape)
 
     """
     The IO setup is used to keep the structure
@@ -210,6 +209,8 @@ def process_ic(material_params, system_params, solver_params, ic_file_in='newton
 
     _, data_root = get_roots()
     save_folder = os.path.join(data_root, 'newtonWrapper', ic_file_out)
+
+    os.makedirs(os.path.join(data_root, 'newtonWrapper'), exist_ok=True)
     
     channel = TimeStepper(material_params, system_params, solver_params, logger_on=True, no_base=True)
     channel.ic(ic_file_in)
