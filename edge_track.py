@@ -44,7 +44,7 @@ if os.path.exists(lambda_root):
         with open(lambda_root) as file:
                 csv_reader = csv.reader(file, delimiter=' ')
                 for row in csv_reader:
-                        lamb, lamb1, lamb2, = row[0], row[1], row[2]
+                        lamb, lamb1, lamb2, = float(row[0]), float(row[1]), float(row[2])
         logger.info(f'lambda={lamb}, lambda1={lamb1}, lambda2={lamb2}..')
 
 # if last run unfinished... initialise from it?
