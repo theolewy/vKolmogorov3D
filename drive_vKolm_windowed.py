@@ -127,7 +127,8 @@ elif setting_mode == 12:
     ic_dict_if_reinit = {'suffix': f'recent-localised-xy-a-{5*np.pi:.4g}-b-{np.pi:.4g}'}
     suffix_end = f'localised-2-xy-a-{a:.4g}-b-{b:.4g}'
     window_x = False
-
+    symmetry_mode = 'yz'
+    
 log_all_params(material_params, system_params, solver_params)
 
 timestepper = TimeStepper3D(material_params=material_params, system_params=system_params, solver_params=solver_params)
