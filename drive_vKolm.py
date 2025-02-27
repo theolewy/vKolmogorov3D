@@ -126,14 +126,22 @@ elif setting_mode == 9:
     ic_dict_if_reinit = None
     suffix_end = 'localised-yz'
 elif setting_mode == 10:
-    # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
+    # Stretch AH
 
-    solver_params['Nz'] = 64
+    system_params['Lz'] = 12*np.pi
+    solver_params['Nz'] = 192
+
+    ic_dict_if_reinit = {'Lz':8*np.pi, 'Nz':128, 'suffix': 'recent-localised'}
+    suffix_end = 'localised-stretch'
+
+elif setting_mode == 11:
+    # Contract AH
+
     system_params['Lz'] = 4*np.pi
+    solver_params['Nz'] = 64
 
-    ic_dict_if_reinit = {'noise_coeff': 0}
-    suffix_end = 'laminar'
-
+    ic_dict_if_reinit = {'Lz':8*np.pi, 'Nz':128, 'suffix': 'recent-localised'}
+    suffix_end = 'localised-contracted'
 
 log_all_params(material_params, system_params, solver_params)
 
