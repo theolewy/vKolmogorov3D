@@ -36,7 +36,7 @@ gmres_params = {
     'eps_gm': 2e-3,     # controls GMRES residual threshold
     'eps_newt': 1e-6,   # controls size of newton step  
     'TW_flag': True,    # seach for a travelling wave
-    'sim_time_TW': 3,   # number of steps to take in each simulation of a travelling wave    
+    'sim_time_TW': 5,   # number of steps to take in each simulation of a travelling wave    
                 }
 
 if len(sys.argv) == 3:
