@@ -25,18 +25,44 @@ solver_params = {'Nx': 64,
                  'Nz': 64,
                  'dt': 5e-3}
 
-a1     = 0.02   # when to declare ultimate state as field 1
-a2     = 0.15   # when to declare ultimate state as field 2
-lamb   = 0.5    # current lambda
-lamb1  = 0.0    # lower bound
-lamb2  = 1.0    # upper bound
-accmin = 1e-12
-Tmin   = 80
-
 _, data_root = get_roots()
-data_root = data_root + 'edge_track/'
-lambda_root = data_root + '/lambda.out'
 
+
+
+if len(sys.argv) == 3:
+    job_idx = int(sys.argv[1])
+    setting_mode = int(sys.argv[2])
+else:
+    raise Exception('Need more inputs!') 
+
+if setting_mode == 0:
+                
+        a1     = 0.02   # when to declare ultimate state as field 1
+        a2     = 0.15   # when to declare ultimate state as field 2
+        lamb   = 0.5    # current lambda
+        lamb1  = 0.0    # lower bound
+        lamb2  = 1.0    # upper bound
+        accmin = 1e-12
+        Tmin   = 80
+
+        data_root = data_root + 'edge_track/lam-local/'
+        logger.info('Here Field 1 is laminar, and Field 2 is the localised 3D AH')
+
+elif setting_mode == 1:
+       
+        a1     = 0.02   # when to declare ultimate state as field 1
+        a2     = 0.15   # when to declare ultimate state as field 2
+        lamb   = 0.5    # current lambda
+        lamb1  = 0.0    # lower bound
+        lamb2  = 1.0    # upper bound
+        accmin = 1e-12
+        Tmin   = 80
+
+        data_root = data_root + 'edge_track/lam-jockey/'
+        logger.info('Here Field 1 is laminar, and Field 2 is 2 jockeying 3D AHs')
+
+
+lambda_root = data_root + '/lambda.out'
 # obtain lambda from lambda file if it exists
 if os.path.exists(lambda_root):
         logger.info('Loading lambda bounds from file...')
@@ -55,7 +81,6 @@ edge_tracker = edgeTrack(material_params, system_params, solver_params,
                         write_driveFile=write_driveFile, data_root=data_root)
 
 #------------ MAIN LOOP --------------------
-logger.info('Here Field 1 is laminar, and Field 2 is the localised 3D AH')
 
 logger.info('Starting edge tracking loop')
 
