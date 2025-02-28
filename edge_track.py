@@ -51,6 +51,7 @@ if os.path.exists(lambda_root):
 edge_tracker = edgeTrack(material_params, system_params, solver_params,
                         a1, a2, lamb, lamb1, lamb2, accmin, Tmin, 
                         variables=['u', 'v', 'w', 'p', 'c11', 'c12', 'c22', 'c33', 'c13', 'c23'],
+                        field1_name='field1.h5', field2_name='field2.h5',
                         write_driveFile=write_driveFile, data_root=data_root)
 
 #------------ MAIN LOOP --------------------
