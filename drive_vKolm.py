@@ -248,6 +248,14 @@ elif setting_mode == 23:
 
     ic_dict_if_reinit = {'Lz': np.pi / 2}
     suffix_end = 'periodic-yz'
+elif setting_mode == 24:
+    # Get Periodic AH from 2D AH. m=1 mode branch
+
+    solver_params['Nz'] = 64
+    system_params['Lz'] =  4*np.pi
+
+    ic_dict_if_reinit = {'Lz': 3*np.pi, 'Nz': 64}
+    suffix_end = 'periodic-yz'
 
 log_all_params(material_params, system_params, solver_params)
 
