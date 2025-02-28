@@ -222,7 +222,7 @@ elif setting_mode == 20:
 
     solver_params['dt'] = 4e-3
 
-    ic_dict_if_reinit = {'Lz': 3.5*np.pi, 'Nz': 56}
+    ic_dict_if_reinit = {'Lz': 3.5*np.pi, 'Nz': 56, 'suffix': 'recent-periodic-yz'}
     suffix_end = 'jockey-yz'
 
 
