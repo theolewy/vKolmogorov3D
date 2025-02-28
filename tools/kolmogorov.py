@@ -306,7 +306,7 @@ class TimeStepper3D(CartesianTimeStepper):
     def _set_vars_coords_param_names(self):
 
         self.variables = ['u', 'v', 'w', 'p', 'c11', 'c12', 'c22', 'c33', 'c13', 'c23']
-        self.noise_on_variables = ['u', 'v', 'c11', 'c12']  # use psi to denote 2D streamfunction
+        self.noise_on_variables = ['u', 'c11', 'c12']  # use psi to denote 2D streamfunction
         self.material_param_names = ['Re', 'W', 'eps', 'beta', 'L']
         self.inhomo_coord_name = 'y'
         self.homo_coord_names = ['x', 'z']

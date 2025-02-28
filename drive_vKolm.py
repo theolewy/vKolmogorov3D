@@ -224,7 +224,30 @@ elif setting_mode == 20:
 
     ic_dict_if_reinit = {'Lz': 3.5*np.pi, 'Nz': 56, 'suffix': 'recent-localised-yz'}
     suffix_end = 'jockey-yz'
+elif setting_mode == 21:
+    # Get Periodic AH from 2D AH. m=1 mode branch
 
+    solver_params['Nz'] = 16
+    system_params['Lz'] = 5 * np.pi / 16
+
+    ic_dict_if_reinit = {'Lz': np.pi / 2}
+    suffix_end = 'periodic-yz'
+elif setting_mode == 22:
+    # Get Periodic AH from 2D AH. m=1 mode branch
+
+    solver_params['Nz'] = 16
+    system_params['Lz'] = 6 * np.pi / 16
+
+    ic_dict_if_reinit = {'Lz': np.pi / 2}
+    suffix_end = 'periodic-yz'
+elif setting_mode == 23:
+    # Get Periodic AH from 2D AH. m=1 mode branch
+
+    solver_params['Nz'] = 16
+    system_params['Lz'] = 7 * np.pi / 16
+
+    ic_dict_if_reinit = {'Lz': np.pi / 2}
+    suffix_end = 'periodic-yz'
 
 log_all_params(material_params, system_params, solver_params)
 
