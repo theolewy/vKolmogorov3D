@@ -29,7 +29,7 @@ if len(sys.argv) == 3:
 elif len(sys.argv) == 4:
     job_idx = int(sys.argv[1])
     setting_mode = int(sys.argv[2])
-    input_val = float(sys.argv[3])
+    input_val = float(eval(sys.argv[3]))
 else:
     raise Exception('Need more inputs!')    
 
@@ -265,7 +265,7 @@ elif setting_mode == 25:
     ic_dict_if_reinit = {'Lz': np.pi/2, 'Nz': 16}
     suffix_end = 'periodic-yz'
 
-    
+
 log_all_params(material_params, system_params, solver_params)
 
 ic_file, noise_coeff, _ = get_ic_file(material_params, system_params, solver_params, suffix=f'recent-{suffix_end}', subdir='arrowhead_3D', 
