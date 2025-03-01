@@ -256,7 +256,16 @@ elif setting_mode == 24:
 
     ic_dict_if_reinit = {'Lz': 3*np.pi, 'Nz': 64}
     suffix_end = 'periodic-yz'
+elif setting_mode == 25:
+    # Get Periodic AH from 2D AH. m=1 mode branch
 
+    solver_params['Nz'] = 16
+    system_params['Lz'] =  input_val*np.pi
+
+    ic_dict_if_reinit = {'Lz': np.pi/2, 'Nz': 16}
+    suffix_end = 'periodic-yz'
+
+    
 log_all_params(material_params, system_params, solver_params)
 
 ic_file, noise_coeff, _ = get_ic_file(material_params, system_params, solver_params, suffix=f'recent-{suffix_end}', subdir='arrowhead_3D', 
