@@ -40,46 +40,45 @@ translate = False
 if setting_mode == 0:
     # Get Periodic AH from 2D AH. m=1 mode branch
 
-    solver_params['Nz'] = 16
-    system_params['Lz'] = np.pi / 8
+    solver_params['Nz'] = 64
+    system_params['Lz'] =  3.5*np.pi
 
-    ic_dict_if_reinit = {'suffix': 'recent-periodic'}
+    ic_dict_if_reinit = {'Lz': 3*np.pi, 'Nz': 64}
     suffix_end = 'periodic-yz'
 
 elif setting_mode == 1:
     # Get Periodic AH from 2D AH. m=1 mode branch
 
-    solver_params['Nz'] = 16
-    system_params['Lz'] = np.pi / 6
+    solver_params['Nz'] = 64
+    system_params['Lz'] = 4*np.pi
 
-    ic_dict_if_reinit = {'Lz': np.pi/4, 'suffix': 'recent-periodic'}
+    ic_dict_if_reinit = {'Lz': 3*np.pi, 'Nz': 64}
     suffix_end = 'periodic-yz'
 
 elif setting_mode == 2:
     # Get Periodic AH from 2D AH. m=1 mode branch
 
-    solver_params['Nz'] = 16
-    system_params['Lz'] = np.pi / 4
+    solver_params['Nz'] = 96
+    system_params['Lz'] = 4.5*np.pi
 
-    ic_dict_if_reinit = {'suffix': 'recent-periodic'}
+    ic_dict_if_reinit = {'Lz': 4*np.pi, 'Nz': 64}
     suffix_end = 'periodic-yz'
 
 elif setting_mode == 3:
     # Get Periodic AH from 2D AH. m=1 mode branch
 
-    solver_params['Nz'] = 16
-    system_params['Lz'] = np.pi / 2
+    solver_params['Nz'] = 96
+    system_params['Lz'] = 5*np.pi
 
-    ic_dict_if_reinit = {'suffix': 'recent-periodic'}
+    ic_dict_if_reinit = {'Lz': 4*np.pi, 'Nz': 64}
     suffix_end = 'periodic-yz'
-
 elif setting_mode == 4:
     # Get Periodic AH from 2D AH. m=1 mode branch
 
-    solver_params['Nz'] = 32
-    system_params['Lz'] = np.pi
+    solver_params['Nz'] = 96
+    system_params['Lz'] = 5.5*np.pi
 
-    ic_dict_if_reinit = {'suffix': 'recent-periodic'}
+    ic_dict_if_reinit = {'Lz': 4*np.pi, 'Nz': 64}
     suffix_end = 'periodic-yz'
 
 elif setting_mode == 5:
@@ -176,7 +175,7 @@ elif setting_mode == 15:
     solver_params['Nz'] = 64
     system_params['Lz'] =  3*np.pi
 
-    ic_dict_if_reinit = {'Lz': 2*np.pi, 'Nz': 64}
+    ic_dict_if_reinit = {'Lz': 3*np.pi, 'Nz': 64}
     suffix_end = 'periodic-yz'
 elif setting_mode == 16:
     # Get Periodic AH from 2D AH. m=1 mode branch
@@ -194,26 +193,7 @@ elif setting_mode == 17:
 
     ic_dict_if_reinit = {'Lz': np.pi/4, 'Nz': 16}
     suffix_end = 'periodic-yz'
-elif setting_mode == 18:
-    # Get Periodic AH from 2D AH. m=1 mode branch
 
-    solver_params['Nz'] = 32
-    system_params['Lz'] =  np.pi*1.1
-
-    solver_params['dt'] = 4e-3
-
-    ic_dict_if_reinit = {'Lz': np.pi, 'Nz': 32}
-    suffix_end = 'periodic-yz'
-elif setting_mode == 19:
-    # Get Periodic AH from 2D AH. m=1 mode branch
-
-    solver_params['Nz'] = 32
-    system_params['Lz'] =  np.pi*1.2
-
-    solver_params['dt'] = 4e-3
-
-    ic_dict_if_reinit = {'Lz': np.pi, 'Nz': 32}
-    suffix_end = 'periodic-yz'
 elif setting_mode == 20:
     # Get Periodic AH from 2D AH. m=1 mode branch
 
@@ -224,22 +204,7 @@ elif setting_mode == 20:
 
     ic_dict_if_reinit = {'Lz': 3.5*np.pi, 'Nz': 56, 'suffix': 'recent-localised-yz'}
     suffix_end = 'jockey-yz'
-elif setting_mode == 21:
-    # Get Periodic AH from 2D AH. m=1 mode branch
 
-    solver_params['Nz'] = 16
-    system_params['Lz'] = 5 * np.pi / 16
-
-    ic_dict_if_reinit = {'Lz': np.pi / 2}
-    suffix_end = 'periodic-yz'
-elif setting_mode == 22:
-    # Get Periodic AH from 2D AH. m=1 mode branch
-
-    solver_params['Nz'] = 16
-    system_params['Lz'] = 6 * np.pi / 16
-
-    ic_dict_if_reinit = {'Lz': np.pi / 2}
-    suffix_end = 'periodic-yz'
 elif setting_mode == 23:
     # Get Periodic AH from 2D AH. m=1 mode branch
 
