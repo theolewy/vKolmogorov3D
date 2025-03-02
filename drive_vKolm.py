@@ -146,29 +146,31 @@ elif setting_mode == 12:
     # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
 
     solver_params['Nz'] = 64
-    system_params['Lz'] =  3.7*np.pi
+    system_params['Lz'] =  3.68*np.pi
 
     kwargs = {'truncate': True}
-    ic_dict_if_reinit = {'Lz': 3.75*np.pi}
+    ic_dict_if_reinit = {'Lz': 3.7*np.pi}
     suffix_end = 'localised-yz'
 elif setting_mode == 13:
     # Truncate to Saddle
     # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
 
     solver_params['Nz'] = 64
-    system_params['Lz'] =  3.6*np.pi
+    system_params['Lz'] =  3.65*np.pi
 
     kwargs = {'truncate': True}
-    ic_dict_if_reinit = {'Lz': 3.75*np.pi}
+    ic_dict_if_reinit = {'Lz': 3.7*np.pi}
     suffix_end = 'localised-yz'
 elif setting_mode == 14:
-    # Get Periodic AH from 2D AH. m=1 mode branch
+    # Truncate to Saddle
+    # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
 
     solver_params['Nz'] = 64
-    system_params['Lz'] =  2.5*np.pi
+    system_params['Lz'] =  3.63*np.pi
 
-    ic_dict_if_reinit = {'Lz': 2*np.pi, 'Nz': 64}
-    suffix_end = 'periodic-yz'
+    kwargs = {'truncate': True}
+    ic_dict_if_reinit = {'Lz': 3.7*np.pi}
+    suffix_end = 'localised-yz'
 elif setting_mode == 15:
     # Get Periodic AH from 2D AH. m=1 mode branch
 
