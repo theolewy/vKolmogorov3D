@@ -208,10 +208,10 @@ elif setting_mode == 20:
 elif setting_mode == 23:
     # Get Periodic AH from 2D AH. m=1 mode branch
 
-    solver_params['Nz'] = 16
-    system_params['Lz'] = 7 * np.pi / 16
+    solver_params['Nz'] = 32
+    system_params['Lz'] =  input_val*np.pi
 
-    ic_dict_if_reinit = {'Lz': np.pi / 2}
+    ic_dict_if_reinit = {'Lz': 1.5*np.pi, 'Nz': 32}
     suffix_end = 'periodic-yz'
 elif setting_mode == 24:
     # Get Periodic AH from 2D AH. m=1 mode branch
