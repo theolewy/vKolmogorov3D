@@ -233,6 +233,16 @@ elif setting_mode == 25:
     ic_dict_if_reinit = {'Lz': np.pi/2, 'Nz': 16}
     suffix_end = 'periodic-yz'
 
+elif setting_mode == 26:
+    # Get Periodic AH from 2D AH. m=1 mode branch
+
+    solver_params['Nz'] = 32
+    system_params['Lz'] =  input_val*np.pi
+    solver_params['dt'] = 5e-3
+
+    ic_dict_if_reinit = {'Lz': 1.1*np.pi, 'Nz': 32, 'suffix': 'recent-periodic-yz'}
+    suffix_end = 'below-periodic-yz'
+
 
 log_all_params(material_params, system_params, solver_params)
 
