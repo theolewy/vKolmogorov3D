@@ -128,7 +128,24 @@ elif setting_mode == 12:
     suffix_end = f'localised-2-xy-a-{a:.4g}-b-{b:.4g}'
     window_x = False
     symmetry_mode = 'yz'
-    
+elif setting_mode == 13:
+    # Localising in a spanwise localised soln in x direction...
+    a, b = 2*np.pi/3, np.pi/2
+
+    material_params['W'] = 20
+    solver_params['dt'] = 5e-3
+
+    system_params['Lz'] = 4*np.pi
+    system_params['Lx'] = 24*np.pi
+
+    solver_params['Nz'] = 64
+    solver_params['Ny'] = 64
+    solver_params['Nx'] = 512
+
+    ic_dict_if_reinit = {'suffix': f'recent-localised-2-xy-a-{a:.4g}-b-{b:.4g}'}
+    suffix_end = f'localised-3-xy-a-{a:.4g}-b-{b:.4g}'
+    window_x = False
+    symmetry_mode = 'yz'
 log_all_params(material_params, system_params, solver_params)
 
 timestepper = TimeStepper3D(material_params=material_params, system_params=system_params, solver_params=solver_params)
