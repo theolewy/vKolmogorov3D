@@ -187,6 +187,8 @@ elif setting_mode == 16:
 
     ic_dict_if_reinit = {'Lz': 5*np.pi, 'Nz': 96}
     suffix_end = 'periodic-yz'
+    solver_params['dt'] = 5e-3
+
 elif setting_mode == 17:
     # Get Periodic AH from 2D AH. m=1 mode branch
 
