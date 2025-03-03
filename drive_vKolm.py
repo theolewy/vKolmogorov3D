@@ -240,7 +240,7 @@ elif setting_mode == 26:
     system_params['Lz'] =  input_val*np.pi
     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Lz': 1.1*np.pi, 'Nz': 32, 'suffix': 'recent-periodic-yz'}
+    ic_dict_if_reinit = {'Lz': 0.8*np.pi, 'Nz': 32}
     suffix_end = 'below-periodic-yz'
 
 
