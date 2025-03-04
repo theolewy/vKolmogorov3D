@@ -154,7 +154,7 @@ elif setting_mode == 14:
     a, b = 2*np.pi/3, np.pi/2
 
     material_params['W'] = 20
-    solver_params['dt'] = 1e-2
+    solver_params['dt'] = 2e-2
 
     system_params['Lz'] = 6*np.pi
     system_params['Lx'] = 24*np.pi
