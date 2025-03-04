@@ -51,7 +51,7 @@ if setting_mode == 0:
 elif setting_mode == 1:
        
         a1     = 0.21   # when to declare ultimate state as field 1
-        a2     = 0.3   # when to declare ultimate state as field 2
+        a2     = 0.33   # when to declare ultimate state as field 2
         lamb   = 0.5    # current lambda
         lamb1  = 0.0    # lower bound
         lamb2  = 1.0    # upper bound

@@ -99,7 +99,7 @@ def write_driveFile(material_params, system_params, solver_params, a1, a2, Tmin,
     f.write('ifreq = 100\n')
 
     f.write(f"snapshots = timestepper.solver.evaluator.add_file_handler('{data_root}/snapshots',\n") 
-    f.write("           sim_dt = 1.0, max_writes=50, mode='overwrite')\n")
+    f.write("           sim_dt = 50, max_writes=10, mode='overwrite')\n")
     f.write('snapshots.add_system(timestepper.solver.state)\n')
     f.write(f"scalars = timestepper.solver.evaluator.add_file_handler('{data_root}/scalars',\n") 
     f.write("           sim_dt = 0.05, max_writes=np.inf, mode='overwrite')\n")
