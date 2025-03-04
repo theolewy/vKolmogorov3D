@@ -23,7 +23,7 @@ system_params = {'ndim': 3,
 solver_params = {'Nx': 32,
                  'Ny': 32,
                  'Nz': 32,
-                 'dt': 8e-3}
+                 'dt': 1e-2}
 
 _, data_root = get_roots()
 
@@ -56,7 +56,7 @@ elif setting_mode == 1:
         lamb1  = 0.0    # lower bound
         lamb2  = 1.0    # upper bound
         accmin = 1e-12
-        Tmin   = 50
+        Tmin   = 150
 
         data_root = data_root + 'edge_track/local-jockey-4pi/'
         logger.info('Here Field 1 is localised 3D AH, and Field 2 is 2 jockeying 3D AHs')
