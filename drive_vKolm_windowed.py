@@ -133,7 +133,7 @@ elif setting_mode == 13:
     a, b = 2*np.pi/3, np.pi/2
 
     material_params['W'] = 20
-    solver_params['dt'] = 5e-3
+    solver_params['dt'] = 2e-3
 
     system_params['Lz'] = 4*np.pi
     system_params['Lx'] = 24*np.pi
@@ -154,7 +154,7 @@ ic_file, noise_coeff, reinit = get_ic_file(material_params, system_params, solve
                                    ic_dict_if_reinit=ic_dict_if_reinit)
 
 timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=0, tile=True)
-reinit = False
+
 if reinit:
     if window_x:
         timestepper.translate_AH_to_centre(mode='x')    # move so arrowhead is in the middle of the domain
