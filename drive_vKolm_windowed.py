@@ -178,8 +178,6 @@ ic_file, noise_coeff, reinit = get_ic_file(material_params, system_params, solve
 
 timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=0, tile=True)
 
-reinit = False
-
 if reinit:
     if window_x:
         timestepper.translate_AH_to_centre(mode='x')    # move so arrowhead is in the middle of the domain
