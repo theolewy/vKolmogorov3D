@@ -77,7 +77,7 @@ def write_driveFile(material_params, system_params, solver_params, a1, a2, Tmin,
     f.write(f"'dt': {dt} }}\n")
 
     f.write("timestepper = TimeStepper(material_params, system_params, solver_params)\n")
-    f.write(f"timestepper.ic(ic_file='{data_root}/edge_track/ic_half.h5')\n")
+    f.write(f"timestepper.ic(ic_file='{data_root}/ic_half.h5')\n")
     f.write(f"timestepper.update_dy()\n")   # required as ic_file only contains u,v,p etc, not uy, vy...
     f.write('timestepper.solver.sim_time = 0.0\n')
     f.write('timestepper.solver.iteration = 0\n')
@@ -94,10 +94,10 @@ def write_driveFile(material_params, system_params, solver_params, a1, a2, Tmin,
 
     f.write('ifreq = 100\n')
 
-    f.write(f"snapshots = timestepper.solver.evaluator.add_file_handler('{data_root}/edge_track/snapshots',\n") 
+    f.write(f"snapshots = timestepper.solver.evaluator.add_file_handler('{data_root}/snapshots',\n") 
     f.write("           sim_dt = 1.0, max_writes=50, mode='overwrite')\n")
     f.write('snapshots.add_system(timestepper.solver.state)\n')
-    f.write(f"scalars = timestepper.solver.evaluator.add_file_handler('{data_root}/edge_track/scalars',\n") 
+    f.write(f"scalars = timestepper.solver.evaluator.add_file_handler('{data_root}/scalars',\n") 
     f.write("           sim_dt = 0.05, max_writes=np.inf, mode='overwrite')\n")
     f.write("scalars.add_task('integ(c11+c22+c33)/area',name='vol_tr')\n")
     f.write("logger.info('Starting loop')\n")
@@ -116,13 +116,13 @@ def write_driveFile(material_params, system_params, solver_params, a1, a2, Tmin,
 
     f.write('    if (trace_metric > %e and timestepper.solver.sim_time > %e):\n'%(a2,Tmin))
     f.write('       if rank == 0:\n')
-    f.write(f"           file = open('{data_root}/edge_track/is2','w')\n")
+    f.write(f"           file = open('{data_root}/is2','w')\n")
     f.write("           file.write('%e, True'%(timestepper.solver.sim_time))\n")
     f.write("       logger.info('Stop trajectory: goes to field 2')\n")
     f.write('       break\n')
     f.write('    if (trace_metric < %e and timestepper.solver.sim_time > %e):\n'%(a1,Tmin))
     f.write('       if rank == 0:\n')
-    f.write(f"           file = open('{data_root}/edge_track/is2','w')\n")
+    f.write(f"           file = open('{data_root}/is2','w')\n")
     f.write("           file.write('%e, False'%(timestepper.solver.sim_time))\n")
     f.write("       logger.info('Stop trajectory: goes to field 1')\n")
     f.write('       break\n')
