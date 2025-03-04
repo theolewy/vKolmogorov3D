@@ -39,6 +39,10 @@ def write_driveFile(material_params, system_params, solver_params, a1, a2, Tmin,
     Nx, Ny, Nz, dt = solver_params['Nx'], solver_params['Ny'], solver_params['Nz'], solver_params['dt']
 
     core_root, _ = get_roots()
+    
+    if not os.path.exists(f'{data_root}/is2'):
+        f = open(f'{data_root}/is2','x')
+        f.close()
 
     if (L == np.inf): L = 'np.inf'
 
