@@ -38,7 +38,7 @@ def get_ic_file(material_params, system_params, solver_params, restart=False, su
     if 'suffix_name' in kwargs.keys(): suffix = f"recent-{kwargs['suffix_name']}"
 
     save_folder = get_fpath_sim(material_params, system_params, solver_params, subdir=subdir, suffix=suffix, **kwargs)
-
+    print(save_folder)
     if os.path.exists(save_folder) and not restart:
         post.merge_process_files(save_folder, cleanup=True)
         comm = MPI.COMM_WORLD
