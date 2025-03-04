@@ -58,7 +58,7 @@ elif setting_mode == 1:
         accmin = 1e-12
         Tmin   = 20
 
-        data_root = data_root + 'edge_track/lam-jockey/'
+        data_root = data_root + 'edge_track/local-jockey/'
         logger.info('Here Field 1 is localised 3D AH, and Field 2 is 2 jockeying 3D AHs')
 
 
