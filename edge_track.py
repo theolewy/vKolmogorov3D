@@ -20,10 +20,10 @@ system_params = {'ndim': 3,
                  'Lz': 4 * np.pi,
                  'n': 1}
 
-solver_params = {'Nx': 64,
-                 'Ny': 64,
-                 'Nz': 64,
-                 'dt': 5e-3}
+solver_params = {'Nx': 32,
+                 'Ny': 32,
+                 'Nz': 32,
+                 'dt': 8e-3}
 
 _, data_root = get_roots()
 
@@ -58,8 +58,9 @@ elif setting_mode == 1:
         accmin = 1e-12
         Tmin   = 50
 
-        data_root = data_root + 'edge_track/local-jockey/'
+        data_root = data_root + 'edge_track/local-jockey-4pi/'
         logger.info('Here Field 1 is localised 3D AH, and Field 2 is 2 jockeying 3D AHs')
+
 
 
 lambda_root = data_root + '/lambda.out'
