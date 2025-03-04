@@ -116,7 +116,7 @@ elif setting_mode == 8:
     solver_params['Nz'] = 32
     system_params['Lz'] =  4*np.pi
 
-    ic_dict_if_reinit = {'suffix': 'recent-localised', 'Nx': 64, 'Ny': 64, 'Nz': 64}
+    ic_dict_if_reinit = {'Nx': 64, 'Ny': 64, 'Nz': 64}
     suffix_end = 'localised-yz'
 elif setting_mode == 9:
     # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
