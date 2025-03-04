@@ -50,16 +50,16 @@ if setting_mode == 0:
 
 elif setting_mode == 1:
        
-        a1     = 0.02   # when to declare ultimate state as field 1
-        a2     = 0.15   # when to declare ultimate state as field 2
+        a1     = 0.21   # when to declare ultimate state as field 1
+        a2     = 0.3   # when to declare ultimate state as field 2
         lamb   = 0.5    # current lambda
         lamb1  = 0.0    # lower bound
         lamb2  = 1.0    # upper bound
         accmin = 1e-12
-        Tmin   = 80
+        Tmin   = 20
 
         data_root = data_root + 'edge_track/lam-jockey/'
-        logger.info('Here Field 1 is laminar, and Field 2 is 2 jockeying 3D AHs')
+        logger.info('Here Field 1 is localised 3D AH, and Field 2 is 2 jockeying 3D AHs')
 
 
 lambda_root = data_root + '/lambda.out'
