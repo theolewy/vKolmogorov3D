@@ -29,7 +29,7 @@ from tools.misc_tools import get_fpath_sim
 
 logger = logging.getLogger(__name__)
 
-def write_driveFile(material_params, system_params, solver_params, a1, a2, Tmin, lam=''):
+def write_driveFile(material_params, system_params, solver_params, a1, a2, Tmin, lam='', data_root=''):
 
     Re, W, beta, L, eps, = material_params['Re'], material_params['W'], material_params['beta'], \
                            material_params['L'], material_params['eps']
@@ -38,11 +38,11 @@ def write_driveFile(material_params, system_params, solver_params, a1, a2, Tmin,
 
     Nx, Ny, Nz, dt = solver_params['Nx'], solver_params['Ny'], solver_params['Nz'], solver_params['dt']
 
-    core_root, data_root = get_roots()
+    core_root, _ = get_roots()
 
     if (L == np.inf): L = 'np.inf'
 
-    f = open(f'{data_root}/edge_track/drive_flow.py', 'w')
+    f = open(f'{data_root}/drive_flow.py', 'w')
 
     f.write('import numpy as np\n')
     f.write("import sys\n")
