@@ -133,7 +133,7 @@ elif setting_mode == 13:
     a, b = 2*np.pi/3, np.pi/2
 
     material_params['W'] = 20
-    solver_params['dt'] = 2e-3
+    solver_params['dt'] = 5e-3
 
     system_params['Lz'] = 4*np.pi
     system_params['Lx'] = 24*np.pi
