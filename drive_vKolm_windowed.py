@@ -128,7 +128,7 @@ elif setting_mode == 12:
     suffix_end = f'localised-2-xy-a-{a:.4g}-b-{b:.4g}'
     window_x = False
     symmetry_mode = 'yz'
-    
+
 elif setting_mode == 13:
     # Localising in a spanwise localised soln in x direction...
     a, b = 2*np.pi/3, np.pi/2
@@ -145,6 +145,27 @@ elif setting_mode == 13:
 
     ic_dict_if_reinit = {'suffix': f'recent-localised-2-xy-a-{a:.4g}-b-{b:.4g}'}
     suffix_end = f'localised-3-xy-a-{a:.4g}-b-{b:.4g}'
+
+    window_x = False
+    symmetry_mode = 'yz'
+
+elif setting_mode == 14:
+    # Localising in a spanwise localised soln in x direction...
+    a, b = 2*np.pi/3, np.pi/2
+
+    material_params['W'] = 20
+    solver_params['dt'] = 8e-3
+
+    system_params['Lz'] = 4*np.pi
+    system_params['Lx'] = 24*np.pi
+
+    solver_params['Nz'] = 32
+    solver_params['Ny'] = 32
+    solver_params['Nx'] = 300
+
+    ic_dict_if_reinit = {'Nx': 64, 'Ny': 64, 'Nz': 512, 'suffix': f'recent-localised-3-xy-a-{a:.4g}-b-{b:.4g}'}
+    suffix_end = f'localised-3-xy-a-{a:.4g}-b-{b:.4g}'
+    
     window_x = False
     symmetry_mode = 'yz'
 
@@ -156,6 +177,8 @@ ic_file, noise_coeff, reinit = get_ic_file(material_params, system_params, solve
                                    ic_dict_if_reinit=ic_dict_if_reinit)
 
 timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=0, tile=True)
+
+reinit = False
 
 if reinit:
     if window_x:
