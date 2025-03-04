@@ -65,7 +65,7 @@ elif setting_mode == 2:
        
         system_params['Lz'] = 4.5 * np.pi
 
-        a1     = 0.21   # when to declare ultimate state as field 1
+        a1     = 0.19   # when to declare ultimate state as field 1
         a2     = 0.3   # when to declare ultimate state as field 2
         lamb   = 0.5    # current lambda
         lamb1  = 0.0    # lower bound
