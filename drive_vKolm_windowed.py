@@ -163,7 +163,7 @@ elif setting_mode == 14:
     solver_params['Ny'] = 32
     solver_params['Nx'] = 300
 
-    ic_dict_if_reinit = {'Nx': 64, 'Ny': 64, 'Nz': 512, 'suffix': f'recent-localised-3-xy-a-{a:.4g}-b-{b:.4g}'}
+    ic_dict_if_reinit = {'Nx': 512, 'Ny': 64, 'Nz': 64, 'suffix': f'recent-localised-3-xy-a-{a:.4g}-b-{b:.4g}'}
     suffix_end = f'localised-3-xy-a-{a:.4g}-b-{b:.4g}'
     
     window_x = False
