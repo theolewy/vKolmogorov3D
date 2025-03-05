@@ -36,19 +36,6 @@ else:
     raise Exception('Need more inputs!') 
 
 if setting_mode == 0:
-                
-        a1     = 0.02   # when to declare ultimate state as field 1
-        a2     = 0.15   # when to declare ultimate state as field 2
-        lamb   = 0.5    # current lambda
-        lamb1  = 0.0    # lower bound
-        lamb2  = 1.0    # upper bound
-        accmin = 1e-12
-        Tmin   = 80
-
-        data_root = data_root + 'edge_track/lam-local/'
-        logger.info('Here Field 1 is laminar, and Field 2 is the localised 3D AH')
-
-elif setting_mode == 1:
        
         a1     = 0.21   # when to declare ultimate state as field 1
         a2     = 0.33   # when to declare ultimate state as field 2
@@ -56,12 +43,13 @@ elif setting_mode == 1:
         lamb1  = 0.0    # lower bound
         lamb2  = 1.0    # upper bound
         accmin = 1e-12
-        Tmin   = 1500
+        Tmin   = 1000
+        a_Tmin = 300
 
         data_root = data_root + 'edge_track/local-jockey-4pi/'
         logger.info('Here Field 1 is localised 3D AH, and Field 2 is 2 jockeying 3D AHs')
 
-elif setting_mode == 2:
+elif setting_mode == 1:
         
         solver_params['dt'] = 1e-2
         system_params['Lz'] = 4.5 * np.pi
@@ -72,7 +60,8 @@ elif setting_mode == 2:
         lamb1  = 0.0    # lower bound
         lamb2  = 1.0    # upper bound
         accmin = 1e-12
-        Tmin   = 1500
+        Tmin   = 1000
+        a_Tmin = 300
 
         data_root = data_root + 'edge_track/local-jockey-4,5pi/'
         logger.info('Here Field 1 is localised 3D AH, and Field 2 is 2 jockeying 3D AHs')
@@ -92,7 +81,7 @@ if os.path.exists(lambda_root):
 # if last run unfinished... initialise from it?
 
 edge_tracker = edgeTrack(material_params, system_params, solver_params,
-                        a1, a2, lamb, lamb1, lamb2, accmin, Tmin, 
+                        a1, a2, lamb, lamb1, lamb2, accmin, Tmin, a_Tmin,
                         variables=['u', 'v', 'w', 'p', 'c11', 'c12', 'c22', 'c33', 'c13', 'c23'],
                         field1_name='field1.h5', field2_name='field2.h5',
                         write_driveFile=write_driveFile, data_root=data_root)
