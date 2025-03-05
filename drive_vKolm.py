@@ -131,11 +131,12 @@ elif setting_mode == 8:
 elif setting_mode == 9:
     # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
 
-    solver_params['Nz'] = 56
-    system_params['Lz'] = 3.5*np.pi
+    solver_params['Nz'] = 64
+    system_params['Lz'] = 2.5*np.pi
+    solver_params['dt'] = 5e-3
 
     ic_dict_if_reinit = None
-    suffix_end = 'localised-yz'
+    suffix_end = 'periodic-yz'
 elif setting_mode == 10:
     # Stretch AH
 
