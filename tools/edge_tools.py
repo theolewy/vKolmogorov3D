@@ -125,13 +125,13 @@ def write_driveFile(material_params, system_params, solver_params, a1, a2, Tmin,
 
     f.write(f"    t_since_middle_region = timestepper.solver.sim_time - in_middle_region_last_t\n")
 
-    f.write('    if (in2_region and t_since_middle_region > %e and timestepper.solver.sim_time > %e):\n'%(a2, a_Tmin, Tmin))
+    f.write('    if (in2_region and t_since_middle_region > %e and timestepper.solver.sim_time > %e):\n'%(a_Tmin, Tmin))
     f.write('       if rank == 0:\n')
     f.write(f"           file = open('{data_root}/is2','w')\n")
     f.write("           file.write('%e, True'%(timestepper.solver.sim_time))\n")
     f.write("       logger.info('Stop trajectory: goes to field 2')\n")
     f.write('       break\n')
-    f.write('    if (in1_region and t_since_middle_region > %e and timestepper.solver.sim_time > %e):\n'%(a1, a_Tmin, Tmin))
+    f.write('    if (in1_region and t_since_middle_region > %e and timestepper.solver.sim_time > %e):\n'%(a_Tmin, Tmin))
     f.write('       if rank == 0:\n')
     f.write(f"           file = open('{data_root}/is2','w')\n")
     f.write("           file.write('%e, False'%(timestepper.solver.sim_time))\n")
