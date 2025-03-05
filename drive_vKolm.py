@@ -170,6 +170,7 @@ elif setting_mode == 13:
 
     solver_params['Nz'] = 64
     system_params['Lz'] =  3.68*np.pi
+    solver_params['dt'] = 5e-3
 
     kwargs = {'truncate': True}
     ic_dict_if_reinit = {'Lz': 3.7*np.pi}
