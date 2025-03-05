@@ -159,7 +159,7 @@ elif setting_mode == 14:
     system_params['Lz'] = 6*np.pi
     system_params['Lx'] = 24*np.pi
 
-    solver_params['Nz'] = 32
+    solver_params['Nz'] = 48
     solver_params['Ny'] = 32
     solver_params['Nx'] = 300
 
