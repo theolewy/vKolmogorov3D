@@ -29,7 +29,7 @@ from tools.misc_tools import get_fpath_sim
 
 logger = logging.getLogger(__name__)
 
-def write_driveFile(material_params, system_params, solver_params, a1, a2, Tmin, lam='', data_root=''):
+def write_driveFile(material_params, system_params, solver_params, a1, a2, Tmin, a_Tmin, lam='', data_root=''):
 
     Re, W, beta, L, eps, = material_params['Re'], material_params['W'], material_params['beta'], \
                            material_params['L'], material_params['eps']
@@ -95,6 +95,7 @@ def write_driveFile(material_params, system_params, solver_params, a1, a2, Tmin,
     f.write('timestepper.KE_metric_list = [] \n')
     f.write('timestepper.u_metric_list = [] \n')
     f.write('timestepper.time_list = [] \n')
+    f.write('in_middle_region_last_t = 0 \n')
 
     f.write('ifreq = 100\n')
 
@@ -117,14 +118,20 @@ def write_driveFile(material_params, system_params, solver_params, a1, a2, Tmin,
     f.write("    vol_u = timestepper.flow.volume_average('|u|')\n")
     f.write("    vol_U = timestepper.flow.volume_average('|U|')\n")
     f.write("    u_metric = (vol_u - vol_U) / vol_U \n")
+    f.write(f"    in1_region = trace_metric < {a1} \n")
+    f.write(f"    in2_region = trace_metric > {a2} \n")
+    f.write(f"    if not in1_region and not in2_region: \n")
+    f.write(f"      in_middle_region_last_t = timestepper.solver.sim_time\n")
 
-    f.write('    if (trace_metric > %e and timestepper.solver.sim_time > %e):\n'%(a2,Tmin))
+    f.write(f"    t_since_middle_region = timestepper.solver.sim_time - in_middle_region_last_t\n")
+
+    f.write('    if (in2_region and t_since_middle_region > %e and timestepper.solver.sim_time > %e):\n'%(a2, a_Tmin, Tmin))
     f.write('       if rank == 0:\n')
     f.write(f"           file = open('{data_root}/is2','w')\n")
     f.write("           file.write('%e, True'%(timestepper.solver.sim_time))\n")
     f.write("       logger.info('Stop trajectory: goes to field 2')\n")
     f.write('       break\n')
-    f.write('    if (trace_metric < %e and timestepper.solver.sim_time > %e):\n'%(a1,Tmin))
+    f.write('    if (in1_region and t_since_middle_region > %e and timestepper.solver.sim_time > %e):\n'%(a1, a_Tmin, Tmin))
     f.write('       if rank == 0:\n')
     f.write(f"           file = open('{data_root}/is2','w')\n")
     f.write("           file.write('%e, False'%(timestepper.solver.sim_time))\n")
