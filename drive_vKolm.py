@@ -100,6 +100,7 @@ elif setting_mode == 6:
 
     solver_params['Nz'] = 32
     system_params['Lz'] = 1.5 * np.pi
+    solver_params['dt'] = 3e-2
 
     ic_dict_if_reinit = {'suffix': 'recent-periodic'}
     suffix_end = 'periodic-yz'
