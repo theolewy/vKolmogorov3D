@@ -192,6 +192,7 @@ elif setting_mode == 15:
     symmetry_mode = 'yz'
     tile = False
 
+
 log_all_params(material_params, system_params, solver_params)
 
 timestepper = TimeStepper3D(material_params=material_params, system_params=system_params, solver_params=solver_params)

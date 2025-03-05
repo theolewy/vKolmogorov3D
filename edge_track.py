@@ -43,8 +43,8 @@ if setting_mode == 0:
         lamb1  = 0.0    # lower bound
         lamb2  = 1.0    # upper bound
         accmin = 1e-12
-        Tmin   = 1000
-        a_Tmin = 300
+        Tmin   = 600
+        a_Tmin = 200
 
         data_root = data_root + 'edge_track/local-jockey-4pi/'
         logger.info('Here Field 1 is localised 3D AH, and Field 2 is 2 jockeying 3D AHs')
@@ -60,8 +60,8 @@ elif setting_mode == 1:
         lamb1  = 0.0    # lower bound
         lamb2  = 1.0    # upper bound
         accmin = 1e-12
-        Tmin   = 1000
-        a_Tmin = 300
+        Tmin   = 600
+        a_Tmin = 200
 
         data_root = data_root + 'edge_track/local-jockey-4,5pi/'
         logger.info('Here Field 1 is localised 3D AH, and Field 2 is 2 jockeying 3D AHs')
