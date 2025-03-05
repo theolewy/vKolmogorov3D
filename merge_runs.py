@@ -34,10 +34,10 @@ for subdirectory in subdirectories:
     field2_path = os.path.join(edge_path, subdirectory, 'field2')
 
     for base_dir in os.listdir(field1_path):
-        base_path = os.path.join(subdirectory_path, base_dir)
+        base_path = os.path.join(field1_path, base_dir)
         post.merge_process_files(base_path, cleanup=True)
     for base_dir in os.listdir(field2_path):
-        base_path = os.path.join(subdirectory_path, base_dir)
+        base_path = os.path.join(field2_path, base_dir)
         post.merge_process_files(base_path, cleanup=True)
         # for split_dir in os.listdir(base_path):
             # split_path = os.path.join(base_path, split_dir)
