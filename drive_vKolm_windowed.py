@@ -149,6 +149,7 @@ elif setting_mode == 13:
 
     window_x = False
     symmetry_mode = 'yz'
+    tile = False
 
 elif setting_mode == 14:
     # Localising in a spanwise localised soln in x direction...
@@ -167,26 +168,6 @@ elif setting_mode == 14:
     ic_dict_if_reinit = {'Lz': 4*np.pi, 'suffix': f'recent-localised-3-xy-a-{a:.4g}-b-{b:.4g}'}
     suffix_end = f'localised-3-xy-a-{a:.4g}-b-{b:.4g}'
 
-    window_x = False
-    symmetry_mode = 'yz'
-
-elif setting_mode == 15:
-    # Localising in a spanwise localised soln in x direction...
-    a, b = 3*np.pi/3, np.pi*3/4
-
-    material_params['W'] = 20
-    solver_params['dt'] = 1e-2
-
-    system_params['Lz'] = 6*np.pi
-    system_params['Lx'] = 30*np.pi
-
-    solver_params['Nz'] = 64
-    solver_params['Ny'] = 32
-    solver_params['Nx'] = 400
-
-    ic_dict_if_reinit = {'Lz': 4*np.pi, 'Lx': 24*np.pi, 'Nx': 512, 'Ny': 64, 'Nz': 64, 'suffix': f'recent-localised-3-xy-a-{2*np.pi/3:.4g}-b-{np.pi/2:.4g}'}
-    suffix_end = f'localised-3-xy-a-{a:.4g}-b-{b:.4g}'
-    
     window_x = False
     symmetry_mode = 'yz'
     tile = False
