@@ -36,6 +36,7 @@ a = 3pi/8 with b=pi/8, pi/4, pi/2
 """
 symmetry_mode = False
 window_x = False
+tile = True
 if setting_mode == 0:
     a, b = np.pi/2, np.pi/4
 
@@ -159,7 +160,7 @@ elif setting_mode == 14:
     system_params['Lz'] = 6*np.pi
     system_params['Lx'] = 24*np.pi
 
-    solver_params['Nz'] = 32
+    solver_params['Nz'] = 48
     solver_params['Ny'] = 32
     solver_params['Nx'] = 300
 
@@ -168,6 +169,7 @@ elif setting_mode == 14:
     
     window_x = False
     symmetry_mode = 'yz'
+    tile = False
 
 log_all_params(material_params, system_params, solver_params)
 
@@ -176,7 +178,7 @@ timestepper = TimeStepper3D(material_params=material_params, system_params=syste
 ic_file, noise_coeff, reinit = get_ic_file(material_params, system_params, solver_params, suffix=f'recent-{suffix_end}', subdir='windows', 
                                    ic_dict_if_reinit=ic_dict_if_reinit)
 
-timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=0, tile=True)
+timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=0, tile=tile)
 
 if reinit:
     if window_x:
