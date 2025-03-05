@@ -30,8 +30,8 @@ edge_path = os.path.join(data_root, 'edge_track')
 subdirectories = os.listdir(edge_path)
 
 for subdirectory in subdirectories:
-    field1_path = os.path.join(simulations_path, subdirectory, 'field1')
-    field2_path = os.path.join(simulations_path, subdirectory, 'field2')
+    field1_path = os.path.join(edge_path, subdirectory, 'field1')
+    field2_path = os.path.join(edge_path, subdirectory, 'field2')
 
     for base_dir in os.listdir(field1_path):
         base_path = os.path.join(subdirectory_path, base_dir)
