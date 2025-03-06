@@ -51,9 +51,9 @@ if setting_mode == 0:
     label = 'Lz=4pi'
     system_params['Lz'] = 4*np.pi
 
-ic_file_in = get_fpath_s_file(material_params, system_params, solver_params, suffix='recent-localised', subdir='arrowhead_3D')
+ic_file_in = get_fpath_s_file(material_params, system_params, solver_params, suffix='recent-localised-yz', subdir='arrowhead_3D')
 # ic_file_in = "/Users/theolewy/Documents/projects/vKolmogorov3D/storage/simulations/arrowhead_3D/sim_W_20_Re_0,5_beta_0,9_eps_0,001_L_inf_Lx_9,4248_Lz_12,566_ndim_3_N_64-64-64_recent-localised/sim_W_20_Re_0,5_beta_0,9_eps_0,001_L_inf_Lx_9,4248_Lz_12,566_ndim_3_N_64-64-64_recent-localised_s1.h5"
-fpath_out = get_fpath_sim(material_params, system_params, solver_params, suffix='recent-localised', subdir='arrowhead_3D', dir='newtonWrapper')
+fpath_out = get_fpath_sim(material_params, system_params, solver_params, suffix='recent-localised-yz', subdir='arrowhead_3D', dir='newtonWrapper')
 
 if on_local_device(): gmres_params['dns_nproc'] = 1
 
