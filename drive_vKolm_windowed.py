@@ -97,21 +97,22 @@ elif setting_mode == 10:
 
 elif setting_mode == 11:
     # Localising in a spanwise localised soln in x direction...
-    a, b = 5*np.pi, np.pi
+    a, b = 1.5*np.pi, np.pi
 
     material_params['W'] = 20
-    solver_params['dt'] = 2e-3
+    solver_params['dt'] = 1e-2
 
-    system_params['Lz'] = 4*np.pi
-    system_params['Lx'] = 24*np.pi
+    system_params['Lz'] = 6*np.pi
+    system_params['Lx'] = 12*np.pi
 
-    solver_params['Nz'] = 64
-    solver_params['Ny'] = 64
-    solver_params['Nx'] = 512
+    solver_params['Nz'] = 32
+    solver_params['Ny'] = 32
+    solver_params['Nx'] = 128
 
-    ic_dict_if_reinit = {'Nx': 256, 'Lx': 12*np.pi, 'suffix': f'recent-localised-xy-a-{np.pi:.4g}-b-{np.pi:.4g}'}
-    suffix_end = f'localised-xy-a-{a:.4g}-b-{b:.4g}'
-    window_x = True
+    ic_dict_if_reinit = {'Lz': 4*np.pi, 'Nz': 96}
+    suffix_end = f'localised-xy'
+    window_x = False
+
 elif setting_mode == 12:
     # Localising in a spanwise localised soln in x direction...
     a, b = 2*np.pi/3, np.pi/2
@@ -183,13 +184,13 @@ ic_file, noise_coeff, reinit = get_ic_file(material_params, system_params, solve
 
 timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=0, tile=tile)
 
-# if reinit:
-#     if window_x:
-#         timestepper.translate_AH_to_centre(mode='x')    # move so arrowhead is in the middle of the domain
-#         timestepper.window(a, b, mode='x')
-#     else:
-#         timestepper.translate_AH_to_centre(mode='z')    # move so arrowhead is in the middle of the domain
-#         timestepper.window(a, b, mode='z')
+if reinit:
+    if window_x:
+        timestepper.translate_AH_to_centre(mode='x')    # move so arrowhead is in the middle of the domain
+        timestepper.window(a, b, mode='x')
+    else:
+        timestepper.translate_AH_to_centre(mode='z')    # move so arrowhead is in the middle of the domain
+        timestepper.window(a, b, mode='z')
 
 timestepper.simulate(T=4000, ifreq=100, 
                      track_TW=False, 
