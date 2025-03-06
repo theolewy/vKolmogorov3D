@@ -78,7 +78,7 @@ elif setting_mode == 6:
     suffix_end = f'a-{a:.4g}-b-{b:.4g}-Lz-orig-3,14-phase'
 
 elif setting_mode == 10:
-    # Localising in a spanwise localised soln in x direction...
+    # Localising in a spanwise by tiling and windowing
     a, b = np.pi, np.pi
 
     material_params['W'] = 20
@@ -91,14 +91,13 @@ elif setting_mode == 10:
     solver_params['Ny'] = 32
     solver_params['Nx'] = 64
 
-    ic_dict_if_reinit = {'Nx': 64, 'Ny': 64, 'Nz': 64, 'Lx': 3*np.pi, 'suffix': f'recent-localised-yz', 'subdir': 'arrowhead_3D'}
+    ic_dict_if_reinit = {'Nx': 64, 'Ny': 64, 'Nz': 96, 'Lx': 3*np.pi, 'suffix': f'recent-localised-yz', 'subdir': 'arrowhead_3D'}
     suffix_end = f'localised-yz'
     window_mode = 'x'
     tile = True
 
 elif setting_mode == 11:
-    # Localising in a spanwise localised soln in x direction...
-    a, b = np.pi, np.pi
+    # Localising in a spanwise by stretching
 
     material_params['W'] = 20
     solver_params['dt'] = 1e-2
@@ -110,7 +109,7 @@ elif setting_mode == 11:
     solver_params['Ny'] = 32
     solver_params['Nx'] = 64
 
-    ic_dict_if_reinit = {'Nx': 64, 'Ny': 64, 'Nz': 64, 'Lx': 3*np.pi, 'suffix': f'recent-localised-yz', 'subdir': 'arrowhead_3D'}
+    ic_dict_if_reinit = {'Nx': 64, 'Ny': 64, 'Nz': 96, 'Lx': 3*np.pi, 'suffix': f'recent-localised-yz', 'subdir': 'arrowhead_3D'}
     suffix_end = f'localised-yz'
     window_mode = False
     tile = False
