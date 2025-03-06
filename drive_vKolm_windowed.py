@@ -91,7 +91,7 @@ elif setting_mode == 10:
     solver_params['Ny'] = 32
     solver_params['Nx'] = 64
 
-    ic_dict_if_reinit = {'Nx': 64, 'Ny': 64, 'Nz': 64, 'Lx': 3*np.pi, 'suffix': f'recent-localised-yz', 'subdir': 'arrowheads_3D'}
+    ic_dict_if_reinit = {'Nx': 64, 'Ny': 64, 'Nz': 64, 'Lx': 3*np.pi, 'suffix': f'recent-localised-yz', 'subdir': 'arrowhead_3D'}
     suffix_end = f'localised-yz'
     window_mode = 'x'
 
