@@ -85,14 +85,14 @@ elif setting_mode == 10:
     solver_params['dt'] = 1e-2
 
     system_params['Lz'] = 4*np.pi
-    system_params['Lx'] = 12*np.pi
+    system_params['Lx'] = 6*np.pi
 
     solver_params['Nz'] = 32
     solver_params['Ny'] = 32
-    solver_params['Nx'] = 128
+    solver_params['Nx'] = 64
 
-    ic_dict_if_reinit = {'Nx': 256, 'Ny': 64, 'Nz': 64, 'suffix': f'recent-localised-xy-a-{a:.4g}-b-{b:.4g}'}
-    suffix_end = f'localised-xy'
+    ic_dict_if_reinit = {'Nx': 64, 'Ny': 64, 'Nz': 64, 'Lx': 3*np.pi, 'suffix': f'recent-localised-yz', 'subdir': 'arrowheads_3D'}
+    suffix_end = f'localised-yz'
     window_x = True
 
 elif setting_mode == 11:
@@ -197,5 +197,5 @@ timestepper.simulate(T=4000, ifreq=100,
                      enforce_symmetry=symmetry_mode,
                      save_over_long=False, 
                      save_full_data=False, full_save_freq=5,
-                     save_subdir=f"windows", suffix_end=suffix_end, 
-                     plot=True, plot_dev=True, plot_subdirectory=f"windowing_{system_params['ndim']}D")
+                     save_subdir=f"localisation", suffix_end=suffix_end, 
+                     plot=True, plot_dev=True, plot_subdirectory=f"streamwise_localisation")
