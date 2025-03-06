@@ -93,7 +93,7 @@ elif setting_mode == 10:
 
     ic_dict_if_reinit = {'Nx': 64, 'Ny': 64, 'Nz': 64, 'Lx': 3*np.pi, 'suffix': f'recent-localised-yz', 'subdir': 'arrowheads_3D'}
     suffix_end = f'localised-yz'
-    window_x = True
+    window_mode = 'x'
 
 elif setting_mode == 11:
     # Localising in a spanwise localised soln in x direction...
@@ -111,7 +111,7 @@ elif setting_mode == 11:
 
     ic_dict_if_reinit = {'Lz': 4*np.pi, 'Nz': 32}
     suffix_end = f'localised-xy'
-    window_x = False
+    window_mode = False
 
 elif setting_mode == 12:
     # Localising in a spanwise localised soln in x direction...
@@ -129,7 +129,7 @@ elif setting_mode == 12:
 
     ic_dict_if_reinit = {'suffix': f'recent-localised-xy-a-{5*np.pi:.4g}-b-{np.pi:.4g}'}
     suffix_end = f'localised-2-xy-a-{a:.4g}-b-{b:.4g}'
-    window_x = False
+    window_mode = False
     symmetry_mode = 'yz'
 
 elif setting_mode == 13:
@@ -149,7 +149,7 @@ elif setting_mode == 13:
     ic_dict_if_reinit = {'Lz': 4*np.pi, 'suffix': f'recent-localised-3-xy-a-{a:.4g}-b-{b:.4g}'}
     suffix_end = f'localised-3-xy-a-{a:.4g}-b-{b:.4g}'
 
-    window_x = False
+    window_mode = False
     symmetry_mode = 'yz'
     tile = False
 
@@ -170,7 +170,7 @@ elif setting_mode == 14:
     ic_dict_if_reinit = {'Lz': 4*np.pi, 'Lx': 24*np.pi, 'suffix': f'recent-localised-3-xy-a-{a:.4g}-b-{b:.4g}'}
     suffix_end = f'localised-3-xy-a-{a:.4g}-b-{b:.4g}'
 
-    window_x = False
+    window_mode = False
     symmetry_mode = 'yz'
     tile = False
 
@@ -185,10 +185,11 @@ ic_file, noise_coeff, reinit = get_ic_file(material_params, system_params, solve
 timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=0, tile=tile)
 
 if reinit:
-    if window_x:
+    if window_mode == 'x':
         timestepper.translate_AH_to_centre(mode='x')    # move so arrowhead is in the middle of the domain
         timestepper.window(a, b, mode='x')
-    else:
+    elif window_mode == 'z':
+
         timestepper.translate_AH_to_centre(mode='z')    # move so arrowhead is in the middle of the domain
         timestepper.window(a, b, mode='z')
 
