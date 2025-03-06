@@ -97,20 +97,20 @@ elif setting_mode == 10:
 
 elif setting_mode == 11:
     # Localising in a spanwise localised soln in x direction...
-    a, b = 1.5*np.pi, np.pi
+    a, b = np.pi, np.pi
 
     material_params['W'] = 20
     solver_params['dt'] = 1e-2
 
-    system_params['Lz'] = 6*np.pi
-    system_params['Lx'] = 12*np.pi
+    system_params['Lz'] = 4*np.pi
+    system_params['Lx'] = 4*np.pi
 
-    solver_params['Nz'] = 48
+    solver_params['Nz'] = 32
     solver_params['Ny'] = 32
-    solver_params['Nx'] = 128
+    solver_params['Nx'] = 64
 
-    ic_dict_if_reinit = {'Lz': 4*np.pi, 'Nz': 32}
-    suffix_end = f'localised-xy'
+    ic_dict_if_reinit = {'Nx': 64, 'Ny': 64, 'Nz': 64, 'Lx': 3*np.pi, 'suffix': f'recent-localised-yz', 'subdir': 'arrowhead_3D'}
+    suffix_end = f'localised-yz'
     window_mode = False
 
 elif setting_mode == 12:
