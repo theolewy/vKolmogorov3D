@@ -14,7 +14,7 @@ from tools.misc_tools import get_fpath_sim, get_fpath_s_file
 
 from tools.newton_tools import *
 
-material_params = {'W': 18,
+material_params = {'W': 20,
                 'beta': 0.9,
                 'Re': 0.5,
                 'L': np.infty,
@@ -25,10 +25,10 @@ system_params = {'ndim': 3,
                 'Lz': 8*np.pi,
                 'n': 1}
 
-solver_params = {'Nx': 64,
-                'Ny': 64,
-                'Nz': 128,
-                'dt': 5e-3}
+solver_params = {'Nx': 32,
+                'Ny': 32,
+                'Nz': 32,
+                'dt': 1e-2}
 
 gmres_params = {
     'dns_nproc': 16,         # parallelise over this many cores
@@ -48,11 +48,8 @@ else:
     raise Exception("Needs 1 inputs")
 
 if setting_mode == 0:
-    label = 'W=17'
-    material_params['W'] = 17
-elif setting_mode == 1:
-    label = 'W=18_guessed'
-    material_params['W'] = 18
+    label = 'Lz=4pi'
+    system_params['Lz'] = 4*np.pi
 
 ic_file_in = get_fpath_s_file(material_params, system_params, solver_params, suffix='recent-localised', subdir='arrowhead_3D')
 # ic_file_in = "/Users/theolewy/Documents/projects/vKolmogorov3D/storage/simulations/arrowhead_3D/sim_W_20_Re_0,5_beta_0,9_eps_0,001_L_inf_Lx_9,4248_Lz_12,566_ndim_3_N_64-64-64_recent-localised/sim_W_20_Re_0,5_beta_0,9_eps_0,001_L_inf_Lx_9,4248_Lz_12,566_ndim_3_N_64-64-64_recent-localised_s1.h5"
@@ -62,4 +59,4 @@ if on_local_device(): gmres_params['dns_nproc'] = 1
 
 log_all_params(material_params=material_params, solver_params=solver_params, system_params=system_params)
 
-converge_TW(material_params, system_params, solver_params, ic_file_in, fpath_out, gmres_params, T_guess=10.4, label=label)
+converge_TW(material_params, system_params, solver_params, ic_file_in, fpath_out, gmres_params, T_guess=None, label=label)
