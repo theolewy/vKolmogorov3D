@@ -87,11 +87,11 @@ elif setting_mode == 10:
     system_params['Lz'] = 4*np.pi
     system_params['Lx'] = 12*np.pi
 
-    solver_params['Nz'] = 64
-    solver_params['Ny'] = 64
-    solver_params['Nx'] = 256
+    solver_params['Nz'] = 32
+    solver_params['Ny'] = 32
+    solver_params['Nx'] = 128
 
-    ic_dict_if_reinit = {'Nx': 128, 'Nz': 32, 'Nz': 32, 'subdir':'arrowhead_3D', 'suffix': f'recent-localised-xy-a-{a:.4g}-b-{b:.4g}'}
+    ic_dict_if_reinit = {'Nx': 256, 'Nz': 64, 'Nz': 64, 'subdir':'arrowhead_3D', 'suffix': f'recent-localised-xy-a-{a:.4g}-b-{b:.4g}'}
     suffix_end = f'localised-xy'
     window_x = True
 
@@ -183,13 +183,13 @@ ic_file, noise_coeff, reinit = get_ic_file(material_params, system_params, solve
 
 timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=0, tile=tile)
 
-if reinit:
-    if window_x:
-        timestepper.translate_AH_to_centre(mode='x')    # move so arrowhead is in the middle of the domain
-        timestepper.window(a, b, mode='x')
-    else:
-        timestepper.translate_AH_to_centre(mode='z')    # move so arrowhead is in the middle of the domain
-        timestepper.window(a, b, mode='z')
+# if reinit:
+#     if window_x:
+#         timestepper.translate_AH_to_centre(mode='x')    # move so arrowhead is in the middle of the domain
+#         timestepper.window(a, b, mode='x')
+#     else:
+#         timestepper.translate_AH_to_centre(mode='z')    # move so arrowhead is in the middle of the domain
+#         timestepper.window(a, b, mode='z')
 
 timestepper.simulate(T=4000, ifreq=100, 
                      track_TW=False, 
