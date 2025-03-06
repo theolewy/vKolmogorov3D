@@ -82,7 +82,7 @@ elif setting_mode == 10:
     a, b = np.pi, np.pi
 
     material_params['W'] = 20
-    solver_params['dt'] = 2e-3
+    solver_params['dt'] = 1e-2
 
     system_params['Lz'] = 4*np.pi
     system_params['Lx'] = 12*np.pi
