@@ -91,9 +91,10 @@ elif setting_mode == 10:
     solver_params['Ny'] = 64
     solver_params['Nx'] = 256
 
-    ic_dict_if_reinit = {'Nx': 64, 'Lx': 3*np.pi, 'subdir':'arrowhead_3D', 'suffix': 'recent-localised'}
-    suffix_end = f'localised-xy-a-{a:.4g}-b-{b:.4g}'
+    ic_dict_if_reinit = {'Nx': 128, 'Nz': 32, 'Nz': 32, 'subdir':'arrowhead_3D', 'suffix': f'recent-localised-xy-a-{a:.4g}-b-{b:.4g}'}
+    suffix_end = f'localised-xy'
     window_x = True
+
 elif setting_mode == 11:
     # Localising in a spanwise localised soln in x direction...
     a, b = 5*np.pi, np.pi
