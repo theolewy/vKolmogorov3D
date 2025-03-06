@@ -60,7 +60,8 @@ elif setting_mode == 2:
     # Get Periodic AH from 2D AH. m=1 mode branch
 
     solver_params['Nz'] = 96
-    system_params['Lz'] = 4.75*np.pi
+    system_params['Lz'] = 4.9*np.pi
+    solver_params['dt'] = 5e-3
 
     ic_dict_if_reinit = {'Lz': 4.5*np.pi, 'suffix': 'recent-periodic-dt2-yz'}
     suffix_end = 'periodic-yz'
@@ -70,6 +71,7 @@ elif setting_mode == 3:
 
     solver_params['Nz'] = 96
     system_params['Lz'] = 4.75*np.pi
+    solver_params['dt'] = 5e-3
 
     ic_dict_if_reinit = {'Lz': 4.5*np.pi, 'suffix': 'recent-periodic-dt2-yz'}
     suffix_end = 'periodic-yz'
