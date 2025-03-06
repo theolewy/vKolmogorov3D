@@ -105,11 +105,11 @@ elif setting_mode == 11:
     system_params['Lz'] = 6*np.pi
     system_params['Lx'] = 12*np.pi
 
-    solver_params['Nz'] = 32
+    solver_params['Nz'] = 48
     solver_params['Ny'] = 32
     solver_params['Nx'] = 128
 
-    ic_dict_if_reinit = {'Lz': 4*np.pi, 'Nz': 96}
+    ic_dict_if_reinit = {'Lz': 4*np.pi, 'Nz': 32}
     suffix_end = f'localised-xy'
     window_x = False
 
