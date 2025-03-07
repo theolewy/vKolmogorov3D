@@ -82,8 +82,8 @@ elif setting_mode == 4:
     system_params['Lz'] = 4.5*np.pi
     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'suffix': 'recent-periodic-yz'}
-    suffix_end = 'periodic-dt2-yz'
+    ic_dict_if_reinit = {'suffix': 'recent-periodic-dt2-yz'}
+    suffix_end = 'periodic-yz'
 
 
 elif setting_mode == 5:
@@ -93,8 +93,8 @@ elif setting_mode == 5:
     system_params['Lz'] = 4*np.pi
     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'suffix': 'recent-periodic-yz'}
-    suffix_end = 'periodic-dt2-yz'
+    ic_dict_if_reinit = {'suffix': 'recent-periodic-dt2-yz'}
+    suffix_end = 'periodic-yz'
 
 
 elif setting_mode == 6:
