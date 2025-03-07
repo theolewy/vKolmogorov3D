@@ -112,7 +112,7 @@ elif setting_mode == 7:
 
     solver_params['Nx'] = 32
     solver_params['Ny'] = 32
-    solver_params['Nz'] = 32
+    solver_params['Nz'] = 48
     solver_params['dt'] = 1e-2
     system_params['Lz'] =  4.5*np.pi
 
@@ -124,7 +124,7 @@ elif setting_mode == 8:
 
     solver_params['Nx'] = 32
     solver_params['Ny'] = 32
-    solver_params['Nz'] = 32
+    solver_params['Nz'] = 48
     solver_params['dt'] = 1e-2
     system_params['Lz'] =  4.5*np.pi
 
