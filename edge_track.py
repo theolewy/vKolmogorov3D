@@ -50,8 +50,7 @@ if setting_mode == 0:
         logger.info('Here Field 1 is localised 3D AH, and Field 2 is 2 jockeying 3D AHs')
 
 elif setting_mode == 1:
-        
-        solver_params['dt'] = 1e-2
+
         system_params['Lz'] = 4.5 * np.pi
 
         a1     = 0.19   # when to declare ultimate state as field 1
