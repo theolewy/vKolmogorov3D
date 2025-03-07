@@ -129,8 +129,8 @@ elif setting_mode == 12:
 
     ic_dict_if_reinit = {'Nx': 64, 'Ny': 64, 'Nz': 32, 'Lx': 3*np.pi, 'subdir': 'arrowhead_3D'}
     suffix_end = f'periodic-yz'
-    window_mode = 'x'
-    tile = True
+    window_mode = False
+    tile = False
 
 elif setting_mode == 13:
     # Localising in a spanwise localised soln in x direction...
