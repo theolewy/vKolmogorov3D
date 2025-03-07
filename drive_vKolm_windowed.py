@@ -123,9 +123,9 @@ elif setting_mode == 12:
     system_params['Lz'] = np.pi
     system_params['Lx'] = 10*np.pi
 
-    solver_params['Nz'] = 16
+    solver_params['Nz'] = 32
     solver_params['Ny'] = 32
-    solver_params['Nx'] = 192
+    solver_params['Nx'] = 128
 
     ic_dict_if_reinit = {'Nx': 64, 'Ny': 64, 'Nz': 32, 'Lx': 3*np.pi, 'subdir': 'arrowhead_3D'}
     suffix_end = f'periodic-yz'
