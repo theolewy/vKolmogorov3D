@@ -193,7 +193,7 @@ if reinit:
 
 timestepper.simulate(T=4000, ifreq=100, 
                      track_TW=False, 
-                     enforce_symmetry=symmetry_mode,
+                     enforce_symmetry='yz',
                      save_over_long=False, 
                      save_full_data=False, full_save_freq=5,
                      save_subdir=f"localisation", suffix_end=suffix_end, 
