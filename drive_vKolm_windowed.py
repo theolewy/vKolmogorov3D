@@ -34,7 +34,7 @@ Parameters tried:
 a = pi/2 with b=pi/8, pi/4, pi/2, 3pi/4
 a = 3pi/8 with b=pi/8, pi/4, pi/2
 """
-symmetry_mode = False
+symmetry_mode = 'yz'
 window_x = False
 tile = True
 if setting_mode == 0:
