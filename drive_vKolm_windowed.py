@@ -109,7 +109,7 @@ elif setting_mode == 11:
     solver_params['Ny'] = 32
     solver_params['Nx'] = 64
 
-    ic_dict_if_reinit = {'Nz': 48, 'Lx': 4*np.pi}
+    ic_dict_if_reinit = {'Nx': 48, 'Lx': 4*np.pi}
     suffix_end = f'localised-yz'
     window_mode = False
     tile = False
