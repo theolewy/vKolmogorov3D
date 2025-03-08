@@ -588,7 +588,7 @@ class TimeStepper3D(CartesianTimeStepper):
         logger.warning("Should process the v field")
         self._reset_history_cache() # whenever we change the state, must forget history of implicit timestepper
 
-    def translate_AH_to_centre(self, mode='z'):
+    def translate_AH_to_centre(self, mode='z', shift=None):
 
         flow = self.get_flow(combine_processes=True)
         flow_translated = {}
@@ -597,8 +597,9 @@ class TimeStepper3D(CartesianTimeStepper):
             p_z = np.min(flow['p'], axis=(0,2))
             idx = np.argmin(p_z)
             
+            if shift is None: shift = self.Nz//2-idx
             for field_name in self.variables:
-                flow_translated[field_name] = np.roll(flow[field_name], shift=self.Nz//2-idx, axis=1)
+                flow_translated[field_name] = np.roll(flow[field_name], shift=shift, axis=1)
         elif mode == 'x':
             # if AH is at y=-pi and pi rather than 0.
             mean_c22_y = np.mean(self.c22['g'], axis=(0,1))
@@ -609,8 +610,9 @@ class TimeStepper3D(CartesianTimeStepper):
             p_diff = np.diff(p_centre_line, n=1)
             idx = np.argmax(np.abs(p_diff))
             
+            if shift is None: shift = self.Nx//2-idx
             for field_name in self.variables:
-                flow_translated[field_name] = np.roll(flow[field_name], shift=self.Nx//2-idx, axis=0)
+                flow_translated[field_name] = np.roll(flow[field_name], shift=shift, axis=0)
 
         self.load_flow(flow_translated)
         self._reset_history_cache() # whenever we change the state, must forget history of implicit timestepper
