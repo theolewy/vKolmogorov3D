@@ -177,7 +177,7 @@ log_all_params(material_params, system_params, solver_params)
 
 timestepper = TimeStepper3D(material_params=material_params, system_params=system_params, solver_params=solver_params)
 
-ic_file, noise_coeff, reinit = get_ic_file(material_params, system_params, solver_params, suffix=f'recent-{suffix_end}', subdir='windows', 
+ic_file, noise_coeff, reinit = get_ic_file(material_params, system_params, solver_params, suffix=f'recent-{suffix_end}', subdir='localisation', 
                                    ic_dict_if_reinit=ic_dict_if_reinit)
 
 timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=0, tile=tile)
