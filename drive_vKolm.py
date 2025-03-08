@@ -203,7 +203,7 @@ elif setting_mode == 16:
     solver_params['Nz'] = 96
     system_params['Lz'] =  input_val*np.pi
 
-    ic_dict_if_reinit = {'Lz': 5*np.pi, 'Nz': 96}
+    ic_dict_if_reinit = {'Lz': 4*np.pi, 'Nz': 64}
     suffix_end = 'periodic-yz'
     solver_params['dt'] = 5e-3
 
