@@ -87,11 +87,11 @@ elif setting_mode == 10:
     system_params['Lz'] = 6*np.pi
     system_params['Lx'] = 10*np.pi
 
-    solver_params['Nz'] = 64
+    solver_params['Nz'] = 48
     solver_params['Ny'] = 32
     solver_params['Nx'] = 128
 
-    ic_dict_if_reinit = {'Lx': 6*np.pi, 'Nx':48, 'suffix': f'recent-localised-yz'}
+    ic_dict_if_reinit = {'Lx': 6*np.pi, 'Nx':64, 'suffix': f'recent-localised-yz'}
     suffix_end = f'periodic-yz'
     window_mode = 'x'
     tile = True
@@ -105,11 +105,11 @@ elif setting_mode == 11:
     system_params['Lz'] = 6*np.pi
     system_params['Lx'] = 6*np.pi
 
-    solver_params['Nz'] = 64
+    solver_params['Nz'] = 48
     solver_params['Ny'] = 32
     solver_params['Nx'] = 64
 
-    ic_dict_if_reinit = {'Nx': 48, 'Lx': 4*np.pi}
+    ic_dict_if_reinit = {'Nx': 64, 'Lx': 4*np.pi}
     suffix_end = f'localised-yz'
     window_mode = False
     tile = False
@@ -118,7 +118,7 @@ elif setting_mode == 12:
     # Localising in a spanwise by stretching
 
     material_params['W'] = 20
-    solver_params['dt'] = 1e-2
+    solver_params['dt'] = 5e-3
 
     system_params['Lz'] = np.pi
     system_params['Lx'] = 10*np.pi
