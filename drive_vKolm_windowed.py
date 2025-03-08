@@ -123,7 +123,7 @@ elif setting_mode == 12:
     system_params['Lz'] = np.pi
     system_params['Lx'] = 10*np.pi
 
-    solver_params['Nz'] = 32
+    solver_params['Nz'] = 48
     solver_params['Ny'] = 32
     solver_params['Nx'] = 128
 
