@@ -84,14 +84,14 @@ elif setting_mode == 10:
     material_params['W'] = 20
     solver_params['dt'] = 1e-2
 
-    system_params['Lz'] = 10*np.pi
-    system_params['Lx'] = 6*np.pi
+    system_params['Lz'] = 6*np.pi
+    system_params['Lx'] = 10*np.pi
 
-    solver_params['Nz'] = 128
+    solver_params['Nz'] = 64
     solver_params['Ny'] = 32
-    solver_params['Nx'] = 64
+    solver_params['Nx'] = 128
 
-    ic_dict_if_reinit = {'Lz': 6*np.pi, 'Nz':48, 'suffix': f'recent-localised-yz'}
+    ic_dict_if_reinit = {'Lx': 6*np.pi, 'Nx':48, 'suffix': f'recent-localised-yz'}
     suffix_end = f'periodic-yz'
     window_mode = 'x'
     tile = True
