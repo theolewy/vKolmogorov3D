@@ -66,6 +66,7 @@ elif setting_mode == 2:
 
     ic_dict_if_reinit = {'Lz': input_val*np.pi, 'Nz': 16, 'suffix': 'recent-periodic-yz'}
     suffix_end = 'periodic-2-yz'
+    translate = True
     kwargs = {'tile': True}
 
 elif setting_mode == 3:
@@ -278,7 +279,7 @@ timestepper = TimeStepper3D(material_params=material_params, system_params=syste
 timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=noise_coeff, **kwargs)
 
 if translate:
-    timestepper.translate_AH_to_centre(mode='z')
+    timestepper.translate_AH_to_centre(mode='z', shift=8)
 
 timestepper.simulate(T=4000, ifreq=100, 
                      track_TW=False, 
