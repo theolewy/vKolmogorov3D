@@ -66,7 +66,7 @@ elif setting_mode == 2:
 
     ic_dict_if_reinit = {'Lz': input_val*np.pi, 'Nz': 16, 'suffix': 'recent-periodic-yz'}
     suffix_end = 'periodic-2-yz'
-    translate = True
+    translate = False
     kwargs = {'tile': True}
 
 elif setting_mode == 3:
