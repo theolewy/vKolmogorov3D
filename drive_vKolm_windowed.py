@@ -91,7 +91,7 @@ elif setting_mode == 10:
     solver_params['Ny'] = 64
     solver_params['Nz'] = 64
 
-    ic_dict_if_reinit = {'Lx': 6*np.pi, 'Nx':64, 'suffix': f'recent-localised-yz'}
+    ic_dict_if_reinit = {'Lx': 6*np.pi, 'Nx': 64, 'Ny':32, 'Nz': 48, 'suffix': f'recent-localised-yz'}
     suffix_end = f'periodic-yz'
     window_mode = 'x'
     tile = True
@@ -109,7 +109,7 @@ elif setting_mode == 11:
     solver_params['Ny'] = 64
     solver_params['Nz'] = 64
 
-    ic_dict_if_reinit = {'Nx': 64, 'Lx': 4*np.pi}
+    ic_dict_if_reinit = {'Nx': 64, 'Ny':32, 'Nz': 48, 'Lx': 4*np.pi}
     suffix_end = f'localised-yz'
     window_mode = False
     tile = False
