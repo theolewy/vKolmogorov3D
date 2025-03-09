@@ -20,7 +20,7 @@ system_params = {'ndim': 3,
 solver_params = {'Nx': 64,
                  'Ny': 64,
                  'Nz': 32,
-                 'dt': 2e-3,
+                 'dt': 5e-3,
                  'c': 0}
 
 if len(sys.argv) == 3:
@@ -136,12 +136,14 @@ elif setting_mode == 8:
 elif setting_mode == 9:
     # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
 
-    solver_params['Nz'] = 64
-    system_params['Lz'] = 2.5*np.pi
-    solver_params['dt'] = 5e-3
+    solver_params['Nx'] = 32
+    solver_params['Ny'] = 32
+    solver_params['Nz'] = 32
+    solver_params['dt'] = 1e-2
+    system_params['Lz'] =  3.8*np.pi
 
-    ic_dict_if_reinit = None
-    suffix_end = 'periodic-yz'
+    ic_dict_if_reinit = {'Nx': 64, 'Ny': 64, 'Nz': 64, 'suffix': 'recent-localised'}
+    suffix_end = 'localised-yz'
 elif setting_mode == 10:
     # Stretch AH
 
@@ -157,9 +159,11 @@ elif setting_mode == 11:
 
     solver_params['Nz'] = 64
     system_params['Lz'] =  3.8*np.pi
+    solver_params['dt'] = 5e-3
 
     ic_dict_if_reinit = {'Lz': 3.75*np.pi}
     suffix_end = 'localised-yz'
+
 elif setting_mode == 12:
     # Truncate to Saddle
     # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
@@ -195,10 +199,10 @@ elif setting_mode == 15:
     # Get Periodic AH from 2D AH. m=1 mode branch
 
     solver_params['Nz'] = 64
-    system_params['Lz'] =  3*np.pi
+    system_params['Lz'] =  3.8*np.pi
     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Lz': 3*np.pi, 'Nz': 64}
+    ic_dict_if_reinit = {'Lz': 3.5*np.pi, 'Nz': 64}
     suffix_end = 'periodic-yz'
 elif setting_mode == 16:
     # Get Periodic AH from 2D AH. m=1 mode branch
