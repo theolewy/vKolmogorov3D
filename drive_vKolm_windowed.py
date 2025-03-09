@@ -133,43 +133,37 @@ elif setting_mode == 12:
     tile = False
 
 elif setting_mode == 13:
-    # Localising in a spanwise localised soln in x direction...
-    a, b = 2*np.pi/3, np.pi/2
-
+    # Localising in a spanwise by stretching
     material_params['W'] = 20
-    solver_params['dt'] = 2e-3
+    solver_params['dt'] = 5e-3
 
-    system_params['Lz'] = 4*np.pi
-    system_params['Lx'] = 24*np.pi
+    system_params['Lz'] = np.pi
+    system_params['Lx'] = 20*np.pi
 
-    solver_params['Nz'] = 64
+    solver_params['Nx'] = 200
     solver_params['Ny'] = 64
-    solver_params['Nx'] = 512
+    solver_params['Nz'] = 16
 
-    ic_dict_if_reinit = {'suffix': f'recent-localised-xy-a-{5*np.pi:.4g}-b-{np.pi:.4g}'}
-    suffix_end = f'localised-2-xy-a-{a:.4g}-b-{b:.4g}'
+    ic_dict_if_reinit = {'Nx': 128, 'Ny': 64, 'Nz': 32, 'Lx': 10*np.pi, 'subdir': 'arrowhead_3D'}
+    suffix_end = f'periodic-yz'
     window_mode = False
-    symmetry_mode = 'yz'
+    tile = False
 
 elif setting_mode == 14:
-    # Localising in a spanwise localised soln in x direction...
-    a, b = 2*np.pi/3, np.pi/2
-
+    # Localising in a spanwise by stretching
     material_params['W'] = 20
-    solver_params['dt'] = 1e-2
+    solver_params['dt'] = 5e-3
 
-    system_params['Lz'] = 6*np.pi
-    system_params['Lx'] = 30*np.pi
+    system_params['Lz'] = np.pi
+    system_params['Lx'] = 20*np.pi
 
-    solver_params['Nz'] = 64
+    solver_params['Nx'] = 200
     solver_params['Ny'] = 64
-    solver_params['Nx'] = 512
+    solver_params['Nz'] = 16
 
-    ic_dict_if_reinit = {'Lz': 4*np.pi, 'Lx': 24*np.pi, 'suffix': f'recent-localised-3-xy-a-{a:.4g}-b-{b:.4g}'}
-    suffix_end = f'localised-3-xy-a-{a:.4g}-b-{b:.4g}'
-
+    ic_dict_if_reinit = {'Nx': 128, 'Ny': 64, 'Nz': 32, 'Lx': 10*np.pi, 'subdir': 'arrowhead_3D'}
+    suffix_end = f'periodic-yz'
     window_mode = False
-    symmetry_mode = 'yz'
     tile = False
 
 
