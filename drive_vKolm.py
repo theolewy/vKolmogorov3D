@@ -130,8 +130,9 @@ elif setting_mode == 8:
     solver_params['Nz'] = 48
     solver_params['dt'] = 1e-2
     system_params['Lz'] =  4.2*np.pi
-
-    ic_dict_if_reinit = {'Nx': 64, 'Ny': 64, 'Nz': 72, 'suffix': 'recent-localised'}
+    kwargs = {'truncate': True}
+    
+    ic_dict_if_reinit = {'Nx': 64, 'Ny': 64, 'Nz': 72, 'Lz':4.5*np.pi, 'suffix': 'recent-localised'}
     suffix_end = 'localised-yz'
 elif setting_mode == 9:
     # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
@@ -145,13 +146,16 @@ elif setting_mode == 9:
     ic_dict_if_reinit = {'Nx': 64, 'Ny': 64, 'Nz': 64, 'suffix': 'recent-localised'}
     suffix_end = 'localised-yz'
 elif setting_mode == 10:
-    # Stretch AH
 
-    system_params['Lz'] = 12*np.pi
-    solver_params['Nz'] = 192
-
-    ic_dict_if_reinit = {'Lz':8*np.pi, 'Nz':128, 'suffix': 'recent-localised'}
-    suffix_end = 'localised-stretch'
+    solver_params['Nx'] = 64
+    solver_params['Ny'] = 64
+    solver_params['Nz'] = 72
+ 
+    system_params['Lz'] =  4.2*np.pi
+    kwargs = {'truncate': True}
+    
+    ic_dict_if_reinit = {'Nx': 64, 'Ny': 64, 'Nz': 72, 'Lz':4.5*np.pi, 'suffix': 'recent-localised'}
+    suffix_end = 'localised-yz'
 
 elif setting_mode == 11:
     # Truncate to Saddle
