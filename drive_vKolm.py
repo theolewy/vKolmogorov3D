@@ -115,11 +115,10 @@ elif setting_mode == 7:
 
     solver_params['Nx'] = 32
     solver_params['Ny'] = 32
-    solver_params['Nz'] = 48
-    solver_params['dt'] = 1e-2
-    system_params['Lz'] =  4.5*np.pi
+    solver_params['Nz'] = 32
+    system_params['Lz'] =  3.8*np.pi
 
-    ic_dict_if_reinit = {'Nx': 64, 'Ny': 64, 'Nz': 96}
+    ic_dict_if_reinit = {'Nx': 64, 'Ny': 64, 'Nz': 64}
     suffix_end = 'periodic-yz'
 
 elif setting_mode == 8:
@@ -143,7 +142,7 @@ elif setting_mode == 9:
     solver_params['dt'] = 1e-2
     system_params['Lz'] =  3.8*np.pi
 
-    ic_dict_if_reinit = {'Nx': 64, 'Ny': 64, 'Nz': 64, 'suffix': 'recent-localised'}
+    ic_dict_if_reinit = {'Nx': 64, 'Ny': 64, 'Nz': 64}
     suffix_end = 'localised-yz'
 elif setting_mode == 10:
 
