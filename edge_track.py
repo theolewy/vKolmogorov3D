@@ -51,7 +51,7 @@ if setting_mode == 0:
 
 elif setting_mode == 1:
 
-        system_params['Lz'] = 4.5 * np.pi
+        system_params['Lz'] = 3.8 * np.pi
 
         a1     = 0.19   # when to declare ultimate state as field 1
         a2     = 0.3   # when to declare ultimate state as field 2
@@ -62,7 +62,7 @@ elif setting_mode == 1:
         Tmin   = 600
         a_Tmin = 200
 
-        data_root = data_root + 'edge_track/local-jockey-4,5pi/'
+        data_root = data_root + 'edge_track/local-jockey-3,8pi/'
         logger.info('Here Field 1 is localised 3D AH, and Field 2 is 2 jockeying 3D AHs')
 
 
