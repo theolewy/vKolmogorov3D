@@ -129,7 +129,7 @@ elif setting_mode == 8:
     solver_params['Ny'] = 32
     solver_params['Nz'] = 48
     solver_params['dt'] = 1e-2
-    system_params['Lz'] =  4.5*np.pi
+    system_params['Lz'] =  4.2*np.pi
 
     ic_dict_if_reinit = {'Nx': 64, 'Ny': 64, 'Nz': 72, 'suffix': 'recent-localised'}
     suffix_end = 'localised-yz'
@@ -156,9 +156,9 @@ elif setting_mode == 11:
     # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
 
     solver_params['Nz'] = 64
-    system_params['Lz'] =  3.75*np.pi
+    system_params['Lz'] =  3.8*np.pi
 
-    ic_dict_if_reinit = {'Lz': 3.7*np.pi}
+    ic_dict_if_reinit = {'Lz': 3.75*np.pi}
     suffix_end = 'localised-yz'
 elif setting_mode == 12:
     # Truncate to Saddle
