@@ -78,18 +78,18 @@ elif setting_mode == 6:
     suffix_end = f'a-{a:.4g}-b-{b:.4g}-Lz-orig-3,14-phase'
 
 elif setting_mode == 10:
-    # Localising in a spanwise by tiling and windowing
+    # Wide periodicity
     a, b = np.pi, np.pi
 
     material_params['W'] = 20
-    solver_params['dt'] = 1e-2
+    solver_params['dt'] = 5e-3
 
     system_params['Lz'] = 6*np.pi
     system_params['Lx'] = 10*np.pi
 
-    solver_params['Nz'] = 48
-    solver_params['Ny'] = 32
     solver_params['Nx'] = 128
+    solver_params['Ny'] = 64
+    solver_params['Nz'] = 64
 
     ic_dict_if_reinit = {'Lx': 6*np.pi, 'Nx':64, 'suffix': f'recent-localised-yz'}
     suffix_end = f'periodic-yz'
@@ -97,17 +97,17 @@ elif setting_mode == 10:
     tile = True
 
 elif setting_mode == 11:
-    # Localising in a spanwise by stretching
+    # Stretching localised
 
     material_params['W'] = 20
-    solver_params['dt'] = 1e-2
+    solver_params['dt'] = 5e-3
 
     system_params['Lz'] = 6*np.pi
     system_params['Lx'] = 7*np.pi
-
-    solver_params['Nz'] = 48
-    solver_params['Ny'] = 32
+    
     solver_params['Nx'] = 64
+    solver_params['Ny'] = 64
+    solver_params['Nz'] = 64
 
     ic_dict_if_reinit = {'Nx': 64, 'Lx': 4*np.pi}
     suffix_end = f'localised-yz'
@@ -123,9 +123,9 @@ elif setting_mode == 12:
     system_params['Lz'] = np.pi
     system_params['Lx'] = 10*np.pi
 
-    solver_params['Nz'] = 48
-    solver_params['Ny'] = 32
     solver_params['Nx'] = 128
+    solver_params['Ny'] = 64
+    solver_params['Nz'] = 32
 
     ic_dict_if_reinit = {'Nx': 64, 'Ny': 64, 'Nz': 32, 'Lx': 3*np.pi, 'subdir': 'arrowhead_3D'}
     suffix_end = f'periodic-yz'
