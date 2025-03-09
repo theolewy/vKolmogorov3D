@@ -144,7 +144,7 @@ elif setting_mode == 13:
     solver_params['Ny'] = 64
     solver_params['Nz'] = 16
 
-    ic_dict_if_reinit = {'Nx': 128, 'Ny': 64, 'Nz': 32, 'Lx': 10*np.pi, 'subdir': 'arrowhead_3D'}
+    ic_dict_if_reinit = {'Nx': 128, 'Ny': 64, 'Nz': 32, 'Lx': 10*np.pi}
     suffix_end = f'periodic-yz'
     window_mode = False
     tile = False
@@ -161,7 +161,7 @@ elif setting_mode == 14:
     solver_params['Ny'] = 64
     solver_params['Nz'] = 16
 
-    ic_dict_if_reinit = {'Nx': 128, 'Ny': 64, 'Nz': 32, 'Lx': 10*np.pi, 'subdir': 'arrowhead_3D'}
+    ic_dict_if_reinit = {'Nx': 128, 'Ny': 64, 'Nz': 32, 'Lx': 10*np.pi}
     suffix_end = f'periodic-yz'
     window_mode = False
     tile = False
