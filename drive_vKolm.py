@@ -36,7 +36,8 @@ else:
 symmetry_mode = 'yz'
 kwargs = {}
 translate = False
-plot_subdirectory=f"arrowhead_3D_Lz"
+plot_subdirectory = "arrowhead_3D_Lz"
+
 if setting_mode == 0:
     # Get Periodic AH from 2D AH. m=1 mode branch
 
@@ -109,7 +110,8 @@ elif setting_mode == 6:
 
     ic_dict_if_reinit = {'Lz': 0.75*np.pi, 'Nz': 32, 'noise_coeff': 1e-3}
     suffix_end = 'periodic-2-yz'
-
+    plot_subdirectory = "arrowhead_3D_2_wavelengths"
+    
 elif setting_mode == 7:
     # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
 
