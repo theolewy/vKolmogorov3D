@@ -280,7 +280,7 @@ elif setting_mode == 27:
     # Get Periodic AH from 2D AH. m=1 mode branch
     
     system_params['ndim'] = 2
-    solver_params['Nx'] = 220
+    solver_params['Nx'] = 340
     solver_params['Ny'] = 64
 
     system_params['Lx'] = 20*np.pi
