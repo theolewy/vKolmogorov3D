@@ -289,6 +289,8 @@ elif setting_mode == 27:
     ic_dict_if_reinit = {'Lx': 3*np.pi,'Nx': 128, 'Ny': 256, 'subdir': 'arrowhead_2D', 'suffix': 'recent-'}
     suffix_end = ''
     plot_subdirectory = 'streamwise_localisation'
+    symmetry_mode = 'y'
+
 log_all_params(material_params, system_params, solver_params)
 
 ic_file, noise_coeff, _ = get_ic_file(material_params, system_params, solver_params, suffix=f'recent-{suffix_end}', subdir='arrowhead_3D', 
