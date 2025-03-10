@@ -157,11 +157,11 @@ elif setting_mode == 14:
     system_params['Lz'] = np.pi
     system_params['Lx'] = 20*np.pi
 
-    solver_params['Nx'] = 200
+    solver_params['Nx'] = 320
     solver_params['Ny'] = 64
     solver_params['Nz'] = 16
 
-    ic_dict_if_reinit = {'Nx': 128, 'Ny': 64, 'Nz': 32, 'Lx': 10*np.pi}
+    ic_dict_if_reinit = {'Nx': 200}
     suffix_end = f'periodic-yz'
     window_mode = False
     tile = False
