@@ -111,7 +111,7 @@ elif setting_mode == 6:
     ic_dict_if_reinit = {'Lz': 0.75*np.pi, 'Nz': 32, 'noise_coeff': 1e-3}
     suffix_end = 'periodic-2-yz'
     plot_subdirectory = "arrowhead_3D_2_wavelengths"
-    
+
 elif setting_mode == 7:
     # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
 
@@ -276,8 +276,19 @@ elif setting_mode == 26:
 
     ic_dict_if_reinit = {'Lz': 0.87*np.pi, 'Nz': 32}
     suffix_end = 'below-periodic-yz'
+elif setting_mode == 27:
+    # Get Periodic AH from 2D AH. m=1 mode branch
+    
+    system_params['ndim'] = 2
+    solver_params['Nx'] = 512
+    solver_params['Ny'] = 32
 
+    system_params['Lx'] = 30*np.pi
+    solver_params['dt'] = 5e-3
 
+    ic_dict_if_reinit = {'Lx': 3*np.pi,'Nx': 128, 'Ny': 256, 'subdir': 'arrowhead_2D', 'suffix': 'recent-'}
+    suffix_end = ''
+    plot_subdirectory = 'streamwise_localisation'
 log_all_params(material_params, system_params, solver_params)
 
 ic_file, noise_coeff, _ = get_ic_file(material_params, system_params, solver_params, suffix=f'recent-{suffix_end}', subdir='arrowhead_3D', 
