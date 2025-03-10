@@ -103,7 +103,7 @@ elif setting_mode == 11:
     solver_params['dt'] = 5e-3
 
     system_params['Lz'] = 6*np.pi
-    system_params['Lx'] = 7*np.pi
+    system_params['Lx'] = 5.9*np.pi
     
     solver_params['Nx'] = 64
     solver_params['Ny'] = 64
