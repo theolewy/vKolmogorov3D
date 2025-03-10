@@ -107,7 +107,7 @@ elif setting_mode == 6:
     system_params['Lz'] = input_val*np.pi
     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Lz': np.pi, 'Nz': 32, 'noise_coeff': 1e-3}
+    ic_dict_if_reinit = {'Lz': 0.75*np.pi, 'Nz': 32, 'noise_coeff': 1e-3}
     suffix_end = 'periodic-2-yz'
 
 elif setting_mode == 7:
