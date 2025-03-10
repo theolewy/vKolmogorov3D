@@ -36,7 +36,7 @@ else:
 symmetry_mode = 'yz'
 kwargs = {}
 translate = False
-
+plot_subdirectory=f"arrowhead_3D_Lz"
 if setting_mode == 0:
     # Get Periodic AH from 2D AH. m=1 mode branch
 
@@ -294,4 +294,4 @@ timestepper.simulate(T=4000, ifreq=100,
                      save_over_long=True, 
                      save_full_data=False, full_save_freq=5,
                      save_subdir=f"arrowhead_{system_params['ndim']}D", suffix_end=suffix_end, 
-                     plot=True, plot_dev=True, plot_subdirectory=f"arrowhead_3D_Lz")
+                     plot=True, plot_dev=True, plot_subdirectory=plot_subdirectory)
