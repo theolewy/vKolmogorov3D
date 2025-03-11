@@ -284,10 +284,10 @@ elif setting_mode == 27:
     solver_params['Nx'] = 450
     solver_params['Ny'] = 64
 
-    system_params['Lx'] = 35*np.pi
+    system_params['Lx'] = 38*np.pi
     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Lx': 32*np.pi,'Nx': 450, 'Ny': 64, 'subdir': 'arrowhead_2D', 'suffix': 'recent-'}
+    ic_dict_if_reinit = {'Lx': 35*np.pi,'Nx': 450, 'Ny': 64, 'subdir': 'arrowhead_2D', 'suffix': 'recent-'}
     suffix_end = ''
     plot_subdirectory = 'streamwise_localisation'
     symmetry_mode = 'y'
