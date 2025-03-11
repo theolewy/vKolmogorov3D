@@ -288,7 +288,6 @@ elif setting_mode == 27:
     solver_params['dt'] = 5e-3
 
     ic_dict_if_reinit = {'Lx': 30*np.pi,'Nx': 512, 'subdir': 'arrowhead_2D', 'suffix': 'recent-'}
-    # ic_dict_if_reinit = {'Lx': 3*np.pi,'Nx': 128, 'Ny': 256, 'subdir': 'arrowhead_2D', 'suffix': 'recent-'}
     suffix_end = ''
     plot_subdirectory = 'streamwise_localisation'
     symmetry_mode = 'y'
