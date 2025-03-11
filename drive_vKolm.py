@@ -298,7 +298,7 @@ elif setting_mode == 28:
     
     solver_params['Nx'] = 450
     solver_params['Ny'] = 64
-    solver_params['Nz'] = 16
+    solver_params['Nz'] = 32
 
     system_params['Lx'] = 40*np.pi
     system_params['Lz'] = np.pi
