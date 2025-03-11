@@ -275,7 +275,7 @@ elif setting_mode == 26:
     system_params['Lz'] =  input_val*np.pi
     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Lz': 0.87*np.pi, 'Nz': 32}
+    ic_dict_if_reinit = {'Lz': 0.85*np.pi, 'Nz': 32}
     suffix_end = 'below-periodic-yz'
 elif setting_mode == 27:
     # Get Periodic AH from 2D AH. m=1 mode branch
