@@ -281,10 +281,10 @@ elif setting_mode == 27:
     # Get Periodic AH from 2D AH. m=1 mode branch
     
     system_params['ndim'] = 2
-    solver_params['Nx'] = 512
+    solver_params['Nx'] = 460
     solver_params['Ny'] = 48
 
-    system_params['Lx'] = 45*np.pi
+    system_params['Lx'] = 40*np.pi
     solver_params['dt'] = 5e-3
 
     ic_dict_if_reinit = {'Lx': 35*np.pi,'Nx': 512, 'Ny': 64, 'subdir': 'arrowhead_2D', 'suffix': 'recent-'}
