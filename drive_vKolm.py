@@ -33,7 +33,7 @@ elif len(sys.argv) == 4:
 else:
     raise Exception('Need more inputs!')    
 
-symmetry_mode = 'yz'
+symmetry_mode = "yz"
 kwargs = {}
 translate = False
 plot_subdirectory = "arrowhead_3D_Lz"
@@ -71,6 +71,7 @@ elif setting_mode == 2:
     suffix_end = 'periodic-2-yz'
     translate = False
     kwargs = {'tile': True}
+    plot_subdirectory = "arrowhead_3D_2_wavelengths"
 
 elif setting_mode == 3:
     # Get Periodic AH from 2D AH. m=1 mode branch
