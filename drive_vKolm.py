@@ -282,7 +282,7 @@ elif setting_mode == 27:
     
     system_params['ndim'] = 2
     solver_params['Nx'] = 420
-    solver_params['Ny'] = 48
+    solver_params['Ny'] = 64
 
     system_params['Lx'] = 25*np.pi
     solver_params['dt'] = 5e-3
