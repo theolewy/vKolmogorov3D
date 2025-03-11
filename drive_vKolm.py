@@ -120,10 +120,10 @@ elif setting_mode == 7:
 
     solver_params['Nx'] = 32
     solver_params['Ny'] = 32
-    solver_params['Nz'] = 32
-    system_params['Lz'] =  3.8*np.pi
+    solver_params['Nz'] = 48
+    system_params['Lz'] =  4.2*np.pi
 
-    ic_dict_if_reinit = {'Nx': 64, 'Ny': 64, 'Nz': 64}
+    ic_dict_if_reinit = {'Nx': 64, 'Ny': 64, 'Nz': 96}
     suffix_end = 'periodic-yz'
 
 elif setting_mode == 8:
@@ -132,11 +132,9 @@ elif setting_mode == 8:
     solver_params['Nx'] = 32
     solver_params['Ny'] = 32
     solver_params['Nz'] = 48
-    solver_params['dt'] = 1e-2
     system_params['Lz'] =  4.2*np.pi
-    kwargs = {'truncate': True}
     
-    ic_dict_if_reinit = {'Nx': 64, 'Ny': 64, 'Nz': 72, 'Lz':4.5*np.pi, 'suffix': 'recent-localised'}
+    ic_dict_if_reinit = {'Nx': 64, 'Ny': 64, 'Nz': 72}
     suffix_end = 'localised-yz'
 elif setting_mode == 9:
     # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
