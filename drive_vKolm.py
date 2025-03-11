@@ -308,6 +308,7 @@ elif setting_mode == 27:
     symmetry_mode = 'y'
 
 
+
 log_all_params(material_params, system_params, solver_params)
 
 ic_file, noise_coeff, reinit = get_ic_file(material_params, system_params, solver_params, suffix=f'recent-{suffix_end}', subdir='arrowhead_3D', 
