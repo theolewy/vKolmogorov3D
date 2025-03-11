@@ -277,20 +277,6 @@ elif setting_mode == 26:
 
     ic_dict_if_reinit = {'Lz': 0.85*np.pi, 'Nz': 32}
     suffix_end = 'below-periodic-yz'
-elif setting_mode == 27:
-    # Get Periodic AH from 2D AH. m=1 mode branch
-    
-    system_params['ndim'] = 2
-    solver_params['Nx'] = 450
-    solver_params['Ny'] = 64
-
-    system_params['Lx'] = 38*np.pi
-    solver_params['dt'] = 5e-3
-
-    ic_dict_if_reinit = {'Lx': 35*np.pi,'Nx': 450, 'Ny': 64, 'subdir': 'arrowhead_2D', 'suffix': 'recent-'}
-    suffix_end = ''
-    plot_subdirectory = 'streamwise_localisation'
-    symmetry_mode = 'y'
 
 elif setting_mode == 27:
     # Get Periodic AH from 2D AH. m=1 mode branch
