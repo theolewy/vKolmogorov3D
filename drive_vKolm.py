@@ -60,12 +60,14 @@ elif setting_mode == 1:
 
 elif setting_mode == 2:
     # Get Periodic AH from 2D AH. m=1 mode branch
+    
+    # m=1 branch [np.pi/6, np.pi/5, np.pi/4, 0.27*np.pi, 5*np.pi/16,6*np.pi/16, 0.42*np.pi, 0.46*np.pi, np.pi/2,  9*np.pi/16,10*np.pi/16,11*np.pi/16, 12*np.pi/16,13*np.pi/16,14*np.pi/16, 15*np.pi/16, np.pi]
 
     solver_params['Nz'] = 32
     system_params['Lz'] = 2*input_val*np.pi
     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Lz': input_val*np.pi, 'Nz': 16, 'suffix': 'recent-periodic-yz'}
+    ic_dict_if_reinit = {'Lz': input_val*np.pi, 'Nz': 16, 'suffix': 'recent-periodic-yz', 'noise_coeff': 1e-4}
     suffix_end = 'periodic-2-yz'
     translate = False
     kwargs = {'tile': True}
@@ -294,14 +296,14 @@ elif setting_mode == 27:
 
 log_all_params(material_params, system_params, solver_params)
 
-ic_file, noise_coeff, _ = get_ic_file(material_params, system_params, solver_params, suffix=f'recent-{suffix_end}', subdir='arrowhead_3D', 
+ic_file, noise_coeff, reinit = get_ic_file(material_params, system_params, solver_params, suffix=f'recent-{suffix_end}', subdir='arrowhead_3D', 
                                    ic_dict_if_reinit=ic_dict_if_reinit)
 
 timestepper = TimeStepper3D(material_params=material_params, system_params=system_params, solver_params=solver_params)
 
 timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=noise_coeff, **kwargs)
 
-if translate:
+if translate and reinit:
     timestepper.translate_AH_to_centre(mode='z', shift=8)
 
 timestepper.simulate(T=4000, ifreq=100, 
