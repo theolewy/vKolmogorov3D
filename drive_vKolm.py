@@ -292,6 +292,22 @@ elif setting_mode == 27:
     plot_subdirectory = 'streamwise_localisation'
     symmetry_mode = 'y'
 
+elif setting_mode == 27:
+    # Get Periodic AH from 2D AH. m=1 mode branch
+    
+    system_params['ndim'] = 2
+    solver_params['Nx'] = 450
+    solver_params['Ny'] = 64
+
+    system_params['Lx'] = 40*np.pi
+    solver_params['dt'] = 5e-3
+
+    ic_dict_if_reinit = {'Lx': 38*np.pi,'Nx': 450, 'Ny': 64, 'subdir': 'arrowhead_2D', 'suffix': 'recent-'}
+    suffix_end = ''
+    plot_subdirectory = 'streamwise_localisation'
+    symmetry_mode = 'y'
+
+
 log_all_params(material_params, system_params, solver_params)
 
 ic_file, noise_coeff, reinit = get_ic_file(material_params, system_params, solver_params, suffix=f'recent-{suffix_end}', subdir='arrowhead_3D', 
