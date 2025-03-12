@@ -296,7 +296,7 @@ elif setting_mode == 27:
 elif setting_mode == 28:
     # Get Periodic AH from 2D AH. m=1 mode branch
     
-    solver_params['Nx'] = 450
+    solver_params['Nx'] = 500
     solver_params['Ny'] = 64
     solver_params['Nz'] = 32
 
@@ -313,13 +313,13 @@ elif setting_mode == 28:
 elif setting_mode == 29:
     # Get Periodic AH from 2D AH. m=1 mode branch
     
-    solver_params['Nx'] = 384
+    solver_params['Nx'] = 480
     solver_params['Ny'] = 48
     solver_params['Nz'] = 32
 
-    system_params['Lx'] = 100
+    system_params['Lx'] = 32*np.pi
     system_params['Lz'] = np.pi
-    solver_params['dt'] = 8e-3
+    solver_params['dt'] = 5e-3
 
     ic_dict_if_reinit = {'Lx': 32*np.pi,'Nx': 450, 'Ny': 64, 'ndim':2, 'noise_coeff': 1e-3, 'subdir': 'arrowhead_2D', 'suffix': 'recent-'}
     suffix_end = ''
