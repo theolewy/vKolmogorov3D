@@ -38,6 +38,9 @@ kwargs = {}
 translate = False
 plot_subdirectory = "arrowhead_3D_Lz"
 save_subdir = f"arrowhead_3D"
+save_full_data = False
+T=4000
+
 if setting_mode == 0:
     # Get Periodic AH from 2D AH. m=1 mode branch
 
@@ -151,12 +154,11 @@ elif setting_mode == 10:
 
     solver_params['Nx'] = 64
     solver_params['Ny'] = 64
-    solver_params['Nz'] = 72
+    solver_params['Nz'] = 112
  
-    system_params['Lz'] =  4.2*np.pi
-    kwargs = {'truncate': True}
+    system_params['Lz'] =  7*np.pi
     
-    ic_dict_if_reinit = {'Nx': 64, 'Ny': 64, 'Nz': 72, 'Lz':4.5*np.pi, 'suffix': 'recent-localised'}
+    ic_dict_if_reinit = {'Nz': 112, 'suffix': 'recent-localised'}
     suffix_end = 'localised-yz'
 
 elif setting_mode == 11:
@@ -232,13 +234,36 @@ elif setting_mode == 17:
 elif setting_mode == 20:
     # Get Periodic AH from 2D AH. m=1 mode branch
 
+    solver_params['Nz'] = 32
+    system_params['Lz'] = 0.9*np.pi
+    solver_params['dt'] = 5e-3
+
+    ic_dict_if_reinit = None
+    suffix_end = 'below-periodic-yz'
+    save_full_data = True
+elif setting_mode == 21:
+    # Get Periodic AH from 2D AH. m=1 mode branch
+
     solver_params['Nz'] = 64
-    system_params['Lz'] =  4*np.pi
+    system_params['Lz'] = 2*np.pi
+    solver_params['dt'] = 5e-3
 
-    solver_params['dt'] = 4e-3
+    ic_dict_if_reinit = None
+    suffix_end = 'periodic-yz'
+    save_full_data = True
+    T = 200
 
-    ic_dict_if_reinit = {'Lz': 3.5*np.pi, 'Nz': 56, 'suffix': 'recent-localised-yz'}
-    suffix_end = 'jockey-yz'
+elif setting_mode == 22:
+    # Get Periodic AH from 2D AH. m=1 mode branch
+
+    solver_params['Nz'] = 64
+    system_params['Lz'] = 4*np.pi
+    solver_params['dt'] = 5e-3
+
+    ic_dict_if_reinit = None
+    suffix_end = 'periodic-yz'
+    save_full_data = True
+    T = 200
 
 elif setting_mode == 23:
     # Get Periodic AH from 2D AH. m=1 mode branch
@@ -249,6 +274,8 @@ elif setting_mode == 23:
 
     ic_dict_if_reinit = {'Lz': 1.5*np.pi, 'Nz': 32}
     suffix_end = 'periodic-yz'
+    T = 200
+
 elif setting_mode == 24:
     # Get Periodic AH from 2D AH. m=1 mode branch
 
@@ -340,10 +367,10 @@ timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=noise_coeff, **kwargs)
 if translate and reinit:
     timestepper.translate_AH_to_centre(mode='z', shift=8)
 
-timestepper.simulate(T=4000, ifreq=100, 
+timestepper.simulate(T=T, ifreq=100, 
                      track_TW=False, 
                      enforce_symmetry=symmetry_mode,
                      save_over_long=True, 
-                     save_full_data=False, full_save_freq=5,
+                     save_full_data=save_full_data, full_save_freq=2,
                      save_subdir=save_subdir, suffix_end=suffix_end, 
                      plot=True, plot_dev=True, plot_subdirectory=plot_subdirectory)
