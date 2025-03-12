@@ -104,6 +104,8 @@ def write_driveFile(material_params, system_params, solver_params, a1, a2, Tmin,
     f.write('snapshots.add_system(timestepper.solver.state)\n')
     f.write("snapshots.add_task('integ(c11+c22+c33)/area',name='vol_tr')\n")
     f.write("snapshots.add_task('integ(C11+C22+C33)/area',name='vol_Tr')\n")
+    f.write("snapshots.add_task('integ(u ** 2 + v ** 2 + w ** 2)/2/area',name='vol_KE')\n")
+    f.write("snapshots.add_task('integ(U ** 2 + V ** 2 + WW ** 2)/2/area',name='vol_KE_base')\n")
 
     f.write("logger.info('Starting loop')\n")
     f.write('while timestepper.solver.ok:\n')
