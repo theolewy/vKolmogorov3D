@@ -37,7 +37,7 @@ symmetry_mode = "yz"
 kwargs = {}
 translate = False
 plot_subdirectory = "arrowhead_3D_Lz"
-
+save_subdir = f"arrowhead_3D"
 if setting_mode == 0:
     # Get Periodic AH from 2D AH. m=1 mode branch
 
@@ -308,6 +308,7 @@ elif setting_mode == 28:
     suffix_end = ''
     plot_subdirectory = 'streamwise_localisation'
     symmetry_mode = 'yz'
+    save_subdir = f"localisation"
 
 elif setting_mode == 29:
     # Get Periodic AH from 2D AH. m=1 mode branch
@@ -324,6 +325,7 @@ elif setting_mode == 29:
     suffix_end = ''
     plot_subdirectory = 'streamwise_localisation'
     symmetry_mode = 'yz'
+    save_subdir = f"localisation"
 
 
 log_all_params(material_params, system_params, solver_params)
@@ -343,5 +345,5 @@ timestepper.simulate(T=4000, ifreq=100,
                      enforce_symmetry=symmetry_mode,
                      save_over_long=True, 
                      save_full_data=False, full_save_freq=5,
-                     save_subdir=f"arrowhead_{system_params['ndim']}D", suffix_end=suffix_end, 
+                     save_subdir=save_subdir, suffix_end=suffix_end, 
                      plot=True, plot_dev=True, plot_subdirectory=plot_subdirectory)
