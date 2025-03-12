@@ -244,8 +244,8 @@ elif setting_mode == 20:
 elif setting_mode == 21:
     # Get Periodic AH from 2D AH. m=1 mode branch
 
-    solver_params['Nz'] = 64
-    system_params['Lz'] = 2*np.pi
+    solver_params['Nz'] = 32
+    system_params['Lz'] = 1.4*np.pi
     solver_params['dt'] = 5e-3
 
     ic_dict_if_reinit = None
