@@ -102,9 +102,9 @@ def write_driveFile(material_params, system_params, solver_params, a1, a2, Tmin,
     f.write(f"snapshots = timestepper.solver.evaluator.add_file_handler('{data_root}/snapshots',\n") 
     f.write("           sim_dt = 50, max_writes=2, mode='overwrite')\n")
     f.write('snapshots.add_system(timestepper.solver.state)\n')
-    f.write(f"scalars = timestepper.solver.evaluator.add_file_handler('{data_root}/scalars',\n") 
-    f.write("           sim_dt = 0.05, max_writes=np.inf, mode='overwrite')\n")
-    f.write("scalars.add_task('integ(c11+c22+c33)/area',name='vol_tr')\n")
+    f.write("snapshots.add_task('integ(c11+c22+c33)/area',name='vol_tr')\n")
+    f.write("snapshots.add_task('integ(C11+C22+C33)/area',name='vol_Tr')\n")
+
     f.write("logger.info('Starting loop')\n")
     f.write('while timestepper.solver.ok:\n')
     f.write("    timestepper.solver.step(solver_params['dt'])\n")
