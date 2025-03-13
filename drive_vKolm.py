@@ -332,7 +332,7 @@ elif setting_mode == 28:
 
     system_params['Lx'] = 40*np.pi
     system_params['Lz'] = np.pi
-    solver_params['dt'] = 5e-3
+    solver_params['dt'] = 2e-3
 
     ic_dict_if_reinit = {'Lx': 40*np.pi,'Nx': 450, 'Ny': 64, 'ndim':2, 'noise_coeff': 1e-3, 'subdir': 'arrowhead_2D', 'suffix': 'recent-'}
     suffix_end = ''
