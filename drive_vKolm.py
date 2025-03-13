@@ -317,7 +317,7 @@ elif setting_mode == 27:
     system_params['Lz'] = np.pi
     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Lx': 32*np.pi,'Nx': 480, 'Ny': 64}
+    ic_dict_if_reinit = {'Lx': 32*np.pi,'Nx': 480, 'Ny': 64, 'subdir': 'ocalisation'}
     suffix_end = ''
     plot_subdirectory = 'streamwise_localisation'
     symmetry_mode = 'yz'
