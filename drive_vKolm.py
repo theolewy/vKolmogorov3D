@@ -315,7 +315,7 @@ elif setting_mode == 27:
 
     system_params['Lx'] = 32*np.pi
     system_params['Lz'] = np.pi
-    solver_params['dt'] = 5e-3
+    solver_params['dt'] = 2e-3
 
     ic_dict_if_reinit = {'Lx': 32*np.pi,'Nx': 480, 'Ny': 64, 'subdir': 'localisation'}
     suffix_end = ''
