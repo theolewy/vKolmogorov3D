@@ -274,6 +274,7 @@ elif setting_mode == 23:
 
     ic_dict_if_reinit = {'Lz': 1.5*np.pi, 'Nz': 32}
     suffix_end = 'periodic-yz'
+    save_full_data = True
     T = 200
 
 elif setting_mode == 24:
