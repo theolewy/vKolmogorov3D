@@ -309,17 +309,19 @@ elif setting_mode == 26:
 elif setting_mode == 27:
     # Get Periodic AH from 2D AH. m=1 mode branch
     
-    system_params['ndim'] = 2
-    solver_params['Nx'] = 450
+    solver_params['Nx'] = 640
     solver_params['Ny'] = 64
+    solver_params['Nz'] = 32
 
-    system_params['Lx'] = 38*np.pi
+    system_params['Lx'] = 32*np.pi
+    system_params['Lz'] = np.pi
     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Lx': 38*np.pi,'Nx': 450, 'Ny': 64, 'subdir': 'arrowhead_2D', 'suffix': 'recent-'}
+    ic_dict_if_reinit = {'Lx': 32*np.pi,'Nx': 480, 'Ny': 64}
     suffix_end = ''
     plot_subdirectory = 'streamwise_localisation'
-    symmetry_mode = 'y'
+    symmetry_mode = 'yz'
+    save_subdir = f"localisation"
 
 elif setting_mode == 28:
     # Get Periodic AH from 2D AH. m=1 mode branch
