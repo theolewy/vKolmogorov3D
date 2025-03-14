@@ -318,8 +318,8 @@ class TimeStepper3D(CartesianTimeStepper):
 
             comm = MPI.COMM_WORLD
             size = comm.Get_size()
-            # mesh = (int(size ** 0.5), int(size ** 0.5)) if size ** 0.5 % 1 == 0 else (2, size//2)         # 128 16 32
-            mesh = (1, size)            # 128 8 64
+            mesh = (int(size ** 0.5), int(size ** 0.5)) if size ** 0.5 % 1 == 0 else (2, size//2)         # 128 16 32
+            # mesh = (1, size)           
 
             self.x_basis = de.Fourier('x', self.Nx, interval=(0, self.Lx), dealias=3 / 2)
             self.y_basis = de.Fourier('y', self.Ny, interval=(-np.pi*self.n, np.pi*self.n), dealias=3 / 2)
