@@ -84,7 +84,7 @@ elif setting_mode == 10:
 
     solver_params['Nx'] = 480
     solver_params['Ny'] = 64
-    solver_params['Nz'] = 32
+    solver_params['Nz'] = 96
 
     system_params['Lx'] = 32*np.pi
     system_params['Lz'] = 5*np.pi
@@ -110,7 +110,6 @@ if reinit:
         timestepper.translate_AH_to_centre(mode='x')    # move so arrowhead is in the middle of the domain
         timestepper.window(a, b, mode='x')
     elif window_mode == 'z':
-
         # timestepper.translate_AH_to_centre(mode='z')    # move so arrowhead is in the middle of the domain
         timestepper.window(a, b, mode='z')
 
