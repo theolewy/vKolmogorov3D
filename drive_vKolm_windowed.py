@@ -93,7 +93,7 @@ elif setting_mode == 10:
     ic_dict_if_reinit = {'Nx': 480, 'Ny':64, 'Nz': 32, 'Lz': np.pi, 'suffix': f'recent-', 'subdir': 'localisation'}
     suffix_end = f'windowed'
     window_mode = 'z'
-    tile = True
+    tile = False
 
 
 log_all_params(material_params, system_params, solver_params)
