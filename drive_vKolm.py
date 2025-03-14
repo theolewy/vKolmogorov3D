@@ -351,7 +351,7 @@ elif setting_mode == 29:
     system_params['Lz'] = np.pi
     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Lx': 32*np.pi,'Nx': 450, 'Ny': 64, 'ndim':2, 'noise_coeff': 1e-3, 'subdir': 'arrowhead_2D', 'suffix': 'recent-'}
+    ic_dict_if_reinit = None
     suffix_end = ''
     plot_subdirectory = 'streamwise_localisation'
     symmetry_mode = 'yz'
@@ -360,7 +360,7 @@ elif setting_mode == 29:
 
 log_all_params(material_params, system_params, solver_params)
 
-ic_file, noise_coeff, reinit = get_ic_file(material_params, system_params, solver_params, suffix=f'recent-{suffix_end}', subdir='arrowhead_3D', 
+ic_file, noise_coeff, reinit = get_ic_file(material_params, system_params, solver_params, suffix=f'recent-{suffix_end}', subdir=save_subdir, 
                                    ic_dict_if_reinit=ic_dict_if_reinit)
 
 timestepper = TimeStepper3D(material_params=material_params, system_params=system_params, solver_params=solver_params)
