@@ -33,9 +33,9 @@ solver_params = {'Nx': 32,
 gmres_params = {
     'dns_nproc': 16,         # parallelise over this many cores
     'Delta_start': 128000., # hookstep parameter  
-    'eps_gm': 2e-3,     # controls GMRES residual threshold
+    'eps_gm': 1e-3,     # controls GMRES residual threshold
     'eps_newt': 1e-6,   # controls size of newton step  
-    'TW_flag': True,    # seach for a travelling wave
+    'TW_flag': False,    # seach for a travelling wave
     'sim_time_TW': 5,   # number of steps to take in each simulation of a travelling wave    
                 }
 
