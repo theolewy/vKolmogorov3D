@@ -370,7 +370,7 @@ elif setting_mode == 30:
     system_params['Lz'] = np.pi
     solver_params['dt'] = 8e-3
 
-    ic_dict_if_reinit = {'Lx': 32*np.pi, 'Ny': 64}
+    ic_dict_if_reinit = {'Lx': 32*np.pi, 'Ny': 64, 'suffix': 'recent-'}
     suffix_end = 'dt-8e-3'
     plot_subdirectory = 'streamwise_localisation'
     symmetry_mode = 'yz'
