@@ -18,6 +18,7 @@ def get_roots():
     projects_path_local = os.path.expanduser('~') + '/Documents/projects/'
     data_path_fawcett = os.path.expanduser('~') + '/../../nfs/st01/hpc-fluids-rrk26/tal43/'
     data_path_csd3 = os.path.expanduser('~') + '/rds/hpc-work/'
+    data_path_swirles = os.path.expanduser('~') + '../../../cephfs/store/fluids-rrk26/tal43/'
 
     if os.path.exists(projects_path_local):
         core_root = projects_path_local + 'vKolmogorov3D/'
@@ -28,6 +29,9 @@ def get_roots():
     elif os.path.exists(data_path_csd3):
         core_root = os.path.expanduser('~') + '/projects/vKolmogorov3D/'
         data_root = data_path_csd3 + 'vKolmogorov3D/'
+    elif os.path.exists(data_path_swirles):
+        core_root = os.path.expanduser('~') + '/projects/vKolmogorov3D/'
+        data_root = data_path_swirles + 'vKolmogorov3D/'
     else:
         core_root = os.path.expanduser('~') + '/projects/vKolmogorov3D/'
 
