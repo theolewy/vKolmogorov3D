@@ -78,93 +78,22 @@ elif setting_mode == 6:
     suffix_end = f'a-{a:.4g}-b-{b:.4g}-Lz-orig-3,14-phase'
 
 elif setting_mode == 10:
-    # Wide periodicity
-    a, b = np.pi, np.pi
+    # STREAMWISE LOCALISATION
 
-    material_params['W'] = 20
-    solver_params['dt'] = 5e-3
+    a, b = np.pi / 2, np.pi / 4
 
-    system_params['Lz'] = 6*np.pi
-    system_params['Lx'] = 10*np.pi
-
-    solver_params['Nx'] = 128
-    solver_params['Ny'] = 64
-    solver_params['Nz'] = 64
-
-    ic_dict_if_reinit = {'Lx': 6*np.pi, 'Nx': 64, 'Ny':32, 'Nz': 48, 'suffix': f'recent-localised-yz'}
-    suffix_end = f'periodic-yz'
-    window_mode = 'x'
-    tile = True
-
-elif setting_mode == 11:
-    # Stretching localised
-
-    material_params['W'] = 20
-    solver_params['dt'] = 5e-3
-
-    system_params['Lz'] = 6*np.pi
-    system_params['Lx'] = 5.9*np.pi
-    
-    solver_params['Nx'] = 64
-    solver_params['Ny'] = 64
-    solver_params['Nz'] = 64
-
-    ic_dict_if_reinit = {'Nx': 64, 'Ny':32, 'Nz': 48, 'Lx': 4*np.pi}
-    suffix_end = f'localised-yz'
-    window_mode = False
-    tile = False
-
-elif setting_mode == 12:
-    # Localising in a spanwise by stretching
-
-    material_params['W'] = 20
-    solver_params['dt'] = 5e-3
-
-    system_params['Lz'] = np.pi
-    system_params['Lx'] = 10*np.pi
-
-    solver_params['Nx'] = 128
+    solver_params['Nx'] = 480
     solver_params['Ny'] = 64
     solver_params['Nz'] = 32
 
-    ic_dict_if_reinit = {'Nx': 64, 'Ny': 64, 'Nz': 32, 'Lx': 3*np.pi, 'subdir': 'arrowhead_3D'}
-    suffix_end = f'periodic-yz'
-    window_mode = False
-    tile = False
-
-elif setting_mode == 13:
-    # Localising in a spanwise by stretching
-    material_params['W'] = 20
+    system_params['Lx'] = 32*np.pi
+    system_params['Lz'] = 5*np.pi
     solver_params['dt'] = 5e-3
 
-    system_params['Lz'] = np.pi
-    system_params['Lx'] = 20*np.pi
-
-    solver_params['Nx'] = 200
-    solver_params['Ny'] = 64
-    solver_params['Nz'] = 16
-
-    ic_dict_if_reinit = {'Nx': 128, 'Ny': 64, 'Nz': 32, 'Lx': 10*np.pi}
-    suffix_end = f'periodic-yz'
-    window_mode = False
-    tile = False
-
-elif setting_mode == 14:
-    # Localising in a spanwise by stretching
-    material_params['W'] = 20
-    solver_params['dt'] = 5e-3
-
-    system_params['Lz'] = np.pi
-    system_params['Lx'] = 20*np.pi
-
-    solver_params['Nx'] = 320
-    solver_params['Ny'] = 64
-    solver_params['Nz'] = 16
-
-    ic_dict_if_reinit = {'Nx': 200}
-    suffix_end = f'periodic-yz'
-    window_mode = False
-    tile = False
+    ic_dict_if_reinit = {'Nx': 480, 'Ny':64, 'Nz': 32, 'Lz': np.pi, 'suffix': f'recent-', 'subdir': 'localisation'}
+    suffix_end = f'windowed'
+    window_mode = 'z'
+    tile = True
 
 
 log_all_params(material_params, system_params, solver_params)
@@ -182,7 +111,7 @@ if reinit:
         timestepper.window(a, b, mode='x')
     elif window_mode == 'z':
 
-        timestepper.translate_AH_to_centre(mode='z')    # move so arrowhead is in the middle of the domain
+        # timestepper.translate_AH_to_centre(mode='z')    # move so arrowhead is in the middle of the domain
         timestepper.window(a, b, mode='z')
 
 timestepper.simulate(T=4000, ifreq=100, 
