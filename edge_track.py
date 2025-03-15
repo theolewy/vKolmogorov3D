@@ -91,7 +91,7 @@ elif setting_mode == 3:
         lamb1  = 0.0    # lower bound
         lamb2  = 1.0    # upper bound
         accmin = 1e-12
-        Tmin   = 400
+        Tmin   = 1000
         a_Tmin = 200
 
         data_root = data_root + 'edge_track/local-jockey-4,3pi/'
