@@ -234,6 +234,18 @@ elif setting_mode == 17:
     suffix_end = 'periodic-yz'
     solver_params['dt'] = 1e-2
 
+elif setting_mode == 18:
+    # Get Periodic AH from 2D AH. m=1 mode branch
+
+    solver_params['Nx'] = 32
+    solver_params['Ny'] = 32
+    solver_params['Nz'] = 48
+    system_params['Lz'] =  4.3*np.pi
+
+    ic_dict_if_reinit = {'Nx': 64, 'Ny': 64, 'Nz': 96}
+    suffix_end = 'periodic-yz'
+    solver_params['dt'] = 1e-2
+    
 elif setting_mode == 20:
     # Get Periodic AH from 2D AH. m=1 mode branch
 
