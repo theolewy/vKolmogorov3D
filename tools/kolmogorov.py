@@ -457,23 +457,39 @@ class TimeStepper3D(CartesianTimeStepper):
 
             odd_fields_y = ['v', 'c12', 'c23']
             even_fields_y = ['u', 'w', 'c11', 'c22', 'c33', 'p', 'c13']
+            
+            local_slice = self.domain.dist.coeff_layout.slices(scales=1)
 
             # y is Fourier, so freq are [0, 1, 2, ... , -2, -1]. Even means k(1) = k(-1) and odd means k(1) = -k(-1)
             for field_name in odd_fields_y:
                 field = getattr(self, field_name)
+                coeff_array = self.get_full_array(field['c'], mode='c')
+
                 if self.ndim == 3:
-                    field['c'][:,:,1:] = (field['c'][:,:,1:] - field['c'][:,:,1:][:,:,::-1]) / 2
-                    field['c'][:,:,0] = 0
+                    coeff_array[:,:,1:] = (coeff_array[:,:,1:] - coeff_array[:,:,1:][:,:,::-1]) / 2
+                    coeff_array[:,:,0] = 0
+
+                    # field['c'][:,:,1:] = (field['c'][:,:,1:] - field['c'][:,:,1:][:,:,::-1]) / 2
+                    # field['c'][:,:,0] = 0
                 elif self.ndim == 2:
-                    field['c'][:,1:] = (field['c'][:,1:] - field['c'][:,1:][:,::-1]) / 2
-                    field['c'][:,0] = 0
+                    coeff_array[:,1:] = (coeff_array[:,1:] - coeff_array[:,1:][:,::-1]) / 2
+                    coeff_array[:,0] = 0
+
+                field['c'] = coeff_array[local_slice]
+                    # field['c'][:,1:] = (field['c'][:,1:] - field['c'][:,1:][:,::-1]) / 2
+                    # field['c'][:,0] = 0
 
             for field_name in even_fields_y:
                 field = getattr(self, field_name)
+                coeff_array = self.get_full_array(field['c'], mode='c')
                 if self.ndim == 3:
-                    field['c'][:,:,1:] = (field['c'][:,:,1:] + field['c'][:,:,1:][:,:,::-1]) / 2
+                    coeff_array[:,:,1:] = (coeff_array[:,:,1:] + coeff_array[:,:,1:][:,:,::-1]) / 2
+                    # field['c'][:,:,1:] = (field['c'][:,:,1:] + field['c'][:,:,1:][:,:,::-1]) / 2
                 elif self.ndim == 2:
-                    field['c'][:,1:] = (field['c'][:,1:] + field['c'][:,1:][:,::-1]) / 2
+                    coeff_array[:,1:] = (coeff_array[:,1:] + coeff_array[:,1:][:,::-1]) / 2
+                    # field['c'][:,1:] = (field['c'][:,1:] + field['c'][:,1:][:,::-1]) / 2
+
+                field['c'] = coeff_array[local_slice]
 
         if self.enforce_symmetry == 'yz' or self.enforce_symmetry == 'z':
 
@@ -481,18 +497,27 @@ class TimeStepper3D(CartesianTimeStepper):
             even_fields_z = ['u', 'v', 'c11', 'c12', 'c22', 'c33', 'p']
 
             # z is Fourier, so freq are [0, 1, 2, ... , -2, -1]. Even means k(1) = k(-1) and odd means k(1) = -k(-1)
-            if field['c'].shape[1] != self.Nz -1: raise Exception("z symmetry enforced wrongly...")
+            # if field['c'].shape[1] != self.Nz -1: raise Exception("z symmetry enforced wrongly...")
             
             for field_name in odd_fields_z:
                 field = getattr(self, field_name)
+                coeff_array = self.get_full_array(field['c'], mode='c')
+
                 if self.ndim == 3:
-                    field['c'][:,1:,:] = (field['c'][:,1:,:] - field['c'][:,1:,:][:,::-1,:]) / 2
-                    field['c'][:,0,:] = 0
+                    coeff_array[:,1:,:] = (coeff_array[:,1:,:] - coeff_array[:,1:,:][:,::-1,:]) / 2
+                    coeff_array[:,0,:] = 0
+
+
+                field['c'] = coeff_array[local_slice]
 
             for field_name in even_fields_z:
+
                 field = getattr(self, field_name)
+                coeff_array = self.get_full_array(field['c'], mode='c')
+
                 if self.ndim == 3:
-                    field['c'][:,1:,:] = (field['c'][:,1:,:] + field['c'][:,1:,:][:,::-1,:]) / 2
+                    coeff_array[:,1:,:] = (coeff_array[:,1:,:] + coeff_array[:,1:,:][:,::-1, :]) / 2
+                field['c'] = coeff_array[local_slice]
 
     def simulate(self, T=np.infty, ifreq=200, convergence_limit=1e-4,
                  end_converge=False, end_laminar=False, end_laminar_threshold=1e-6, 

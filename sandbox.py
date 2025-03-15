@@ -14,12 +14,12 @@ material_params = {'W': 20,
 
 system_params = {'ndim': 3,
                  'Lx': 3 * np.pi,
-                 'Lz': 4 * np.pi,
+                 'Lz': 8 * np.pi,
                  'n': 1}
 
-solver_params = {'Nx': 16,
-                 'Ny': 16,
-                 'Nz': 12,
+solver_params = {'Nx': 32,
+                 'Ny': 32,
+                 'Nz': 32,
                  'dt': 1e-3,
                  'c': 0}
 
@@ -29,14 +29,10 @@ kwargs = {}
 
 # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
 kwargs = {'truncate': True}
-Lz = 4*np.pi
 
-system_params['Lz'] = Lz
-
-
-ic_dict_if_reinit = {'Lz': 8*np.pi , 'Nz': 16}
+ic_dict_if_reinit = {'Nx':16, 'Ny': 16, 'Nz':16}
 suffix_end = 'localised'
-symmetry_mode = False
+symmetry_mode = 'yz'
 
 log_all_params(material_params, system_params, solver_params)
 
@@ -47,7 +43,7 @@ timestepper = TimeStepper3D(material_params=material_params, system_params=syste
 
 timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=0e-1, **kwargs)
 
-timestepper.simulate(T=4000, ifreq=100, 
+timestepper.simulate(T=4000, ifreq=10, 
                      track_TW=False, 
                      enforce_symmetry=symmetry_mode,
                      save_over_long=True, 
