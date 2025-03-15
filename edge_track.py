@@ -80,7 +80,7 @@ elif setting_mode == 2:
         data_root = data_root + 'edge_track/local-jockey-4,2pi/'
         logger.info('Here Field 1 is localised 3D AH, and Field 2 is 2 jockeying 3D AHs')
 
-elif setting_mode == 2:
+elif setting_mode == 3:
 
         system_params['Lz'] = 4.3 * np.pi
         solver_params['Nz'] = 48
