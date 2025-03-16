@@ -372,7 +372,7 @@ elif setting_mode == 30:
     system_params['Lz'] = np.pi
     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Lx': 32*np.pi,'Nx': 450, 'Ny': 64, 'ndim':2, 'noise_coeff': 1e-3, 'subdir': 'arrowhead_2D', 'suffix': 'recent-'}
+    ic_dict_if_reinit = {'Lz':np.pi/2, 'Nz':16 }
     suffix_end = ''
     plot_subdirectory = 'streamwise_localisation'
     symmetry_mode = 'yz'
@@ -388,8 +388,6 @@ ic_file, noise_coeff, reinit = get_ic_file(material_params, system_params, solve
 timestepper = TimeStepper3D(material_params=material_params, system_params=system_params, solver_params=solver_params)
 
 timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=noise_coeff, **kwargs)
-
-reinit = True
 
 if translate and reinit:
     timestepper.translate_AH_to_centre(mode='z', shift=8)
