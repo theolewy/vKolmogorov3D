@@ -378,7 +378,6 @@ elif setting_mode == 30:
     symmetry_mode = 'yz'
     save_subdir = f"localisation"
 
-    translate = True
 
 log_all_params(material_params, system_params, solver_params)
 
