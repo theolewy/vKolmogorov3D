@@ -360,6 +360,7 @@ elif setting_mode == 29:
     plot_subdirectory = 'streamwise_localisation'
     symmetry_mode = 'yz'
     save_subdir = f"localisation"
+
 elif setting_mode == 30:
     # Get Periodic AH from 2D AH. m=1 mode branch
     
@@ -369,13 +370,15 @@ elif setting_mode == 30:
 
     system_params['Lx'] = 32*np.pi
     system_params['Lz'] = np.pi
-    solver_params['dt'] = 8e-3
+    solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Lx': 32*np.pi, 'Ny': 64, 'suffix': 'recent-'}
-    suffix_end = 'dt-8e-3'
+    ic_dict_if_reinit = {'Lx': 32*np.pi,'Nx': 450, 'Ny': 64, 'ndim':2, 'noise_coeff': 1e-3, 'subdir': 'arrowhead_2D', 'suffix': 'recent-'}
+    suffix_end = ''
     plot_subdirectory = 'streamwise_localisation'
     symmetry_mode = 'yz'
     save_subdir = f"localisation"
+
+    translate = True
 
 log_all_params(material_params, system_params, solver_params)
 
@@ -385,6 +388,8 @@ ic_file, noise_coeff, reinit = get_ic_file(material_params, system_params, solve
 timestepper = TimeStepper3D(material_params=material_params, system_params=system_params, solver_params=solver_params)
 
 timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=noise_coeff, **kwargs)
+
+reinit = True
 
 if translate and reinit:
     timestepper.translate_AH_to_centre(mode='z', shift=8)
