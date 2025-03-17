@@ -85,14 +85,14 @@ elif setting_mode == 3:
         system_params['Lz'] = 4.3 * np.pi
         solver_params['Nz'] = 48
 
-        a1     = 0.18   # when to declare ultimate state as field 1
-        a2     = 0.30   # when to declare ultimate state as field 2
+        a1     = 0.22   # when to declare ultimate state as field 1
+        a2     = 0.27   # when to declare ultimate state as field 2
         lamb   = 0.5    # current lambda
         lamb1  = 0.0    # lower bound
         lamb2  = 1.0    # upper bound
         accmin = 1e-12
-        Tmin   = 1000
-        a_Tmin = 200
+        Tmin   = 100
+        a_Tmin = 1
 
         data_root = data_root + 'edge_track/local-jockey-4,3pi/'
         logger.info('Here Field 1 is localised 3D AH, and Field 2 is 2 jockeying 3D AHs')
