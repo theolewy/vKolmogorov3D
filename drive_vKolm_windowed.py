@@ -101,12 +101,12 @@ elif setting_mode == 11:
     a, b = np.pi / 2, np.pi / 4
 
     solver_params['Nx'] = 480
-    solver_params['Ny'] = 48
+    solver_params['Ny'] = 64
     solver_params['Nz'] = 48
 
     system_params['Lx'] = 32*np.pi
     system_params['Lz'] = 5*np.pi
-    solver_params['dt'] = 8e-3
+    solver_params['dt'] = 5e-3
 
     ic_dict_if_reinit = {'Nx': 480, 'Ny':64, 'Nz': 96}
     suffix_end = f'windowed'
