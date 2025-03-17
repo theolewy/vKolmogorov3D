@@ -93,7 +93,7 @@ elif setting_mode == 10:
     ic_dict_if_reinit = {'Nx': 480, 'Ny':64, 'Nz': 32, 'Lz': np.pi, 'suffix': f'recent-', 'subdir': 'localisation'}
     suffix_end = f'windowed'
     window_mode = 'z'
-    tile = False
+    tile = True
 
 elif setting_mode == 11:
     # STREAMWISE LOCALISATION
@@ -132,7 +132,7 @@ if reinit:
 
 timestepper.simulate(T=4000, ifreq=100, 
                      track_TW=False, 
-                     enforce_symmetry=False,
+                     enforce_symmetry='yz',
                      save_over_long=False, 
                      save_full_data=False, full_save_freq=5,
                      save_subdir=f"localisation", suffix_end=suffix_end, 
