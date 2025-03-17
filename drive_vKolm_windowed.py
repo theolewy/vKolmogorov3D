@@ -110,7 +110,7 @@ elif setting_mode == 11:
 
     ic_dict_if_reinit = {'Nx': 480, 'Ny':64, 'Nz': 96}
     suffix_end = f'windowed'
-    window_mode = 'z'
+    window_mode = False
     tile = False
 
 log_all_params(material_params, system_params, solver_params)
