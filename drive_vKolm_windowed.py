@@ -93,25 +93,25 @@ elif setting_mode == 10:
     ic_dict_if_reinit = {'Nx': 480, 'Ny':64, 'Nz': 32, 'Lz': np.pi, 'suffix': f'recent-', 'subdir': 'localisation'}
     suffix_end = f'windowed'
     window_mode = 'z'
-    tile = True
+    tile = False
 
 elif setting_mode == 11:
     # STREAMWISE LOCALISATION
 
-    a, b = np.pi / 4, np.pi / 8
+    a, b = np.pi / 2, np.pi / 4
 
     solver_params['Nx'] = 480
-    solver_params['Ny'] = 64
-    solver_params['Nz'] = 96
+    solver_params['Ny'] = 48
+    solver_params['Nz'] = 48
 
     system_params['Lx'] = 32*np.pi
     system_params['Lz'] = 5*np.pi
     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Nx': 480, 'Ny':64, 'Nz': 32, 'Lz': np.pi, 'suffix': f'recent-', 'subdir': 'localisation'}
-    suffix_end = f'windowed2'
+    ic_dict_if_reinit = {'Nx': 480, 'Ny':64, 'Nz': 96}
+    suffix_end = f'windowed'
     window_mode = 'z'
-    tile = True
+    tile = False
 
 log_all_params(material_params, system_params, solver_params)
 
