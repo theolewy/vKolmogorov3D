@@ -378,7 +378,7 @@ elif setting_mode == 30:
     plot_subdirectory = 'streamwise_localisation'
     symmetry_mode = 'yz'
     save_subdir = f"localisation"
-
+    translate = True
 
 log_all_params(material_params, system_params, solver_params)
 
