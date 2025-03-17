@@ -390,7 +390,7 @@ timestepper = TimeStepper3D(material_params=material_params, system_params=syste
 timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=noise_coeff, **kwargs)
 
 if translate and reinit:
-    timestepper.translate_AH_to_centre(mode='z', shift=8)
+    timestepper.translate_AH_to_centre(mode='z', shift=16)
 
 timestepper.simulate(T=T, ifreq=100, 
                      track_TW=False, 
