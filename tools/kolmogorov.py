@@ -323,6 +323,8 @@ class TimeStepper3D(CartesianTimeStepper):
                 mesh = (int(size ** 0.5), int(size ** 0.5)) 
             elif size == 32:
                 mesh = (4, 8) 
+            elif size == 48:
+                mesh = (6, 8) 
             else:
                 mesh = (2, size//2)       
             # mesh = (1, size)           
