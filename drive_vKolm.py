@@ -290,7 +290,7 @@ elif setting_mode == 24:
     system_params['ndim'] = 2
     material_params['W'] = 10
     system_params['Lx'] = 24*np.pi
-    solver_params['Nx'] = 360
+    solver_params['Nx'] = 420
     solver_params['dt'] = 1e-3
 
     ic_dict_if_reinit = {'W': 20, 'Lx': 25*np.pi, 'Nx': 420, 'subdir': 'arrowhead_2D'}
