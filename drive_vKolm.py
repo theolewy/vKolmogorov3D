@@ -278,7 +278,7 @@ elif setting_mode == 23:
     system_params['Lx'] = 32*np.pi
     solver_params['Nx'] = 480
 
-    ic_dict_if_reinit = {'W': 20, 'Lx': 32*np.pi, 'Nx': 480, 'subdir': 'localisation'}
+    ic_dict_if_reinit = {'W': 20, 'Lx': 32*np.pi, 'Nx': 480, 'subdir': 'arrowhead_2D'}
     suffix_end = ''
     save_subdir = 'localisation'
     plot_subdirectory = 'streamwise_localisation'
@@ -291,7 +291,7 @@ elif setting_mode == 24:
     system_params['Lx'] = 24*np.pi
     solver_params['Nx'] = 360
 
-    ic_dict_if_reinit = {'W': 20, 'Lx': 32*np.pi, 'Nx': 480, 'subdir': 'localisation'}
+    ic_dict_if_reinit = {'W': 20, 'Lx': 32*np.pi, 'Nx': 480, 'subdir': 'arrowhead_2D'}
     suffix_end = ''
     save_subdir = 'localisation'
     plot_subdirectory = 'streamwise_localisation'
