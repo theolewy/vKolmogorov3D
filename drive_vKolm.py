@@ -278,7 +278,7 @@ elif setting_mode == 23:
     system_params['Lx'] = 32*np.pi
     solver_params['Nx'] = 480
 
-    ic_dict_if_reinit = {'W': 20, 'Lx': 32*np.pi, 'Nx': 480, 'subdir': 'arrowhead_2D'}
+    ic_dict_if_reinit = {'W': 20, 'Lx': 32*np.pi, 'Nx': 450, 'subdir': 'arrowhead_2D'}
     suffix_end = ''
     save_subdir = 'localisation'
     plot_subdirectory = 'streamwise_localisation'
@@ -291,7 +291,7 @@ elif setting_mode == 24:
     system_params['Lx'] = 24*np.pi
     solver_params['Nx'] = 360
 
-    ic_dict_if_reinit = {'W': 20, 'Lx': 32*np.pi, 'Nx': 480, 'subdir': 'arrowhead_2D'}
+    ic_dict_if_reinit = {'W': 20, 'Lx': 32*np.pi, 'Nx': 450, 'subdir': 'arrowhead_2D'}
     suffix_end = ''
     save_subdir = 'localisation'
     plot_subdirectory = 'streamwise_localisation'
@@ -300,11 +300,13 @@ elif setting_mode == 24:
 elif setting_mode == 25:
     # Get Periodic AH from 2D AH. m=1 mode branch
 
-    solver_params['Nz'] = 16
-    system_params['Lz'] =  input_val*np.pi
+    material_params['W'] = 10
+    system_params['Lx'] = np.pi
+    solver_params['Nx'] = 360
 
-    ic_dict_if_reinit = {'Lz': np.pi/2, 'Nz': 16}
-    suffix_end = 'periodic-yz'
+    ic_dict_if_reinit = {'W': 20, 'Lx': 32*np.pi, 'Nx': 480, 'subdir': 'arrowhead_2D'}
+    suffix_end = ''
+    symmetry_mode = 'yz'
 
 elif setting_mode == 26:
     # Get Periodic AH from 2D AH. m=1 mode branch
