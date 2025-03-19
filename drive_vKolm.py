@@ -293,7 +293,7 @@ elif setting_mode == 24:
     solver_params['Nx'] = 360
     solver_params['dt'] = 1e-3
 
-    ic_dict_if_reinit = {'W': 20, 'Lx': 32*np.pi, 'Nx': 450, 'subdir': 'arrowhead_2D'}
+    ic_dict_if_reinit = {'W': 20, 'Lx': 25*np.pi, 'Nx': 420, 'subdir': 'arrowhead_2D'}
     suffix_end = ''
     save_subdir = 'localisation'
     plot_subdirectory = 'streamwise_localisation'
