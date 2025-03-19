@@ -309,7 +309,7 @@ elif setting_mode == 25:
     solver_params['Nx'] = 64
     solver_params['Nz'] = 32
 
-    ic_dict_if_reinit = {'ndim': 2, 'W': 10, 'Lx': 3*np.pi, 'Nx': 128, 'Ny': 256, 'subdir': 'arrowhead_2D'}
+    ic_dict_if_reinit = {'noise_coeff':1e-3, 'ndim': 2, 'W': 10, 'Lx': 3*np.pi, 'Nx': 128, 'Ny': 256, 'subdir': 'arrowhead_2D'}
     suffix_end = ''
     symmetry_mode = 'yz'
 
