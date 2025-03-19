@@ -60,14 +60,40 @@ elif setting_mode == 1:
     suffix_end = f'window-2D-AH'
     window_mode = 'z'
 
-elif setting_mode == 3:
-    a, b = np.pi/2, np.pi/4
+elif setting_mode == 2:
 
-    material_params['W'] = 17
+    a, b = np.pi, np.pi/2
+    
+    material_params['W'] = 10
 
-    ic_dict_if_reinit = {'suffix': f'recent-a-{a:.4g}-b-{b:.4g}-Lz-orig-3,14-twice'}
-    suffix_end = f'a-{a:.4g}-b-{b:.4g}-Lz-orig-3,14-yz-twice'
+    solver_params['Nx'] = 64
+
+    system_params['Lz'] = 6*np.pi
+    solver_params['Nz'] = 96
+    solver_params['dt'] = 5e-3
+
+    ic_dict_if_reinit = {'W': 10, 'ndim': 2, 'Lx': 3*np.pi, 'Nx': 128, 'Ny': 256, 'subdir': 'arrowhead_2D', 'suffix': 'recent-'}
+
     symmetry_mode = 'yz'
+    suffix_end = f'window-2D-AH'
+    window_mode = 'z'
+    
+elif setting_mode == 3:
+    a, b = np.pi, np.pi/2
+    
+    material_params['W'] = 10
+
+    solver_params['Nx'] = 64
+
+    system_params['Lz'] = 8*np.pi
+    solver_params['Nz'] = 128
+    solver_params['dt'] = 5e-3
+
+    ic_dict_if_reinit = {'W': 10, 'ndim': 2, 'Lx': 3*np.pi, 'Nx': 128, 'Ny': 256, 'subdir': 'arrowhead_2D', 'suffix': 'recent-'}
+
+    symmetry_mode = 'yz'
+    suffix_end = f'window-2D-AH'
+    window_mode = 'z'
 
 elif setting_mode == 4:
     a, b = np.pi/3, np.pi/6
