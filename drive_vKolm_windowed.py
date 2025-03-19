@@ -36,7 +36,7 @@ a = 3pi/8 with b=pi/8, pi/4, pi/2
 """
 symmetry_mode = 'yz'
 window_x = False
-tile = True
+tile = False
 if setting_mode == 0:
     a, b = np.pi/2, np.pi/4
 
