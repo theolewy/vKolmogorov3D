@@ -273,24 +273,24 @@ elif setting_mode == 22:
 elif setting_mode == 23:
     # Get Periodic AH from 2D AH. m=1 mode branch
 
-    solver_params['Nz'] = 32
-    system_params['Lz'] =  input_val*np.pi
-    solver_params['dt'] = 5e-3
+    system_params['ndim'] = 2
+    material_params['W'] = 10
+    system_params['Lx'] = 32*np.pi
+    solver_params['Nx'] = 480
 
-    ic_dict_if_reinit = {'Lz': 1.5*np.pi, 'Nz': 32}
-    suffix_end = 'periodic-yz'
-    save_full_data = True
-    T = 200
+    ic_dict_if_reinit = {'W': 20, 'Lx': 32*np.pi, 'Nx': 480, 'subdir': 'localisation'}
+    suffix_end = ''
 
 elif setting_mode == 24:
     # Get Periodic AH from 2D AH. m=1 mode branch
 
-    solver_params['Nz'] = 64
-    system_params['Lz'] =  2*np.pi
-    solver_params['dt'] = 5e-3
+    system_params['ndim'] = 2
+    material_params['W'] = 10
+    system_params['Lx'] = 24*np.pi
+    solver_params['Nx'] = 360
 
-    ic_dict_if_reinit = {'Lz': 3*np.pi, 'Nz': 64}
-    suffix_end = 'periodic-yz'
+    ic_dict_if_reinit = {'W': 20, 'Lx': 32*np.pi, 'Nx': 480, 'subdir': 'localisation'}
+    suffix_end = ''
 
 elif setting_mode == 25:
     # Get Periodic AH from 2D AH. m=1 mode branch
