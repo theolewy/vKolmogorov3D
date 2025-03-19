@@ -54,8 +54,7 @@ elif setting_mode == 1:
     solver_params['Nz'] = 128
 
     ic_dict_if_reinit = {'W': 10, 'ndim': 2, 'Lx': 3*np.pi, 'Nx': 128, 'Ny': 256, 'subdir': 'arrowhead_2D', 'suffix': 'recent-'}
-    save_subdir = 'windows'
-    plot_subdirectory = 'spanwise_localisation'
+
     symmetry_mode = 'yz'
     suffix_end = f'window-2D-AH'
     window_mode = 'z'
