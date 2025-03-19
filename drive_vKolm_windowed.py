@@ -44,16 +44,21 @@ if setting_mode == 0:
     suffix_end = f'a-{a:.4g}-b-{b:.4g}-Lz-orig-3,14'
 
 elif setting_mode == 1:
-    a, b = 1.5*np.pi, np.pi/2
+    a, b = np.pi, np.pi/2
     
-    material_params['W'] = 17
+    material_params['W'] = 10
+
+    solver_params['Nx'] = 64
 
     system_params['Lz'] = 8*np.pi
-
     solver_params['Nz'] = 128
 
-    ic_dict_if_reinit = {'suffix': 'recent-periodic', 'subdir':'arrowhead_3D', 'Lz': np.pi, 'Nz': 32}
-    suffix_end = f'a-{a:.4g}-b-{b:.4g}-Lz-orig-3,14'
+    ic_dict_if_reinit = {'W': 10, 'Lx': 3*np.pi, 'Nx': 128, 'Ny': 256, 'subdir': 'arrowhead_2D', 'suffix': 'recent-'}
+    save_subdir = 'windows'
+    plot_subdirectory = 'spanwise_localisation'
+    symmetry_mode = 'yz'
+    suffix_end = f'window-2D-AH'
+    window_mode = 'z'
 
 elif setting_mode == 3:
     a, b = np.pi/2, np.pi/4
