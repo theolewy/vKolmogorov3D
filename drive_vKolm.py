@@ -281,7 +281,8 @@ elif setting_mode == 23:
     ic_dict_if_reinit = {'W': 20, 'Lx': 32*np.pi, 'Nx': 480, 'subdir': 'localisation'}
     suffix_end = ''
     save_subdir = 'localisation'
-
+    plot_subdirectory = 'streamwise_localisation'
+    symmetry_mode = 'y'
 elif setting_mode == 24:
     # Get Periodic AH from 2D AH. m=1 mode branch
 
@@ -293,6 +294,8 @@ elif setting_mode == 24:
     ic_dict_if_reinit = {'W': 20, 'Lx': 32*np.pi, 'Nx': 480, 'subdir': 'localisation'}
     suffix_end = ''
     save_subdir = 'localisation'
+    plot_subdirectory = 'streamwise_localisation'
+    symmetry_mode = 'y'
 
 elif setting_mode == 25:
     # Get Periodic AH from 2D AH. m=1 mode branch
