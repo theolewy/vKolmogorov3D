@@ -277,6 +277,7 @@ elif setting_mode == 23:
     material_params['W'] = 10
     system_params['Lx'] = 32*np.pi
     solver_params['Nx'] = 480
+    solver_params['dt'] = 3e-3
 
     ic_dict_if_reinit = {'W': 20, 'Lx': 32*np.pi, 'Nx': 450, 'subdir': 'arrowhead_2D'}
     suffix_end = ''
@@ -290,6 +291,7 @@ elif setting_mode == 24:
     material_params['W'] = 10
     system_params['Lx'] = 24*np.pi
     solver_params['Nx'] = 360
+    solver_params['dt'] = 3e-3
 
     ic_dict_if_reinit = {'W': 20, 'Lx': 32*np.pi, 'Nx': 450, 'subdir': 'arrowhead_2D'}
     suffix_end = ''
