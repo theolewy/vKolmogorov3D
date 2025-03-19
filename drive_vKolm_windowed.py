@@ -52,6 +52,7 @@ elif setting_mode == 1:
 
     system_params['Lz'] = 4*np.pi
     solver_params['Nz'] = 64
+    solver_params['dt'] = 5e-3
 
     ic_dict_if_reinit = {'W': 10, 'ndim': 2, 'Lx': 3*np.pi, 'Nx': 128, 'Ny': 256, 'subdir': 'arrowhead_2D', 'suffix': 'recent-'}
 
