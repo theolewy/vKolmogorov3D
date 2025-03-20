@@ -417,6 +417,23 @@ elif setting_mode == 31:
     symmetry_mode = 'yz'
     save_subdir = f"localisation"
     translate = False
+elif setting_mode == 32:
+    # Get Periodic AH from 2D AH. m=1 mode branch
+    
+    solver_params['Nx'] = 480
+    solver_params['Ny'] = 48
+    solver_params['Nz'] = 32
+
+    system_params['Lx'] = 32*np.pi
+    system_params['Lz'] = 2*np.pi
+    solver_params['dt'] = 5e-3
+
+    ic_dict_if_reinit = {'Nx': 480, 'Ny': 48, 'Nz': 16, 'Lz': np.pi}
+    suffix_end = ''
+    plot_subdirectory = 'streamwise_localisation'
+    symmetry_mode = 'yz'
+    save_subdir = f"localisation"
+    translate = False
 log_all_params(material_params, system_params, solver_params)
 
 ic_file, noise_coeff, reinit = get_ic_file(material_params, system_params, solver_params, suffix=f'recent-{suffix_end}', subdir=save_subdir, 
