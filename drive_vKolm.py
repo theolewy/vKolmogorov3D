@@ -304,7 +304,7 @@ elif setting_mode == 25:
 
     material_params['W'] = 10
 
-    system_params['Lz'] = np.pi
+    system_params['Lz'] = np.pi / 2
 
     solver_params['Nx'] = 64
     solver_params['Nz'] = 32
