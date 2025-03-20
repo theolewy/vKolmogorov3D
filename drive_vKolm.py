@@ -313,7 +313,7 @@ elif setting_mode == 25:
     solver_params['Nx'] = 64
     solver_params['Nz'] = 32
 
-    ic_dict_if_reinit = {'noise_coeff':1e-3, 'ndim': 2, 'W': 10, 'Lx': 3*np.pi, 'Nx': 128, 'Ny': 256, 'subdir': 'arrowhead_2D'}
+    ic_dict_if_reinit = {'Lz': np.pi / 4, 'Nz': 16}
     suffix_end = ''
     symmetry_mode = 'yz'
 
@@ -322,14 +322,15 @@ elif setting_mode == 26:
 
     material_params['W'] = 10
 
-    system_params['Lz'] = np.pi / 4
+    system_params['Lz'] = np.pi 
 
     solver_params['Nx'] = 64
-    solver_params['Nz'] = 16
+    solver_params['Nz'] = 32
 
-    ic_dict_if_reinit = {'noise_coeff':1e-3, 'ndim': 2, 'W': 10, 'Lx': 3*np.pi, 'Nx': 128, 'Ny': 256, 'subdir': 'arrowhead_2D'}
+    ic_dict_if_reinit = {'Lz': np.pi / 4, 'Nz': 16}
     suffix_end = ''
     symmetry_mode = 'yz'
+
 
 elif setting_mode == 27:
     # Get Periodic AH from 2D AH. m=1 mode branch
