@@ -133,16 +133,16 @@ elif setting_mode == 11:
 
     solver_params['Nx'] = 480
     solver_params['Ny'] = 64
-    solver_params['Nz'] = 48
+    solver_params['Nz'] = 96
 
     system_params['Lx'] = 32*np.pi
     system_params['Lz'] = 5*np.pi
     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Nx': 480, 'Ny':64, 'Nz': 96}
+    ic_dict_if_reinit = {'Nx': 480, 'Ny':48, 'Nz': 16, 'Lz': np.pi, 'suffix': f'recent-', 'subdir': 'localisation'}
     suffix_end = f'windowed'
-    window_mode = False
-    tile = False
+    window_mode = 'z'
+    tile = True
 
 log_all_params(material_params, system_params, solver_params)
 
