@@ -316,12 +316,16 @@ elif setting_mode == 25:
 elif setting_mode == 26:
     # Get Periodic AH from 2D AH. m=1 mode branch
 
-    solver_params['Nz'] = 32
-    system_params['Lz'] =  input_val*np.pi
-    solver_params['dt'] = 5e-3
+    material_params['W'] = 10
 
-    ic_dict_if_reinit = {'Lz': 0.85*np.pi, 'Nz': 32}
-    suffix_end = 'below-periodic-yz'
+    system_params['Lz'] = np.pi / 4
+
+    solver_params['Nx'] = 64
+    solver_params['Nz'] = 16
+
+    ic_dict_if_reinit = {'noise_coeff':1e-3, 'ndim': 2, 'W': 10, 'Lx': 3*np.pi, 'Nx': 128, 'Ny': 256, 'subdir': 'arrowhead_2D'}
+    suffix_end = ''
+    symmetry_mode = 'yz'
 
 elif setting_mode == 27:
     # Get Periodic AH from 2D AH. m=1 mode branch
