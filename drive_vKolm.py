@@ -289,11 +289,11 @@ elif setting_mode == 24:
 
     system_params['ndim'] = 2
     material_params['W'] = 10
-    system_params['Lx'] = 24*np.pi
-    solver_params['Nx'] = 420
+    system_params['Lx'] = 16*np.pi
+    solver_params['Nx'] = 256
     solver_params['dt'] = 1e-3
 
-    ic_dict_if_reinit = {'W': 20, 'Lx': 25*np.pi, 'Nx': 420, 'subdir': 'arrowhead_2D'}
+    ic_dict_if_reinit = {'W': 20, 'Lx': 16*np.pi, 'Nx': 256, 'subdir': 'arrowhead_2D'}
     suffix_end = ''
     save_subdir = 'localisation'
     plot_subdirectory = 'streamwise_localisation'
