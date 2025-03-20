@@ -239,13 +239,17 @@ elif setting_mode == 17:
 elif setting_mode == 20:
     # Get Periodic AH from 2D AH. m=1 mode branch
 
-    solver_params['Nz'] = 32
-    system_params['Lz'] = 0.9*np.pi
+    material_params['W'] = 16
+
+    system_params['Lz'] = 4*np.pi
+    solver_params['Nz'] = 64
+    
     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = None
-    suffix_end = 'below-periodic-yz'
-    save_full_data = True
+    ic_dict_if_reinit = {'W': 17}
+    suffix_end = ''
+    plot_subdirectory = 'arrowhead_3D_W'
+
 elif setting_mode == 21:
     # Get Periodic AH from 2D AH. m=1 mode branch
 
