@@ -46,7 +46,7 @@ export OMP_NUM_THREADS=1
 export I_MPI_PIN_DOMAIN=omp:compact # Domains are $OMP_NUM_THREADS cores in size
 export I_MPI_PIN_ORDER=scatter # Adjacent domains have minimal sharing of caches/sockets
 
-CMD="srun --mpi=pmi2 -n ${SLURM_CPUS_PER_TASK} $application $SLURM_ARRAY_TASK_ID $*"
+CMD="mpiexec -n ${SLURM_CPUS_PER_TASK} $application $SLURM_ARRAY_TASK_ID $*"
 
 
 ###############################################################

@@ -34,8 +34,7 @@ source activate dedalus
 
 #! Full path to application executable:
 application="python $HOME/projects/vKolmogorov3D/drive_vKolm.py"
- 
- 
+
 #! Work directory (i.e. where the job will run):
 workdir="$HOME/projects/vKolmogorov3D/"  # The value of SLURM_SUBMIT_DIR sets workdir to the directory
                                 # in which sbatch is run.
@@ -48,7 +47,7 @@ export OMP_NUM_THREADS=1
 export I_MPI_PIN_DOMAIN=omp:compact # Domains are $OMP_NUM_THREADS cores in size
 export I_MPI_PIN_ORDER=scatter # Adjacent domains have minimal sharing of caches/sockets
 
-CMD="srun --mpi=pmi2 -n ${SLURM_CPUS_PER_TASK} $application $SLURM_ARRAY_TASK_ID $*"
+CMD="mpiexec -n ${SLURM_CPUS_PER_TASK} $application $SLURM_ARRAY_TASK_ID $*"
 
 
 ###############################################################
