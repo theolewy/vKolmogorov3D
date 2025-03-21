@@ -11,7 +11,6 @@
 #! sbatch directives begin here ###############################
 #SBATCH -p rrk26,rrk26-himem
 #SBATCH --output=slurm_windowed_%A_%a.out
-#SBATCH --nodes=1
 #SBATCH -J window
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
