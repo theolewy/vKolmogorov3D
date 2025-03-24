@@ -129,19 +129,17 @@ elif setting_mode == 10:
 elif setting_mode == 11:
     # STREAMWISE LOCALISATION
 
-    a, b = np.pi / 2, np.pi / 4
-
     solver_params['Nx'] = 480
     solver_params['Ny'] = 64
-    solver_params['Nz'] = 96
+    solver_params['Nz'] = 64
 
     system_params['Lx'] = 32*np.pi
-    system_params['Lz'] = 5*np.pi
+    system_params['Lz'] = 6*np.pi
     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Nx': 480, 'Ny':48, 'Nz': 16, 'Lz': np.pi, 'suffix': f'recent-', 'subdir': 'localisation'}
-    suffix_end = f'windowed-2'
-    window_mode = 'z'
+    ic_dict_if_reinit = {'Lz': 5*np.pi}
+    suffix_end = f'windowed'
+    window_mode = False
     tile = False
 
 elif setting_mode == 12:
