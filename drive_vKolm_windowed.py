@@ -158,6 +158,24 @@ elif setting_mode == 12:
     window_mode = False
     tile = False
 
+elif setting_mode == 13:
+    # STREAMWISE LOCALISATION
+
+    solver_params['Nx'] = 480
+    solver_params['Ny'] = 64
+    solver_params['Nz'] = 64
+
+    system_params['Lx'] = 32*np.pi
+    system_params['Lz'] = 5*np.pi
+    solver_params['dt'] = 5e-3
+
+    material_params['W'] = 10
+
+    ic_dict_if_reinit = {'W': 20}
+    suffix_end = f'windowed'
+    window_mode = False
+    tile = False
+
 log_all_params(material_params, system_params, solver_params)
 
 timestepper = TimeStepper3D(material_params=material_params, system_params=system_params, solver_params=solver_params)
