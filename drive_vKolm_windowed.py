@@ -169,7 +169,7 @@ elif setting_mode == 13:
     system_params['Lz'] = 5*np.pi
     solver_params['dt'] = 5e-3
 
-    material_params['W'] = 10
+    material_params['W'] = 15
 
     ic_dict_if_reinit = {'W': 20}
     suffix_end = f'windowed'

@@ -361,8 +361,6 @@ elif setting_mode == 28:
     symmetry_mode = 'yz'
     save_subdir = f"localisation"
 
-
-
 elif setting_mode == 29:
     # Get Periodic AH from 2D AH. m=1 mode branch
     
