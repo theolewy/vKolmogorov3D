@@ -226,14 +226,18 @@ elif setting_mode == 16:
 elif setting_mode == 17:
     # Get Periodic AH from 2D AH. m=1 mode branch
 
-    # solver_params['Nz'] = 96
-    # solver_params['Nz'] = 96
 
-    system_params['Lz'] =  4.4*np.pi
+    system_params['Lx'] = input_val*np.pi
 
-    ic_dict_if_reinit = {'Lz': 4.4*np.pi, 'Nz': 96, 'Nx': 64, 'Ny': 64}
-    suffix_end = 'periodic-yz'
+    system_params['Lz'] = 5*np.pi
+    solver_params['Nz'] = 80
+    
     solver_params['dt'] = 5e-3
+
+    ic_dict_if_reinit = {'Lx': 3*np.pi}
+    suffix_end = 'localised'
+    plot_subdirectory = 'arrowhead_3D_Lx'
+
 
 
 elif setting_mode == 20:
