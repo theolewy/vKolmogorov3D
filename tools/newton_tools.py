@@ -289,7 +289,7 @@ def predict_period(material_params, system_params, solver_params, label=''):
         if channel.solver.iteration % 100 == 0:
             T = estimate_T(x_track_new)
             T_pred_list.append(T)
-            if len(T_pred_list) > 10 and np.std(T_pred_list[-6:]) / np.mean(T_pred_list[-6:]) < 0.003:
+            if len(T_pred_list) > 10 and np.std(T_pred_list[-6:]) / np.mean(T_pred_list[-6:]) < 0.002:
                 return T
             elif len(T_pred_list) > 200:
                 return np.mean(T_pred_list[100:])
