@@ -38,7 +38,8 @@ application="python $HOME/projects/vKolmogorov3D/drive_vKolm.py"
 workdir="$HOME/projects/vKolmogorov3D/"  # The value of SLURM_SUBMIT_DIR sets workdir to the directory
                                 # in which sbatch is run.
 export OMP_NUM_THREADS=1
-
+export CFLAGS="-O3 -march=znver4"
+export CXXFLAGS="-O3 -march=znver4"
 #! Number of MPI tasks to be started by the application per node and in total (do not change):
 
 #! The following variables define a sensible pinning strategy for Intel MPI tasks -
