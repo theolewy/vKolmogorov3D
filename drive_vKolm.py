@@ -263,7 +263,7 @@ elif setting_mode == 19:
     
     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'W': 28}
+    ic_dict_if_reinit = {'W': 16}
     suffix_end = 'localised'
     plot_subdirectory = 'arrowhead_3D_W'
 
@@ -277,7 +277,7 @@ elif setting_mode == 20:
     
     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'W': 16}
+    ic_dict_if_reinit = {'W': 16.5}
     suffix_end = 'localised'
     plot_subdirectory = 'arrowhead_3D_W'
 
