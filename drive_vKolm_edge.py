@@ -30,6 +30,11 @@ elif len(sys.argv) == 4:
     job_idx = int(sys.argv[1])
     setting_mode = int(sys.argv[2])
     input_val = float(eval(sys.argv[3]))
+elif len(sys.argv) == 5:
+    job_idx = int(sys.argv[1])
+    setting_mode = int(sys.argv[2])
+    input_val = float(eval(sys.argv[3]))
+    input_val2 = float(eval(sys.argv[4]))
 else:
     raise Exception('Need more inputs!')    
 
@@ -42,7 +47,7 @@ T=4000
 
 if setting_mode == 0:
 
-    solver_params['Nz'] = 64
+    solver_params['Nz'] = input_val2
     system_params['Lz'] =  input_val*np.pi
 
     ic_dict_if_reinit = {'subdir': 'arrowhead_3D', 'suffix': 'recent-localised'}
