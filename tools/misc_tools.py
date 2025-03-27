@@ -168,9 +168,12 @@ def get_h5_data(material_params, system_params, solver_params, suffix='', subdir
 
     return data_fields, data_metric
 
-def get_metric_from_params(material_params, system_params, solver_params, suffix, subdir, metric='trace', deviation=True):
+def get_metric_from_params(material_params, system_params, solver_params, suffix, subdir, metric='trace', deviation=True, merge=False):
 
     fpath = get_fpath_sim(material_params, system_params, solver_params, suffix=suffix, subdir=subdir)
+    
+    if merge: post.merge_process_files(fpath, cleanup=True)
+
     t_all, metric_all = get_metric_from_fpath(fpath, metric=metric, deviation=deviation)
 
     return t_all, metric_all
