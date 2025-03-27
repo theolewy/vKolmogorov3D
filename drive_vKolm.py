@@ -300,10 +300,8 @@ elif setting_mode == 22:
     system_params['Lz'] = input_val * np.pi
     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = None
-    suffix_end = 'periodic-yz'
-    save_full_data = True
-    T = 200
+    ic_dict_if_reinit = {'Lz': 4*np.pi}
+    suffix_end = 'localised-yz'
 
 elif setting_mode == 23:
     # Get Periodic AH from 2D AH. m=1 mode branch
