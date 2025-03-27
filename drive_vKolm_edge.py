@@ -20,8 +20,7 @@ system_params = {'ndim': 3,
 solver_params = {'Nx': 64,
                  'Ny': 64,
                  'Nz': 32,
-                 'dt': 5e-3,
-                 'c': 0}
+                 'dt': 5e-3}
 
 if len(sys.argv) == 3:
     job_idx = int(sys.argv[1])
@@ -34,7 +33,7 @@ elif len(sys.argv) == 5:
     job_idx = int(sys.argv[1])
     setting_mode = int(sys.argv[2])
     input_val = float(eval(sys.argv[3]))
-    input_val2 = float(eval(sys.argv[4]))
+    input_val2 = int(eval(sys.argv[4]))
 else:
     raise Exception('Need more inputs!')    
 
