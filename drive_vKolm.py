@@ -380,11 +380,11 @@ elif setting_mode == 27:
 
 elif setting_mode == 28:
     solver_params['Nz'] = 96
-    system_params['Lz'] = 6*np.pi
+    system_params['Lz'] = 8*np.pi
     solver_params['Nx'] = 64
     system_params['Lx'] = 4*np.pi
 
-    ic_dict_if_reinit = { 'Lx': 3*np.pi, 'Nx': 64, 'subdir': 'arrowhead_3D', 'suffix': 'recent-localised'}
+    ic_dict_if_reinit = {'Lz': 6*np.pi}
     suffix_end = ''
     plot_subdirectory = 'streamwise_localisation'
     symmetry_mode = 'yz'
