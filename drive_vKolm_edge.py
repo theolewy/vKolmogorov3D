@@ -63,6 +63,7 @@ timestepper = TimeStepper3D(material_params=material_params, system_params=syste
 timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=noise_coeff, **kwargs)
 
 if reinit:
+    logger.info('Reinitialising')
     timestepper._convert_to_edge_guess()
 
 timestepper.simulate(T=T, ifreq=100, 
