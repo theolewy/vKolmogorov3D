@@ -658,11 +658,9 @@ class TimeStepper3D(CartesianTimeStepper):
         for field_name, base_field_name in zip(self.variables, base_flow_variable_names):
             field = getattr(self, field_name)
 
-            logger.info(field_name)
-            logger.info(self.Nz//2)
-
             field['g'] = (field['g'] + np.roll(field['g'], shift=self.Nz//2, axis=1)) / 2
 
+        self._reset_history_cache() # whenever we change the state, must forget history of implicit timestepper
 
 
     def _window_field(self, field, base, a, b, mode='z'):
