@@ -174,14 +174,17 @@ elif setting_mode == 11:
     suffix_end = 'localised-yz'
 
 elif setting_mode == 12:
-    # Truncate to Saddle
-    # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
+    # Get Periodic AH from 2D AH. m=1 mode branch
+    material_params['W'] = 15
 
-    solver_params['Nz'] = 64
-    system_params['Lz'] =  3.7*np.pi
+    system_params['Lz'] = input_val*np.pi
+    solver_params['Nz'] = 80
+    
+    solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Lz': 3.7*np.pi}
-    suffix_end = 'localised-yz'
+    ic_dict_if_reinit = {'Lz': 4*np.pi, 'Nz': 64}
+    suffix_end = 'localised'
+    plot_subdirectory = 'arrowhead_3D_W'
 
 elif setting_mode == 13:
     # Get Periodic AH from 2D AH. m=1 mode branch
