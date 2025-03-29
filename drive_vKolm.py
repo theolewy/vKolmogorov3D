@@ -203,7 +203,7 @@ elif setting_mode == 14:
     
     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Nz': 64, 'Lz': 3*np.pi}
+    ic_dict_if_reinit = {'Lz': 2.9*np.pi}
     suffix_end = 'localised'
     plot_subdirectory = 'arrowhead_3D_W'
 elif setting_mode == 15:
