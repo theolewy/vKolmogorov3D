@@ -267,12 +267,12 @@ elif setting_mode == 19:
 
     material_params['W'] = input_val
 
-    system_params['Lz'] = 4*np.pi
-    solver_params['Nz'] = 64
+    system_params['Lz'] = 3*np.pi
+    solver_params['Nz'] = 48
     
     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'W': 15.3}
+    ic_dict_if_reinit = {'W': 15}
     suffix_end = 'localised'
     plot_subdirectory = 'arrowhead_3D_W'
 
