@@ -43,13 +43,16 @@ T=4000
 
 if setting_mode == 0:
     # Get Periodic AH from 2D AH. m=1 mode branch
+    material_params['W'] = 14
 
-    solver_params['Nz'] = 64
-    system_params['Lz'] =  3.5*np.pi
+    system_params['Lz'] = input_val*np.pi
+    solver_params['Nz'] = 32
+    
     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Lz': 3*np.pi, 'Nz': 64}
-    suffix_end = 'periodic-yz'
+    ic_dict_if_reinit = {'Lz': 2*np.pi, 'Nz': 48}
+    suffix_end = 'localised'
+    plot_subdirectory = 'arrowhead_3D_W'
 
 elif setting_mode == 1:
     # Get Periodic AH from 2D AH. m=1 mode branch
