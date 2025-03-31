@@ -66,18 +66,16 @@ elif setting_mode == 1:
 
 elif setting_mode == 2:
     # Get Periodic AH from 2D AH. m=1 mode branch
-    
-    # m=1 branch [np.pi/6, np.pi/5, np.pi/4, 0.27*np.pi, 5*np.pi/16,6*np.pi/16, 0.42*np.pi, 0.46*np.pi, np.pi/2,  9*np.pi/16,10*np.pi/16,11*np.pi/16, 12*np.pi/16,13*np.pi/16,14*np.pi/16, 15*np.pi/16, np.pi]
+    material_params['W'] = 14
 
-    solver_params['Nz'] = 32
-    system_params['Lz'] = 2*input_val*np.pi
+    system_params['Lz'] = input_val*np.pi
+    solver_params['Nz'] = 64
+    
     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Lz': input_val*np.pi, 'Nz': 16, 'suffix': 'recent-periodic-yz', 'noise_coeff': 1e-4}
-    suffix_end = 'periodic-2-yz'
-    translate = True
-    kwargs = {'tile': True}
-    plot_subdirectory = "arrowhead_3D_2_wavelengths"
+    ic_dict_if_reinit = {'Lz': 3*np.pi, 'Nz': 48}
+    suffix_end = 'localised'
+    plot_subdirectory = 'arrowhead_3D_W'
 
 elif setting_mode == 3:
     # Get Periodic AH from 2D AH. m=1 mode branch
