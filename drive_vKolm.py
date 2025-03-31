@@ -299,14 +299,14 @@ elif setting_mode == 20:
 elif setting_mode == 21:
     # Get Periodic AH from 2D AH. m=1 mode branch
 
-    solver_params['Nz'] = 32
-    system_params['Lz'] = 1.4*np.pi
+    system_params['Lz'] = 16*np.pi
+    solver_params['Nz'] = 256
+    
     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = None
-    suffix_end = 'periodic-yz'
-    save_full_data = True
-    T = 200
+    ic_dict_if_reinit = {'Lz': 8*np.pi, 'Nz': 128}
+    suffix_end = 'localised'
+    plot_subdirectory = 'arrowhead_3D_W'
 
 elif setting_mode == 22:
     # Get Periodic AH from 2D AH. m=1 mode branch
