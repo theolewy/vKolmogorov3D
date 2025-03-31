@@ -307,6 +307,7 @@ elif setting_mode == 21:
     ic_dict_if_reinit = {'Lz': 8*np.pi, 'Nz': 128}
     suffix_end = 'localised'
     plot_subdirectory = 'arrowhead_3D_W'
+    kwargs = {'extend': True}
 
 elif setting_mode == 22:
     # Get Periodic AH from 2D AH. m=1 mode branch
