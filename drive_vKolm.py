@@ -153,15 +153,17 @@ elif setting_mode == 9:
     ic_dict_if_reinit = {'Nx': 32, 'Ny': 32, 'Nz': 48, 'suffix': 'recent-periodic-yz'}
     suffix_end = 'periodic-yz-from-low-res'
 elif setting_mode == 10:
+    # Get Periodic AH from 2D AH. m=1 mode branch
+    material_params['W'] = 18
 
-    solver_params['Nx'] = 64
-    solver_params['Ny'] = 64
-    solver_params['Nz'] = 112
- 
-    system_params['Lz'] =  7*np.pi
+    system_params['Lz'] = 8*np.pi
+    solver_params['Nz'] = 128
     
-    ic_dict_if_reinit = {'Nz': 112, 'suffix': 'recent-localised'}
-    suffix_end = 'localised-yz'
+    solver_params['dt'] = 5e-3
+
+    ic_dict_if_reinit = {'W': 20}
+    suffix_end = 'localised'
+    plot_subdirectory = 'arrowhead_3D_W'
 
 elif setting_mode == 11:
     # Get Periodic AH from 2D AH. m=1 mode branch
