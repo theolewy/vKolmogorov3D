@@ -60,7 +60,7 @@ elif setting_mode == 1:
     
     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Lz': 2.8*np.pi}
+    ic_dict_if_reinit = {'Lz': 2.5*np.pi}
     suffix_end = 'localised'
     plot_subdirectory = 'arrowhead_3D_W'
 
@@ -498,7 +498,7 @@ timestepper = TimeStepper3D(material_params=material_params, system_params=syste
 timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=noise_coeff, **kwargs)
 
 if translate and reinit:
-    timestepper.translate_AH_to_centre(mode='z', shift=16)
+    timestepper.translate_AH_to_centre(mode='z', shift=24)
 
 timestepper.simulate(T=T, ifreq=100, 
                      track_TW=False, 
