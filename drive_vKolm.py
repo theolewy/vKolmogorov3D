@@ -50,7 +50,7 @@ if setting_mode == 0:
     
     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Lz': np.pi}
+    ic_dict_if_reinit = {'Lz': 0.6*np.pi}
     suffix_end = 'localised'
     plot_subdirectory = 'arrowhead_3D_W'
 
@@ -105,14 +105,16 @@ elif setting_mode == 4:
 
 elif setting_mode == 5:
     # Get Periodic AH from 2D AH. m=1 mode branch
+    material_params['W'] = 14
 
-    solver_params['Nz'] = 96
-    system_params['Lz'] = 4.1*np.pi
+    system_params['Lz'] = input_val*np.pi
+    solver_params['Nz'] = 32
+    
     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Lz': 4*np.pi, 'Nz': 64}
-    suffix_end = 'periodic-yz'
-
+    ic_dict_if_reinit = {'Lz': 0.6*np.pi, 'suffix': 'recent-localised'}
+    suffix_end = 'm=1'
+    plot_subdirectory = 'arrowhead_3D_W'
 
 elif setting_mode == 6:
     # Get Periodic AH from 2D AH. m=1 mode branch
