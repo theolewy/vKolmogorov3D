@@ -89,7 +89,7 @@ elif setting_mode == 3:
     
     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Lz': 2.4*np.pi, 'Nz': 48}
+    ic_dict_if_reinit = {'Lz': 2.6*np.pi, 'Nz': 48}
     suffix_end = 'after-bif'
     plot_subdirectory = 'arrowhead_3D_W'
 elif setting_mode == 4:
