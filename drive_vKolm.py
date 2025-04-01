@@ -162,15 +162,14 @@ elif setting_mode == 9:
     suffix_end = 'periodic-yz-from-low-res'
 elif setting_mode == 10:
     # Get Periodic AH from 2D AH. m=1 mode branch
-    material_params['W'] = 18
+    material_params['W'] = 20
 
-    system_params['Lz'] = 8*np.pi
-    solver_params['Nz'] = 128
+    system_params['Lz'] = input_val*np.pi
     
     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'W': 20}
-    suffix_end = 'localised'
+    ic_dict_if_reinit = {'Lz': 3.7*np.pi}
+    suffix_end = 'localised-yz'
     plot_subdirectory = 'arrowhead_3D_W'
 
 elif setting_mode == 11:
