@@ -165,7 +165,7 @@ elif setting_mode == 10:
     material_params['W'] = 20
 
     system_params['Lz'] = input_val*np.pi
-    
+    solver_params['Nz'] = 64
     solver_params['dt'] = 5e-3
 
     ic_dict_if_reinit = {'Lz': 3.7*np.pi}
