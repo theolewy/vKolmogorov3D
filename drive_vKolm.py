@@ -112,7 +112,7 @@ elif setting_mode == 5:
     
     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Lz': 0.15*np.pi}
+    ic_dict_if_reinit = {'Lz': 0.4*np.pi}
     suffix_end = 'm=1'
     plot_subdirectory = 'arrowhead_3D_W'
 
