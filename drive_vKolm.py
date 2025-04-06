@@ -94,14 +94,16 @@ elif setting_mode == 3:
     plot_subdirectory = 'arrowhead_3D_W'
 elif setting_mode == 4:
     # Get Periodic AH from 2D AH. m=1 mode branch
+    material_params['W'] = 15
 
-    solver_params['Nz'] = 96
-    system_params['Lz'] = 4.4*np.pi
+    system_params['Lz'] = input_val*np.pi
+    solver_params['Nz'] = 48
+    
     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Lz': 4*np.pi, 'Nz': 64}
-    suffix_end = 'periodic-yz'
-
+    ic_dict_if_reinit = {'Lz': 2.8*np.pi}
+    suffix_end = 'localised'
+    plot_subdirectory = 'arrowhead_3D_W'
 
 elif setting_mode == 5:
     # Get Periodic AH from 2D AH. m=1 mode branch
@@ -118,14 +120,16 @@ elif setting_mode == 5:
 
 elif setting_mode == 6:
     # Get Periodic AH from 2D AH. m=1 mode branch
+    material_params['W'] = 15
 
-    solver_params['Nz'] = 32
     system_params['Lz'] = input_val*np.pi
+    solver_params['Nz'] = 64
+    
     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Lz': 0.75*np.pi, 'Nz': 32, 'noise_coeff': 1e-3}
-    suffix_end = 'periodic-2-yz'
-    plot_subdirectory = "arrowhead_3D_2_wavelengths"
+    ic_dict_if_reinit = {'Lz': 3.8*np.pi}
+    suffix_end = 'localised'
+    plot_subdirectory = 'arrowhead_3D_W'
 
 elif setting_mode == 7:
     # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
