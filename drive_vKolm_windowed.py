@@ -39,7 +39,7 @@ window_x = False
 tile = False
 if setting_mode == 0:
     tile = True
-    window_mode = True
+    window_mode = 'z'
     a, b = np.pi/2, np.pi/4
 
     system_params['Lz'] = 4*np.pi
