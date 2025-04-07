@@ -36,6 +36,7 @@ else:
 symmetry_mode = "yz"
 kwargs = {}
 translate = False
+drift_w = None
 plot_subdirectory = "arrowhead_3D_Lz"
 save_subdir = f"arrowhead_3D"
 save_full_data = False
@@ -414,12 +415,14 @@ elif setting_mode == 28:
 elif setting_mode == 29:
     solver_params['Nz'] = 96
     system_params['Lz'] = 6*np.pi
-    material_params['C'] = input_val
+    # material_params['C'] = input_val
+
+    drift_w = input_val
 
     ic_dict_if_reinit = {'suffix': 'recent-localised'}
-    suffix_end = f'drift-C={input_val}'
+    suffix_end = f'drift-C={drift_w}'
     plot_subdirectory = 'arrowhead_3D_drift'
-    symmetry_mode = 'yz'
+    symmetry_mode = None
     save_subdir = f"arrowhead_3D"
 
 elif setting_mode == 30:
@@ -502,6 +505,9 @@ timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=noise_coeff, **kwargs)
 
 if translate and reinit:
     timestepper.translate_AH_to_centre(mode='z', shift=24)
+
+if not drift_w is None and reinit:
+    timestepper.w['g'] += drift_w * np.ones_like(timestepper.w['g'])
 
 timestepper.simulate(T=T, ifreq=100, 
                      track_TW=False, 
