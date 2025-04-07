@@ -401,15 +401,15 @@ elif setting_mode == 27:
 
 elif setting_mode == 28:
     solver_params['Nz'] = 96
-    system_params['Lz'] = 8*np.pi
-    solver_params['Nx'] = 64
-    system_params['Lx'] = 4*np.pi
+    system_params['Lz'] = 6*np.pi
+    solver_params['Nx'] = 96
+    system_params['Lx'] = input_val*np.pi
 
-    ic_dict_if_reinit = {'Lz': 6*np.pi}
-    suffix_end = ''
-    plot_subdirectory = 'streamwise_localisation'
+    ic_dict_if_reinit = {'Nx': 64, 'Lx': 3*np.pi}
+    suffix_end = 'localised'
+    plot_subdirectory = 'arrowhead_3D_Lx'
     symmetry_mode = 'yz'
-    save_subdir = f"localisation"
+    save_subdir = f"arrowhead_3D"
 
 elif setting_mode == 29:
     # Get Periodic AH from 2D AH. m=1 mode branch
