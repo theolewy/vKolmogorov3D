@@ -402,7 +402,7 @@ elif setting_mode == 28:
     solver_params['Nx'] = 96
     system_params['Lx'] = input_val*np.pi
 
-    ic_dict_if_reinit = {'Nx': 64, 'Lx': 3*np.pi}
+    ic_dict_if_reinit = {'Nx': 96, 'Lx': 3.4*np.pi}
     suffix_end = 'localised'
     plot_subdirectory = 'arrowhead_3D_Lx'
     symmetry_mode = 'yz'
