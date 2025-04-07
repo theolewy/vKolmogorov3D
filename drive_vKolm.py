@@ -134,13 +134,10 @@ elif setting_mode == 6:
 elif setting_mode == 7:
     # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
 
-    solver_params['Nx'] = 32
-    solver_params['Ny'] = 32
-    solver_params['Nz'] = 48
-    system_params['Lz'] =  4.5*np.pi
-    solver_params['dt'] = 1e-2
+    solver_params['Nz'] = 16
+    system_params['Lz'] = input_val*np.pi
 
-    ic_dict_if_reinit = {'Nx': 64, 'Ny': 64, 'Nz': 96}
+    ic_dict_if_reinit = {'Lz': np.pi/4}
     suffix_end = 'periodic-yz'
 
 elif setting_mode == 8:
