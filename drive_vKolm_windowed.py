@@ -38,7 +38,11 @@ symmetry_mode = 'yz'
 window_x = False
 tile = False
 if setting_mode == 0:
+    tile = True
     a, b = np.pi/2, np.pi/4
+
+    system_params['Lz'] = 4*np.pi
+    solver_params['Nz'] = 64
 
     ic_dict_if_reinit = {'suffix': 'recent-periodic', 'subdir':'arrowhead_3D', 'Lz': np.pi, 'Nz': 32}
     suffix_end = f'a-{a:.4g}-b-{b:.4g}-Lz-orig-3,14'
@@ -190,7 +194,7 @@ if reinit:
         timestepper.translate_AH_to_centre(mode='x')    # move so arrowhead is in the middle of the domain
         timestepper.window(a, b, mode='x')
     elif window_mode == 'z':
-        # timestepper.translate_AH_to_centre(mode='z')    # move so arrowhead is in the middle of the domain
+        timestepper.translate_AH_to_centre(mode='z', shift=8)    # move so arrowhead is in the middle of the domain
         timestepper.window(a, b, mode='z')
 
 timestepper.simulate(T=4000, ifreq=100, 
