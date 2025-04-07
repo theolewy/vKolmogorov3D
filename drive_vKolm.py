@@ -412,21 +412,15 @@ elif setting_mode == 28:
     save_subdir = f"arrowhead_3D"
 
 elif setting_mode == 29:
-    # Get Periodic AH from 2D AH. m=1 mode branch
-    
-    solver_params['Nx'] = 480
-    solver_params['Ny'] = 64
-    solver_params['Nz'] = 16
+    solver_params['Nz'] = 96
+    system_params['Lz'] = 6*np.pi
+    material_params['C'] = input_val
 
-    system_params['Lx'] = 32*np.pi
-    system_params['Lz'] = np.pi/2
-    solver_params['dt'] = 5e-3
-
-    ic_dict_if_reinit = {'Lx': 32*np.pi,'Nx': 450, 'Ny': 64, 'ndim':2, 'noise_coeff': 1e-3, 'subdir': 'arrowhead_2D', 'suffix': 'recent-'}
-    suffix_end = ''
-    plot_subdirectory = 'streamwise_localisation'
+    ic_dict_if_reinit = {'suffix': 'recent-localised'}
+    suffix_end = f'drift-C={input_val}'
+    plot_subdirectory = 'arrowhead_3D_drift'
     symmetry_mode = 'yz'
-    save_subdir = f"localisation"
+    save_subdir = f"arrowhead_3D"
 
 elif setting_mode == 30:
     # Get Periodic AH from 2D AH. m=1 mode branch
