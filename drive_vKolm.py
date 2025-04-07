@@ -413,7 +413,7 @@ elif setting_mode == 29:
     system_params['Lz'] = 6*np.pi
     material_params['C'] = input_val
 
-    ic_dict_if_reinit = {'suffix': 'recent-localised'}
+    ic_dict_if_reinit = {'suffix': 'recent-drift-C=0.1'}
     change_coords = True
 
     suffix_end = f'drift-C={input_val}'
