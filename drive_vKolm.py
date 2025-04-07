@@ -262,16 +262,17 @@ elif setting_mode == 17:
 
 elif setting_mode == 18:
     # Get Periodic AH from 2D AH. m=1 mode branch
-    material_params['W'] = 16
+    material_params['W'] = 13
 
     system_params['Lz'] = input_val*np.pi
-    solver_params['Nz'] = 64
+    solver_params['Nz'] = 32
     
     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Lz': 3.8*np.pi}
+    ic_dict_if_reinit = {'W':14}
     suffix_end = 'localised'
-    plot_subdirectory = 'arrowhead_3D_W'
+    plot_subdirectory = 'arrowhead_3D_W=13'
+
 
 elif setting_mode == 19:
     # Get Periodic AH from 2D AH. m=1 mode branch
