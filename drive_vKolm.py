@@ -40,7 +40,7 @@ plot_subdirectory = "arrowhead_3D_Lz"
 save_subdir = f"arrowhead_3D"
 save_full_data = False
 T=4000
-
+change_coords = False
 if setting_mode == 0:
     # Get Periodic AH from 2D AH. m=1 mode branch
     material_params['W'] = 14
@@ -141,15 +141,12 @@ elif setting_mode == 7:
     suffix_end = 'periodic-yz'
 
 elif setting_mode == 8:
-    # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
 
-    solver_params['Nx'] = 64
-    solver_params['Ny'] = 64
-    solver_params['Nz'] = 96
-    system_params['Lz'] =  4.5*np.pi
+    solver_params['Nz'] = 16
+    system_params['Lz'] = input_val*np.pi
 
-    ic_dict_if_reinit = {'Nx': 32, 'Ny': 32, 'Nz': 48, 'suffix': 'recent-periodic-yz'}
-    suffix_end = 'periodic-yz-from-low-res'
+    ic_dict_if_reinit = {'Lz': np.pi}
+    suffix_end = 'periodic-yz'
 
 elif setting_mode == 9:
     # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
@@ -417,28 +414,29 @@ elif setting_mode == 29:
     material_params['C'] = input_val
 
     ic_dict_if_reinit = {'suffix': 'recent-localised'}
+    change_coords = True
+
     suffix_end = f'drift-C={input_val}'
     plot_subdirectory = 'arrowhead_3D_drift'
     symmetry_mode = 'yz'
     save_subdir = f"arrowhead_3D"
 
 elif setting_mode == 30:
-    # Get Periodic AH from 2D AH. m=1 mode branch
+
+    solver_params['Nz'] = 96
+    system_params['Lz'] = 6*np.pi
+
+    C = input_val
+    material_params['C'] = C
+
+    ic_dict_if_reinit = {'suffix': f'recent-drift-C={C}'}
+    change_coords = True
     
-    solver_params['Nx'] = 480
-    solver_params['Ny'] = 64
-    solver_params['Nz'] = 32
+    suffix_end = f'test-drift-C={input_val}'
+    plot_subdirectory = 'arrowhead_3D_drift'
+    symmetry_mode = False
+    save_subdir = f"arrowhead_3D"
 
-    system_params['Lx'] = 32*np.pi
-    system_params['Lz'] = np.pi
-    solver_params['dt'] = 5e-3
-
-    ic_dict_if_reinit = {'Lz':np.pi/2, 'Nz':16 }
-    suffix_end = ''
-    plot_subdirectory = 'streamwise_localisation'
-    symmetry_mode = 'yz'
-    save_subdir = f"localisation"
-    translate = True
 elif setting_mode == 31:
     # Get Periodic AH from 2D AH. m=1 mode branch
     
@@ -502,6 +500,9 @@ timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=noise_coeff, **kwargs)
 
 if translate and reinit:
     timestepper.translate_AH_to_centre(mode='z', shift=24)
+
+if change_coords and reinit:
+    timestepper.prime_coords_to_unprimed(C)
 
 timestepper.simulate(T=T, ifreq=100, 
                      track_TW=False, 

@@ -18,6 +18,7 @@ import matplotlib.pyplot as plt
 import logging
 from cfd_tools.cartesian_systems.cartesian_system_base import CartesianBaseFlow, CartesianEVP, CartesianNumericSolver, CartesianTimeStepper
 from scipy.sparse.linalg import ArpackNoConvergence
+from scipy.interpolate import RegularGridInterpolator
 
 from cfd_tools.cartesian_systems.plotter import *
 from tools.misc_tools import *
@@ -660,6 +661,17 @@ class TimeStepper3D(CartesianTimeStepper):
             post.merge_process_files(full_save_folder, cleanup=True)
 
         return stop
+    
+    def prime_coords_to_unprimed(self, C):
+
+        x_prime, y_prime, z_prime = self.x, self.y, self.z
+        x, y, z = x_prime, y_prime, z_prime + C * x_prime
+
+        for field_name in self.variables:
+            field = getattr(self, field_name)
+            interpolator = RegularGridInterpolator((x_prime, z_prime, y_prime), field['g'], method='linear', bounds_error=False, fill_value=None)
+            field['g'] = interpolator((x, y, z))
+    
     
     def window(self, a, b, mode='z'):
 
