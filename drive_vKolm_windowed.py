@@ -44,7 +44,7 @@ if setting_mode == 0:
     system_params['Lz'] = 4*np.pi
     solver_params['Nz'] = 64
 
-    ic_dict_if_reinit = {'suffix': 'recent-periodic', 'subdir':'arrowhead_3D', 'Lz': np.pi, 'Nz': 32}
+    ic_dict_if_reinit = {'suffix': 'recent-periodic-yz', 'subdir':'arrowhead_3D', 'Lz': np.pi, 'Nz': 32}
     suffix_end = f'a-{a:.4g}-b-{b:.4g}-Lz-orig-3,14'
 
 elif setting_mode == 1:
