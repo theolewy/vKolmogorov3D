@@ -202,5 +202,5 @@ timestepper.simulate(T=4000, ifreq=100,
                      enforce_symmetry='yz',
                      save_over_long=True, 
                      save_full_data=False, full_save_freq=5,
-                     save_subdir=f"localisation", suffix_end=suffix_end, 
-                     plot=True, plot_dev=True, plot_subdirectory=f"streamwise_localisation")
+                     save_subdir=f"arrowhead_3D", suffix_end=suffix_end, 
+                     plot=True, plot_dev=True, plot_subdirectory=f"windowing_3D")
