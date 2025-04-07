@@ -414,7 +414,6 @@ elif setting_mode == 29:
     material_params['C'] = input_val
 
     ic_dict_if_reinit = {'suffix': 'recent-drift-C=0.1'}
-    change_coords = True
 
     suffix_end = f'drift-C={input_val}'
     plot_subdirectory = 'arrowhead_3D_drift'
