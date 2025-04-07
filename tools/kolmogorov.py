@@ -378,53 +378,105 @@ class TimeStepper3D(CartesianTimeStepper):
         self.problem.substitutions['c13y'] = "dy(c13)"
         self.problem.substitutions['c23y'] = "dy(c23)"
 
-        # self.problem.substitutions['dt_dash(A)'] = "dt(A) - C * dz(A)"
+
+    def _set_system_specific_basic_substitutions(self):
+        # note weird notation. My un-dashed derivatives are the moving frame, and dashed is stationary.
+        self.problem.substitutions['dx_dash(A)'] = "dx(A) - C * dz(A)"  
+
+    def _set_basic_substitutions(self):
+
+        self.problem.substitutions['pi'] = str(np.pi)
+        self.problem.substitutions['Lx'] = str(self.Lx)
+
+        if self.ndim == 2:
+            self.problem.substitutions['dz(A)'] = "0"
+
+        self.problem.substitutions['lap(A, Ay)'] = "dx_dash(dx_dash(A)) + dy(Ay) + dz(dz(A))"
+        self.problem.substitutions['adv(A)'] = "u * dx_dash(A) + v * dy(A) + w * dz(A)"
+
+        self.problem.substitutions['tr'] = "c11 + c22 + c33"
+        self.problem.substitutions['tr_x'] = "dx_dash(c11) + dx_dash(c22) + dx_dash(c33)"
+        self.problem.substitutions['tr_y'] = "dy(c11) + dy(c22) + dy(c33)"
+        self.problem.substitutions['tr_z'] = "dz(c11) + dz(c22) + dz(c33)"
+
+        self.problem.substitutions['ftr'] = "(1 - (tr - 3) / L ** 2) ** -1"
+        self.problem.substitutions['ftr_x'] = "ftr ** 2 / L ** 2 * tr_x"
+        self.problem.substitutions['ftr_y'] = "ftr ** 2 / L ** 2 * tr_y"
+        self.problem.substitutions['ftr_z'] = "ftr ** 2 / L ** 2 * tr_z"
+
+        self.problem.substitutions['t11'] = "( c11 * ftr - 1) / W "
+        self.problem.substitutions['t22'] = "( c22 * ftr - 1) / W "
+        self.problem.substitutions['t33'] = "( c33 * ftr - 1) / W "
+        self.problem.substitutions['t12'] = "( c12 * ftr - 0) / W "
+        self.problem.substitutions['t13'] = "( c13 * ftr - 0) / W "
+        self.problem.substitutions['t23'] = "( c23 * ftr - 0) / W "
+
+        self.problem.substitutions['t11x'] = "(dx_dash(c11) * ftr + c11 * ftr_x ) / W "
+        self.problem.substitutions['t22x'] = "(dx_dash(c22) * ftr + c22 * ftr_x ) / W "
+        self.problem.substitutions['t33x'] = "(dx_dash(c33) * ftr + c33 * ftr_x ) / W "
+        self.problem.substitutions['t12x'] = "(dx_dash(c12) * ftr + c12 * ftr_x ) / W "
+        self.problem.substitutions['t13x'] = "(dx_dash(c13) * ftr + c13 * ftr_x ) / W "
+        self.problem.substitutions['t23x'] = "(dx_dash(c23) * ftr + c23 * ftr_x ) / W "
+
+        self.problem.substitutions['t11y'] = "(dy(c11) * ftr + c11 * ftr_y ) / W "
+        self.problem.substitutions['t22y'] = "(dy(c22) * ftr + c22 * ftr_y ) / W "
+        self.problem.substitutions['t33y'] = "(dy(c33) * ftr + c33 * ftr_y ) / W "
+        self.problem.substitutions['t12y'] = "(dy(c12) * ftr + c12 * ftr_y ) / W "
+        self.problem.substitutions['t13y'] = "(dy(c13) * ftr + c13 * ftr_y ) / W "
+        self.problem.substitutions['t23y'] = "(dy(c23) * ftr + c23 * ftr_y ) / W "
+
+        self.problem.substitutions['t11z'] = "(dz(c11) * ftr + c11 * ftr_z ) / W "
+        self.problem.substitutions['t22z'] = "(dz(c22) * ftr + c22 * ftr_z ) / W "
+        self.problem.substitutions['t33z'] = "(dz(c33) * ftr + c33 * ftr_z ) / W "
+        self.problem.substitutions['t12z'] = "(dz(c12) * ftr + c12 * ftr_z ) / W "
+        self.problem.substitutions['t13z'] = "(dz(c13) * ftr + c13 * ftr_z ) / W "
+        self.problem.substitutions['t23z'] = "(dz(c23) * ftr + c23 * ftr_z ) / W "
 
 
     def equations(self):
 
-        self.problem.add_equation('Re * dt(u) + dx(p) - beta * lap(u, uy) = F - Re * adv(u) + (1 - beta) * (t11x + t12y + t13z)')
+        self.problem.add_equation('Re * dt(u) + dx_dash(p) - beta * lap(u, uy) = F - Re * adv(u) + (1 - beta) * (t11x + t12y + t13z)')
         self.problem.add_equation('Re * dt(v) + dy(p) - beta * lap(v, vy) =   - Re * adv(v) + (1 - beta) * (t12x + t22y + t23z)')
         self.problem.add_equation('Re * dt(w) + dz(p) - beta * lap(w, wy) =   - Re * adv(w) + (1 - beta) * (t13x + t23y + t33z)')
 
         self.problem.add_equation('dt(c11) - eps * lap(c11, c11y) = ' + \
                                   '- adv(c11)' + \
-                                  '+ 2 * c11 * dx(u) + 2 * c12 * dy(u) + 2 * c13 * dz(u)' + \
+                                  '+ 2 * c11 * dx_dash(u) + 2 * c12 * dy(u) + 2 * c13 * dz(u)' + \
                                   '- t11')
 
         self.problem.add_equation('dt(c12) - eps * lap(c12, c12y) = ' + \
                                   '- adv(c12)' + \
-                                  '+ c11 * dx(v) + c12 * dy(v) + c13 * dz(v)' + \
-                                  '+ c12 * dx(u) + c22 * dy(u) + c23 * dz(u)' + \
+                                  '+ c11 * dx_dash(v) + c12 * dy(v) + c13 * dz(v)' + \
+                                  '+ c12 * dx_dash(u) + c22 * dy(u) + c23 * dz(u)' + \
                                   '- t12')
 
         self.problem.add_equation('dt(c22) - eps * lap(c22, c22y) = ' + \
                                   '- adv(c22)' + \
-                                  '+ 2 * c12 * dx(v) + 2 * c22 * dy(v) + 2 * c23 * dz(v)' + \
+                                  '+ 2 * c12 * dx_dash(v) + 2 * c22 * dy(v) + 2 * c23 * dz(v)' + \
                                   '- t22')
         
         self.problem.add_equation('dt(c13) - eps * lap(c13, c13y) = ' + \
                                   '- adv(c13)' + \
-                                  '+ c11 * dx(w) + c12 * dy(w) + c13 * dz(w)' + \
-                                  '+ c13 * dx(u) + c23 * dy(u) + c33 * dz(u)' + \
+                                  '+ c11 * dx_dash(w) + c12 * dy(w) + c13 * dz(w)' + \
+                                  '+ c13 * dx_dash(u) + c23 * dy(u) + c33 * dz(u)' + \
                                   '- t13')
         
         self.problem.add_equation('dt(c23) - eps * lap(c23, c23y) = ' + \
                                   '- adv(c23)' + \
-                                  '+ c12 * dx(w) + c22 * dy(w) + c23 * dz(w)' + \
-                                  '+ c13 * dx(v) + c23 * dy(v) + c33 * dz(v)' + \
+                                  '+ c12 * dx_dash(w) + c22 * dy(w) + c23 * dz(w)' + \
+                                  '+ c13 * dx_dash(v) + c23 * dy(v) + c33 * dz(v)' + \
                                   '- t23')
         
         self.problem.add_equation('dt(c33) - eps * lap(c33, c33y) = ' + \
                                   '- adv(c33)' + \
-                                  '+ 2 * c13 * dx(w) + 2 * c23 * dy(w) + 2 * c33 * dz(w)' + \
+                                  '+ 2 * c13 * dx_dash(w) + 2 * c23 * dy(w) + 2 * c33 * dz(w)' + \
                                   ' - t33')
 
         if self.ndim == 3:
-            self.problem.add_equation('dx(u) + dy(v) + dz(w) = 0', condition=('nx!=0 or ny!=0 or nz!=0'))
+            self.problem.add_equation('dx_dash(u) + dy(v) + dz(w) = 0', condition=('nx!=0 or ny!=0 or nz!=0'))
             self.problem.add_equation('p = 0', condition=('nx==0 and ny==0 and nz==0'))
         elif self.ndim == 2:
-            self.problem.add_equation('dx(u) + dy(v) + dz(w) = 0', condition=('nx!=0 or ny!=0'))
+            self.problem.add_equation('dx_dash(u) + dy(v) + dz(w) = 0', condition=('nx!=0 or ny!=0'))
             self.problem.add_equation('p = 0', condition=('nx==0 and ny==0'))
 
         # if self.C != 0:

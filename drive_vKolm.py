@@ -36,7 +36,6 @@ else:
 symmetry_mode = "yz"
 kwargs = {}
 translate = False
-drift_w = None
 plot_subdirectory = "arrowhead_3D_Lz"
 save_subdir = f"arrowhead_3D"
 save_full_data = False
@@ -417,10 +416,8 @@ elif setting_mode == 29:
     system_params['Lz'] = 6*np.pi
     material_params['C'] = input_val
 
-    drift_w = input_val
-
     ic_dict_if_reinit = {'suffix': 'recent-localised'}
-    suffix_end = f'drift-C={drift_w}'
+    suffix_end = f'drift-C={input_val}'
     plot_subdirectory = 'arrowhead_3D_drift'
     symmetry_mode = 'yz'
     save_subdir = f"arrowhead_3D"
