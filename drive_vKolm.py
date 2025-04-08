@@ -409,50 +409,24 @@ elif setting_mode == 28:
     save_subdir = f"arrowhead_3D"
 
 elif setting_mode == 29:
-    solver_params['Nz'] = 96
-    system_params['Lz'] = 6*np.pi
-    material_params['C'] = input_val
-
-    ic_dict_if_reinit = {'suffix': 'recent-drift-C=0.1'}
-
-    suffix_end = f'drift-C={input_val}'
-    plot_subdirectory = 'arrowhead_3D_drift'
-    symmetry_mode = 'yz'
-    save_subdir = f"arrowhead_3D"
+    pass
 
 elif setting_mode == 30:
+    pass
+
+elif setting_mode == 31:
 
     solver_params['Nz'] = 96
     system_params['Lz'] = 6*np.pi
 
-    C = input_val
-    material_params['C'] = C
-
-    ic_dict_if_reinit = {'suffix': f'recent-drift-C={C}'}
-    change_coords = True
+    ic_dict_if_reinit = {'suffix': 'recent-localised'}
     
-    suffix_end = f'test-drift-C={input_val}'
+    suffix_end = f'test-drift-pert'
     plot_subdirectory = 'arrowhead_3D_drift'
     symmetry_mode = False
     save_subdir = f"arrowhead_3D"
+    kwargs = {'asymmetric_perturb': True}
 
-elif setting_mode == 31:
-    # Get Periodic AH from 2D AH. m=1 mode branch
-    
-    solver_params['Nx'] = 480
-    solver_params['Ny'] = 48
-    solver_params['Nz'] = 16
-
-    system_params['Lx'] = 32*np.pi
-    system_params['Lz'] = np.pi
-    solver_params['dt'] = 5e-3
-
-    ic_dict_if_reinit = {'Nx': 480, 'Ny': 64, 'Nz': 32}
-    suffix_end = ''
-    plot_subdirectory = 'streamwise_localisation'
-    symmetry_mode = 'yz'
-    save_subdir = f"localisation"
-    translate = False
 elif setting_mode == 32:
     # Get Periodic AH from 2D AH. m=1 mode branch
     
@@ -499,9 +473,6 @@ timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=noise_coeff, **kwargs)
 
 if translate and reinit:
     timestepper.translate_AH_to_centre(mode='z', shift=24)
-
-if change_coords and reinit:
-    timestepper.prime_coords_to_unprimed(C)
 
 timestepper.simulate(T=T, ifreq=100, 
                      track_TW=False, 

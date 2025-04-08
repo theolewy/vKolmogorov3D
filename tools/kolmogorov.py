@@ -366,6 +366,21 @@ class TimeStepper3D(CartesianTimeStepper):
                 array = np.roll(array, axis=1, shift=self.Nz//4)
                 field['g'] = array[local_slice]
 
+        if 'asymmetric_perturb' in kwargs.keys() and kwargs['asymmetric_perturb'] > 0:
+            local_slice = self.domain.dist.grid_layout.slices(scales=1)
+            logger.info("Adding asymmetric perturbation...")
+
+            mag = kwargs['asymmetric_perturb']
+
+
+            field = self.c11
+            array = self.get_full_array(field['g'])
+            z = self.get_full_array(self.z)
+            array -= mag * np.sin(2 * np.pi * z / self.Lz)
+            field['g'] = array[local_slice]
+
+            self._reset_history_cache()
+            
     def _set_system_specific_substitutions(self):
 
         self.problem.substitutions['F'] = "(1 + eps * beta * W) / (1 + eps * W) * cos(y)"

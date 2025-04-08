@@ -78,7 +78,6 @@ def get_ic_file(material_params, system_params, solver_params, restart=False, su
 
     return ic_file, noise_coeff, reinit
 
-
 def get_fpath_sim(material_params, system_params, solver_params, suffix='', subdir='', dir='simulations', **kwargs):
 
     params_copy = copy.deepcopy(material_params)
