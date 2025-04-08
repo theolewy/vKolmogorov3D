@@ -425,7 +425,7 @@ elif setting_mode == 31:
     plot_subdirectory = 'arrowhead_3D_drift'
     symmetry_mode = False
     save_subdir = f"arrowhead_3D"
-    kwargs = {'asymmetric_perturb': True}
+    kwargs = {'asymmetric_perturb': 0.1}
 
 elif setting_mode == 32:
     # Get Periodic AH from 2D AH. m=1 mode branch

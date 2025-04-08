@@ -376,11 +376,11 @@ class TimeStepper3D(CartesianTimeStepper):
             field = self.c11
             array = self.get_full_array(field['g'])
             z = self.get_full_array(self.z)
-            array -= mag * np.sin(2 * np.pi * z / self.Lz)
+            array += mag * np.max(array) * np.sin(2 * np.pi * z / self.Lz)
             field['g'] = array[local_slice]
 
             self._reset_history_cache()
-            
+
     def _set_system_specific_substitutions(self):
 
         self.problem.substitutions['F'] = "(1 + eps * beta * W) / (1 + eps * W) * cos(y)"
