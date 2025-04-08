@@ -419,9 +419,9 @@ elif setting_mode == 31:
     solver_params['Nz'] = 96
     system_params['Lz'] = 6*np.pi
 
-    ic_dict_if_reinit = {'suffix': 'recent-localised'}
+    ic_dict_if_reinit = {'suffix': 'recent-test-drift-pert'}
     
-    suffix_end = f'test-drift-pert'
+    suffix_end = f'test-drift-pert-0,1'
     plot_subdirectory = 'arrowhead_3D_drift'
     symmetry_mode = False
     save_subdir = f"arrowhead_3D"
