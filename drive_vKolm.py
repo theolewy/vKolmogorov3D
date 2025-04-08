@@ -114,7 +114,7 @@ elif setting_mode == 5:
     
     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Lz': 1.48*np.pi}
+    ic_dict_if_reinit = {'Lz': 1.44*np.pi}
     suffix_end = 'm=1'
     plot_subdirectory = 'arrowhead_3D_W'
 
@@ -425,7 +425,7 @@ elif setting_mode == 31:
     plot_subdirectory = 'arrowhead_3D_drift'
     symmetry_mode = False
     save_subdir = f"arrowhead_3D"
-    kwargs = {'asymmetric_perturb': 0.1}
+    # kwargs = {'asymmetric_perturb': 0.1}
 
 elif setting_mode == 32:
     # Get Periodic AH from 2D AH. m=1 mode branch
