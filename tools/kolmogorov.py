@@ -667,10 +667,12 @@ class TimeStepper3D(CartesianTimeStepper):
         x_prime, y_prime, z_prime = self.x, self.y, self.z
         x, y, z = x_prime, y_prime, z_prime + C * x_prime
 
+        print(x.shape, x_prime.shape)
+
         for field_name in self.variables:
             field = getattr(self, field_name)
             interpolator = RegularGridInterpolator((x_prime, z_prime, y_prime), field['g'], method='linear', bounds_error=False, fill_value=None)
-            field['g'] = interpolator((x, y, z))
+            field['g'] = interpolator((x, z, y))
     
     
     def window(self, a, b, mode='z'):
