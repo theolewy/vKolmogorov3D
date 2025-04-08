@@ -665,7 +665,7 @@ class TimeStepper3D(CartesianTimeStepper):
     def prime_coords_to_unprimed(self, C):
 
         x_prime, y_prime, z_prime = self.x.squeeze(), self.y.squeeze(), self.z.squeeze()
-        x, y, z = x_prime, y_prime, z_prime + C * x_prime
+        x, y, z = self.x, self.y, self.z + C * self.x
 
         print(x.shape, x_prime.shape)
 
