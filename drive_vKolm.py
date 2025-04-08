@@ -50,7 +50,7 @@ if setting_mode == 0:
     
     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Lz': 0.6*np.pi}
+    ic_dict_if_reinit = {'Lz': 0.9*np.pi}
     suffix_end = 'localised'
     plot_subdirectory = 'arrowhead_3D_W'
 
