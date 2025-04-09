@@ -418,7 +418,7 @@ elif setting_mode == 31:
     solver_params['Nz'] = 96
     system_params['Lz'] = 6*np.pi
 
-    pert = 0.05
+    pert = input_val
     ic_dict_if_reinit = {'suffix': 'recent-localised'}
     
     suffix_end = f'test-drift-pert-{pert}'
