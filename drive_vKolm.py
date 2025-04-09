@@ -324,6 +324,7 @@ elif setting_mode == 23:
     # Get Periodic AH from 2D AH. m=1 mode branch
 
     solver_params['Nz'] = 32
+    system_params['Lz'] = np.pi
     solver_params['dt'] = 1e-3
 
     ic_dict_if_reinit = {'noise_coeff': 1e-2, 'suffix': 'recent-', 'ndim': 2, 'W': 20, 'Nx': 128, 'Ny': 256, 'subdir': 'arrowhead_2D'}
