@@ -323,17 +323,13 @@ elif setting_mode == 22:
 elif setting_mode == 23:
     # Get Periodic AH from 2D AH. m=1 mode branch
 
-    system_params['ndim'] = 2
-    material_params['W'] = 10
-    system_params['Lx'] = 32*np.pi
-    solver_params['Nx'] = 480
+    solver_params['Nz'] = 32
     solver_params['dt'] = 1e-3
 
-    ic_dict_if_reinit = {'W': 20, 'Lx': 32*np.pi, 'Nx': 450, 'subdir': 'arrowhead_2D'}
-    suffix_end = ''
-    save_subdir = 'localisation'
-    plot_subdirectory = 'streamwise_localisation'
-    symmetry_mode = False
+    ic_dict_if_reinit = {'noise_coeff': 1e-2, 'suffix': 'recent-', 'ndim': 2, 'W': 20, 'Nx': 128, 'Ny': 256, 'subdir': 'arrowhead_2D'}
+    suffix_end = 'periodic-from-2D'
+    plot_subdirectory = 'arrowhead_3D_Lz'
+    symmetry_mode = 'yz'
 elif setting_mode == 24:
     # Get Periodic AH from 2D AH. m=1 mode branch
 
