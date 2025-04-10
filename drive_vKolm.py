@@ -245,7 +245,6 @@ elif setting_mode == 16:
 elif setting_mode == 17:
     # Get Periodic AH from 2D AH. m=1 mode branch
 
-    kwargs = {'truncate': True}
     material_params['W'] = 20
 
     system_params['Lz'] = input_val*np.pi
