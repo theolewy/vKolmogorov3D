@@ -418,7 +418,7 @@ elif setting_mode == 30:
     plot_subdirectory = 'arrowhead_3D_drift'
     symmetry_mode = False
     save_subdir = f"arrowhead_3D"
-    kwargs = {'asymmetric_perturb': pert}
+    # kwargs = {'asymmetric_perturb': pert}
 
 
 elif setting_mode == 31:
