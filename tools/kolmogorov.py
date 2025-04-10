@@ -624,7 +624,8 @@ class TimeStepper3D(CartesianTimeStepper):
         self.solver.stop_wall_time = 60 * 60 * 23   # 11 hours
 
         if 'track_TW' in kwargs.keys() and kwargs['track_TW']: 
-            self.x_track = self.start_x_track = self._get_arrow_junction()
+            self.start_x_track, self.start_z_track = self._get_arrow_junction()
+            self.x_track, self.z_track = self.start_x_track, self.start_z_track
             if on_local_device(): plot=False
 
         stop = False
