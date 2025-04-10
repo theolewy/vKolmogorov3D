@@ -407,7 +407,19 @@ elif setting_mode == 29:
     pass
 
 elif setting_mode == 30:
-    pass
+
+    solver_params['Nz'] = 64
+    system_params['Lz'] = 4*np.pi
+
+    pert = input_val
+    ic_dict_if_reinit = {'suffix': 'recent-localised'}
+    
+    suffix_end = f'test-drift-pert-{pert}'
+    plot_subdirectory = 'arrowhead_3D_drift'
+    symmetry_mode = False
+    save_subdir = f"arrowhead_3D"
+    kwargs = {'asymmetric_perturb': pert}
+
 
 elif setting_mode == 31:
 
