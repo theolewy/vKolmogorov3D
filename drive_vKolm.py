@@ -326,7 +326,8 @@ elif setting_mode == 23:
     system_params['Lz'] = np.pi
     solver_params['dt'] = 1e-3
 
-    ic_dict_if_reinit = {'noise_coeff': 1e-2, 'suffix': 'recent-', 'ndim': 2, 'W': 20, 'Nx': 128, 'Ny': 256, 'subdir': 'arrowhead_2D'}
+    # ic_dict_if_reinit = {'noise_coeff': 1e-2, 'suffix': 'recent-', 'ndim': 2, 'W': 20, 'Nx': 128, 'Ny': 256, 'subdir': 'arrowhead_2D'}
+    ic_dict_if_reinit = None
     suffix_end = 'periodic-from-2D'
     plot_subdirectory = 'arrowhead_3D_Lz'
     symmetry_mode = 'yz'
