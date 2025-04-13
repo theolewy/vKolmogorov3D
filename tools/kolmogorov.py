@@ -639,8 +639,8 @@ class TimeStepper3D(CartesianTimeStepper):
 
             if self.enforce_symmetry and self.solver.iteration % 10 == 0:
                 self._enforce_symmetry()
-            if 'track_TW' in kwargs.keys() and kwargs['track_TW'] and self.solver.iteration % 500 == 0:
-                self._track_TW()
+            if 'track_TW' in kwargs.keys() and kwargs['track_TW']:
+                self._track_TW(ifreq=500)
 
             if self.solver.iteration % ifreq == 0:
                 KE, self.KE_base = self.flow.volume_average('KE'), self.flow.volume_average('KE_base')
