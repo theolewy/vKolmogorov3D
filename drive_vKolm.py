@@ -33,6 +33,7 @@ elif len(sys.argv) == 4:
 else:
     raise Exception('Need more inputs!')    
 
+track_TW = False
 symmetry_mode = "yz"
 kwargs = {}
 translate = False
@@ -418,6 +419,7 @@ elif setting_mode == 30:
     suffix_end = f'test-drift-pert-{pert}'
     plot_subdirectory = 'arrowhead_3D_drift'
     symmetry_mode = False
+    track_TW = True
     save_subdir = f"arrowhead_3D"
     # kwargs = {'asymmetric_perturb': pert}
 
@@ -484,7 +486,7 @@ if translate and reinit:
     timestepper.translate_AH_to_centre(mode='z', shift=24)
 
 timestepper.simulate(T=T, ifreq=100, 
-                     track_TW=False, 
+                     track_TW=track_TW, 
                      enforce_symmetry=symmetry_mode,
                      save_over_long=True, 
                      save_full_data=save_full_data, full_save_freq=2,
