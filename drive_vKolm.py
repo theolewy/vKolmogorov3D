@@ -388,7 +388,7 @@ elif setting_mode == 27:
 
     material_params['a'] = a
 
-    ic_dict_if_reinit = {'suffix': 'recent-localised', 'Lx': 3*np.pi, 'Nx': 64}
+    ic_dict_if_reinit = {'Lx': 3*np.pi, 'Nx': 64}
     
     suffix_end = f'JS-a={a}'
     plot_subdirectory = 'arrowhead_3D_JS'
