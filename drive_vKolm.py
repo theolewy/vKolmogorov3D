@@ -10,7 +10,8 @@ material_params = {'W': 20,
                    'beta': 0.9,
                    'Re': 0.5,
                    'L': np.infty,
-                   'eps': 1e-3}
+                   'eps': 1e-3,
+                   'a': 1}
 
 system_params = {'ndim': 3,
                  'Lx': 3 * np.pi,
@@ -406,7 +407,19 @@ elif setting_mode == 28:
     save_subdir = f"arrowhead_3D"
 
 elif setting_mode == 29:
-    pass
+    
+    solver_params['Nz'] = 64
+    system_params['Lz'] = 4*np.pi
+    
+    a = input_val
+
+    material_params['a'] = a
+    
+    ic_dict_if_reinit = {'suffix': 'recent-localised'}
+    
+    suffix_end = f'JS-a={a}'
+    plot_subdirectory = 'arrowhead_3D_JS'
+    save_subdir = f"arrowhead_3D"
 
 elif setting_mode == 30:
 
