@@ -36,7 +36,7 @@ class BaseFlow(CartesianBaseFlow):
     def _set_vars_coords_param_names(self):
 
         self.variables = ['u', 'v', 'w', 'p', 'c11', 'c12', 'c22', 'c33', 'c13', 'c23',
-                           'uy', 'vy', 'wy', 'c11y', 'c12y', 'c22y', 'c33y', 'c13y', 'c23y']
+                           'uy', 'vy', 'wy', 'c11y', 'c12y', 'c22y', 'c33y', 'c13y', 'c23y', 'amp']
         self.material_param_names = ['Re', 'W', 'eps', 'beta', 'L', 'a']
         self.params_cause_base_to_vary = ['W', 'eps', 'beta', 'L', 'a']
         self.inhomo_coord_name = 'y'
@@ -58,7 +58,8 @@ class BaseFlow(CartesianBaseFlow):
         setattr(self, f"{self.inhomo_coord_name}_dealias", self.domain.grid(0, scales=1.5)) # self.y_dealias
 
     def _set_system_specific_substitutions(self):
-        self.problem.substitutions['F'] = "(1 + eps * beta * W) / (1 + eps * W) * cos(y)"
+        # self.problem.substitutions['F'] = "(1 + eps * beta * W) / (1 + eps * W) * cos(y)"
+        self.problem.substitutions['F'] = "amp * cos(y)"
         
     def _continue_base_from_simple_params(self, material_params):
             # probably worth improve this at some point if need be
@@ -141,6 +142,9 @@ class BaseFlow(CartesianBaseFlow):
         self.problem.add_equation('dy(c33) - c33y = 0')
         self.problem.add_equation('dy(c13) - c13y = 0')
         self.problem.add_equation('dy(c23) - c23y = 0')
+
+        self.problem.add_equation('dy(amp) = 0')
+        self.problem.add_equation("integ(u ,'y') = 0")
 
         self.problem.add_bc('left(c11) - right(c11) = 0')
         self.problem.add_bc('left(c12) - right(c12) = 0')
@@ -297,6 +301,8 @@ class TimeStepper3D(CartesianTimeStepper):
         super().__init__(material_params, system_params, solver_params, logger_on=logger_on, **kwargs)
         self.core_root, self.data_root = get_roots()
 
+        if not np.isclose(np.max(self.U), 1) and self.a == 1: raise Exception("Max base velocity should be 1")
+
     def _set_solver(self):
         self.numeric_solver = NumericSolver(system_params=self.system_params, solver_params=self.solver_params, comm=MPI.COMM_SELF)
 
@@ -396,7 +402,9 @@ class TimeStepper3D(CartesianTimeStepper):
 
     def _set_system_specific_substitutions(self):
 
-        self.problem.substitutions['F'] = "(1 + eps * beta * W) / (1 + eps * W) * cos(y)"
+        amp = self.base_flow['amp']
+        self.problem.substitutions['F'] = f"{np.max(amp)} * cos(y)"
+        # self.problem.substitutions['F'] = "(1 + eps * beta * W) / (1 + eps * W) * cos(y)"
         self.problem.substitutions['uy'] = "dy(u)"
         self.problem.substitutions['vy'] = "dy(v)"
         self.problem.substitutions['wy'] = "dy(w)"
