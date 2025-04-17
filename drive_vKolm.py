@@ -378,21 +378,22 @@ elif setting_mode == 26:
 
 
 elif setting_mode == 27:
-    # Get Periodic AH from 2D AH. m=1 mode branch
     
-    solver_params['Nx'] = 640
-    solver_params['Ny'] = 64
-    solver_params['Nz'] = 32
+    solver_params['Nz'] = 64
+    solver_params['Nx'] = 96
+    system_params['Lz'] = 4*np.pi
+    system_params['Lx'] = 4*np.pi
+    
+    a = input_val
 
-    system_params['Lx'] = 32*np.pi
-    system_params['Lz'] = np.pi
-    solver_params['dt'] = 2e-3
+    material_params['a'] = a
 
-    ic_dict_if_reinit = {'Lx': 32*np.pi,'Nx': 480, 'Ny': 64, 'subdir': 'localisation'}
-    suffix_end = ''
-    plot_subdirectory = 'streamwise_localisation'
-    symmetry_mode = 'yz'
-    save_subdir = f"localisation"
+    ic_dict_if_reinit = {'suffix': 'recent-localised', 'Lx': 3*np.pi, 'Nx': 64}
+    
+    suffix_end = f'JS-a={a}'
+    plot_subdirectory = 'arrowhead_3D_JS'
+    save_subdir = f"arrowhead_3D"
+
 
 elif setting_mode == 28:
     solver_params['Nz'] = 96
