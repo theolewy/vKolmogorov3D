@@ -37,10 +37,13 @@ class BaseFlow(CartesianBaseFlow):
 
         self.variables = ['u', 'v', 'w', 'p', 'c11', 'c12', 'c22', 'c33', 'c13', 'c23',
                            'uy', 'vy', 'wy', 'c11y', 'c12y', 'c22y', 'c33y', 'c13y', 'c23y']
-        self.material_param_names = ['Re', 'W', 'eps', 'beta', 'L']
-        self.params_cause_base_to_vary = ['W', 'eps', 'beta', 'L']
+        self.material_param_names = ['Re', 'W', 'eps', 'beta', 'L', 'a']
+        self.params_cause_base_to_vary = ['W', 'eps', 'beta', 'L', 'a']
         self.inhomo_coord_name = 'y'
         self.homo_coord_names = ['x', 'z']
+
+        self.simple_material_params = { 'eps': 1e-7, 'a': 1, 'L': np.infty}
+
         
     def _build_domain(self, **kwargs):
 
@@ -74,6 +77,19 @@ class BaseFlow(CartesianBaseFlow):
                 if info['failed']: raise Exception("Continuation from easy parameters didn't work")
             
             return base_flow
+    
+
+    def _continue_base(self, material_params):
+        # probably worth improve this at some point if need be
+
+        W_end, a_end, eps_end, L_end = material_params['W'], material_params['a'], material_params['eps'], material_params['L']
+
+        base_flow = self._continue_base_single_param('a', a_end, spacing='log-a')
+        base_flow = self._continue_base_single_param('W', W_end, spacing='log')
+        base_flow = self._continue_base_single_param('eps', eps_end, spacing='log')
+        base_flow = self._continue_base_single_param('L', L_end, spacing='log-L')
+
+        return base_flow
 
     def _equations(self):
         
@@ -84,36 +100,33 @@ class BaseFlow(CartesianBaseFlow):
 
         self.problem.add_equation('dt(c11) - eps * lap(c11, c11y) = ' + \
                                   '- adv(c11)' + \
-                                  '+ 2 * c11 * dx(u) + 2 * c12 * dy(u) + 2 * c13 * dz(u)' + \
-                                  '- t11')
+                                  '+ (1 + a) / 2 * uc_def_11 - (1 - a) / 2 * lc_def_11' + \
+                                  '- t11 + 2 * (1 - a) * e11')
 
         self.problem.add_equation('dt(c12) - eps * lap(c12, c12y) = ' + \
                                   '- adv(c12)' + \
-                                  '+ c11 * dx(v) + c12 * dy(v) + c13 * dz(v)' + \
-                                  '+ c12 * dx(u) + c22 * dy(u) + c23 * dz(u)' + \
-                                  '- t12')
+                                  '+ (1 + a) / 2 * uc_def_12 - (1 - a) / 2 * lc_def_12' + \
+                                  '- t12 + 2 * (1 - a) * e12')
 
         self.problem.add_equation('dt(c22) - eps * lap(c22, c22y) = ' + \
                                   '- adv(c22)' + \
-                                  '+ 2 * c12 * dx(v) + 2 * c22 * dy(v) + 2 * c23 * dz(v)' + \
-                                  '- t22')
+                                  '+ (1 + a) / 2 * uc_def_22 - (1 - a) / 2 * lc_def_22' + \
+                                  '- t22 + 2 * (1 - a) * e22')
         
         self.problem.add_equation('dt(c13) - eps * lap(c13, c13y) = ' + \
                                   '- adv(c13)' + \
-                                  '+ c11 * dx(w) + c12 * dy(w) + c13 * dz(w)' + \
-                                  '+ c13 * dx(u) + c23 * dy(u) + c33 * dz(u)' + \
-                                  '- t13')
+                                  '+ (1 + a) / 2 * uc_def_13 - (1 - a) / 2 * lc_def_13' + \
+                                  '- t13 + 2 * (1 - a) * e13')
         
         self.problem.add_equation('dt(c23) - eps * lap(c23, c23y) = ' + \
                                   '- adv(c23)' + \
-                                  '+ c12 * dx(w) + c22 * dy(w) + c23 * dz(w)' + \
-                                  '+ c13 * dx(v) + c23 * dy(v) + c33 * dz(v)' + \
-                                  '- t23')
+                                  '+ (1 + a) / 2 * uc_def_23 - (1 - a) / 2 * lc_def_23' + \
+                                  '- t23 + 2 * (1 - a) * e23')
         
         self.problem.add_equation('dt(c33) - eps * lap(c33, c33y) = ' + \
                                   '- adv(c33)' + \
-                                  '+ 2 * c13 * dx(w) + 2 * c23 * dy(w) + 2 * c33 * dz(w)' + \
-                                  ' - t33')
+                                  '+ (1 + a) / 2 * uc_def_33 - (1 - a) / 2 * lc_def_33' + \
+                                  '- t33 + 2 * (1 - a) * e33')
 
         self.problem.add_equation('dx(u) + vy + dz(w) = 0')
 
@@ -309,7 +322,7 @@ class TimeStepper3D(CartesianTimeStepper):
 
         self.variables = ['u', 'v', 'w', 'p', 'c11', 'c12', 'c22', 'c33', 'c13', 'c23']
         self.noise_on_variables = ['u', 'c11', 'c12']  # use psi to denote 2D streamfunction
-        self.material_param_names = ['Re', 'W', 'eps', 'beta', 'L', 'C']
+        self.material_param_names = ['Re', 'W', 'eps', 'beta', 'L', 'a']
         self.inhomo_coord_name = 'y'
         self.homo_coord_names = ['x', 'z']
 
@@ -394,10 +407,6 @@ class TimeStepper3D(CartesianTimeStepper):
         self.problem.substitutions['c13y'] = "dy(c13)"
         self.problem.substitutions['c23y'] = "dy(c23)"
 
-
-    def _set_system_specific_basic_substitutions(self):
-        # note weird notation. My un-dashed derivatives are the moving frame, and dashed is stationary.
-        pass
     def _set_basic_substitutions(self):
 
         self.problem.substitutions['pi'] = str(np.pi)
@@ -448,6 +457,42 @@ class TimeStepper3D(CartesianTimeStepper):
         self.problem.substitutions['t23z'] = "(dz(c23) * ftr + c23 * ftr_z ) / W "
 
 
+        # upper-convected deformations (C grad u + grad u^T C)
+        self.problem.substitutions['uc_def_11'] = '  c11 * dx(u) + c12 * dy(u) + c13 * dz(u)' \
+                                                  '+ c11 * dx(u) + c12 * dy(u) + c13 * dz(u)'
+        self.problem.substitutions['uc_def_12'] = '  c11 * dx(v) + c12 * dy(v) + c13 * dz(v)' \
+                                                  '+ c12 * dx(u) + c22 * dy(u) + c23 * dz(u)'
+        self.problem.substitutions['uc_def_22'] = '  c12 * dx(v) + c22 * dy(v) + c23 * dz(v)' \
+                                                  '+ c12 * dx(v) + c22 * dy(v) + c23 * dz(v)'
+        self.problem.substitutions['uc_def_13'] = '  c11 * dx(w) + c12 * dy(w) + c13 * dz(w)' \
+                                                  '+ c13 * dx(u) + c23 * dy(u) + c33 * dz(u)'
+        self.problem.substitutions['uc_def_23'] = '  c12 * dx(w) + c22 * dy(w) + c23 * dz(w)' \
+                                                  '+ c13 * dx(v) + c23 * dy(v) + c33 * dz(v)'
+        self.problem.substitutions['uc_def_33'] = '  c13 * dx(w) + c23 * dy(w) + c33 * dz(w)' \
+                                                  '+ c13 * dx(w) + c23 * dy(w) + c33 * dz(w)'
+
+        # lower-convected deformations (C grad u^T + grad u C)
+        self.problem.substitutions['lc_def_11'] = '  c11 * dx(u) + c12 * dx(v) + c13 * dx(w)' \
+                                                  '+ c11 * dx(u) + c12 * dx(v) + c13 * dx(w)'
+        self.problem.substitutions['lc_def_12'] = '  c11 * dy(u) + c12 * dy(v) + c13 * dy(w)' \
+                                                  '+ c12 * dx(u) + c22 * dx(v) + c23 * dx(w)'
+        self.problem.substitutions['lc_def_22'] = '  c12 * dy(u) + c22 * dy(v) + c23 * dy(w)' \
+                                                  '+ c12 * dy(u) + c22 * dy(v) + c23 * dy(w)'
+        self.problem.substitutions['lc_def_13'] = '  c11 * dz(u) + c12 * dz(v) + c13 * dz(w)' \
+                                                  '+ c13 * dx(u) + c23 * dx(v) + c33 * dx(w)'
+        self.problem.substitutions['lc_def_23'] = '  c12 * dz(u) + c22 * dz(v) + c23 * dz(w)' \
+                                                  '+ c13 * dy(u) + c23 * dy(v) + c33 * dy(w)'
+        self.problem.substitutions['lc_def_33'] = '  c13 * dz(u) + c23 * dz(v) + c33 * dz(w)' \
+                                                  '+ c13 * dz(u) + c23 * dz(v) + c33 * dz(w)'
+
+        # strain components
+        self.problem.substitutions['e11'] = '1/2 * (dx(u) + dx(u))'
+        self.problem.substitutions['e12'] = '1/2 * (dx(v) + dy(u))'
+        self.problem.substitutions['e22'] = '1/2 * (dy(v) + dy(v))'
+        self.problem.substitutions['e13'] = '1/2 * (dz(u) + dx(w))'
+        self.problem.substitutions['e23'] = '1/2 * (dz(v) + dy(w))'
+        self.problem.substitutions['e33'] = '1/2 * (dz(w) + dz(w))'
+
     def equations(self):
 
         self.problem.add_equation('Re * dt(u) + dx(p) - beta * lap(u, uy) = F - Re * adv(u) + (1 - beta) * (t11x + t12y + t13z)')
@@ -456,36 +501,33 @@ class TimeStepper3D(CartesianTimeStepper):
 
         self.problem.add_equation('dt(c11) - eps * lap(c11, c11y) = ' + \
                                   '- adv(c11)' + \
-                                  '+ 2 * c11 * dx(u) + 2 * c12 * dy(u) + 2 * c13 * dz(u)' + \
-                                  '- t11')
+                                  '+ (1 + a) / 2 * uc_def_11 - (1 - a) / 2 * lc_def_11' + \
+                                  '- t11 + 2 * (1 - a) * e11')
 
         self.problem.add_equation('dt(c12) - eps * lap(c12, c12y) = ' + \
                                   '- adv(c12)' + \
-                                  '+ c11 * dx(v) + c12 * dy(v) + c13 * dz(v)' + \
-                                  '+ c12 * dx(u) + c22 * dy(u) + c23 * dz(u)' + \
-                                  '- t12')
+                                  '+ (1 + a) / 2 * uc_def_12 - (1 - a) / 2 * lc_def_12' + \
+                                  '- t12 + 2 * (1 - a) * e12')
 
         self.problem.add_equation('dt(c22) - eps * lap(c22, c22y) = ' + \
                                   '- adv(c22)' + \
-                                  '+ 2 * c12 * dx(v) + 2 * c22 * dy(v) + 2 * c23 * dz(v)' + \
-                                  '- t22')
+                                  '+ (1 + a) / 2 * uc_def_22 - (1 - a) / 2 * lc_def_22' + \
+                                  '- t22 + 2 * (1 - a) * e22')
         
         self.problem.add_equation('dt(c13) - eps * lap(c13, c13y) = ' + \
                                   '- adv(c13)' + \
-                                  '+ c11 * dx(w) + c12 * dy(w) + c13 * dz(w)' + \
-                                  '+ c13 * dx(u) + c23 * dy(u) + c33 * dz(u)' + \
-                                  '- t13')
+                                  '+ (1 + a) / 2 * uc_def_13 - (1 - a) / 2 * lc_def_13' + \
+                                  '- t13 + 2 * (1 - a) * e13')
         
         self.problem.add_equation('dt(c23) - eps * lap(c23, c23y) = ' + \
                                   '- adv(c23)' + \
-                                  '+ c12 * dx(w) + c22 * dy(w) + c23 * dz(w)' + \
-                                  '+ c13 * dx(v) + c23 * dy(v) + c33 * dz(v)' + \
-                                  '- t23')
+                                  '+ (1 + a) / 2 * uc_def_23 - (1 - a) / 2 * lc_def_23' + \
+                                  '- t23 + 2 * (1 - a) * e23')
         
         self.problem.add_equation('dt(c33) - eps * lap(c33, c33y) = ' + \
                                   '- adv(c33)' + \
-                                  '+ 2 * c13 * dx(w) + 2 * c23 * dy(w) + 2 * c33 * dz(w)' + \
-                                  ' - t33')
+                                  '+ (1 + a) / 2 * uc_def_33 - (1 - a) / 2 * lc_def_33' + \
+                                  '- t33 + 2 * (1 - a) * e33')
 
         if self.ndim == 3:
             self.problem.add_equation('dx(u) + dy(v) + dz(w) = 0', condition=('nx!=0 or ny!=0 or nz!=0'))
