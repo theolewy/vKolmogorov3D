@@ -301,7 +301,8 @@ class TimeStepper3D(CartesianTimeStepper):
         super().__init__(material_params, system_params, solver_params, logger_on=logger_on, **kwargs)
         self.core_root, self.data_root = get_roots()
 
-        if not np.isclose(np.max(self.U), 1) and self.a == 1: raise Exception("Max base velocity should be 1")
+        U_max = np.max(self.base_flow_full['u'])
+        if not np.isclose(U_max, 1) and self.a == 1: raise Exception("Max base velocity should be 1")
 
     def _set_solver(self):
         self.numeric_solver = NumericSolver(system_params=self.system_params, solver_params=self.solver_params, comm=MPI.COMM_SELF)

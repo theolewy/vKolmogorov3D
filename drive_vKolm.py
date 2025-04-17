@@ -414,7 +414,7 @@ elif setting_mode == 29:
     a = input_val
 
     material_params['a'] = a
-    
+
     ic_dict_if_reinit = {'suffix': 'recent-localised'}
     
     suffix_end = f'JS-a={a}'
@@ -492,7 +492,6 @@ ic_file, noise_coeff, reinit = get_ic_file(material_params, system_params, solve
                                    ic_dict_if_reinit=ic_dict_if_reinit)
 
 timestepper = TimeStepper3D(material_params=material_params, system_params=system_params, solver_params=solver_params)
-
 timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=noise_coeff, **kwargs)
 
 if translate and reinit:
