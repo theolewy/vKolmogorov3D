@@ -441,18 +441,18 @@ elif setting_mode == 30:
 
 elif setting_mode == 31:
 
-    solver_params['Nz'] = 96
-    system_params['Lz'] = 6*np.pi
+    solver_params['Nz'] = 64
+    system_params['Lz'] = 4*np.pi
 
     pert = input_val
-    ic_dict_if_reinit = {'suffix': 'recent-localised'}
+    ic_dict_if_reinit = {'suffix': f'recent-test-drift-pert-{pert}'}
     
-    suffix_end = f'test-drift-pert-{pert}'
+    suffix_end = f'test-drift-pert-{pert}-twice'
     plot_subdirectory = 'arrowhead_3D_drift'
     symmetry_mode = False
     track_TW = True
     save_subdir = f"arrowhead_3D"
-    # kwargs = {'asymmetric_perturb': pert}
+    kwargs = {'asymmetric_perturb': pert}
 
 elif setting_mode == 32:
     # Get Periodic AH from 2D AH. m=1 mode branch
