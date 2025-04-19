@@ -398,15 +398,18 @@ elif setting_mode == 27:
 
 
 elif setting_mode == 28:
+    
     solver_params['Nz'] = 96
     system_params['Lz'] = 6*np.pi
-    solver_params['Nx'] = 96
-    system_params['Lx'] = input_val*np.pi
+    
+    a = input_val
 
-    ic_dict_if_reinit = {'Nx': 96, 'Lx': 3.4*np.pi}
-    suffix_end = 'localised'
-    plot_subdirectory = 'arrowhead_3D_Lx'
-    symmetry_mode = 'yz'
+    material_params['a'] = a
+
+    ic_dict_if_reinit = {'suffix': 'recent-localised'}
+    
+    suffix_end = f'JS-a={a}'
+    plot_subdirectory = 'arrowhead_3D_JS'
     save_subdir = f"arrowhead_3D"
 
 elif setting_mode == 29:
