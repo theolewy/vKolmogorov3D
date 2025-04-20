@@ -405,6 +405,7 @@ elif setting_mode == 28:
     a = input_val
 
     material_params['a'] = a
+    material_params['W'] = 15
 
     ic_dict_if_reinit = {'suffix': 'recent-localised'}
     
