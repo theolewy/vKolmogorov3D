@@ -444,7 +444,7 @@ elif setting_mode == 30:
     pert = input_val
     ic_dict_if_reinit = {'suffix': 'recent-localised'}
     
-    suffix_end = f'test-drift-pert-{pert}-2'
+    suffix_end = f'test-drift-pert-{pert}-method-2'
     plot_subdirectory = 'arrowhead_3D_drift'
     symmetry_mode = False
     track_TW = True
