@@ -395,7 +395,7 @@ class TimeStepper3D(CartesianTimeStepper):
             field = self.c11
             array = self.get_full_array(field['g'])
             z = self.get_full_array(self.z)
-            array *= (1 - mag * np.max(array) * np.sin(2 * np.pi * z / self.Lz))
+            array *= (1 - mag * np.sin(2 * np.pi * z / self.Lz))
             field['g'] = array[local_slice]
 
             self._reset_history_cache()
