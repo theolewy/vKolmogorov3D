@@ -415,18 +415,20 @@ elif setting_mode == 28:
 
 elif setting_mode == 29:
     
-    solver_params['Nz'] = 64
-    system_params['Lz'] = 4*np.pi
+    solver_params['Nz'] = 96
+    system_params['Lz'] = 6*np.pi
     
     a = input_val
 
     material_params['a'] = a
+    material_params['W'] = 18
 
-    ic_dict_if_reinit = {'suffix': 'recent-localised'}
+    ic_dict_if_reinit = {'suffix': f'recent-JS-a={0.999}', 'W': 18}
     
     suffix_end = f'JS-a={a}'
     plot_subdirectory = 'arrowhead_3D_JS'
     save_subdir = f"arrowhead_3D"
+
 
 elif setting_mode == 30:
 
