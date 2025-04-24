@@ -506,6 +506,9 @@ log_all_params(material_params, system_params, solver_params)
 ic_file, noise_coeff, reinit = get_ic_file(material_params, system_params, solver_params, suffix=f'recent-{suffix_end}', subdir=save_subdir, 
                                    ic_dict_if_reinit=ic_dict_if_reinit)
 
+if kwargs.get('asymmetric_perturb', False) and not reinit:
+    kwargs['asymmetric_perturb'] = False
+
 timestepper = TimeStepper3D(material_params=material_params, system_params=system_params, solver_params=solver_params)
 timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=noise_coeff, **kwargs)
 
