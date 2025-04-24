@@ -298,6 +298,7 @@ class TimeStepper3D(CartesianTimeStepper):
 
     def __init__(self, material_params, system_params, solver_params, logger_on=True, **kwargs):
         if 'C' not in material_params.keys(): material_params['C'] = 0
+        if 'a' not in material_params.keys(): material_params['a'] = 1
         super().__init__(material_params, system_params, solver_params, logger_on=logger_on, **kwargs)
         self.core_root, self.data_root = get_roots()
 
