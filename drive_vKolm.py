@@ -456,15 +456,17 @@ elif setting_mode == 31:
     solver_params['Nz'] = 64
     system_params['Lz'] = 4*np.pi
 
-    pert = input_val
-    ic_dict_if_reinit = {'suffix': f'recent-test-drift-pert-{pert}'}
+    a = input_val
+    W = input_val2
+
+    material_params['a'] = a
+    material_params['W'] = W
+
+    ic_dict_if_reinit = {'suffix': f'recent-JS-a={0.9999}', 'W': 20}
     
-    suffix_end = f'test-drift-pert-{pert}-twice'
-    plot_subdirectory = 'arrowhead_3D_drift'
-    symmetry_mode = False
-    track_TW = True
+    suffix_end = f'JS-a={a}'
+    plot_subdirectory = 'arrowhead_3D_JS'
     save_subdir = f"arrowhead_3D"
-    kwargs = {'asymmetric_perturb': pert}
 
 elif setting_mode == 32:
     # Get Periodic AH from 2D AH. m=1 mode branch
