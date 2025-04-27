@@ -36,6 +36,13 @@ elif len(sys.argv) == 5:
     setting_mode = int(sys.argv[2])
     input_val = float(eval(sys.argv[3]))
     input_val2 = float(eval(sys.argv[4]))
+elif len(sys.argv) == 7:
+    job_idx = int(sys.argv[1])
+    setting_mode = int(sys.argv[2])
+    input_val = float(eval(sys.argv[3]))
+    input_val2 = float(eval(sys.argv[4]))
+    input_val3 = float(eval(sys.argv[5]))
+    input_val4 = float(eval(sys.argv[6]))
 else:
     raise Exception('Need more inputs!')    
 
@@ -408,11 +415,12 @@ elif setting_mode == 28:
     system_params['Lz'] = 6*np.pi
     
     a = input_val
+    W = input_val2
 
     material_params['a'] = a
-    material_params['W'] = 18
+    material_params['W'] = W
 
-    ic_dict_if_reinit = {'suffix': 'recent-localised', 'W': 20}
+    ic_dict_if_reinit = {'suffix': f'recent-JS-a={input_val}', 'W': input_val2}
     
     suffix_end = f'JS-a={a}'
     plot_subdirectory = 'arrowhead_3D_JS'
