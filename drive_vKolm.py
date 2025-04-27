@@ -421,7 +421,7 @@ elif setting_mode == 28:
     material_params['a'] = a
     material_params['W'] = W
 
-    ic_dict_if_reinit = {'suffix': f'recent-JS-a={input_val}', 'W': input_val2}
+    ic_dict_if_reinit = {'suffix': f'recent-JS-a={input_val3}', 'W': input_val4}
     
     suffix_end = f'JS-a={a}'
     plot_subdirectory = 'arrowhead_3D_JS'
