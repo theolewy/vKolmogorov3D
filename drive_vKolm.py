@@ -36,6 +36,12 @@ elif len(sys.argv) == 5:
     setting_mode = int(sys.argv[2])
     input_val = float(eval(sys.argv[3]))
     input_val2 = float(eval(sys.argv[4]))
+elif len(sys.argv) == 6:
+    job_idx = int(sys.argv[1])
+    setting_mode = int(sys.argv[2])
+    input_val = float(eval(sys.argv[3]))
+    input_val2 = float(eval(sys.argv[4]))
+    input_val3 = float(eval(sys.argv[5]))
 elif len(sys.argv) == 7:
     job_idx = int(sys.argv[1])
     setting_mode = int(sys.argv[2])
