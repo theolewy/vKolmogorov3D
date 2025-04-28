@@ -444,7 +444,6 @@ elif setting_mode == 29:
     plot_subdirectory = 'arrowhead_3D_JS'
     save_subdir = f"arrowhead_3D"
 
-
 elif setting_mode == 30:
 
     solver_params['Nz'] = 64
@@ -478,22 +477,20 @@ elif setting_mode == 31:
     save_subdir = f"arrowhead_3D"
 
 elif setting_mode == 32:
-    # Get Periodic AH from 2D AH. m=1 mode branch
+
+    solver_params['Nz'] = 96
+    system_params['Lz'] = 4*np.pi
+
+    pert = input_val
+    ic_dict_if_reinit = {'Nz': 64}
     
-    solver_params['Nx'] = 480
-    solver_params['Ny'] = 48
-    solver_params['Nz'] = 32
+    suffix_end = f'test-drift-pert-{pert}-method-2'
+    plot_subdirectory = 'arrowhead_3D_drift'
+    symmetry_mode = False
+    track_TW = True
+    save_subdir = f"arrowhead_3D"
+    # kwargs = {'asymmetric_perturb': pert}
 
-    system_params['Lx'] = 32*np.pi
-    system_params['Lz'] = 2*np.pi
-    solver_params['dt'] = 5e-3
-
-    ic_dict_if_reinit = {'Nx': 480, 'Ny': 48, 'Nz': 16, 'Lz': np.pi}
-    suffix_end = ''
-    plot_subdirectory = 'streamwise_localisation'
-    symmetry_mode = 'yz'
-    save_subdir = f"localisation"
-    translate = False
 elif setting_mode == 33:
     # Get Periodic AH from 2D AH. m=1 mode branch
     
