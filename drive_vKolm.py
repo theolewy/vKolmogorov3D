@@ -371,6 +371,8 @@ elif setting_mode == 25:
     # solver_params['Nz'] = 32
     # system_params['Lz'] = np.pi / 2
     system_params['ndim'] = 2
+    solver_params['Nx'] = 128
+    solver_params['Ny'] = 128
 
     a = input_val
     W = input_val2
