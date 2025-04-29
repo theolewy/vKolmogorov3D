@@ -352,19 +352,26 @@ elif setting_mode == 23:
     plot_subdirectory = 'arrowhead_3D_Lz'
     symmetry_mode = 'yz'
 elif setting_mode == 24:
-    # Get Periodic AH from 2D AH. m=1 mode branch
 
     system_params['ndim'] = 2
-    material_params['W'] = 10
-    system_params['Lx'] = 16*np.pi
-    solver_params['Nx'] = 256
-    solver_params['dt'] = 1e-3
+    solver_params['Nx'] = 128
+    solver_params['Ny'] = 256
 
-    ic_dict_if_reinit = {'W': 20, 'Lx': 16*np.pi, 'Nx': 256, 'subdir': 'arrowhead_2D'}
-    suffix_end = ''
-    save_subdir = 'localisation'
-    plot_subdirectory = 'streamwise_localisation'
+    a = input_val
+    W = input_val2
+    Lx_coeff = input_val3
+    
+    system_params['Lx'] = Lx_coeff*np.pi
+
+    material_params['a'] = a
+    material_params['W'] = W
     symmetry_mode = False
+    ic_dict_if_reinit = {'suffix': f'recent-JS-a={input_val}', 'ndim': 2, 'W': input_val2, 'Nx': 128, 'Ny': 256, 'subdir': 'arrowhead_2D'}
+    
+    suffix_end = f'JS-a={a}'
+    plot_subdirectory = 'arrowhead_2D'
+    save_subdir = f"arrowhead_2D"
+
 
 elif setting_mode == 25:
 
