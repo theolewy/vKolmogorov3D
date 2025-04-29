@@ -398,7 +398,7 @@ elif setting_mode == 25:
 elif setting_mode == 26:
 
     solver_params['Nx'] = 128
-    solver_params['Nz'] = 16
+    solver_params['Nz'] = 32
     system_params['Lx'] = 9*np.pi
     
     a = input_val
