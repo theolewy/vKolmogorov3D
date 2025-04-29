@@ -379,7 +379,7 @@ elif setting_mode == 25:
 
     material_params['a'] = a
     material_params['W'] = W
-
+    symmetry_mode = False
     ic_dict_if_reinit = {'suffix': 'recent-', 'ndim': 2, 'W': 20, 'Nx': 128, 'Ny': 256, 'subdir': 'arrowhead_2D'}
     
     suffix_end = f'JS-a={a}'
