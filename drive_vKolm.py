@@ -358,15 +358,16 @@ elif setting_mode == 24:
     solver_params['Ny'] = 256
 
     a = input_val
-    W = input_val2
-    Lx_coeff = input_val3
+    Lx_coeff = input_val2
+    Lx_coeff_old = input_val3
     
+
     system_params['Lx'] = Lx_coeff*np.pi
 
     material_params['a'] = a
-    material_params['W'] = W
+    material_params['W'] = 20
     symmetry_mode = False
-    ic_dict_if_reinit = {'suffix': f'recent-JS-a={input_val}', 'ndim': 2, 'W': input_val2, 'Nx': 128, 'Ny': 256, 'subdir': 'arrowhead_2D'}
+    ic_dict_if_reinit = {'suffix': f'recent-JS-a={input_val}', 'Lx': Lx_coeff_old*np.pi, 'ndim': 2, 'W': 20, 'Nx': 128, 'Ny': 256, 'subdir': 'arrowhead_2D'}
     
     suffix_end = f'JS-a={a}'
     plot_subdirectory = 'arrowhead_2D'
