@@ -399,14 +399,15 @@ elif setting_mode == 26:
 
     solver_params['Nz'] = 32
     system_params['Lz'] = np.pi / 2
+    system_params['Lx'] = 6*np.pi
     
     a = input_val
     W = input_val2
 
-    material_params['a'] = 0.99
+    material_params['a'] = a
     material_params['W'] = 20
 
-    ic_dict_if_reinit = {'noise_coeff': 1e-2, 'suffix': 'recent-', 'ndim': 2, 'W': 20, 'Nx': 128, 'Ny': 256, 'subdir': 'arrowhead_2D'}
+    ic_dict_if_reinit = {'noise_coeff': 1e-2, 'suffix': f'recent-JS-a={a}', 'ndim': 2, 'W': 20, 'Nx': 128, 'Ny': 256, 'subdir': 'arrowhead_2D'}
     
     suffix_end = f'JS-a={a}'
     plot_subdirectory = 'arrowhead_3D_JS'
