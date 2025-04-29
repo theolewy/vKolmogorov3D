@@ -399,12 +399,13 @@ elif setting_mode == 26:
 
     solver_params['Nx'] = 128
     solver_params['Nz'] = 16
-    system_params['Lz'] = np.pi / 10
     system_params['Lx'] = 9*np.pi
     
     a = input_val
     W = input_val2
+    Lz_coeff = input_val3
 
+    system_params['Lz'] = np.pi * Lz_coeff
     material_params['a'] = a
     material_params['W'] = 20
 
