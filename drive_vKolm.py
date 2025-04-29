@@ -367,18 +367,23 @@ elif setting_mode == 24:
     symmetry_mode = False
 
 elif setting_mode == 25:
-    # Get Periodic AH from 2D AH. m=1 mode branch
 
-    material_params['W'] = 10
+    # solver_params['Nz'] = 32
+    # system_params['Lz'] = np.pi / 2
+    system_params['ndim'] = 2
 
-    system_params['Lz'] = np.pi / 2
+    a = input_val
+    W = input_val2
 
-    solver_params['Nx'] = 64
-    solver_params['Nz'] = 32
+    material_params['a'] = a
+    material_params['W'] = W
 
-    ic_dict_if_reinit = {'Lz': np.pi / 4, 'Nz': 16}
-    suffix_end = ''
-    symmetry_mode = 'yz'
+    ic_dict_if_reinit = {'suffix': 'recent-', 'ndim': 2, 'W': 20, 'Nx': 128, 'Ny': 256, 'subdir': 'arrowhead_2D'}
+    
+    suffix_end = f'JS-a={a}'
+    plot_subdirectory = 'arrowhead_2D'
+    save_subdir = f"arrowhead_2D"
+
 
 elif setting_mode == 26:
 
