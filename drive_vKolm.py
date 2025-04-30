@@ -402,7 +402,7 @@ elif setting_mode == 26:
     system_params['Lx'] = 9*np.pi
     
     Lz_coeff = input_val
-    Lz_coeff_old = input_val
+    Lz_coeff_old = input_val2
 
     system_params['Lz'] = np.pi * Lz_coeff
     material_params['a'] = 0.95
