@@ -402,14 +402,14 @@ elif setting_mode == 26:
     system_params['Lx'] = 9*np.pi
     
     a = input_val
-    W = input_val2
-    Lz_coeff = input_val3
+    Lz_coeff = input_val2
+    Lz_coeff_old = input_val3
 
     system_params['Lz'] = np.pi * Lz_coeff
     material_params['a'] = a
     material_params['W'] = 20
 
-    ic_dict_if_reinit = {'noise_coeff': 1e-2, 'Lx': 6*np.pi, 'suffix': f'recent-JS-a={a}', 'ndim': 2, 'W': 20, 'Nx': 128, 'Ny': 256, 'subdir': 'arrowhead_2D'}
+    ic_dict_if_reinit = {'suffix': f'recent-JS-a={a}', 'Lz':Lz_coeff_old*np.pi}
     
     suffix_end = f'JS-a={a}'
     plot_subdirectory = 'arrowhead_3D_JS'
