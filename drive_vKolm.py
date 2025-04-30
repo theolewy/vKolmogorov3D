@@ -412,7 +412,7 @@ elif setting_mode == 26:
     ic_dict_if_reinit = {'suffix': f'recent-JS-a={a}', 'Lz':Lz_coeff_old*np.pi}
     
     suffix_end = f'JS-a={a}'
-    plot_subdirectory = 'arrowhead_3D_JS'
+    plot_subdirectory = 'arrowhead_3D_JS_Lz'
     save_subdir = f"arrowhead_3D"
 
 elif setting_mode == 27:
