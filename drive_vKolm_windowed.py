@@ -126,7 +126,8 @@ elif setting_mode == 7:
     ic_dict_if_reinit = {'suffix': f'recent-JS-a={0.95}', 'subdir':'arrowhead_3D', 'Lx': 9*np.pi, 'Lz': 0.4*np.pi, 'Nx':128, 'Nz': 32}
     suffix_end = f'JS-a=0.95-a-{a:.4g}-b-{b:.4g}-Lz-orig-1,257'
     window_mode = 'z'
-
+    tile = True
+    
 elif setting_mode == 10:
     # STREAMWISE LOCALISATION
 
