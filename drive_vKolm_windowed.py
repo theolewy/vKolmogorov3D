@@ -210,8 +210,9 @@ if reinit:
         timestepper.translate_AH_to_centre(mode='x')    # move so arrowhead is in the middle of the domain
         timestepper.window(a, b, mode='x')
     elif window_mode == 'z':
+        pass
         # timestepper.translate_AH_to_centre(mode='z', shift=13)    # move so arrowhead is in the middle of the domain
-        timestepper.window(a, b, mode='z')
+        # timestepper.window(a, b, mode='z')
 
 timestepper.simulate(T=4000, ifreq=100, 
                      track_TW=False, 
