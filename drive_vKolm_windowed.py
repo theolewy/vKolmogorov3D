@@ -115,7 +115,7 @@ elif setting_mode == 6:
 elif setting_mode == 7:
 
     system_params['Lz'] = 2*np.pi
-    solver_params['Nz'] = 64
+    solver_params['Nz'] = 128
 
     system_params['Lx'] = 9*np.pi
     solver_params['Nx'] = 128
@@ -127,7 +127,7 @@ elif setting_mode == 7:
     suffix_end = f'JS-a=0.95-a-{a:.4g}-b-{b:.4g}-Lz-orig-1,257'
     window_mode = 'z'
     tile = True
-    
+
 elif setting_mode == 10:
     # STREAMWISE LOCALISATION
 
