@@ -501,11 +501,11 @@ elif setting_mode == 31:
 
 elif setting_mode == 32:
 
-    solver_params['Nz'] = 96
+    solver_params['Nz'] = 128
     system_params['Lz'] = 4*np.pi
 
     pert = input_val
-    ic_dict_if_reinit = {'Nz': 64}
+    ic_dict_if_reinit = {'Nz': 96}
     
     suffix_end = f'test-drift-pert-{pert}-method-2'
     plot_subdirectory = 'arrowhead_3D_drift'
