@@ -59,7 +59,7 @@ translate = False
 plot_subdirectory = "arrowhead_3D_Lz"
 save_subdir = f"arrowhead_3D"
 save_full_data = False
-T=40000
+T=400000
 change_coords = False
 if setting_mode == 0:
     # Get Periodic AH from 2D AH. m=1 mode branch
