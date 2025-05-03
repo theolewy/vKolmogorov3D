@@ -416,20 +416,19 @@ elif setting_mode == 26:
 
 elif setting_mode == 27:
     
-    a = input_val
-    W = input_val2
-    Lx_coeff = input_val3
+    Lx_coeff = input_val
+    Lx_coeff_old = input_val2
+    
     solver_params['Nz'] = 96
     system_params['Lz'] = 6*np.pi
     system_params['Lx'] = Lx_coeff * np.pi
 
+    material_params['a'] = 0.996
+    material_params['W'] = 18
 
-    material_params['a'] = a
-    material_params['W'] = W
-
-    ic_dict_if_reinit = {'suffix': f'recent-JS-a={input_val}', 'W': input_val2, 'Lx': 3*np.pi}
+    ic_dict_if_reinit = {'suffix': f'recent-JS-a={0.996}', 'W': 18, 'Lx': Lx_coeff_old*np.pi}
     
-    suffix_end = f'JS-a={a}'
+    suffix_end = f'JS-a={0.996}'
     plot_subdirectory = 'arrowhead_3D_JS'
     save_subdir = f"arrowhead_3D"
 
