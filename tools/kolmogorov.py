@@ -675,11 +675,11 @@ class TimeStepper3D(CartesianTimeStepper):
             if on_local_device(): plot=False
 
             if self._TW_data_exists(tag=suffix_end):
+                self.start_x_track, self.start_z_track, self.start_sim_time_track, self.x_track, self.z_track = self._load_TW_data(tag=suffix_end)
+            else:
                 self.start_x_track, self.start_z_track = self._get_arrow_junction()
                 self.start_sim_time_track = copy.deepcopy(self.start_sim_time)
                 self.x_track, self.z_track = self.start_x_track, self.start_z_track
-            else:
-                self.start_x_track, self.start_z_track, self.start_sim_time_track, self.x_track, self.z_track = self._load_TW_data(tag=suffix_end)
 
         stop = False
 
