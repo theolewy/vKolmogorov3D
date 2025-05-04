@@ -752,7 +752,10 @@ class TimeStepper3D(CartesianTimeStepper):
     def _save_TW_data(self, tag, start_x_track, start_z_track, start_sim_time_track, x_track, z_track):
         save_file = os.path.join(self.data_root, 'TW_tracker', f"{tag}.out")
 
-        if (self.solver.sim_time)  // self.overwriting_handler.sim_dt  > self.overwriting_handler.last_sim_div and os.path.exists(self.overwriting_handler.current_path):
+        comm = MPI.COMM_WORLD
+        rank = comm.Get_rank()
+
+        if (self.solver.sim_time)  // self.overwriting_handler.sim_dt  > self.overwriting_handler.last_sim_div and rank == 0 and os.path.exists(self.overwriting_handler.current_path):
             f = open(save_file,'a')
             lineout = '{:4.10e} {:4.10e} {:4.10e} {:4.10e} {:4.10e}'.format(start_x_track, start_z_track, start_sim_time_track, x_track, z_track)
             f.write(lineout+'\n')
