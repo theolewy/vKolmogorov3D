@@ -687,13 +687,15 @@ class TimeStepper3D(CartesianTimeStepper):
             # so that tasks continually overwrite a single h5 file
 
             self.process_recent_saving(**kwargs)
-    
+            
             self.solver.step(dt=self.dt)
 
             if self.enforce_symmetry and self.solver.iteration % 10 == 0:
                 self._enforce_symmetry()
             if 'track_TW' in kwargs.keys() and kwargs['track_TW']:
                 self._track_TW(ifreq=500)
+                self._save_TW_data(tag=suffix_end, start_x_track=self.start_x_track, start_z_track=self.start_z_track,
+                                   start_sim_time_track=self.start_sim_time_track, x_track=self.x_track, z_track=self.z_track)
 
             if self.solver.iteration % ifreq == 0:
                 KE, self.KE_base = self.flow.volume_average('KE'), self.flow.volume_average('KE_base')
