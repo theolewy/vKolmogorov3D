@@ -755,9 +755,12 @@ class TimeStepper3D(CartesianTimeStepper):
         comm = MPI.COMM_WORLD
         rank = comm.Get_rank()
 
+        cx = (self.x_track - self.start_x_track)/(self.solver.sim_time - self.start_sim_time_track)
+        cz = (self.z_track - self.start_z_track)/(self.solver.sim_time - self.start_sim_time_track)
+
         if (self.solver.sim_time)  // self.overwriting_handler.sim_dt  > self.overwriting_handler.last_sim_div and rank == 0 and os.path.exists(self.overwriting_handler.current_path):
             f = open(save_file,'a')
-            lineout = '{:4.10e} {:4.10e} {:4.10e} {:4.10e} {:4.10e}'.format(start_x_track, start_z_track, start_sim_time_track, x_track, z_track)
+            lineout = '{:4.10e} {:4.10e} {:4.10e} {:4.10e} {:4.10e} {:4.10e} {:4.10e}'.format(start_x_track, start_z_track, start_sim_time_track, x_track, z_track, cx, cz)
             f.write(lineout+'\n')
             f.close()
 
