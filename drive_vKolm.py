@@ -419,9 +419,12 @@ elif setting_mode == 27:
     Lx_coeff = input_val
     Lx_coeff_old = input_val2
     
+    solver_params['Nx'] = 64
     solver_params['Nz'] = 96
     system_params['Lz'] = 6*np.pi
     system_params['Lx'] = Lx_coeff * np.pi
+
+    material_params['W'] = 20
 
     ic_dict_if_reinit = {'suffix': f'recent-', 'Lx': Lx_coeff_old*np.pi}
     
@@ -438,6 +441,9 @@ elif setting_mode == 28:
     solver_params['Nz'] = 96
     system_params['Lz'] = 6*np.pi
     system_params['Lx'] = Lx_coeff * np.pi
+
+    material_params['W'] = 20
+
 
     ic_dict_if_reinit = {'suffix': f'recent-', 'Lx': Lx_coeff_old*np.pi}
     
