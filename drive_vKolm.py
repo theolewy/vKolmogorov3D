@@ -426,9 +426,9 @@ elif setting_mode == 27:
 
     material_params['W'] = 20
 
-    ic_dict_if_reinit = {'suffix': f'recent-', 'Lx': Lx_coeff_old*np.pi, 'Nx': 64}
+    ic_dict_if_reinit = {'suffix': f'recent-localised', 'Lx': Lx_coeff_old*np.pi, 'Nx': 64}
     
-    suffix_end = f''
+    suffix_end = f'localised'
     plot_subdirectory = 'arrowhead_3D_Lx'
     save_subdir = f"arrowhead_3D"
 
@@ -445,9 +445,9 @@ elif setting_mode == 28:
     material_params['W'] = 20
 
 
-    ic_dict_if_reinit = {'suffix': f'recent-', 'Lx': Lx_coeff_old*np.pi, 'Nx': 64}
+    ic_dict_if_reinit = {'suffix': f'recent-localised', 'Lx': Lx_coeff_old*np.pi, 'Nx': 64}
     
-    suffix_end = f''
+    suffix_end = f'localised'
     plot_subdirectory = 'arrowhead_3D_Lx'
     save_subdir = f"arrowhead_3D"
 
