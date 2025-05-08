@@ -445,7 +445,7 @@ elif setting_mode == 28:
     material_params['W'] = 20
 
 
-    ic_dict_if_reinit = {'suffix': f'recent-localised', 'Lx': Lx_coeff_old*np.pi, 'Nx': 64}
+    ic_dict_if_reinit = {'suffix': f'recent-localised', 'Lx': Lx_coeff_old*np.pi, 'Nx': 96}
     
     suffix_end = f'localised'
     plot_subdirectory = 'arrowhead_3D_Lx'
