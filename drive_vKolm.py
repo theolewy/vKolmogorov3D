@@ -423,13 +423,10 @@ elif setting_mode == 27:
     system_params['Lz'] = 6*np.pi
     system_params['Lx'] = Lx_coeff * np.pi
 
-    material_params['a'] = 0.996
-    material_params['W'] = 18
-
-    ic_dict_if_reinit = {'suffix': f'recent-JS-a={0.996}', 'W': 18, 'Lx': Lx_coeff_old*np.pi}
+    ic_dict_if_reinit = {'suffix': f'recent-', 'Lx': Lx_coeff_old*np.pi}
     
-    suffix_end = f'JS-a={0.996}'
-    plot_subdirectory = 'arrowhead_3D_JS'
+    suffix_end = f''
+    plot_subdirectory = 'arrowhead_3D_Lx'
     save_subdir = f"arrowhead_3D"
 
 elif setting_mode == 28:
