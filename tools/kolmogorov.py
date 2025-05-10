@@ -647,14 +647,6 @@ class TimeStepper3D(CartesianTimeStepper):
                  plot=True, plot_dev=True, plot_subdirectory="",
                  save_over_long=False, save_full_data=False, suffix_end='', save_subdir='',  **kwargs):
 
-        # save infrequent data for a long period of time
-        long_time_folder = self.save_on_long(save_over_long, suffix_end, save_subdir, **kwargs)
-        # save all data 
-        full_save_folder = self.save_all_data(save_full_data, suffix_end, **kwargs)
-        # save most recent h5
-        self.save_recent_data(suffix_end, save_subdir, **kwargs)
-
-
         if 'enforce_symmetry' in kwargs.keys() and kwargs['enforce_symmetry']: 
             self.enforce_symmetry = kwargs['enforce_symmetry']
             logger.info(f"ENFORCING SYMMETRY IN {self.enforce_symmetry.upper()}")
@@ -680,6 +672,13 @@ class TimeStepper3D(CartesianTimeStepper):
                 self.start_x_track, self.start_z_track = self._get_arrow_junction()
                 self.start_sim_time_track = copy.deepcopy(self.start_sim_time)
                 self.x_track, self.z_track = self.start_x_track, self.start_z_track
+
+        # save infrequent data for a long period of time
+        long_time_folder = self.save_on_long(save_over_long, suffix_end, save_subdir, **kwargs)
+        # save all data 
+        full_save_folder = self.save_all_data(save_full_data, suffix_end, **kwargs)
+        # save most recent h5
+        self.save_recent_data(suffix_end, save_subdir, **kwargs)
 
         stop = False
 
