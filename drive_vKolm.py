@@ -186,7 +186,7 @@ elif setting_mode == 10:
     solver_params['Nz'] = 64
     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Lz': 3.7*np.pi}
+    ic_dict_if_reinit = {'Lz': 3.69*np.pi}
     suffix_end = 'localised-yz'
     plot_subdirectory = 'arrowhead_3D_W'
 
