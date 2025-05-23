@@ -2,10 +2,11 @@ import copy
 import os
 import pickle
 
-# import numpy as np
-# import logging
-# import time
+import numpy as np
+import logging
+import time
+from dedalus.tools import post
+import socket
+
 # from cfd_tools.cartesian_systems.misc_tools import *
-# from dedalus.tools import post
-# import socket
 
