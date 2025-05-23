@@ -2,7 +2,6 @@ import copy
 import os
 import pickle
 
-import h5py
 import numpy as np
 import logging
 import time

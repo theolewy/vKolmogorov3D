@@ -19,7 +19,7 @@ system_params = {'ndim': 3,
                  'n': 1}
 
 solver_params = {'Nx': 64,
-                 'Ny': 64,
+                 'Ny': 256,
                  'Nz': 64,
                  'dt': 5e-3}
 
@@ -29,18 +29,18 @@ kwargs = {}
 
 # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
 
-ic_dict_if_reinit = {'Nx':16, 'Ny': 16, 'Nz':16}
-suffix_end = 'localised'
-symmetry_mode = 'yz'
+# ic_dict_if_reinit = {'Nx':16, 'Ny': 16, 'Nz':16}
+# suffix_end = 'localised'
+# symmetry_mode = 'yz'
 
 log_all_params(material_params, system_params, solver_params)
 
-ic_file, noise_coeff, _ = get_ic_file(material_params, system_params, solver_params, suffix=f'recent-{suffix_end}', subdir='arrowhead_3D', 
-                                   ic_dict_if_reinit=ic_dict_if_reinit)
+# ic_file, noise_coeff, _ = get_ic_file(material_params, system_params, solver_params, suffix=f'recent-{suffix_end}', subdir='arrowhead_3D', 
+#                                    ic_dict_if_reinit=ic_dict_if_reinit)
 
-timestepper = TimeStepper3D(material_params=material_params, system_params=system_params, solver_params=solver_params)
-
-timestepper.numeric_solver.base_solver.plot_base_state(fname=f'a={material_params["a"]}')
+# timestepper = TimeStepper3D(material_params=material_params, system_params=system_params, solver_params=solver_params)
+NS = NumericSolver(system_params=system_params, solver_params=solver_params)
+NS.instability_over_kx(material_params, kx_list=[(2*np.pi)/9.56, (2)/3.04, (2)/3.045, (2)/3.05, (2*np.pi)/9.57,(2*np.pi)/9.58,(2*np.pi)/9.6,(2*np.pi)/3.5/np.pi, 0.75, 1.5, 2.25,], init_targets=[1])
 # timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=0e-1, **kwargs)
 
 # timestepper.simulate(T=4000, ifreq=10, 

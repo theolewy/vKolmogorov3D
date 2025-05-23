@@ -230,6 +230,18 @@ class EVP(CartesianEVP):
     def _set_system_specific_substitutions(self):
         pass
 
+    def _set_system_specific_basic_substitutions(self):
+        self.problem.substitutions['c13'] = "0"
+        self.problem.substitutions['C13'] = "0"
+        self.problem.substitutions['C13y'] = "0"
+        self.problem.substitutions['c23'] = "0"
+        self.problem.substitutions['C23'] = "0"
+        self.problem.substitutions['C23y'] = "0"
+        self.problem.substitutions['w'] = "0"
+        self.problem.substitutions['WW'] = "0"
+        self.problem.substitutions['Wy'] = "0"
+        self.problem.substitutions['dz(A)'] = "0"
+
     def _equations(self):
 
         # momentum equation
