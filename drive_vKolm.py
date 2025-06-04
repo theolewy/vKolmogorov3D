@@ -406,6 +406,8 @@ elif setting_mode == 26:
 
     ic_dict_if_reinit = {'suffix': f'recent-localised', 'subdir':'arrowhead_3D' ,'W': 20, 'beta': 0.9}
     
+    symmetry_mode = False
+    
     suffix_end = f''
     plot_subdirectory = 'ET'
     save_subdir = f"ET"
