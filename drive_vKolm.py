@@ -401,9 +401,10 @@ elif setting_mode == 26:
     solver_params['Nz'] = 128
     system_params['Lz'] = 8*np.pi
 
-    material_params['W'] = input_val
+    material_params['W'] = 30
+    material_params['beta'] = 0.95
 
-    ic_dict_if_reinit = None
+    ic_dict_if_reinit = {'suffix': f'recent-localised', 'W': 20, 'beta': 0.9}
     
     suffix_end = f''
     plot_subdirectory = 'ET'
