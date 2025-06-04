@@ -404,7 +404,7 @@ elif setting_mode == 26:
     material_params['W'] = 30
     material_params['beta'] = 0.95
 
-    ic_dict_if_reinit = {'suffix': f'recent-localised', 'W': 20, 'beta': 0.9}
+    ic_dict_if_reinit = {'suffix': f'recent-localised', 'subdir':'arrowhead_3D' ,'W': 20, 'beta': 0.9}
     
     suffix_end = f''
     plot_subdirectory = 'ET'
