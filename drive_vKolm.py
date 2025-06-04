@@ -401,7 +401,7 @@ elif setting_mode == 26:
     solver_params['Nz'] = 128
     system_params['Lz'] = 8*np.pi
 
-    material_params['W'] = 30
+    material_params['W'] = input_val
 
     ic_dict_if_reinit = None
     
