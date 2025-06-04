@@ -396,23 +396,18 @@ elif setting_mode == 25:
 
 
 elif setting_mode == 26:
-
-    solver_params['Nx'] = 128
-    solver_params['Nz'] = 32
-    system_params['Lx'] = 9*np.pi
     
-    Lz_coeff = input_val
-    Lz_coeff_old = input_val2
+    solver_params['Nx'] = 64
+    solver_params['Nz'] = 128
+    system_params['Lz'] = 8*np.pi
 
-    system_params['Lz'] = np.pi * Lz_coeff
-    material_params['a'] = 0.95
-    material_params['W'] = 20
+    material_params['W'] = 30
 
-    ic_dict_if_reinit = {'Lz':Lz_coeff_old*np.pi}
+    ic_dict_if_reinit = None
     
-    suffix_end = f'JS-a={0.95}'
-    plot_subdirectory = 'arrowhead_3D_JS_Lz'
-    save_subdir = f"arrowhead_3D"
+    suffix_end = f''
+    plot_subdirectory = 'ET'
+    save_subdir = f"ET"
 
 elif setting_mode == 27:
     
