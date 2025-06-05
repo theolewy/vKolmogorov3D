@@ -381,7 +381,7 @@ elif setting_mode == 25:
     system_params['Lz'] = 8*np.pi
 
     material_params['W'] = 20
-    material_params['beta'] = 0.95
+    material_params['beta'] = input_val
 
     ic_dict_if_reinit = {'suffix': f'recent-localised', 'subdir':'arrowhead_3D', 'noise_coeff': 1e-3,'W': 20, 'beta': 0.9}
     
