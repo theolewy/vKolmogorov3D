@@ -375,24 +375,21 @@ elif setting_mode == 24:
 
 
 elif setting_mode == 25:
-
-    # solver_params['Nz'] = 32
-    # system_params['Lz'] = np.pi / 2
-    system_params['ndim'] = 2
-    solver_params['Nx'] = 128
-    solver_params['Ny'] = 256
-
-    a = input_val
-    W = input_val2
-
-    material_params['a'] = a
-    material_params['W'] = W
-    symmetry_mode = False
-    ic_dict_if_reinit = {'suffix': f'recent-JS-a={input_val3}', 'ndim': 2, 'W': input_val4, 'Nx': 128, 'Ny': 256, 'subdir': 'arrowhead_2D'}
     
-    suffix_end = f'JS-a={a}'
-    plot_subdirectory = 'arrowhead_2D'
-    save_subdir = f"arrowhead_2D"
+    solver_params['Nx'] = 64
+    solver_params['Nz'] = 128
+    system_params['Lz'] = 8*np.pi
+
+    material_params['W'] = 20
+    material_params['beta'] = 0.95
+
+    ic_dict_if_reinit = {'suffix': f'recent-localised', 'subdir':'arrowhead_3D', 'noise_coeff': 1e-3,'W': 20, 'beta': 0.9}
+    
+    symmetry_mode = False
+
+    suffix_end = f''
+    plot_subdirectory = 'ET'
+    save_subdir = f"ET"
 
 
 elif setting_mode == 26:
