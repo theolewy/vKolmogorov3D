@@ -386,7 +386,7 @@ elif setting_mode == 25:
     ic_dict_if_reinit = {'suffix': f'recent-localised', 'subdir':'arrowhead_3D', 'noise_coeff': 1e-3,'W': 20, 'beta': 0.9}
     
     symmetry_mode = False
-
+    save_full_data = True
     suffix_end = f''
     plot_subdirectory = 'ET'
     save_subdir = f"ET"
@@ -404,6 +404,7 @@ elif setting_mode == 26:
     ic_dict_if_reinit = {'suffix': f'recent-localised', 'subdir':'arrowhead_3D', 'noise_coeff': 1e-3,'W': 20, 'beta': 0.9}
     
     symmetry_mode = False
+    save_full_data = True 
 
     suffix_end = f''
     plot_subdirectory = 'ET'
@@ -547,6 +548,6 @@ timestepper.simulate(T=T, ifreq=100,
                      track_TW=track_TW, 
                      enforce_symmetry=symmetry_mode,
                      save_over_long=True, 
-                     save_full_data=save_full_data, full_save_freq=2,
+                     save_full_data=save_full_data, full_save_freq=100,
                      save_subdir=save_subdir, suffix_end=suffix_end, 
                      plot=True, plot_dev=True, plot_subdirectory=plot_subdirectory)
