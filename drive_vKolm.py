@@ -392,8 +392,6 @@ elif setting_mode == 25:
     plot_subdirectory = 'ET'
     save_subdir = f"ET"
 
-    kwargs = {'full_save_freq': 2}
-
 elif setting_mode == 26:
     
     solver_params['Nx'] = 64
@@ -550,6 +548,6 @@ timestepper.simulate(T=T, ifreq=100,
                      track_TW=track_TW, 
                      enforce_symmetry=symmetry_mode,
                      save_over_long=True, 
-                     save_full_data=save_full_data, full_save_freq=100,
+                     save_full_data=save_full_data, full_save_freq=2,
                      save_subdir=save_subdir, suffix_end=suffix_end, 
                      plot=True, plot_dev=True, plot_subdirectory=plot_subdirectory, **kwargs)
