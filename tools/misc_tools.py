@@ -52,6 +52,8 @@ def get_ic_file(material_params, system_params, solver_params, restart=False, su
             if 's' in kwargs.keys():
                 s = kwargs['s']
                 fname = fname.split('_s')[0] + f"_s{s}.h5"
+                logger.info(s)
+                logger.info(fname)
             ic_file = os.path.join(save_folder, fname)
             noise_coeff = 0
         else:
