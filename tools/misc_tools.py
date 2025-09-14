@@ -170,9 +170,9 @@ def get_h5_data(material_params, system_params, solver_params, suffix='', subdir
 
     return data_fields, data_metric
 
-def get_metric_from_params(material_params, system_params, solver_params, suffix, subdir, metric='trace', deviation=True, merge=False):
+def get_metric_from_params(material_params, system_params, solver_params, suffix, subdir, metric='trace', deviation=True, merge=False, **kwargs):
 
-    fpath = get_fpath_sim(material_params, system_params, solver_params, suffix=suffix, subdir=subdir)
+    fpath = get_fpath_sim(material_params, system_params, solver_params, suffix=suffix, subdir=subdir, **kwargs)
     
     if merge: post.merge_process_files(fpath, cleanup=True)
 
