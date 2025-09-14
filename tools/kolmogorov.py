@@ -688,7 +688,7 @@ class TimeStepper3D(CartesianTimeStepper):
         # save infrequent data for a long period of time
         long_time_folder = self.save_on_long(save_over_long, suffix_end, save_subdir, **kwargs)
         # save all data 
-        full_save_folder = self.save_all_data(save_full_data, suffix_end, **kwargs)
+        full_save_folder = self.save_aall_data(save_full_data, suffix_end, **kwargs)
         # save most recent h5
         self.save_recent_data(suffix_end, save_subdir, **kwargs)
 
@@ -912,7 +912,9 @@ class TimeStepper3D(CartesianTimeStepper):
         else:
             max_writes=100
 
-        if save_all_fields:
+        if save_freq == 'recent':
+            logger.info(f"Updating 'recent' saving every {sim_dt} time units.")
+        elif save_all_fields:
             logger.info(f"Saving all field data every {sim_dt} time units.")
         else:
             logger.info(f"Saving metric data every {sim_dt} time units.")
