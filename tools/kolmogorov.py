@@ -912,6 +912,11 @@ class TimeStepper3D(CartesianTimeStepper):
         else:
             max_writes=100
 
+        if save_all_fields:
+            logger.info(f"Saving all field data every {sim_dt} time units.")
+        else:
+            logger.info(f"Saving metric data every {sim_dt} time units.")
+
         snapshots = self.solver.evaluator.add_file_handler(self.save_folder, \
                                                            sim_dt=sim_dt, max_writes=max_writes, mode=mode)
 
