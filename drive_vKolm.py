@@ -383,7 +383,7 @@ elif setting_mode == 25:
     material_params['W'] = 30
     material_params['beta'] = 0.95
 
-    ic_dict_if_reinit = {'suffix': f'full-', 'subdir':'large_data'}
+    ic_dict_if_reinit = {'suffix': f'full-', 'subdir':'large_data', 's': 50, }
     
     symmetry_mode = False
     save_full_data = True 
@@ -392,7 +392,7 @@ elif setting_mode == 25:
     plot_subdirectory = 'ET'
     save_subdir = f"ET"
 
-    kwargs = {'s': 50, 'full_save_freq': 2}
+    kwargs = {'full_save_freq': 2}
 
 elif setting_mode == 26:
     
@@ -535,7 +535,7 @@ elif setting_mode == 33:
 log_all_params(material_params, system_params, solver_params)
 
 ic_file, noise_coeff, reinit = get_ic_file(material_params, system_params, solver_params, suffix=f'recent-{suffix_end}', subdir=save_subdir, 
-                                   ic_dict_if_reinit=ic_dict_if_reinit, **kwargs)
+                                   ic_dict_if_reinit=ic_dict_if_reinit)
 
 if kwargs.get('asymmetric_perturb', False) and not reinit:
     kwargs['asymmetric_perturb'] = False

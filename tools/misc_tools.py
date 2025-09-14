@@ -49,12 +49,9 @@ def get_ic_file(material_params, system_params, solver_params, restart=False, su
         time.sleep(2)   # to ensure merging is done by the time we get s file
         if len(os.listdir(save_folder)) != 0:
             fname = sorted(os.listdir(save_folder), key=lambda x: int(x.split('_s')[-1][:-3]))[-1]
-            logger.info(kwargs)
             if 's' in kwargs.keys():
                 s = kwargs['s']
                 fname = fname.split('_s')[0] + f"_s{s}.h5"
-                logger.info(s)
-                logger.info(fname)
 
             ic_file = os.path.join(save_folder, fname)
             noise_coeff = 0
