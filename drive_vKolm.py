@@ -392,8 +392,7 @@ elif setting_mode == 25:
     plot_subdirectory = 'ET'
     save_subdir = f"ET"
 
-    kwargs['s'] = 50
-    kwargs['full_save_freq'] = 2
+    kwargs = {'s': 50, 'full_save_freq': 2}
 
 elif setting_mode == 26:
     
