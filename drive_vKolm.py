@@ -552,4 +552,4 @@ timestepper.simulate(T=T, ifreq=100,
                      save_over_long=True, 
                      save_full_data=save_full_data, full_save_freq=100,
                      save_subdir=save_subdir, suffix_end=suffix_end, 
-                     plot=True, plot_dev=True, plot_subdirectory=plot_subdirectory)
+                     plot=True, plot_dev=True, plot_subdirectory=plot_subdirectory, **kwargs)
