@@ -730,6 +730,7 @@ class TimeStepper3D(CartesianTimeStepper):
                                                     end_converge=end_converge, end_laminar=end_laminar, end_laminar_threshold=end_laminar_threshold)
                 if plot == True:                
                     subdirectory = plot_subdirectory if on_local_device() else f"HPC_{plot_subdirectory}"
+                    logger.info(subdirectory)
                     # self.plot_snaps(subdirectory=subdirectory, suffix_end=suffix_end, plot_dev=plot_dev)
                     # self.plot_metrics(subdirectory=subdirectory, suffix_end=suffix_end)
                     self._plot_arrays_and_metrics(subdirectory=subdirectory, suffix_end=suffix_end, plot_dev=plot_dev)
