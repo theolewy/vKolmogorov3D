@@ -163,9 +163,9 @@ def get_AH_W_list(eps, beta, Re, L, Lx, Nx, Ny, ndim, Nz=None, Lz=None, subdir='
 ####################################################################################################################################
 # EVERYTHING UNDER HERE DOESN'T NEED TO CHANGE WHEN A NEW SYSTEM IS MADE
 ####################################################################################################################################
-def get_h5_data(material_params, system_params, solver_params, suffix='', subdir='', s=-1):
+def get_h5_data(material_params, system_params, solver_params, suffix='', subdir='', s=-1, **kwargs):
 
-    fpath = get_fpath_sim(material_params, system_params, solver_params, suffix=suffix, subdir=subdir)
+    fpath = get_fpath_sim(material_params, system_params, solver_params, suffix=suffix, subdir=subdir, **kwargs)
     data_fields, data_metric = get_h5_data_from_fpath(fpath, s)
 
     return data_fields, data_metric
