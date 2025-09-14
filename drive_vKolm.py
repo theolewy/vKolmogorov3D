@@ -383,14 +383,14 @@ elif setting_mode == 25:
     material_params['W'] = 30
     material_params['beta'] = 0.95
 
-    ic_dict_if_reinit = {'suffix': f'full-'}
+    ic_dict_if_reinit = {'suffix': f'full-', 'subdir':'large_data'}
     
     symmetry_mode = False
     save_full_data = True 
 
     suffix_end = f'splitting'
     plot_subdirectory = 'ET'
-    save_subdir = f"large_data"
+    save_subdir = f"ET"
 
     kwargs['s'] = 50
     kwargs['full_save_freq'] = 2
