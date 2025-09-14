@@ -390,7 +390,7 @@ elif setting_mode == 25:
 
     suffix_end = f'splitting'
     plot_subdirectory = 'ET'
-    save_subdir = f"ET"
+    save_subdir = f"large_data"
 
     kwargs['s'] = 50
     kwargs['full_save_freq'] = 2
