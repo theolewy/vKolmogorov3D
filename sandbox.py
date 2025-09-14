@@ -6,7 +6,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-material_params = {'W': 20,
+material_params = {'W': 20.36,
                    'beta': 0.9,
                    'Re': 0.5,
                    'L': np.infty,
@@ -40,7 +40,7 @@ log_all_params(material_params, system_params, solver_params)
 
 # timestepper = TimeStepper3D(material_params=material_params, system_params=system_params, solver_params=solver_params)
 NS = NumericSolver(system_params=system_params, solver_params=solver_params)
-NS.instability_over_kx(material_params, kx_list=[(2*np.pi)/9.56, (2)/3.04, (2)/3.045, (2)/3.05, (2*np.pi)/9.57,(2*np.pi)/9.58,(2*np.pi)/9.6,(2*np.pi)/3.5/np.pi, 0.75, 1.5, 2.25,], init_targets=[1])
+NS.instability_over_kx(material_params, kx_list=[2/3, 4/3, 2], init_targets=[1+0.1j])
 # timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=0e-1, **kwargs)
 
 # timestepper.simulate(T=4000, ifreq=10, 
