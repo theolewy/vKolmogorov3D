@@ -547,7 +547,7 @@ timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=noise_coeff, **kwargs)
 if translate and reinit:
     timestepper.translate_AH_to_centre(mode='z', shift=24)
 
-timestepper.simulate(T=T, ifreq=100, 
+timestepper.simulate(T=T, ifreq=40, 
                      track_TW=track_TW, 
                      enforce_symmetry=symmetry_mode,
                      save_over_long=True, 
