@@ -166,7 +166,7 @@ def get_AH_W_list(eps, beta, Re, L, Lx, Nx, Ny, ndim, Nz=None, Lz=None, subdir='
 def get_h5_data(material_params, system_params, solver_params, suffix='', subdir='', s=-1, **kwargs):
 
     fpath = get_fpath_sim(material_params, system_params, solver_params, suffix=suffix, subdir=subdir, **kwargs)
-    data_fields, data_metric = get_h5_data_from_fpath(fpath, s)
+    data_fields, data_metric = get_h5_data_from_fpath(fpath, s, **kwargs)
 
     return data_fields, data_metric
 
