@@ -497,17 +497,18 @@ elif setting_mode == 31:
 elif setting_mode == 32:
 
     solver_params['Nz'] = 128
-    system_params['Lz'] = 4*np.pi
+    system_params['Lz'] = 8*np.pi
+    material_params['W'] = 20
 
     pert = input_val
-    ic_dict_if_reinit = {'Nz': 96}
+    ic_dict_if_reinit = {'suffix': 'recent-localised'}
     
-    suffix_end = f'test-drift-pert-{pert}-method-2'
-    plot_subdirectory = 'arrowhead_3D_drift'
-    symmetry_mode = False
-    track_TW = True
+    suffix_end = f'localised-phase-speed'
+    plot_subdirectory = 'localised-phase-speed'
+    symmetry_mode = 'yz'
     save_subdir = f"arrowhead_3D"
-    # kwargs = {'asymmetric_perturb': pert}
+    track_TW = True
+    kwargs = {'zero_flux': True}
 
 elif setting_mode == 33:
     # Get Periodic AH from 2D AH. m=1 mode branch
@@ -537,6 +538,7 @@ if kwargs.get('asymmetric_perturb', False) and not reinit:
 
 timestepper = TimeStepper3D(material_params=material_params, system_params=system_params, solver_params=solver_params)
 timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=noise_coeff, **kwargs)
+
 
 if translate and reinit:
     timestepper.translate_AH_to_centre(mode='z', shift=24)
