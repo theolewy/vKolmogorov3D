@@ -417,7 +417,7 @@ class TimeStepper3D(CartesianTimeStepper):
         if 'zero_flux' in kwargs.keys() and kwargs['zero_flux']:
             logger.info("Zeroing flux...")
             self._set_scale(1)
-            u_mean = np.mean(self.u['g'])
+            u_mean = self.flow.volume_average('KE')
             self.u['g'] -= u_mean
             self._reset_history_cache()
 
