@@ -507,7 +507,7 @@ elif setting_mode == 32:
     symmetry_mode = 'yz'
     save_subdir = f"arrowhead_3D"
     track_TW = True
-    kwargs = {'zero_flux': True}
+    kwargs = {'zero_flux': False}
 
 elif setting_mode == 33:
     # Get Periodic AH from 2D AH. m=1 mode branch
