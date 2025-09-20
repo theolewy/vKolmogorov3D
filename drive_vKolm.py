@@ -500,7 +500,6 @@ elif setting_mode == 32:
     system_params['Lz'] = 8*np.pi
     material_params['W'] = 20
 
-    pert = input_val
     ic_dict_if_reinit = {'suffix': 'recent-localised'}
     
     suffix_end = f'localised-phase-speed'
