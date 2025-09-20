@@ -400,6 +400,8 @@ class TimeStepper3D(CartesianTimeStepper):
                 array = np.roll(array, axis=1, shift=self.Nz//4)
                 field['g'] = array[local_slice]
 
+            self._reset_history_cache()
+
         if 'asymmetric_perturb' in kwargs.keys() and kwargs['asymmetric_perturb'] > 0:
             local_slice = self.domain.dist.grid_layout.slices(scales=1)
             logger.info("Adding asymmetric perturbation...")
@@ -418,7 +420,8 @@ class TimeStepper3D(CartesianTimeStepper):
             logger.info("Zeroing flux...")
             # u_mean = self.flow.volume_average('u')
             u_mean = np.mean(self.u['g'])
-            # self.u['g'] -= u_mean
+            logger.info(f"u_mean = {u_mean}")
+            self.u['g'] -= u_mean
             self._reset_history_cache()
 
     def _set_system_specific_substitutions(self):
