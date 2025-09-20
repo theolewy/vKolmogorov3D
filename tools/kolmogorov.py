@@ -418,7 +418,7 @@ class TimeStepper3D(CartesianTimeStepper):
             logger.info("Zeroing flux...")
             # u_mean = self.flow.volume_average('u')
             u_mean = np.mean(self.u['g'])
-            self.u['g'] -= u_mean
+            # self.u['g'] -= u_mean
             self._reset_history_cache()
 
     def _set_system_specific_substitutions(self):
