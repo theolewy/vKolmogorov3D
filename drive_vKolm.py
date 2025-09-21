@@ -478,7 +478,7 @@ elif setting_mode == 30:
     symmetry_mode = False
     track_TW = True
     save_subdir = f"arrowhead_3D"
-    kwargs = {'asymmetric_perturb': pert, 'zero_flux': True}
+    kwargs = {'asymmetric_perturb': pert, 'zero_flux': False}
 
 elif setting_mode == 31:
 

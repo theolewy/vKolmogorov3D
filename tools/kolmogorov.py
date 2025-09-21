@@ -206,9 +206,12 @@ class EVP(CartesianEVP):
 
     def _set_vars_coords_param_names(self):
 
-        self.variables = ['u', 'v', 'p', 'c11', 'c12', 'c22', 'c33',
-                           'uy', 'vy', 'c11y', 'c12y', 'c22y', 'c33y']
-        self.material_param_names = ['Re', 'W', 'eps', 'beta', 'L', 'kx']
+        self.variables = ['u', 'v', 'w', 'p', 'c11', 'c12', 'c13', 'c23', 'c22', 'c33',
+                           'uy', 'vy', 'wy', 'c11y', 'c12y', 'c13y', 'c23y','c22y', 'c33y']
+        # self.variables = ['u', 'v', 'p', 'c11', 'c12', 'c22', 'c33',
+        #                    'uy', 'vy', 'c11y', 'c12y', 'c22y', 'c33y']
+        # self.material_param_names = ['Re', 'W', 'eps', 'beta', 'L', 'kx']
+        self.material_param_names = ['Re', 'W', 'eps', 'beta', 'L', 'kx', 'kz']
         self.inhomo_coord_name = 'y'
         self.homo_coord_names = ['x', 'z']
         
@@ -231,54 +234,69 @@ class EVP(CartesianEVP):
         pass
 
     def _set_system_specific_basic_substitutions(self):
-        self.problem.substitutions['c13'] = "0"
-        self.problem.substitutions['C13'] = "0"
-        self.problem.substitutions['C13y'] = "0"
-        self.problem.substitutions['c23'] = "0"
-        self.problem.substitutions['C23'] = "0"
-        self.problem.substitutions['C23y'] = "0"
-        self.problem.substitutions['w'] = "0"
-        self.problem.substitutions['WW'] = "0"
-        self.problem.substitutions['Wy'] = "0"
-        self.problem.substitutions['dz(A)'] = "0"
+        # self.problem.substitutions['c13'] = "0"
+        # self.problem.substitutions['C13'] = "0"
+        # self.problem.substitutions['C13y'] = "0"
+        # self.problem.substitutions['c23'] = "0"
+        # self.problem.substitutions['C23'] = "0"
+        # self.problem.substitutions['C23y'] = "0"
+        # self.problem.substitutions['w'] = "0"
+        # self.problem.substitutions['WW'] = "0"
+        # self.problem.substitutions['Wy'] = "0"
+        # self.problem.substitutions['dz(A)'] = "0"
+        self.problem.substitutions['dz(A)'] = "1j * kz * A"
 
     def _equations(self):
 
         # momentum equation
-        self.problem.add_equation('Re * (dt(u) + U*dx(u) + Uy * v) + dx(p) - beta * lap(u, uy) -  (1 - beta) * (t11x + t12y) = 0')
-        self.problem.add_equation('Re * (dt(v) + U*dx(v)) + dy(p) - beta * lap(v, vy) -  (1 - beta) * (t12x + t22y) = 0')
+        self.problem.add_equation('Re * (dt(u) + U*dx(u) + Uy * v) + dx(p) - beta * lap(u, uy) -  (1 - beta) * (t11x + t12y + t13z) = 0')
+        self.problem.add_equation('Re * (dt(v) + U*dx(v) + Vy * v) + dy(p) - beta * lap(v, vy) -  (1 - beta) * (t12x + t22y + t23z) = 0')
+        self.problem.add_equation('Re * (dt(w) + U*dx(w) + Wy * w) + dz(p) - beta * lap(w, wy) -  (1 - beta) * (t13x + t23y + t33z) = 0')
 
         # incompressibility
-        self.problem.add_equation('dx(u) + vy = 0')
+        self.problem.add_equation('dx(u) + vy + dz(w) = 0')
 
         # conformation equation
         self.problem.add_equation('dt(c11) + t11 - eps * lap(c11, c11y) = ' + \
                                     '- U * dx(c11) - v * C11y' + \
-                                    '+ 2 * C11 * dx(u) + 2 * c12 * Uy +  2 * C12 * dy(u)')
+                                    '+ uc_def_11')
 
         self.problem.add_equation('dt(c12) + t12 - eps * lap(c12, c12y) = ' + \
                                     '- U * dx(c12) - v * C12y' + \
-                                    '+ C11 * dx(v) + C22 * dy(u) + c22 * Uy')
+                                    '+ uc_def_12')
 
         self.problem.add_equation('dt(c22) + t22 - eps * lap(c22, c22y) = ' + \
                                     '- U * dx(c22) - v * C22y' + \
-                                    '+ 2 * C12 * dx(v) + 2 * C22 * dy(v)')
+                                    '+ uc_def_22')
 
         self.problem.add_equation('dt(c33) + t33 - eps * lap(c33, c33y) - 0 = ' + \
                                     '- U * dx(c33) - v * C33y' + \
-                                    '+ 0')
+                                    '+ uc_def_33')
 
+        self.problem.add_equation('dt(c13) + t13 - eps * lap(c13, c13y) = ' + \
+                                    '- U * dx(c13) - v * C13y' + \
+                                    '+ uc_def_13')
+        
+        self.problem.add_equation('dt(c23) + t23 - eps * lap(c23, c23y) = ' + \
+                                    '- U * dx(c23) - v * C23y' + \
+                                    '+ uc_def_23')
         # first derivatives
         self.problem.add_equation('uy - dy(u) = 0')
         self.problem.add_equation('vy - dy(v) = 0')
+        self.problem.add_equation('wy - dy(w) = 0')
         self.problem.add_equation('c11y - dy(c11) = 0')
         self.problem.add_equation('c12y - dy(c12) = 0')
         self.problem.add_equation('c22y - dy(c22) = 0')
         self.problem.add_equation('c33y - dy(c33) = 0')
+        self.problem.add_equation('c13y - dy(c13) = 0')
+        self.problem.add_equation('c23y - dy(c23) = 0')
+
 
         # periodic boundary conditions
         self.problem.add_bc('left(u) - right(u) = 0')
         self.problem.add_bc('left(uy) - right(uy) = 0')
+        self.problem.add_bc('left(w) - right(w) = 0')
+        self.problem.add_bc('left(wy) - right(wy) = 0')
         self.problem.add_bc('left(v) - right(v) = 0')
         self.problem.add_bc('left(p) - right(p) = 0')
         self.problem.add_bc('left(c11) - right(c11) = 0')
@@ -289,13 +307,17 @@ class EVP(CartesianEVP):
         self.problem.add_bc('left(c22y) - right(c22y) = 0')
         self.problem.add_bc('left(c33) - right(c33) = 0')
         self.problem.add_bc('left(c33y) - right(c33y) = 0')
+        self.problem.add_bc('left(c13) - right(c13) = 0')
+        self.problem.add_bc('left(c13y) - right(c13y) = 0')
+        self.problem.add_bc('left(c23) - right(c23) = 0')
+        self.problem.add_bc('left(c23y) - right(c23y) = 0')
 
 class NumericSolver(CartesianNumericSolver):
 
     def __init__(self, system_params, solver_params, 
                  save_plots=False, **kwargs):
         super().__init__(system_params, solver_params, 
-                 save_plots=False, **kwargs)
+                 save_plots=save_plots, **kwargs)
         self.core_root, _ = get_roots()
 
     def _set_solvers(self, **kwargs):
