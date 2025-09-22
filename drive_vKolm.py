@@ -478,7 +478,7 @@ elif setting_mode == 30:
     symmetry_mode = False
     track_TW = True
     save_subdir = f"arrowhead_3D"
-    kwargs = {'asymmetric_perturb': pert, 'zero_flux': False}
+    kwargs = {'asymmetric_perturb': pert, 'zero_flux': True}
 
 elif setting_mode == 31:
 
@@ -534,6 +534,9 @@ ic_file, noise_coeff, reinit = get_ic_file(material_params, system_params, solve
 
 if kwargs.get('asymmetric_perturb', False) and not reinit:
     kwargs['asymmetric_perturb'] = False
+
+if kwargs.get('zero_flux', False) and not reinit:
+    kwargs['zero_flux'] = False
 
 timestepper = TimeStepper3D(material_params=material_params, system_params=system_params, solver_params=solver_params)
 timestepper.ic(ic_file=ic_file, flow=None, noise_coeff=noise_coeff, **kwargs)
