@@ -487,7 +487,7 @@ elif setting_mode == 31:
     material_params['W'] = input_val
 
     pert = input_val
-    ic_dict_if_reinit = {'W': 24}
+    ic_dict_if_reinit = {'W': 25}
     
     suffix_end = f'localised-to-periodic'
     plot_subdirectory = 'localised-to-periodic'
