@@ -510,22 +510,20 @@ elif setting_mode == 32:
     kwargs = {'zero_flux': False}
 
 elif setting_mode == 33:
-    # Get Periodic AH from 2D AH. m=1 mode branch
+
+    solver_params['Nz'] = 64
+    system_params['Lz'] = 4*np.pi
+    material_params['W'] = input_val
+
+    ic_dict_if_reinit = {'W': 20, 'suffix': 'recent-test-drift-pert-0,1-method-2'}
     
-    solver_params['Nx'] = 480
-    solver_params['Ny'] = 48
-    solver_params['Nz'] = 32
+    suffix_end = f'asymm-down'
+    plot_subdirectory = 'arrowhead_3D_drift'
+    symmetry_mode = False
+    track_TW = False
+    save_subdir = f"arrowhead_3D"
+    kwargs = {}
 
-    system_params['Lx'] = 32*np.pi
-    system_params['Lz'] = 1.5*np.pi
-    solver_params['dt'] = 5e-3
-
-    ic_dict_if_reinit = {'Nx': 480, 'Ny': 48, 'Nz': 16, 'Lz': np.pi}
-    suffix_end = ''
-    plot_subdirectory = 'streamwise_localisation'
-    symmetry_mode = 'yz'
-    save_subdir = f"localisation"
-    translate = False
 
 log_all_params(material_params, system_params, solver_params)
 
