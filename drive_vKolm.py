@@ -63,9 +63,9 @@ T=400000
 change_coords = False
 if setting_mode == 0:
     # Get Periodic AH from 2D AH. m=1 mode branch
-    solver_params['Nx'] = input_val
-    solver_params['Ny'] = input_val2
-    solver_params['Nz'] = input_val3
+    solver_params['Nx'] = int(input_val)
+    solver_params['Ny'] = int(input_val2)
+    solver_params['Nz'] = int(input_val3)
     
     solver_params['dt'] = 5e-3
 
