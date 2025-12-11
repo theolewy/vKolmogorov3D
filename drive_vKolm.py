@@ -76,16 +76,18 @@ if setting_mode == 0:
 
 elif setting_mode == 1:
     # Get Periodic AH from 2D AH. m=1 mode branch
-    material_params['W'] = 14
-
-    system_params['Lz'] = input_val*np.pi
-    solver_params['Nz'] = 48
+    solver_params['Nx'] = 64
+    solver_params['Ny'] = 64
+    solver_params['Nz'] = 64
     
     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Lz': 2.3*np.pi}
-    suffix_end = 'localised'
-    plot_subdirectory = 'arrowhead_3D_W'
+    ic_dict_if_reinit = {'subdir':'arrowhead_3D', 'suffix': 'recent-localised', 'Nx': 64, 'Ny': 64, 'Nz': 64}
+    suffix_end = f'y_pert={input_val:.4g}'
+    plot_subdirectory = 'arrowhead_3D_y_pert'
+    save_subdir = f"arrowhead_3D_y_pert"
+
+    kwargs = {'asymmetric_perturb_y': input_val}
 
 elif setting_mode == 2:
     # Get Periodic AH from 2D AH. m=1 mode branch
@@ -532,6 +534,9 @@ ic_file, noise_coeff, reinit = get_ic_file(material_params, system_params, solve
 
 if kwargs.get('asymmetric_perturb', False) and not reinit:
     kwargs['asymmetric_perturb'] = False
+
+if kwargs.get('asymmetric_perturb_y', False) and not reinit:
+    kwargs['asymmetric_perturb_y'] = False
 
 if kwargs.get('zero_flux', False) and not reinit:
     kwargs['zero_flux'] = False

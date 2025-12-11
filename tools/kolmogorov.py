@@ -438,6 +438,20 @@ class TimeStepper3D(CartesianTimeStepper):
 
             self._reset_history_cache()
 
+        if 'asymmetric_perturb_y' in kwargs.keys() and kwargs['asymmetric_perturb_y'] > 0:
+            local_slice = self.domain.dist.grid_layout.slices(scales=1)
+            logger.info("Adding asymmetric perturbation in y dir...")
+
+            mag = kwargs['asymmetric_perturb_y']
+
+            field = self.c11
+            array = self.get_full_array(field['g'])
+            y = self.get_full_array(self.y)
+            array *= (1 - mag * np.sin(2 * np.pi * y / (2 * np.pi * self.n)))
+            field['g'] = array[local_slice]
+
+            self._reset_history_cache()
+
         if 'zero_flux' in kwargs.keys() and kwargs['zero_flux']:
             logger.info("Zeroing flux...")
             # u_mean = self.flow.volume_average('u')
