@@ -69,7 +69,7 @@ if setting_mode == 0:
     
     solver_params['dt'] = dt = input_val4 # 5e-3
 
-    ic_dict_if_reinit = {'subdir':'arrowhead_3D', 'suffix': 'recent-localised'}
+    ic_dict_if_reinit = {'subdir':'arrowhead_3D', 'suffix': 'recent-localised', 'Nx': 64, 'Ny': 64, 'Nz': 64}
     suffix_end = f'dt={dt:.6g}'
     plot_subdirectory = 'arrowhead_3D_mesh'
     save_subdir = f"arrowhead_3D_mesh"
