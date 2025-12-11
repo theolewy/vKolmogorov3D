@@ -20,7 +20,7 @@ system_params = {'ndim': 3,
 
 solver_params = {'Nx': 64,
                  'Ny': 64,
-                 'Nz': 32,
+                 'Nz': 64,
                  'dt': 5e-3,
                  'c': 0}
 
@@ -63,16 +63,16 @@ T=400000
 change_coords = False
 if setting_mode == 0:
     # Get Periodic AH from 2D AH. m=1 mode branch
-    material_params['W'] = 14
-
-    system_params['Lz'] = input_val*np.pi
-    solver_params['Nz'] = 32
+    solver_params['Nx'] = input_val
+    solver_params['Ny'] = input_val2
+    solver_params['Nz'] = input_val3
     
     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Lz': 0.9*np.pi}
-    suffix_end = 'localised'
-    plot_subdirectory = 'arrowhead_3D_W'
+    ic_dict_if_reinit = {'subdir':'arrowhead_3D', 'suffix': 'recent-localised'}
+    suffix_end = ''
+    plot_subdirectory = 'arrowhead_3D_mesh'
+    save_subdir = f"arrowhead_3D_mesh"
 
 elif setting_mode == 1:
     # Get Periodic AH from 2D AH. m=1 mode branch
@@ -125,404 +125,404 @@ elif setting_mode == 4:
     suffix_end = 'localised'
     plot_subdirectory = 'arrowhead_3D_W'
 
-elif setting_mode == 5:
-    # Get Periodic AH from 2D AH. m=1 mode branch
-    material_params['W'] = 14
+# elif setting_mode == 5:
+#     # Get Periodic AH from 2D AH. m=1 mode branch
+#     material_params['W'] = 14
 
-    system_params['Lz'] = input_val*np.pi
-    solver_params['Nz'] = 32
+#     system_params['Lz'] = input_val*np.pi
+#     solver_params['Nz'] = 32
     
-    solver_params['dt'] = 5e-3
+#     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Lz': 0.16*np.pi}
-    suffix_end = 'm=1'
-    plot_subdirectory = 'arrowhead_3D_W'
+#     ic_dict_if_reinit = {'Lz': 0.16*np.pi}
+#     suffix_end = 'm=1'
+#     plot_subdirectory = 'arrowhead_3D_W'
 
-elif setting_mode == 6:
-    # Get Periodic AH from 2D AH. m=1 mode branch
-    material_params['W'] = 15
+# elif setting_mode == 6:
+#     # Get Periodic AH from 2D AH. m=1 mode branch
+#     material_params['W'] = 15
 
-    system_params['Lz'] = input_val*np.pi
-    solver_params['Nz'] = 64
+#     system_params['Lz'] = input_val*np.pi
+#     solver_params['Nz'] = 64
     
-    solver_params['dt'] = 5e-3
+#     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Lz': 3.8*np.pi}
-    suffix_end = 'localised'
-    plot_subdirectory = 'arrowhead_3D_W'
+#     ic_dict_if_reinit = {'Lz': 3.8*np.pi}
+#     suffix_end = 'localised'
+#     plot_subdirectory = 'arrowhead_3D_W'
 
-elif setting_mode == 7:
-    # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
+# elif setting_mode == 7:
+#     # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
 
-    solver_params['Nz'] = 32
-    system_params['Lz'] = input_val*np.pi
+#     solver_params['Nz'] = 32
+#     system_params['Lz'] = input_val*np.pi
 
-    ic_dict_if_reinit = {'Lz': np.pi}
-    suffix_end = 'periodic-yz'
+#     ic_dict_if_reinit = {'Lz': np.pi}
+#     suffix_end = 'periodic-yz'
 
-elif setting_mode == 8:
+# elif setting_mode == 8:
 
-    solver_params['Nz'] = 16
-    system_params['Lz'] = input_val*np.pi
+#     solver_params['Nz'] = 16
+#     system_params['Lz'] = input_val*np.pi
 
-    ic_dict_if_reinit = {'Lz': np.pi}
-    suffix_end = 'periodic-yz'
+#     ic_dict_if_reinit = {'Lz': np.pi}
+#     suffix_end = 'periodic-yz'
 
-elif setting_mode == 9:
-    # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
+# elif setting_mode == 9:
+#     # Reduce Lz from 8pi down. Nz MUST be over 16 per pi in Lz
 
-    solver_params['Nx'] = 64
-    solver_params['Ny'] = 64
-    solver_params['Nz'] = 96
-    system_params['Lz'] =  4.4*np.pi
+#     solver_params['Nx'] = 64
+#     solver_params['Ny'] = 64
+#     solver_params['Nz'] = 96
+#     system_params['Lz'] =  4.4*np.pi
 
-    ic_dict_if_reinit = {'Nx': 32, 'Ny': 32, 'Nz': 48, 'suffix': 'recent-periodic-yz'}
-    suffix_end = 'periodic-yz-from-low-res'
-elif setting_mode == 10:
-    # Get Periodic AH from 2D AH. m=1 mode branch
-    material_params['W'] = 20
+#     ic_dict_if_reinit = {'Nx': 32, 'Ny': 32, 'Nz': 48, 'suffix': 'recent-periodic-yz'}
+#     suffix_end = 'periodic-yz-from-low-res'
+# elif setting_mode == 10:
+#     # Get Periodic AH from 2D AH. m=1 mode branch
+#     material_params['W'] = 20
 
-    system_params['Lz'] = input_val*np.pi
-    solver_params['Nz'] = 64
-    solver_params['dt'] = 5e-3
+#     system_params['Lz'] = input_val*np.pi
+#     solver_params['Nz'] = 64
+#     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Lz': 3.69*np.pi}
-    suffix_end = 'localised-yz'
-    plot_subdirectory = 'arrowhead_3D_W'
+#     ic_dict_if_reinit = {'Lz': 3.69*np.pi}
+#     suffix_end = 'localised-yz'
+#     plot_subdirectory = 'arrowhead_3D_W'
 
-elif setting_mode == 11:
-    # Get Periodic AH from 2D AH. m=1 mode branch
-    material_params['W'] = 18
+# elif setting_mode == 11:
+#     # Get Periodic AH from 2D AH. m=1 mode branch
+#     material_params['W'] = 18
 
-    system_params['Lz'] = input_val*np.pi
-    solver_params['Nz'] = 48
+#     system_params['Lz'] = input_val*np.pi
+#     solver_params['Nz'] = 48
     
-    solver_params['dt'] = 5e-3
+#     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Lz': 5*np.pi}
-    suffix_end = 'localised'
-    plot_subdirectory = 'arrowhead_3D_W'
+#     ic_dict_if_reinit = {'Lz': 5*np.pi}
+#     suffix_end = 'localised'
+#     plot_subdirectory = 'arrowhead_3D_W'
 
-elif setting_mode == 12:
-    # Get Periodic AH from 2D AH. m=1 mode branch
-    material_params['W'] = 18
+# elif setting_mode == 12:
+#     # Get Periodic AH from 2D AH. m=1 mode branch
+#     material_params['W'] = 18
 
-    system_params['Lz'] = input_val*np.pi
-    solver_params['Nz'] = 64
+#     system_params['Lz'] = input_val*np.pi
+#     solver_params['Nz'] = 64
     
-    solver_params['dt'] = 5e-3
+#     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Lz': 4*np.pi}
-    suffix_end = 'localised'
-    plot_subdirectory = 'arrowhead_3D_W'
+#     ic_dict_if_reinit = {'Lz': 4*np.pi}
+#     suffix_end = 'localised'
+#     plot_subdirectory = 'arrowhead_3D_W'
 
-elif setting_mode == 13:
-    # Get Periodic AH from 2D AH. m=1 mode branch
-    material_params['W'] = 18
+# elif setting_mode == 13:
+#     # Get Periodic AH from 2D AH. m=1 mode branch
+#     material_params['W'] = 18
 
-    system_params['Lz'] = input_val*np.pi
-    solver_params['Nz'] = 80
+#     system_params['Lz'] = input_val*np.pi
+#     solver_params['Nz'] = 80
     
-    solver_params['dt'] = 5e-3
+#     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Lz': 5*np.pi}
-    suffix_end = 'localised'
-    plot_subdirectory = 'arrowhead_3D_W'
-elif setting_mode == 14:
-    # Get Periodic AH from 2D AH. m=1 mode branch
-    material_params['W'] = 16
+#     ic_dict_if_reinit = {'Lz': 5*np.pi}
+#     suffix_end = 'localised'
+#     plot_subdirectory = 'arrowhead_3D_W'
+# elif setting_mode == 14:
+#     # Get Periodic AH from 2D AH. m=1 mode branch
+#     material_params['W'] = 16
 
-    system_params['Lz'] = input_val*np.pi
-    solver_params['Nz'] = 48
+#     system_params['Lz'] = input_val*np.pi
+#     solver_params['Nz'] = 48
     
-    solver_params['dt'] = 5e-3
+#     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Lz': 2.9*np.pi}
-    suffix_end = 'localised'
-    plot_subdirectory = 'arrowhead_3D_W'
-elif setting_mode == 15:
-    # Get Periodic AH from 2D AH. m=1 mode branch
-    material_params['W'] = 16
+#     ic_dict_if_reinit = {'Lz': 2.9*np.pi}
+#     suffix_end = 'localised'
+#     plot_subdirectory = 'arrowhead_3D_W'
+# elif setting_mode == 15:
+#     # Get Periodic AH from 2D AH. m=1 mode branch
+#     material_params['W'] = 16
 
-    system_params['Lz'] = input_val*np.pi
-    solver_params['Nz'] = 80
+#     system_params['Lz'] = input_val*np.pi
+#     solver_params['Nz'] = 80
     
-    solver_params['dt'] = 5e-3
+#     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Lz': 4.8*np.pi}
-    suffix_end = 'localised'
-    plot_subdirectory = 'arrowhead_3D_W'
-elif setting_mode == 16:
-    # Get Periodic AH from 2D AH. m=1 mode branch
+#     ic_dict_if_reinit = {'Lz': 4.8*np.pi}
+#     suffix_end = 'localised'
+#     plot_subdirectory = 'arrowhead_3D_W'
+# elif setting_mode == 16:
+#     # Get Periodic AH from 2D AH. m=1 mode branch
 
-    solver_params['Nz'] = 96
-    system_params['Lz'] =  input_val*np.pi
+#     solver_params['Nz'] = 96
+#     system_params['Lz'] =  input_val*np.pi
 
-    ic_dict_if_reinit = {'Lz': 4.35*np.pi, 'Nz': 96}
-    suffix_end = 'periodic-yz'
-    solver_params['dt'] = 5e-3
+#     ic_dict_if_reinit = {'Lz': 4.35*np.pi, 'Nz': 96}
+#     suffix_end = 'periodic-yz'
+#     solver_params['dt'] = 5e-3
 
-elif setting_mode == 17:
-    # Get Periodic AH from 2D AH. m=1 mode branch
+# elif setting_mode == 17:
+#     # Get Periodic AH from 2D AH. m=1 mode branch
 
-    material_params['W'] = 20
+#     material_params['W'] = 20
 
-    system_params['Lz'] = input_val*np.pi
-    solver_params['Nz'] = int(16*input_val)
+#     system_params['Lz'] = input_val*np.pi
+#     solver_params['Nz'] = int(16*input_val)
     
-    solver_params['dt'] = 5e-3
+#     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Lz': 16*np.pi, 'Nz': 256}
-    suffix_end = 'localised'
-    plot_subdirectory = 'arrowhead_3D_W'
+#     ic_dict_if_reinit = {'Lz': 16*np.pi, 'Nz': 256}
+#     suffix_end = 'localised'
+#     plot_subdirectory = 'arrowhead_3D_W'
 
-elif setting_mode == 18:
+# elif setting_mode == 18:
 
-    material_params['W'] = 20
+#     material_params['W'] = 20
 
-    system_params['Lz'] = 16*np.pi
-    solver_params['Nz'] = 512
+#     system_params['Lz'] = 16*np.pi
+#     solver_params['Nz'] = 512
     
-    solver_params['dt'] = 5e-3
+#     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Lz': 16*np.pi, 'Nz': 384}
-    suffix_end = 'localised'
-    plot_subdirectory = 'arrowhead_3D_W'
+#     ic_dict_if_reinit = {'Lz': 16*np.pi, 'Nz': 384}
+#     suffix_end = 'localised'
+#     plot_subdirectory = 'arrowhead_3D_W'
 
 
-elif setting_mode == 19:
-    material_params['W'] = input_val * 6 + 14
+# elif setting_mode == 19:
+#     material_params['W'] = input_val * 6 + 14
 
-    system_params['Lz'] = input_val * 1.2 * np.pi + 2.8*np.pi
-    solver_params['Nz'] = 48
+#     system_params['Lz'] = input_val * 1.2 * np.pi + 2.8*np.pi
+#     solver_params['Nz'] = 48
     
-    solver_params['dt'] = 5e-3
+#     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'W': 14, 'Lz': 3*np.pi}
-    suffix_end = 'localised'
-    plot_subdirectory = 'arrowhead_3D_connect'
+#     ic_dict_if_reinit = {'W': 14, 'Lz': 3*np.pi}
+#     suffix_end = 'localised'
+#     plot_subdirectory = 'arrowhead_3D_connect'
 
-elif setting_mode == 20:
-    # Get Periodic AH from 2D AH. m=1 mode branch
+# elif setting_mode == 20:
+#     # Get Periodic AH from 2D AH. m=1 mode branch
 
-    material_params['W'] = input_val * 6 + 14
+#     material_params['W'] = input_val * 6 + 14
 
-    system_params['Lz'] = input_val * 1.2 * np.pi + 2.8*np.pi
-    solver_params['Nz'] = 64
+#     system_params['Lz'] = input_val * 1.2 * np.pi + 2.8*np.pi
+#     solver_params['Nz'] = 64
     
-    solver_params['dt'] = 5e-3
+#     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'W': 20, 'Lz': 4*np.pi}
-    suffix_end = 'localised'
-    plot_subdirectory = 'arrowhead_3D_connect'
+#     ic_dict_if_reinit = {'W': 20, 'Lz': 4*np.pi}
+#     suffix_end = 'localised'
+#     plot_subdirectory = 'arrowhead_3D_connect'
 
-elif setting_mode == 21:
-    # Get Periodic AH from 2D AH. m=1 mode branch
+# elif setting_mode == 21:
+#     # Get Periodic AH from 2D AH. m=1 mode branch
 
-    system_params['Lz'] = input_val*np.pi
-    solver_params['Nz'] = int(16*input_val)
+#     system_params['Lz'] = input_val*np.pi
+#     solver_params['Nz'] = int(16*input_val)
     
-    solver_params['dt'] = 5e-3
+#     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Lz': 8*np.pi, 'Nz': 128}
-    suffix_end = 'localised'
-    plot_subdirectory = 'arrowhead_3D_W'
-    kwargs = {'extend': True}
+#     ic_dict_if_reinit = {'Lz': 8*np.pi, 'Nz': 128}
+#     suffix_end = 'localised'
+#     plot_subdirectory = 'arrowhead_3D_W'
+#     kwargs = {'extend': True}
 
-elif setting_mode == 22:
-    # Get Periodic AH from 2D AH. m=1 mode branch
+# elif setting_mode == 22:
+#     # Get Periodic AH from 2D AH. m=1 mode branch
 
-    solver_params['Nz'] = 64
-    system_params['Lz'] = input_val * np.pi
-    solver_params['dt'] = 5e-3
+#     solver_params['Nz'] = 64
+#     system_params['Lz'] = input_val * np.pi
+#     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Lz': 4*np.pi}
-    suffix_end = 'localised-yz'
+#     ic_dict_if_reinit = {'Lz': 4*np.pi}
+#     suffix_end = 'localised-yz'
 
-elif setting_mode == 23:
-    # Get Periodic AH from 2D AH. m=1 mode branch
+# elif setting_mode == 23:
+#     # Get Periodic AH from 2D AH. m=1 mode branch
 
-    solver_params['Nz'] = 32
-    system_params['Lz'] = np.pi
-    solver_params['dt'] = 1e-3
+#     solver_params['Nz'] = 32
+#     system_params['Lz'] = np.pi
+#     solver_params['dt'] = 1e-3
 
-    # ic_dict_if_reinit = {'noise_coeff': 1e-2, 'suffix': 'recent-', 'ndim': 2, 'W': 20, 'Nx': 128, 'Ny': 256, 'subdir': 'arrowhead_2D'}
-    ic_dict_if_reinit = None
-    suffix_end = 'periodic-from-2D'
-    plot_subdirectory = 'arrowhead_3D_Lz'
-    symmetry_mode = 'yz'
-elif setting_mode == 24:
+#     # ic_dict_if_reinit = {'noise_coeff': 1e-2, 'suffix': 'recent-', 'ndim': 2, 'W': 20, 'Nx': 128, 'Ny': 256, 'subdir': 'arrowhead_2D'}
+#     ic_dict_if_reinit = None
+#     suffix_end = 'periodic-from-2D'
+#     plot_subdirectory = 'arrowhead_3D_Lz'
+#     symmetry_mode = 'yz'
+# elif setting_mode == 24:
 
-    system_params['ndim'] = 2
-    solver_params['Nx'] = 128
-    solver_params['Ny'] = 256
+#     system_params['ndim'] = 2
+#     solver_params['Nx'] = 128
+#     solver_params['Ny'] = 256
 
-    a = input_val
-    Lx_coeff = input_val2
-    Lx_coeff_old = input_val3
+#     a = input_val
+#     Lx_coeff = input_val2
+#     Lx_coeff_old = input_val3
     
 
-    system_params['Lx'] = Lx_coeff*np.pi
+#     system_params['Lx'] = Lx_coeff*np.pi
 
-    material_params['a'] = a
-    material_params['W'] = 20
-    symmetry_mode = False
-    ic_dict_if_reinit = {'suffix': f'recent-JS-a={input_val}', 'Lx': Lx_coeff_old*np.pi, 'ndim': 2, 'W': 20, 'Nx': 128, 'Ny': 256, 'subdir': 'arrowhead_2D'}
+#     material_params['a'] = a
+#     material_params['W'] = 20
+#     symmetry_mode = False
+#     ic_dict_if_reinit = {'suffix': f'recent-JS-a={input_val}', 'Lx': Lx_coeff_old*np.pi, 'ndim': 2, 'W': 20, 'Nx': 128, 'Ny': 256, 'subdir': 'arrowhead_2D'}
     
-    suffix_end = f'JS-a={a}'
-    plot_subdirectory = 'arrowhead_2D'
-    save_subdir = f"arrowhead_2D"
+#     suffix_end = f'JS-a={a}'
+#     plot_subdirectory = 'arrowhead_2D'
+#     save_subdir = f"arrowhead_2D"
 
 
-elif setting_mode == 25:
+# elif setting_mode == 25:
     
-    solver_params['Nx'] = 64
-    solver_params['Nz'] = 128
-    system_params['Lz'] = 8*np.pi
+#     solver_params['Nx'] = 64
+#     solver_params['Nz'] = 128
+#     system_params['Lz'] = 8*np.pi
 
-    material_params['W'] = 30
-    material_params['beta'] = 0.95
+#     material_params['W'] = 30
+#     material_params['beta'] = 0.95
 
-    ic_dict_if_reinit = {'suffix': f'full-', 'subdir':'large_data', 's': 50, }
+#     ic_dict_if_reinit = {'suffix': f'full-', 'subdir':'large_data', 's': 50, }
     
-    symmetry_mode = False
-    save_full_data = True 
+#     symmetry_mode = False
+#     save_full_data = True 
 
-    suffix_end = f'splitting'
-    plot_subdirectory = 'ET'
-    save_subdir = f"ET"
+#     suffix_end = f'splitting'
+#     plot_subdirectory = 'ET'
+#     save_subdir = f"ET"
 
-elif setting_mode == 26:
+# elif setting_mode == 26:
     
-    solver_params['Nx'] = 64
-    solver_params['Nz'] = 128
-    system_params['Lz'] = 8*np.pi
+#     solver_params['Nx'] = 64
+#     solver_params['Nz'] = 128
+#     system_params['Lz'] = 8*np.pi
 
-    material_params['W'] = 30
-    material_params['beta'] = 0.95
+#     material_params['W'] = 30
+#     material_params['beta'] = 0.95
 
-    ic_dict_if_reinit = {'suffix': f'recent-localised', 'subdir':'arrowhead_3D', 'noise_coeff': 1e-3,'W': 20, 'beta': 0.9}
+#     ic_dict_if_reinit = {'suffix': f'recent-localised', 'subdir':'arrowhead_3D', 'noise_coeff': 1e-3,'W': 20, 'beta': 0.9}
     
-    symmetry_mode = False
-    save_full_data = True 
+#     symmetry_mode = False
+#     save_full_data = True 
 
-    suffix_end = f''
-    plot_subdirectory = 'ET'
-    save_subdir = f"ET"
+#     suffix_end = f''
+#     plot_subdirectory = 'ET'
+#     save_subdir = f"ET"
 
-elif setting_mode == 27:
+# elif setting_mode == 27:
     
-    Lx_coeff = input_val
-    Lx_coeff_old = input_val2
+#     Lx_coeff = input_val
+#     Lx_coeff_old = input_val2
     
-    solver_params['Nx'] = 64
-    solver_params['Nz'] = 96
-    system_params['Lz'] = 6*np.pi
-    system_params['Lx'] = Lx_coeff * np.pi
+#     solver_params['Nx'] = 64
+#     solver_params['Nz'] = 96
+#     system_params['Lz'] = 6*np.pi
+#     system_params['Lx'] = Lx_coeff * np.pi
 
-    material_params['W'] = 20
+#     material_params['W'] = 20
 
-    ic_dict_if_reinit = {'suffix': f'recent-localised', 'Lx': Lx_coeff_old*np.pi, 'Nx': 64}
+#     ic_dict_if_reinit = {'suffix': f'recent-localised', 'Lx': Lx_coeff_old*np.pi, 'Nx': 64}
     
-    suffix_end = f'localised'
-    plot_subdirectory = 'arrowhead_3D_Lx'
-    save_subdir = f"arrowhead_3D"
+#     suffix_end = f'localised'
+#     plot_subdirectory = 'arrowhead_3D_Lx'
+#     save_subdir = f"arrowhead_3D"
 
-elif setting_mode == 28:
+# elif setting_mode == 28:
     
-    Lx_coeff = input_val
-    Lx_coeff_old = input_val2
+#     Lx_coeff = input_val
+#     Lx_coeff_old = input_val2
     
-    solver_params['Nx'] = 96
-    solver_params['Nz'] = 96
-    system_params['Lz'] = 6*np.pi
-    system_params['Lx'] = Lx_coeff * np.pi
+#     solver_params['Nx'] = 96
+#     solver_params['Nz'] = 96
+#     system_params['Lz'] = 6*np.pi
+#     system_params['Lx'] = Lx_coeff * np.pi
 
-    material_params['W'] = 20
+#     material_params['W'] = 20
 
 
-    ic_dict_if_reinit = {'suffix': f'recent-localised', 'Lx': Lx_coeff_old*np.pi, 'Nx': 96}
+#     ic_dict_if_reinit = {'suffix': f'recent-localised', 'Lx': Lx_coeff_old*np.pi, 'Nx': 96}
     
-    suffix_end = f'localised'
-    plot_subdirectory = 'arrowhead_3D_Lx'
-    save_subdir = f"arrowhead_3D"
+#     suffix_end = f'localised'
+#     plot_subdirectory = 'arrowhead_3D_Lx'
+#     save_subdir = f"arrowhead_3D"
 
 
-elif setting_mode == 29:
+# elif setting_mode == 29:
     
-    solver_params['Nz'] = 96
-    system_params['Lz'] = 6*np.pi
+#     solver_params['Nz'] = 96
+#     system_params['Lz'] = 6*np.pi
     
-    a = input_val
-    W = input_val2
+#     a = input_val
+#     W = input_val2
 
-    material_params['a'] = a
-    material_params['W'] = W
+#     material_params['a'] = a
+#     material_params['W'] = W
 
-    ic_dict_if_reinit = {'suffix': f'recent-JS-a={0.9955}', 'W': 18}
+#     ic_dict_if_reinit = {'suffix': f'recent-JS-a={0.9955}', 'W': 18}
     
-    suffix_end = f'JS-a={a}'
-    plot_subdirectory = 'arrowhead_3D_JS'
-    save_subdir = f"arrowhead_3D"
+#     suffix_end = f'JS-a={a}'
+#     plot_subdirectory = 'arrowhead_3D_JS'
+#     save_subdir = f"arrowhead_3D"
 
-elif setting_mode == 30:
+# elif setting_mode == 30:
 
-    solver_params['Nz'] = 64
-    system_params['Lz'] = 4*np.pi
+#     solver_params['Nz'] = 64
+#     system_params['Lz'] = 4*np.pi
 
-    pert = input_val
-    ic_dict_if_reinit = {'suffix': 'recent-localised'}
+#     pert = input_val
+#     ic_dict_if_reinit = {'suffix': 'recent-localised'}
     
-    suffix_end = f'test-drift-pert-{pert}-method-2'
-    plot_subdirectory = 'arrowhead_3D_drift'
-    symmetry_mode = False
-    track_TW = True
-    save_subdir = f"arrowhead_3D"
-    kwargs = {'asymmetric_perturb': pert, 'zero_flux': True}
+#     suffix_end = f'test-drift-pert-{pert}-method-2'
+#     plot_subdirectory = 'arrowhead_3D_drift'
+#     symmetry_mode = False
+#     track_TW = True
+#     save_subdir = f"arrowhead_3D"
+#     kwargs = {'asymmetric_perturb': pert, 'zero_flux': True}
 
-elif setting_mode == 31:
+# elif setting_mode == 31:
 
-    solver_params['Nz'] = 128
-    system_params['Lz'] = 8*np.pi
-    material_params['W'] = input_val
+#     solver_params['Nz'] = 128
+#     system_params['Lz'] = 8*np.pi
+#     material_params['W'] = input_val
 
-    pert = input_val
-    ic_dict_if_reinit = {'W': 25}
+#     pert = input_val
+#     ic_dict_if_reinit = {'W': 25}
     
-    suffix_end = f'localised-to-periodic'
-    plot_subdirectory = 'localised-to-periodic'
-    symmetry_mode = 'yz'
-    save_subdir = f"arrowhead_3D"
+#     suffix_end = f'localised-to-periodic'
+#     plot_subdirectory = 'localised-to-periodic'
+#     symmetry_mode = 'yz'
+#     save_subdir = f"arrowhead_3D"
 
-elif setting_mode == 32:
+# elif setting_mode == 32:
 
-    solver_params['Nz'] = 128
-    system_params['Lz'] = 8*np.pi
-    material_params['W'] = 20
+#     solver_params['Nz'] = 128
+#     system_params['Lz'] = 8*np.pi
+#     material_params['W'] = 20
 
-    ic_dict_if_reinit = {'suffix': 'recent-localised'}
+#     ic_dict_if_reinit = {'suffix': 'recent-localised'}
     
-    suffix_end = f'localised-phase-speed'
-    plot_subdirectory = 'localised-phase-speed'
-    symmetry_mode = 'yz'
-    save_subdir = f"arrowhead_3D"
-    track_TW = True
-    kwargs = {'zero_flux': False}
+#     suffix_end = f'localised-phase-speed'
+#     plot_subdirectory = 'localised-phase-speed'
+#     symmetry_mode = 'yz'
+#     save_subdir = f"arrowhead_3D"
+#     track_TW = True
+#     kwargs = {'zero_flux': False}
 
-elif setting_mode == 33:
+# elif setting_mode == 33:
 
-    solver_params['Nz'] = 64
-    system_params['Lz'] = 4*np.pi
-    material_params['W'] = input_val
+#     solver_params['Nz'] = 64
+#     system_params['Lz'] = 4*np.pi
+#     material_params['W'] = input_val
 
-    ic_dict_if_reinit = {'W': 20, 'suffix': 'recent-test-drift-pert-0,1-method-2'}
+#     ic_dict_if_reinit = {'W': 20, 'suffix': 'recent-test-drift-pert-0,1-method-2'}
     
-    suffix_end = f'asymm-down'
-    plot_subdirectory = 'arrowhead_3D_drift'
-    symmetry_mode = False
-    track_TW = False
-    save_subdir = f"arrowhead_3D"
-    kwargs = {}
+#     suffix_end = f'asymm-down'
+#     plot_subdirectory = 'arrowhead_3D_drift'
+#     symmetry_mode = False
+#     track_TW = False
+#     save_subdir = f"arrowhead_3D"
+#     kwargs = {}
 
 
 log_all_params(material_params, system_params, solver_params)
