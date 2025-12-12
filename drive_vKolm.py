@@ -86,6 +86,7 @@ elif setting_mode == 1:
     suffix_end = f'y_pert={input_val:.4g}'
     plot_subdirectory = 'arrowhead_3D_y_pert'
     save_subdir = f"arrowhead_3D_y_pert"
+    symmetry_mode = False
 
     kwargs = {'asymmetric_perturb_y': input_val}
 
