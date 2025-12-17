@@ -551,20 +551,20 @@ elif setting_mode == 7:
 #     symmetry_mode = 'yz'
 #     save_subdir = f"arrowhead_3D"
 
-# elif setting_mode == 32:
+elif setting_mode == 32:
 
-#     solver_params['Nz'] = 128
-#     system_params['Lz'] = 8*np.pi
-#     material_params['W'] = 20
+    solver_params['Nz'] = 64
+    system_params['Lz'] = input_val*np.pi
+    material_params['W'] = 20
 
-#     ic_dict_if_reinit = {'suffix': 'recent-localised'}
+    ic_dict_if_reinit = {'W': 20, 'Lz': 4*np.pi, 'suffix': 'recent-test-drift-pert-0,1-method-2'}
     
-#     suffix_end = f'localised-phase-speed'
-#     plot_subdirectory = 'localised-phase-speed'
-#     symmetry_mode = 'yz'
-#     save_subdir = f"arrowhead_3D"
-#     track_TW = True
-#     kwargs = {'zero_flux': False}
+    suffix_end = f'asymm-down'
+    plot_subdirectory = 'arrowhead_3D_drift'
+    symmetry_mode = False
+    track_TW = False
+    save_subdir = f"arrowhead_3D"
+    kwargs = {}
 
 elif setting_mode == 33:
 
