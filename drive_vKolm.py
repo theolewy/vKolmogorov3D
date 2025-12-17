@@ -149,7 +149,7 @@ elif setting_mode == 5:
     suffix_end = f'asymmetric'
     plot_subdirectory = 'arrowhead_3D_benchmark'
     save_subdir = f"arrowhead_3D_benchmark"
-
+    symmetry_mode = False
 
 elif setting_mode == 6:
 
@@ -161,7 +161,7 @@ elif setting_mode == 6:
     system_params['Lx'] = 3*np.pi
     system_params['Lz'] = np.pi
 
-    ic_dict_if_reinit = {'subdir':'arrowhead_3D', 'suffix': 'recent-periodic'}
+    ic_dict_if_reinit = {'subdir':'arrowhead_3D', 'suffix': 'recent-periodic-yz'}
     suffix_end = f'periodic'
     plot_subdirectory = 'arrowhead_3D_benchmark'
     save_subdir = f"arrowhead_3D_benchmark"
