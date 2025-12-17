@@ -512,20 +512,20 @@ elif setting_mode == 4:
 #     track_TW = True
 #     kwargs = {'zero_flux': False}
 
-# elif setting_mode == 33:
+elif setting_mode == 33:
 
-#     solver_params['Nz'] = 64
-#     system_params['Lz'] = 4*np.pi
-#     material_params['W'] = input_val
+    solver_params['Nz'] = 64
+    system_params['Lz'] = 4*np.pi
+    material_params['W'] = input_val
 
-#     ic_dict_if_reinit = {'W': 20, 'suffix': 'recent-test-drift-pert-0,1-method-2'}
+    ic_dict_if_reinit = {'W': 20, 'suffix': 'recent-test-drift-pert-0,1-method-2'}
     
-#     suffix_end = f'asymm-down'
-#     plot_subdirectory = 'arrowhead_3D_drift'
-#     symmetry_mode = False
-#     track_TW = False
-#     save_subdir = f"arrowhead_3D"
-#     kwargs = {}
+    suffix_end = f'asymm-down'
+    plot_subdirectory = 'arrowhead_3D_drift'
+    symmetry_mode = False
+    track_TW = False
+    save_subdir = f"arrowhead_3D"
+    kwargs = {}
 
 
 log_all_params(material_params, system_params, solver_params)
