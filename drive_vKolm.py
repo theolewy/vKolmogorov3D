@@ -125,10 +125,10 @@ elif setting_mode == 4:
     material_params['W'] = 20
 
     solver_params['Nx'] = 96
-    solver_params['Nz'] = 64
+    solver_params['Nz'] = 96
 
     system_params['Lx'] = 3.4*np.pi
-    system_params['Lz'] = 4*np.pi
+    system_params['Lz'] = 6*np.pi
 
     ic_dict_if_reinit = {'subdir':'arrowhead_3D', 'suffix': 'recent-localised'}
     suffix_end = f'localised'
