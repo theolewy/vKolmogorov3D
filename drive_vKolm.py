@@ -69,7 +69,7 @@ if setting_mode == 0:
     
     solver_params['dt'] = dt = input_val4 # 5e-3
 
-    ic_dict_if_reinit = {'subdir':'arrowhead_3D', 'suffix': 'recent-localised', 'Nx': 64, 'Ny': 64, 'Nz': 64}
+    ic_dict_if_reinit = {'subdir':'arrowhead_3D', 'suffix': 'recent-localised'}
     suffix_end = f'dt={dt:.6g}'
     plot_subdirectory = 'arrowhead_3D_mesh'
     save_subdir = f"arrowhead_3D_mesh"
@@ -82,7 +82,7 @@ elif setting_mode == 1:
     
     solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'subdir':'arrowhead_3D', 'suffix': 'recent-localised', 'Nx': 64, 'Ny': 64, 'Nz': 64}
+    ic_dict_if_reinit = {'subdir':'arrowhead_3D', 'suffix': 'recent-localised'}
     suffix_end = f'y_pert={input_val:.4g}'
     plot_subdirectory = 'arrowhead_3D_y_pert'
     save_subdir = f"arrowhead_3D_y_pert"
@@ -91,42 +91,96 @@ elif setting_mode == 1:
     kwargs = {'asymmetric_perturb_y': input_val}
 
 elif setting_mode == 2:
-    # Get Periodic AH from 2D AH. m=1 mode branch
-    material_params['W'] = 14
 
-    system_params['Lz'] = input_val*np.pi
+    material_params['W'] = 20
+
+    solver_params['Nx'] = 64
     solver_params['Nz'] = 64
-    
-    solver_params['dt'] = 5e-3
 
-    ic_dict_if_reinit = {'Lz': 3*np.pi, 'Nz': 48}
-    suffix_end = 'localised'
-    plot_subdirectory = 'arrowhead_3D_W'
+    system_params['Lx'] = 3*np.pi
+    system_params['Lz'] = 4*np.pi
+
+    ic_dict_if_reinit = {'subdir':'arrowhead_3D', 'suffix': 'recent-localised'}
+    suffix_end = f'localised'
+    plot_subdirectory = 'arrowhead_3D_benchmark'
+    save_subdir = f"arrowhead_3D_benchmark"
 
 elif setting_mode == 3:
-    # Get Periodic AH from 2D AH. m=1 mode branch
-    material_params['W'] = 14
 
-    system_params['Lz'] = input_val*np.pi
-    solver_params['Nz'] = 48
-    
-    solver_params['dt'] = 5e-3
+    material_params['W'] = 20
 
-    ic_dict_if_reinit = {'Lz': 2.6*np.pi, 'Nz': 48}
-    suffix_end = 'after-bif'
-    plot_subdirectory = 'arrowhead_3D_W'
+    solver_params['Nx'] = 64
+    solver_params['Nz'] = 128
+
+    system_params['Lx'] = 3*np.pi
+    system_params['Lz'] = 8*np.pi
+
+    ic_dict_if_reinit = {'subdir':'arrowhead_3D', 'suffix': 'recent-localised'}
+    suffix_end = f'localised'
+    plot_subdirectory = 'arrowhead_3D_benchmark'
+    save_subdir = f"arrowhead_3D_benchmark"
+
 elif setting_mode == 4:
-    # Get Periodic AH from 2D AH. m=1 mode branch
-    material_params['W'] = 15
 
-    system_params['Lz'] = input_val*np.pi
-    solver_params['Nz'] = 48
+    material_params['W'] = 20
+
+    solver_params['Nx'] = 96
+    solver_params['Nz'] = 64
+
+    system_params['Lx'] = 3.4*np.pi
+    system_params['Lz'] = 4*np.pi
+
+    ic_dict_if_reinit = {'subdir':'arrowhead_3D', 'suffix': 'recent-localised'}
+    suffix_end = f'localised'
+    plot_subdirectory = 'arrowhead_3D_benchmark'
+    save_subdir = f"arrowhead_3D_benchmark"
+
+elif setting_mode == 5:
+
+    material_params['W'] = 20
+
+    solver_params['Nx'] = 64
+    solver_params['Nz'] = 64
+
+    system_params['Lx'] = 3*np.pi
+    system_params['Lz'] = 4*np.pi
+
+    ic_dict_if_reinit = {'subdir':'arrowhead_3D', 'suffix': 'recent-test-drift-pert-0.1-method-2'}
+    suffix_end = f'asymmetric'
+    plot_subdirectory = 'arrowhead_3D_benchmark'
+    save_subdir = f"arrowhead_3D_benchmark"
+
+
+elif setting_mode == 6:
+
+    material_params['W'] = 20
+
+    solver_params['Nx'] = 64
+    solver_params['Nz'] = 32
+
+    system_params['Lx'] = 3*np.pi
+    system_params['Lz'] = np.pi
+
+    ic_dict_if_reinit = {'subdir':'arrowhead_3D', 'suffix': 'recent-periodic'}
+    suffix_end = f'periodic'
+    plot_subdirectory = 'arrowhead_3D_benchmark'
+    save_subdir = f"arrowhead_3D_benchmark"
+
+
+elif setting_mode == 7:
+
+    material_params['W'] = 14
     
-    solver_params['dt'] = 5e-3
+    solver_params['Nx'] = 64
+    solver_params['Nz'] = 32
 
-    ic_dict_if_reinit = {'Lz': 2.4*np.pi}
-    suffix_end = 'localised'
-    plot_subdirectory = 'arrowhead_3D_W'
+    system_params['Lx'] = 3*np.pi
+    system_params['Lz'] = 1.4*np.pi
+
+    ic_dict_if_reinit = {'subdir':'arrowhead_3D', 'suffix': 'recent-m=1', 'Nx': 64, 'Ny': 64, 'Nz': 32}
+    suffix_end = f'm=1'
+    plot_subdirectory = 'arrowhead_3D_benchmark'
+    save_subdir = f"arrowhead_3D_benchmark"
 
 # elif setting_mode == 5:
 #     # Get Periodic AH from 2D AH. m=1 mode branch
