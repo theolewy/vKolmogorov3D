@@ -572,7 +572,7 @@ elif setting_mode == 33:
     system_params['Lz'] = 4*np.pi
     material_params['W'] = input_val
 
-    ic_dict_if_reinit = {'W': 20, 'suffix': 'recent-test-drift-pert-0,1-method-2'}
+    ic_dict_if_reinit = {'W': 19.4, 'suffix': 'recent-asymm-down'}
     
     suffix_end = f'asymm-down'
     plot_subdirectory = 'arrowhead_3D_drift'
