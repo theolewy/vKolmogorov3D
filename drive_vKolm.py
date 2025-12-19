@@ -537,19 +537,24 @@ elif setting_mode == 7:
 #     save_subdir = f"arrowhead_3D"
 #     kwargs = {'asymmetric_perturb': pert, 'zero_flux': True}
 
-# elif setting_mode == 31:
+elif setting_mode == 31:
 
-#     solver_params['Nz'] = 128
-#     system_params['Lz'] = 8*np.pi
-#     material_params['W'] = input_val
+    material_params['W'] = input_val * 6 + 14
 
-#     pert = input_val
-#     ic_dict_if_reinit = {'W': 25}
+    system_params['Lz'] = input_val * 1.2 * np.pi + 2.8*np.pi
+    solver_params['Nz'] = 64
     
-#     suffix_end = f'localised-to-periodic'
-#     plot_subdirectory = 'localised-to-periodic'
-#     symmetry_mode = 'yz'
-#     save_subdir = f"arrowhead_3D"
+    solver_params['dt'] = 5e-3
+
+    ic_dict_if_reinit = {'W': 20, 'Lz': 4*np.pi, 'suffix': 'recent-test-drift-pert-0,1-method-2'}
+
+    suffix_end = f'asymm-down'
+    plot_subdirectory = 'arrowhead_3D_drift_connect'
+    symmetry_mode = False
+    track_TW = False
+    save_subdir = f"arrowhead_3D"
+    kwargs = {}
+
 
 elif setting_mode == 32:
 
