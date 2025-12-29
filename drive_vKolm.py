@@ -547,7 +547,7 @@ elif setting_mode == 31:
     solver_params['dt'] = 5e-3
 
     # ic_dict_if_reinit = {'W': 20, 'Lz': 4*np.pi, 'suffix': 'recent-test-drift-pert-0,1-method-2'}
-    ic_dict_if_reinit = {'W': 19.4, 'Lz': 0.9 * 1.2 * np.pi + 2.8*np.pi}
+    ic_dict_if_reinit = {'W': 19.28, 'Lz': 0.88 * 1.2 * np.pi + 2.8*np.pi}
 
     suffix_end = f'asymm-down'
     plot_subdirectory = 'arrowhead_3D_drift_connect'
