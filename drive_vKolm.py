@@ -536,7 +536,7 @@ elif setting_mode == 30:
 
     suffix_end = f'localised'
     plot_subdirectory = 'arrowhead_3D_connect'
-    symmetry_mode = False
+    symmetry_mode = "yz"
     track_TW = False
     save_subdir = f"arrowhead_3D"
     kwargs = {}
