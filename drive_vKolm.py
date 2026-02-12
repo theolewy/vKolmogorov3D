@@ -522,20 +522,25 @@ elif setting_mode == 7:
 #     plot_subdirectory = 'arrowhead_3D_JS'
 #     save_subdir = f"arrowhead_3D"
 
-# elif setting_mode == 30:
+elif setting_mode == 30:
 
-#     solver_params['Nz'] = 64
-#     system_params['Lz'] = 4*np.pi
+    material_params['W'] = input_val * 6 + 14
 
-#     pert = input_val
-#     ic_dict_if_reinit = {'suffix': 'recent-localised'}
+    system_params['Lz'] = input_val * 1.2 * np.pi + 2.8*np.pi
+    solver_params['Nz'] = 64
     
-#     suffix_end = f'test-drift-pert-{pert}-method-2'
-#     plot_subdirectory = 'arrowhead_3D_drift'
-#     symmetry_mode = False
-#     track_TW = True
-#     save_subdir = f"arrowhead_3D"
-#     kwargs = {'asymmetric_perturb': pert, 'zero_flux': True}
+    solver_params['dt'] = 5e-3
+
+    # ic_dict_if_reinit = {'W': 20, 'Lz': 4*np.pi, 'suffix': 'recent-test-drift-pert-0,1-method-2'}
+    ic_dict_if_reinit = {'W': 19.4, 'Lz': 0.9 * 1.2 * np.pi + 2.8*np.pi}
+
+    suffix_end = f'localised'
+    plot_subdirectory = 'arrowhead_3D_connect'
+    symmetry_mode = False
+    track_TW = False
+    save_subdir = f"arrowhead_3D"
+    kwargs = {}
+
 
 elif setting_mode == 31:
 
